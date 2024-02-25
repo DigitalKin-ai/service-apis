@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package digitalkin.kin.v1;
 
-import "digitalkin.kin.v1.kin_response.proto";
+import "digitalkin/kin/v1/kin_response.proto";
 
 service KinThreadService {
     // CRD
