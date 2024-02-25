@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package organization;
+option go_package = ".;proto_generated";
+
+service Organization {
+    // CRD
+    rpc CreateOrganization(CreateOrganizationRequest) returns (OrganizationReply);
+    rpc ReadOrganization(ReadOrganizationRequest) returns (stream OrganizationReply);
+    rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
+
+    // Update
+    rpc UpdateActive(UpdateOrganizationActiveRequest) returns (UpdateOrganizationActiveResponse);
+
+    // Admin
+    rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse);
+}
+
+// Common
+message UserReply {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string avatar = 5;
+}
+
+message KinReply {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  bool active = 4;
+}
+
+message OrganizationReply {
+    string id = 1;
+    string name = 2;
+    UserReply owner = 3;
+    string invitation_code = 4;
+    repeated UserReply moderators = 5;
+    repeated UserReply users = 6;
+    repeated KinReply kins = 7;
+    optional string subscription = 8;
+    optional int64 credit_amount = 9;
+}
+
+message OrganizationAdminReply {
+    string id = 1;
+    string name = 2;
+    bool active = 3;
+    optional int64 nb_members = 4;
+    optional int64 nb_kins = 5;
+    optional string subscription = 6;
+}
+
+// Create Organization
+message CreateOrganizationRequest {
+    string name = 1;
+    string owner_id = 2;
+}
+
+// Read Organization
+message ReadOrganizationRequest {
+    string id = 1;
+}
+
+// Delete Organization
+message DeleteOrganizationRequest {
+    string id = 1;
+}
+message DeleteOrganizationResponse {}
+
+// Update Organization active status
+message UpdateOrganizationActiveRequest {
+    string id = 1;
+    bool active = 2;
+}
+message UpdateOrganizationActiveResponse { }
+
+// Admin
+// Read Organizations
+message ReadOrganizationsAdminRequest { }
+message ReadOrganizationsAdminResponse {
+    repeated OrganizationAdminReply organizations = 1;
+}

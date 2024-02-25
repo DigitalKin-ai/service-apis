@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package user;
+option go_package = ".;proto_generated";
+
+service User {
+    // CRD
+    rpc CreateUser(CreateUserRequest) returns (UserReply);
+    rpc ReadUser(ReadUserRequest) returns (stream UserReply);
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+
+    // Update
+    rpc UpdateActive(UpdateUserActiveRequest) returns (UpdateUserActiveResponse);
+
+    // Admin
+    rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);
+}
+
+// Common
+message OrganizationReply {
+  string id = 1;
+  string name = 2;
+  bool active = 3;
+}
+
+message KinReply {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  bool active = 4;
+}
+
+message UserReply {
+  string id = 1;
+  string user_name = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string email = 5;
+  string avatar = 6;
+  optional string subscription = 7;
+  optional int64 credit_amount = 8;
+  repeated KinReply kins = 9;
+  repeated OrganizationReply organizations = 10;
+  bool is_admin = 11;
+}
+
+message UserAdminReply {
+    string id = 1;
+    string user_name = 2;
+    bool active = 3;
+    optional int64 nb_kins = 4;
+    optional int64 nb_organizations = 5;
+    optional string subscription = 6;
+}
+
+// Create a new user
+message CreateUserRequest {
+    string user_name = 1;
+    string email = 2;
+    string password = 3;
+    optional string invitation_code = 4;
+    optional string first_name = 5;
+    optional string last_name = 6;
+}
+
+// Read a user
+message ReadUserRequest {
+    string id = 1;
+}
+
+// Delete a user
+message DeleteUserRequest {
+    string id = 1;
+}
+message DeleteUserResponse {}
+
+// Update a user active status
+message UpdateUserActiveRequest {
+    string id = 1;
+    bool active = 2;
+}
+message UpdateUserActiveResponse {}
+
+// Admin
+// Read users
+message ReadUsersAdminRequest { }
+message ReadUsersAdminResponse {
+    repeated UserAdminReply users = 1;
+}
+

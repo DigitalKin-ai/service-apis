@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package kin_response;
+option go_package = ".;proto_generated";
+
+service KinResponse {
+    rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponseReply);
+    rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse);
+}
+
+message KinResponseReply {
+    string id = 1;
+    optional string role = 2;
+    optional string status = 3;
+    string content = 4;
+    string created_at = 5;
+    string origin_id = 6;
+    string assignment = 7;
+    optional string model = 8;
+}
+
+message CreateKinResponseRequest {
+    optional string role = 1;
+    optional string status = 2;
+    string content = 3;
+    string origin_id = 4;
+    string assignment = 5;
+    optional string model = 6;
+}
+
+message DeleteKinResponseRequest {
+    string id = 1;
+}
+message DeleteKinResponseResponse {}

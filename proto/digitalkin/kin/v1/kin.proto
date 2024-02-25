@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package kin;
+option go_package = ".;proto_generated";
+
+service Kin {
+    // CRD
+    rpc CreateKin(CreateKinRequest) returns (KinReply);
+    rpc ReadKin(ReadKinRequest) returns (stream KinReply);
+    rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse);
+
+    // Update
+    rpc UpdateActive(UpdateKinActiveRequest) returns (UpdateKinActiveResponse);
+
+    // Admin
+    rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse);
+}
+
+// Common
+message KinChatReply {
+  string id = 1;
+  string name = 2;
+  bool active = 4;
+}
+
+message KinReply {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    bool active = 4;
+    repeated KinChatReply kin_chats = 5;
+}
+
+message KinAdminReply {
+  string id = 1;
+  string name = 2;
+  bool active = 3;
+  optional int64 nb_chats = 4;
+}
+
+// Create a new Kin
+message CreateKinRequest {
+    string name = 1;
+    string description = 2;
+    string owner_id = 3;
+}
+
+// Read a Kin
+message ReadKinRequest {
+    string id = 1;
+}
+
+// Delete a Kin
+message DeleteKinRequest {
+    string id = 1;
+}
+message DeleteKinResponse {}
+
+// Update a Kin active status
+message UpdateKinActiveRequest {
+    string id = 1;
+    bool active = 2;
+}
+message UpdateKinActiveResponse { }
+
+// Admin
+// Read users
+
+message ReadKinsAdminRequest { }
+message ReadKinsAdminResponse {
+    repeated KinAdminReply kins = 1;
+}

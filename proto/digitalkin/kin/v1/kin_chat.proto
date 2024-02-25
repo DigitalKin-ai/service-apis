@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package kin_chat;
+option go_package = ".;proto_generated";
+
+service KinChat {
+    rpc CreateKinChat(CreateKinChatRequest) returns (KinChatReply);
+    rpc ReadKinChats(ReadKinChatsRequest) returns (stream ReadKinChatsResponse);
+    rpc DeleteKinChat(DeleteKinChatRequest) returns (DeleteKinChatResponse);
+}
+
+message KinResponseReply {
+    string id = 1;
+    optional string role = 2;
+    optional string status = 3;
+    string content = 4;
+    string created_at = 5;
+    string origin_id = 6;
+    string assignment = 7;
+    optional string model = 8;
+}
+
+message KinChatReply {
+    string id = 1;
+    string name = 2;
+    repeated KinResponseReply responses = 3;
+    bool active = 4;
+}
+
+message CreateKinChatRequest {
+    string name = 1;
+    string owner_id = 2;
+}
+
+message ReadKinChatsRequest {
+    string id = 1;
+}
+message ReadKinChatsResponse {
+    repeated KinChatReply kin_chats = 1;
+}
+
+message DeleteKinChatRequest {
+    string id = 1;
+}
+message DeleteKinChatResponse {}
+

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package auth;
+option go_package = ".;proto_generated";
+
+service Auth {
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc logout(LogoutRequest) returns (LogoutResponse);
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+message LogoutRequest {}
+
+message LogoutResponse {}
+
