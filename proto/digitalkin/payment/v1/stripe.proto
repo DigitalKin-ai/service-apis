@@ -1,0 +1,256 @@
+syntax = "proto3";
+
+package digitalkin.payment.v1;
+
+service PaymentService {
+  // Customer
+  rpc CreateCustomer(CreateCustomerRequest) returns (Customer);
+  rpc ReadCustomer(ReadCustomerRequest) returns (Customer);
+
+  // Payment intent
+  rpc CreatePaymentIntent(CreatePaymentIntentRequest) returns (PaymentIntent);
+
+  // Payment method
+  rpc AttachPaymentIntent(AttachPaymentIntentRequest) returns (PaymentMethod);
+
+  // Subscription
+  rpc CreateSubscription(CreateSubscriptionRequest) returns (Subscription);
+  rpc ReadSubscription(ReadSubscriptionRequest) returns (Subscription);
+  rpc UpdateSubscription(UpdateSubscriptionRequest) returns (Subscription);
+  rpc CancelSubscription(CancelSubscriptionRequest) returns (Subscription);
+
+  // Product
+  rpc ReadProduct(ReadProductRequest) returns (ReadProductResponse);
+
+  // Config
+  rpc ReadConfig(ReadConfigRequest) returns (ReadConfigResponse);
+}
+
+message Customer {
+  string id = 1;
+  optional object address = 2;
+  optional int64 balance = 3;
+  optional int64 created = 4;
+  optional string currency = 5;
+  optional object default_source = 6;
+  bool deleted = 7;
+  optional bool delinquent = 8;
+  optional string description = 9;
+  optional object discount = 10;
+  optional string email = 11;
+  optional string invoice_prefix = 12;
+  optional object invoice_settings = 13;
+  optional bool livemode = 14;
+  object metadata = 15;
+  optional string name = 16;
+  optional int64 next_invoice_sequence = 17;
+  optional string phone = 18;
+  optional array preferred_locales = 19;
+  optional object shipping = 20;
+  array sources = 21;
+  array subscriptions = 22;
+  optional object tax = 23;
+  optional string tax_exempt = 24;
+  array tax_ids = 25;
+  optional object test_clock = 26;
+}
+
+message PaymentIntent {
+  string id = 1;
+  string object = 2;
+  int64 amount = 3;
+  int64 amount_capturable = 4;
+  int64 amount_received = 5;
+  string application = 6;
+  string application_fee_amount = 7;
+  string canceled_at = 8;
+  string cancellation_reason = 9;
+  string capture_method = 10;
+  string charges = 11;
+  string client_secret = 12;
+  string confirmation_method = 13;
+  string created = 14;
+  string currency = 15;
+  string customer = 16;
+  string description = 17;
+  string invoice = 18;
+  string last_payment_error = 19;
+  string livemode = 20;
+  string metadata = 21;
+  string next_action = 22;
+  string on_behalf_of = 23;
+  string payment_method = 24;
+  string payment_method_options = 25;
+  string payment_method_types = 26;
+  string receipt_email = 27;
+  string review = 28;
+  string setup_future_usage = 29;
+  string shipping = 30;
+  string source = 31;
+  string statement_descriptor = 32;
+  string statement_descriptor_suffix = 33;
+  string status = 34;
+  string transfer_data = 35;
+  string transfer_group = 36;
+}
+
+message PaymentMethod {
+  string id = 1;
+  string object = 2;
+  string billing_details = 3;
+  string card = 4;
+  string created = 5;
+  string customer = 6;
+  string livemode = 7;
+  string metadata = 8;
+  string type = 9;
+}
+
+message Subscription {
+  string id = 1;
+  string object = 2;
+  string application_fee_percent = 3;
+  string billing_cycle_anchor = 4;
+  string billing_thresholds = 5;
+  string cancel_at = 6;
+  string cancel_at_period_end = 7;
+  string canceled_at = 8;
+  string collection_method = 9;
+  string created = 10;
+  string current_period_end = 11;
+  string current_period_start = 12;
+  string customer = 13;
+  string days_until_due = 14;
+  string default_payment_method = 15;
+  string default_source = 16;
+  string default_tax_rates = 17;
+  string discount = 18;
+  string ended_at = 19;
+  string items = 20;
+  string latest_invoice = 21;
+  string livemode = 22;
+  string metadata = 23;
+  string next_pending_invoice_item_invoice = 24;
+  string pending_invoice_item_interval = 25;
+  string pending_setup_intent = 26;
+  string pending_update = 27;
+  string plan = 28;
+  string quantity = 29;
+  string schedule = 30;
+  string start_date = 31;
+  string status = 32;
+  string tax_percent = 33;
+  string trial_end = 34;
+  string trial_start = 35;
+}
+
+message Product {
+  string id = 1;
+  string object = 2;
+  string active = 3;
+  string attributes = 4;
+  string caption = 5;
+  string created = 6;
+  string deactivate_on = 7;
+  string description = 8;
+  string images = 9;
+  string livemode = 10;
+  string metadata = 11;
+  string name = 12;
+  string package_dimensions = 13;
+  string shippable = 14;
+  string statement_descriptor = 15;
+  string type = 16;
+  string unit_label = 17;
+  string updated = 18;
+  string url = 19;
+}
+
+message Price {
+  string id = 1;
+  string object = 2;
+  string active = 3;
+  string billing_scheme = 4;
+  string created = 5;
+  string currency = 6;
+  string livemode = 7;
+  string lookup_key = 8;
+  string metadata = 9;
+  string nickname = 10;
+  string product = 11;
+  string recurring = 12;
+  string tiers = 13;
+  string transform_quantity = 14;
+  string type = 15;
+  string unit_amount = 16;
+  string unit_amount_decimal = 17;
+  string updated = 18;
+}
+
+// Create Customer
+message CreateCustomerRequest {
+  string email = 1;
+  string name = 2;
+  string address = 3;
+  string city = 4;
+  string state = 5;
+  string postal_code = 6;
+  optional string organization_id = 7;
+}
+
+// Read Customer
+message ReadCustomerRequest {
+  string customer_id = 1;
+}
+
+// Create Payment Intent
+message CreatePaymentIntentRequest {
+  int64 amount = 1;
+  string currency = 2;
+  string payment_method = 3;
+  optional string organization_id = 4;
+}
+
+// Attach Payment Intent
+message AttachPaymentIntentRequest {
+  string payment_intent_id = 1;
+  optional string organization_id = 2;
+}
+
+// Create Subscription
+message CreateSubscriptionRequest {
+  string price_id = 1;
+  optional string payment_method_id = 2;
+  optional string organization_id = 3;
+}
+
+// Read Subscription
+message ReadSubscriptionRequest {
+  optional string organization_id = 1;
+}
+
+// Update Subscription
+message UpdateSubscriptionRequest {
+  string subscription_id = 1;
+  string price_id = 2;
+  optional string organization_id = 3;
+}
+
+// Cancel Subscription
+message CancelSubscriptionRequest {
+  string subscription_id = 1;
+  optional string organization_id = 2;
+}
+
+// Read Product
+message ReadProductRequest {}
+message ReadProductResponse {
+  repeated Product products = 1;
+}
+
+// Read Config
+message ReadConfigRequest {}
+message ReadConfigResponse {
+  string publishable_key = 1;
+  repeated Price prices = 2;
+}
