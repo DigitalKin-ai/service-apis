@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package digitalkin.payment.v1;
 
-service PaymentService {
+service StripeService {
   // Customer
   rpc CreateCustomer(CreateCustomerRequest) returns (Customer);
   rpc ReadCustomer(ReadCustomerRequest) returns (Customer);

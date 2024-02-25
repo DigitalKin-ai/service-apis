@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package digitalkin.admin.v1;
+package digitalkin.client.v1;
 
 service AdminService {
   rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);

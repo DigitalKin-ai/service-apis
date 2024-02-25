@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package digitalkin.kin_response.v1;
+package digitalkin.kin.v1;
 
 service KinResponseService {
     // CRD

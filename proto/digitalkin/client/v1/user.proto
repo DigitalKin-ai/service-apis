@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package digitalkin.user.v1;
+package digitalkin.client.v1;
 
 service UserService {
     // CRD
