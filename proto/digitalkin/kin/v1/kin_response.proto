@@ -4,34 +4,29 @@ package digitalkin.kin_response.v1;
 
 service KinResponseService {
     // CRD
-    rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponseReply);
+    rpc ReadKinResponse(ReadKinResponseRequest) returns (KinResponse);
     rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse);
 }
 
 // Common
-message KinResponseReply {
+message KinResponse {
     string id = 1;
     optional string role = 2;
     optional string status = 3;
-    string content = 4;
+    string mission = 4;
     string created_at = 5;
     string origin_id = 6;
-    string assignment = 7;
+    string thread_subject = 7;
     optional string model = 8;
 }
 
-// Create Response
-message CreateKinResponseRequest {
-    optional string role = 1;
-    optional string status = 2;
-    string content = 3;
-    string origin_id = 4;
-    string assignment = 5;
-    optional string model = 6;
+// Read Response
+message ReadKinResponseRequest {
+    string kin_response_id = 1;
 }
 
 // Detete Response
 message DeleteKinResponseRequest {
-    string id = 1;
+    string kin_response_id = 1;
 }
 message DeleteKinResponseResponse {}

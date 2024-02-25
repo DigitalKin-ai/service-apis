@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package digitalkin.kin_thread.v1;
+
+import "digitalkin.kin.v1.kin_response.proto";
+
+service KinThreadService {
+    // CRD
+    rpc CreateKinThread(CreateKinThreadRequest) returns (KinThread);
+    rpc ReadKinThread(ReadKinThreadRequest) returns (stream KinThread);
+    rpc DeleteKinThread(DeleteKinThreadRequest) returns (DeleteKinThreadResponse);
+
+    // Update
+    rpc UpdateSubject(UpdateSubjectRequest) returns (UpdateSubjectResponse);
+
+    // Kin response
+    rpc CreateKinResponse(CreateKinResponseRequest) returns (CreateKinResponseResponse);
+    rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (ReplyInTheThreadResponse);
+    rpc UploadDocumentFileForKinResponse(UploadDocumentFileRequest) returns (UploadDocumentFileResponse);
+}
+
+// Common
+message KinThread {
+    string id = 1;
+    string thread_subject = 2;
+    repeated KinResponse responses = 3;
+    bool activated = 4;
+}
+
+// Create Kin Thread
+message CreateKinThreadRequest {
+    string thread_subject = 1;
+}
+
+// Read Kin Thread
+message ReadKinThreadRequest {
+    string kin_thread_id = 1;
+}
+
+// Delete Kin Thread
+message DeleteKinThreadRequest {
+    string kin_thread_id = 1;
+}
+message DeleteKinThreadResponse {}
+
+// Update Subject
+message UpdateSubjectRequest {
+    string kin_thread_id = 1;
+    string subject = 2;
+}
+message UpdateSubjectResponse {}
+
+// Create Kin Response
+message CreateKinResponseRequest {
+    string kin_thread_id = 1;
+    string mission = 2;
+}
+message CreateKinResponseResponse {}
+
+// Reply In The Thread
+message ReplyInTheThreadRequest {
+    string kin_thread_id = 1;
+    string mission = 2;
+}
+message ReplyInTheThreadResponse {}
+
+// Upload Document File
+message UploadDocumentFileRequest {
+    string kin_thread_id = 1;
+    string file_name = 2;
+    bytes file = 3;
+}
+message UploadDocumentFileResponse {}
+

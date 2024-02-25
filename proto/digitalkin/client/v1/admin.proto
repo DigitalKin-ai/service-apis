@@ -5,6 +5,7 @@ package digitalkin.admin.v1;
 service AdminService {
   rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);
   rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse);
+  rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse);
 }
 
 message UserAdminReply {
@@ -24,6 +25,15 @@ message OrganizationAdminReply {
     optional string subscription = 6;
 }
 
+message KinAdminReply {
+    string id = 1;
+    string name = 2;
+    bool activated = 3;
+    optional int64 nb_members = 4;
+    optional int64 nb_organizations = 5;
+    optional int64 nb_threads = 6;
+}
+
 // Read users
 message ReadUsersAdminRequest { }
 message ReadUsersAdminResponse {
@@ -34,4 +44,10 @@ message ReadUsersAdminResponse {
 message ReadOrganizationsAdminRequest { }
 message ReadOrganizationsAdminResponse {
     repeated OrganizationAdminReply organizations = 1;
+}
+
+// Read kins
+message ReadKinsAdminRequest { }
+message ReadKinsAdminResponse {
+    repeated KinAdminReply kins = 1;
 }

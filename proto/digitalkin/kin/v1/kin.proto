@@ -2,70 +2,72 @@ syntax = "proto3";
 
 package digitalkin.kin.v1;
 
+import "digitalkin.kin.v1.kin_thread.proto";
+
 service Kin {
     // CRD
-    rpc CreateKin(CreateKinRequest) returns (KinReply);
-    rpc ReadKin(ReadKinRequest) returns (stream KinReply);
+    rpc CreateKin(CreateKinRequest) returns (Kin);
+    rpc ReadKin(ReadKinRequest) returns (stream Kin);
     rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse);
 
     // Update
-    rpc UpdateActive(UpdateKinActiveRequest) returns (UpdateKinActiveResponse);
-
-    // Admin
-    rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse);
+    rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse);
+    rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse);
+    rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse);
+    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse);
 }
 
 // Common
-message KinChatReply {
-  string id = 1;
-  string name = 2;
-  bool active = 4;
-}
-
-message KinReply {
+message Kin {
     string id = 1;
     string name = 2;
     string description = 3;
-    bool active = 4;
-    repeated KinChatReply kin_chats = 5;
-}
-
-message KinAdminReply {
-  string id = 1;
-  string name = 2;
-  bool active = 3;
-  optional int64 nb_chats = 4;
+    string origin_address = 4;
+    repeated KinThread kin_threads = 5;
+    bool activated = 6;
 }
 
 // Create a new Kin
 message CreateKinRequest {
     string name = 1;
-    string description = 2;
-    string owner_id = 3;
+    optional string description = 2;
 }
 
 // Read a Kin
 message ReadKinRequest {
-    string id = 1;
+    string kin_id = 1;
 }
 
 // Delete a Kin
 message DeleteKinRequest {
-    string id = 1;
+    string kin_id = 1;
 }
 message DeleteKinResponse {}
 
-// Update a Kin active status
-message UpdateKinActiveRequest {
-    string id = 1;
-    bool active = 2;
+// Update a Kin activated status
+message UpdateKinActivatedRequest {
+    string kin_id = 1;
+    bool activated = 2;
 }
-message UpdateKinActiveResponse { }
+message UpdateKinActivatedResponse { }
 
-// Admin
-// Read users
-
-message ReadKinsAdminRequest { }
-message ReadKinsAdminResponse {
-    repeated KinAdminReply kins = 1;
+// Update a Kin name
+message UpdateKinNameRequest {
+    string kin_id = 1;
+    string name = 2;
 }
+message UpdateKinNameResponse { }
+
+// Update a Kin description
+message UpdateKinDescriptionRequest {
+    string kin_id = 1;
+    string description = 2;
+}
+message UpdateKinDescriptionResponse { }
+
+// Update a Kin origin address
+message UpdateKinOriginAddressRequest {
+    string kin_id = 1;
+    string origin_address = 2;
+}
+message UpdateKinOriginAddressResponse { }
