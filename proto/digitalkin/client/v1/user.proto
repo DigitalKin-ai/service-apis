@@ -11,9 +11,6 @@ service User {
 
     // Update
     rpc UpdateActive(UpdateUserActiveRequest) returns (UpdateUserActiveResponse);
-
-    // Admin
-    rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);
 }
 
 // Common
@@ -44,15 +41,6 @@ message UserReply {
   bool is_admin = 11;
 }
 
-message UserAdminReply {
-    string id = 1;
-    string user_name = 2;
-    bool active = 3;
-    optional int64 nb_kins = 4;
-    optional int64 nb_organizations = 5;
-    optional string subscription = 6;
-}
-
 // Create a new user
 message CreateUserRequest {
     string user_name = 1;
@@ -80,11 +68,3 @@ message UpdateUserActiveRequest {
     bool active = 2;
 }
 message UpdateUserActiveResponse {}
-
-// Admin
-// Read users
-message ReadUsersAdminRequest { }
-message ReadUsersAdminResponse {
-    repeated UserAdminReply users = 1;
-}
-

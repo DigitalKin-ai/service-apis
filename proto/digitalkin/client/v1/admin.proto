@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package digitalkin.admin.v1;
+
+service AdminService {
+  rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);
+  rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse);
+}
+
+message UserAdminReply {
+    string id = 1;
+    string user_name = 2;
+    bool active = 3;
+    optional int64 nb_kins = 4;
+    optional int64 nb_organizations = 5;
+    optional string subscription = 6;
+}
+
+message OrganizationAdminReply {
+    string id = 1;
+    string name = 2;
+    bool active = 3;
+    optional int64 nb_members = 4;
+    optional int64 nb_kins = 5;
+    optional string subscription = 6;
+}
+
+// Read users
+message ReadUsersAdminRequest { }
+message ReadUsersAdminResponse {
+    repeated UserAdminReply users = 1;
+}
+
+// Read organizations
+message ReadOrganizationsAdminRequest { }
+message ReadOrganizationsAdminResponse {
+    repeated OrganizationAdminReply organizations = 1;
+}

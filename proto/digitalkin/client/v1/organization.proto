@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-package organization;
-option go_package = ".;proto_generated";
+package digitalkin.organization.v1;
 
 service Organization {
     // CRD
@@ -11,9 +10,6 @@ service Organization {
 
     // Update
     rpc UpdateActive(UpdateOrganizationActiveRequest) returns (UpdateOrganizationActiveResponse);
-
-    // Admin
-    rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse);
 }
 
 // Common
@@ -22,7 +18,7 @@ message UserReply {
   string first_name = 2;
   string last_name = 3;
   string email = 4;
-  string avatar = 5;
+  optional string avatar = 5;
 }
 
 message KinReply {
@@ -42,15 +38,6 @@ message OrganizationReply {
     repeated KinReply kins = 7;
     optional string subscription = 8;
     optional int64 credit_amount = 9;
-}
-
-message OrganizationAdminReply {
-    string id = 1;
-    string name = 2;
-    bool active = 3;
-    optional int64 nb_members = 4;
-    optional int64 nb_kins = 5;
-    optional string subscription = 6;
 }
 
 // Create Organization
@@ -76,10 +63,3 @@ message UpdateOrganizationActiveRequest {
     bool active = 2;
 }
 message UpdateOrganizationActiveResponse { }
-
-// Admin
-// Read Organizations
-message ReadOrganizationsAdminRequest { }
-message ReadOrganizationsAdminResponse {
-    repeated OrganizationAdminReply organizations = 1;
-}

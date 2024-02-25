@@ -1,9 +1,8 @@
 syntax = "proto3";
 
-package auth;
-option go_package = ".;proto_generated";
+package digitalkin.auth.v1;
 
-service Auth {
+service AuthService {
     rpc Login(LoginRequest) returns (LoginResponse);
     rpc logout(LogoutRequest) returns (LogoutResponse);
 }
