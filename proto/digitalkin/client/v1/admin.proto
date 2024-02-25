@@ -8,9 +8,8 @@ service AdminService {
 }
 
 message UserAdminReply {
-    string id = 1;
     string user_name = 2;
-    bool active = 3;
+    bool activated = 3;
     optional int64 nb_kins = 4;
     optional int64 nb_organizations = 5;
     optional string subscription = 6;
@@ -19,7 +18,7 @@ message UserAdminReply {
 message OrganizationAdminReply {
     string id = 1;
     string name = 2;
-    bool active = 3;
+    bool activated = 3;
     optional int64 nb_members = 4;
     optional int64 nb_kins = 5;
     optional string subscription = 6;

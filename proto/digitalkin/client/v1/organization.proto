@@ -2,42 +2,59 @@ syntax = "proto3";
 
 package digitalkin.organization.v1;
 
-service Organization {
+service OrganizationService {
     // CRD
     rpc CreateOrganization(CreateOrganizationRequest) returns (OrganizationReply);
     rpc ReadOrganization(ReadOrganizationRequest) returns (stream OrganizationReply);
     rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
 
     // Update
-    rpc UpdateActive(UpdateOrganizationActiveRequest) returns (UpdateOrganizationActiveResponse);
+    rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (UpdateOrganizationActivatedResponse);
+    rpc UpdateName(UpdateOrganizationNameRequest) returns (UpdateOrganizationNameResponse);
+    rpc UpdateCustomer(UpdateOrganizationCustomerRequest) returns (UpdateOrganizationCustomerResponse);
+    rpc UpdateSubscription(UpdateOrganizationSubscriptionRequest) returns (UpdateOrganizationSubscriptionResponse);
+    rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse);
+
+    // User
+    rpc AddUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse);
+    rpc RemoveUser(RemoveOrganizationUserRequest) returns (RemoveOrganizationUserResponse);
+    rpc AddModerator(AddOrganizationModeratorRequest) returns (AddOrganizationModeratorResponse);
+    rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (RemoveOrganizationModeratorResponse);
+    rpc AddKin(AddOrganizationKinRequest) returns (AddOrganizationKinResponse);
+    rpc RemoveKin(RemoveOrganizationKinRequest) returns (RemoveOrganizationKinResponse);
+
+    // Other
+    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse);
 }
 
 // Common
 message UserReply {
-  string id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string email = 4;
-  optional string avatar = 5;
+  optional string first_name = 1;
+  optional string last_name = 2;
+  string email = 3;
+  optional string avatar = 4;
+  bool activated = 5;
 }
 
 message KinReply {
   string id = 1;
   string name = 2;
-  string description = 3;
-  bool active = 4;
+  optional string description = 3;
+  bool activated = 4;
 }
 
 message OrganizationReply {
     string id = 1;
     string name = 2;
-    UserReply owner = 3;
+    bool owner = 3;
     string invitation_code = 4;
     repeated UserReply moderators = 5;
     repeated UserReply users = 6;
     repeated KinReply kins = 7;
-    optional string subscription = 8;
-    optional int64 credit_amount = 9;
+    optional string customer_id = 8;
+    optional string subscription = 9;
+    optional int64 credit_amount = 10;
+    bool activated = 11;
 }
 
 // Create Organization
@@ -48,18 +65,94 @@ message CreateOrganizationRequest {
 
 // Read Organization
 message ReadOrganizationRequest {
-    string id = 1;
+    string organization_id = 1;
 }
 
 // Delete Organization
 message DeleteOrganizationRequest {
-    string id = 1;
+    string organization_id = 1;
 }
 message DeleteOrganizationResponse {}
 
-// Update Organization active status
-message UpdateOrganizationActiveRequest {
-    string id = 1;
-    bool active = 2;
+// Update Organization activated status
+message UpdateOrganizationActivatedRequest {
+    string organization_id = 1;
+    bool activated = 2;
 }
-message UpdateOrganizationActiveResponse { }
+message UpdateOrganizationActivatedResponse {}
+
+// Update Organization name
+message UpdateOrganizationNameRequest {
+    string organization_id = 1;
+    string name = 2;
+}
+message UpdateOrganizationNameResponse {}
+
+// Update Organization customer
+message UpdateOrganizationCustomerRequest {
+    string organization_id = 1;
+    string customer_id = 2;
+}
+message UpdateOrganizationCustomerResponse {}
+
+// Update Organization subscription
+message UpdateOrganizationSubscriptionRequest {
+    string organization_id = 1;
+    string subscription = 2;
+}
+message UpdateOrganizationSubscriptionResponse {}
+
+// Update Organization credit amount
+message UpdateOrganizationCreditAmountRequest {
+    string organization_id = 1;
+    int64 credit_amount = 2;
+}
+message UpdateOrganizationCreditAmountResponse {}
+
+// Add User
+message AddOrganizationUserRequest {
+    string organization_id = 1;
+    string user_id = 2;
+}
+message AddOrganizationUserResponse {}
+
+// Remove User
+message RemoveOrganizationUserRequest {
+    string organization_id = 1;
+    string user_id = 2;
+}
+message RemoveOrganizationUserResponse {}
+
+// Add Moderator
+message AddOrganizationModeratorRequest {
+    string organization_id = 1;
+    string user_id = 2;
+}
+message AddOrganizationModeratorResponse {}
+
+// Remove Moderator
+message RemoveOrganizationModeratorRequest {
+    string organization_id = 1;
+    string user_id = 2;
+}
+message RemoveOrganizationModeratorResponse {}
+
+// Add Kin
+message AddOrganizationKinRequest {
+    string organization_id = 1;
+    string kin_id = 2;
+}
+message AddOrganizationKinResponse {}
+
+// Remove Kin
+message RemoveOrganizationKinRequest {
+    string organization_id = 1;
+    string kin_id = 2;
+}
+message RemoveOrganizationKinResponse {}
+
+// Regenerate Invitation Code
+message RegenerateOrganizationInvitationCodeRequest {
+    string id = 1;
+}
+message RegenerateOrganizationInvitationCodeResponse {}

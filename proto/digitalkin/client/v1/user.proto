@@ -1,44 +1,60 @@
 syntax = "proto3";
 
-package user;
-option go_package = ".;proto_generated";
+package digitalkin.user.v1;
 
-service User {
+service UserService {
     // CRD
     rpc CreateUser(CreateUserRequest) returns (UserReply);
     rpc ReadUser(ReadUserRequest) returns (stream UserReply);
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 
     // Update
-    rpc UpdateActive(UpdateUserActiveRequest) returns (UpdateUserActiveResponse);
+    rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse);
+    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse);
+    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse);
+    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse);
+    rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse);
+    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse);
+    rpc updateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse);
+    rpc updateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse);
+    rpc UpdateSubscription(UpdateUserSubscriptionRequest) returns (UpdateUserSubscriptionResponse);
+    rpc UpdateCreditAmount(UpdateUserCreditAmountRequest) returns (UpdateUserCreditAmountResponse);
+
+    // Organization
+    rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse);
+    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse);
+    rpc AddKin(AddUserKinRequest) returns (AddUserKinResponse);
+    rpc RemoveKin(RemoveUserKinRequest) returns (RemoveUserKinResponse);
 }
 
 // Common
 message OrganizationReply {
   string id = 1;
   string name = 2;
-  bool active = 3;
+  optional string description = 3;
+  bool activated = 4;
 }
 
 message KinReply {
   string id = 1;
   string name = 2;
-  string description = 3;
-  bool active = 4;
+  optional string description = 3;
+  bool activated = 4;
 }
 
 message UserReply {
-  string id = 1;
-  string user_name = 2;
-  string first_name = 3;
-  string last_name = 4;
+  string user_name = 1;
+  optional string first_name = 3;
+  optional string last_name = 4;
   string email = 5;
-  string avatar = 6;
-  optional string subscription = 7;
-  optional int64 credit_amount = 8;
-  repeated KinReply kins = 9;
-  repeated OrganizationReply organizations = 10;
-  bool is_admin = 11;
+  optional string avatar = 6;
+  repeated KinReply kins = 7;
+  repeated OrganizationReply organizations = 8;
+  optional string customer_id = 9;
+  optional string subscription = 10;
+  optional int64 credit_amount = 11;
+  bool activated = 12;
+  bool is_admin = 13;
 }
 
 // Create a new user
@@ -53,18 +69,95 @@ message CreateUserRequest {
 
 // Read a user
 message ReadUserRequest {
-    string id = 1;
+    string user_id = 1;
 }
 
 // Delete a user
-message DeleteUserRequest {
-    string id = 1;
-}
+message DeleteUserRequest {}
 message DeleteUserResponse {}
 
-// Update a user active status
-message UpdateUserActiveRequest {
-    string id = 1;
-    bool active = 2;
+// Update a user activated status
+message UpdateUserActivatedRequest {
+    bool activated = 1;
 }
-message UpdateUserActiveResponse {}
+message UpdateUserActivatedResponse {}
+
+// Update a user avatar
+message UpdateUserAvatarRequest {
+    string avatar = 1;
+}
+message UpdateUserAvatarResponse {}
+
+// Update a user email
+message UpdateUserEmailRequest {
+    string email = 1;
+}
+message UpdateUserEmailResponse {}
+
+// Update a user first name
+message UpdateUserFirstNameRequest {
+    string first_name = 1;
+}
+message UpdateUserFirstNameResponse {}
+
+// Update a user last name
+message UpdateUserLastNameRequest {
+    string last_name = 1;
+}
+message UpdateUserLastNameResponse {}
+
+// Update a user password
+message UpdateUserPasswordRequest {
+    string old_password = 1;
+    string new_password = 2;
+}
+message UpdateUserPasswordResponse {}
+
+// Update a user user name
+message UpdateUserNameRequest {
+    string user_name = 1;
+}
+message UpdateUserNameResponse {}
+
+// Update a user customer
+message UpdateCustomerRequest {
+    string customer_id = 1;
+}
+message UpdateCustomerResponse {}
+
+// Update a user subscription
+message UpdateUserSubscriptionRequest {
+    string subscription = 1;
+}
+message UpdateUserSubscriptionResponse {}
+
+// Update a user credit amount
+message UpdateUserCreditAmountRequest {
+    int64 credit_amount = 1;
+}
+message UpdateUserCreditAmountResponse {}
+
+// Add a user organization
+message AddUserOrganizationRequest {
+    string invitation_code = 1;
+}
+message AddUserOrganizationResponse {}
+
+// Remove a user organization
+message RemoveUserOrganizationRequest {
+    string organization_id = 1;
+}
+message RemoveUserOrganizationResponse {}
+
+// Add a user kin
+message AddUserKinRequest {
+    string kin_id = 1;
+}
+message AddUserKinResponse {}
+
+// Remove a user kin
+message RemoveUserKinRequest {
+    string kin_id = 1;
+}
+message RemoveUserKinResponse {}
+
