@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-package kin_chat;
-option go_package = ".;proto_generated";
+package digitalkin.kin_chat.v1;
 
 service KinChat {
     rpc CreateKinChat(CreateKinChatRequest) returns (KinChatReply);

@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-package kin;
-option go_package = ".;proto_generated";
+package digitalkin.kin.v1;
 
 service Kin {
     // CRD

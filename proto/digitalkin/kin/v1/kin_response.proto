@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-package kin_response;
-option go_package = ".;proto_generated";
+package digitalkin.kin_response.v1;
 
-service KinResponse {
+service KinResponseService {
+    // CRD
     rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponseReply);
     rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse);
 }
 
+// Common
 message KinResponseReply {
     string id = 1;
     optional string role = 2;
@@ -19,6 +20,7 @@ message KinResponseReply {
     optional string model = 8;
 }
 
+// Create Response
 message CreateKinResponseRequest {
     optional string role = 1;
     optional string status = 2;
@@ -28,6 +30,7 @@ message CreateKinResponseRequest {
     optional string model = 6;
 }
 
+// Detete Response
 message DeleteKinResponseRequest {
     string id = 1;
 }
