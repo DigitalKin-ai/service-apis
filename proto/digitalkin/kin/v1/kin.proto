@@ -4,7 +4,7 @@ package digitalkin.kin.v1;
 
 import "digitalkin/kin/v1/kin_thread.proto";
 
-service Kin {
+service KinService {
     // CRD
     rpc CreateKin(CreateKinRequest) returns (Kin);
     rpc ReadKin(ReadKinRequest) returns (stream Kin);

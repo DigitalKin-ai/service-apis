@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "digitalkin/client/v1/organization.proto";
+
 service UserService {
     // CRD
     rpc CreateUser(CreateUserRequest) returns (User);
@@ -23,19 +25,10 @@ service UserService {
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse);
     rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse);
-    rpc AddKin(AddUserKinRequest) returns (AddUserKinResponse);
-    rpc RemoveKin(RemoveUserKinRequest) returns (RemoveUserKinResponse);
 }
 
 // Common
 message OrganizationReply {
-  string id = 1;
-  string name = 2;
-  optional string description = 3;
-  bool activated = 4;
-}
-
-message KinReply {
   string id = 1;
   string name = 2;
   optional string description = 3;
@@ -48,13 +41,12 @@ message User {
   optional string last_name = 4;
   string email = 5;
   optional string avatar = 6;
-  repeated KinReply kins = 7;
-  repeated OrganizationReply organizations = 8;
-  optional string customer_id = 9;
-  optional string subscription = 10;
-  optional int64 credit_amount = 11;
-  bool activated = 12;
-  bool is_admin = 13;
+  repeated OrganizationReply organizations = 7;
+  optional string customer_id = 8;
+  optional string subscription = 9;
+  optional int64 credit_amount = 10;
+  bool activated = 11;
+  bool is_admin = 12;
 }
 
 // Create a new user
