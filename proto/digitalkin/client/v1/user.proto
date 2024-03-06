@@ -6,21 +6,18 @@ import "digitalkin/client/v1/organization.proto";
 
 service UserService {
     // CRD
-    rpc CreateUser(CreateUserRequest) returns (User);
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
     rpc ReadUser(ReadUserRequest) returns (stream User);
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 
     // Update
-    rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse);
-    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse);
+    rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse);
     rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse);
     rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse);
     rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse);
     rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse);
     rpc updateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse);
     rpc updateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse);
-    rpc UpdateSubscription(UpdateUserSubscriptionRequest) returns (UpdateUserSubscriptionResponse);
-    rpc UpdateCreditAmount(UpdateUserCreditAmountRequest) returns (UpdateUserCreditAmountResponse);
 
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse);
@@ -58,6 +55,7 @@ message CreateUserRequest {
     optional string first_name = 5;
     optional string last_name = 6;
 }
+message CreateUserResponse {}
 
 // Read a user
 message ReadUserRequest {
@@ -68,15 +66,9 @@ message ReadUserRequest {
 message DeleteUserRequest {}
 message DeleteUserResponse {}
 
-// Update a user activated status
-message UpdateUserActivatedRequest {
-    bool activated = 1;
-}
-message UpdateUserActivatedResponse {}
-
 // Update a user avatar
 message UpdateUserAvatarRequest {
-    string avatar = 1;
+    bytes avatar = 1;
 }
 message UpdateUserAvatarResponse {}
 
@@ -117,18 +109,6 @@ message UpdateCustomerRequest {
 }
 message UpdateCustomerResponse {}
 
-// Update a user subscription
-message UpdateUserSubscriptionRequest {
-    string subscription = 1;
-}
-message UpdateUserSubscriptionResponse {}
-
-// Update a user credit amount
-message UpdateUserCreditAmountRequest {
-    int64 credit_amount = 1;
-}
-message UpdateUserCreditAmountResponse {}
-
 // Add a user organization
 message AddUserOrganizationRequest {
     string invitation_code = 1;
@@ -140,16 +120,4 @@ message RemoveUserOrganizationRequest {
     string organization_id = 1;
 }
 message RemoveUserOrganizationResponse {}
-
-// Add a user kin
-message AddUserKinRequest {
-    string kin_id = 1;
-}
-message AddUserKinResponse {}
-
-// Remove a user kin
-message RemoveUserKinRequest {
-    string kin_id = 1;
-}
-message RemoveUserKinResponse {}
 
