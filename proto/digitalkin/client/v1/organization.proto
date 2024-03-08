@@ -4,7 +4,7 @@ package digitalkin.client.v1;
 
 service OrganizationService {
     // CRD
-    rpc CreateOrganization(CreateOrganizationRequest) returns (Organization);
+    rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse);
     rpc ReadOrganization(ReadOrganizationRequest) returns (stream Organization);
     rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
 
@@ -46,7 +46,7 @@ message KinReply {
 message Organization {
     string id = 1;
     string name = 2;
-    bool owner = 3;
+    UserReply owner = 3;
     string invitation_code = 4;
     repeated UserReply moderators = 5;
     repeated UserReply users = 6;
@@ -62,6 +62,7 @@ message CreateOrganizationRequest {
     string name = 1;
     string owner_id = 2;
 }
+message CreateOrganizationResponse {}
 
 // Read Organization
 message ReadOrganizationRequest {
