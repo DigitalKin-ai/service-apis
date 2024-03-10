@@ -6,7 +6,7 @@ import "digitalkin/kin/v1/kin_response.proto";
 
 service KinThreadService {
     // CRD
-    rpc CreateKinThread(CreateKinThreadRequest) returns (KinThread);
+    rpc CreateKinThread(CreateKinThreadRequest) returns (CreateKinThreadResponse);
     rpc ReadKinThread(ReadKinThreadRequest) returns (stream KinThread);
     rpc DeleteKinThread(DeleteKinThreadRequest) returns (DeleteKinThreadResponse);
 
@@ -16,7 +16,7 @@ service KinThreadService {
     // Kin response
     rpc CreateKinResponse(CreateKinResponseRequest) returns (CreateKinResponseResponse);
     rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (ReplyInTheThreadResponse);
-    rpc UploadDocumentFileForKinResponse(UploadDocumentFileRequest) returns (UploadDocumentFileResponse);
+    rpc UploadDocumentFile(UploadDocumentFileRequest) returns (UploadDocumentFileResponse);
 }
 
 // Common
@@ -31,6 +31,7 @@ message KinThread {
 message CreateKinThreadRequest {
     string thread_subject = 1;
 }
+message CreateKinThreadResponse {}
 
 // Read Kin Thread
 message ReadKinThreadRequest {
