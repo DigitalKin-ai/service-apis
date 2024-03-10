@@ -28,7 +28,7 @@ service UserService {
 message OrganizationReply {
   string id = 1;
   string name = 2;
-  optional string description = 3;
+  optional string subscription = 3;
   bool activated = 4;
 }
 
