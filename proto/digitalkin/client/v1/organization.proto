@@ -94,7 +94,12 @@ service OrganizationService {
     }
 
     // Other
-    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse);
+    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
+        option (google.api.http) = {
+            put: "/v1/organization/regenerateinvitationcode"
+            body: "*"
+        };
+    }
 }
 
 // Common
