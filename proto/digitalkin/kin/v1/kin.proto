@@ -18,12 +18,18 @@ service KinService {
 }
 
 // Common
+message KinThreadReply {
+    string id = 1;
+    string thread_subject = 2;
+    bool activated = 3;
+}
+
 message Kin {
     string id = 1;
     string name = 2;
     optional string description = 3;
     optional string origin_address = 4;
-    repeated KinThread kin_threads = 5;
+    repeated KinThreadReply kin_threads = 5;
     bool owner = 6;
     bool activated = 7;
 }

@@ -30,6 +30,7 @@ message KinThread {
 // Create Kin Thread
 message CreateKinThreadRequest {
     string thread_subject = 1;
+    string kin_id = 2;
 }
 message CreateKinThreadResponse {}
 

@@ -60,7 +60,6 @@ message Organization {
 // Create Organization
 message CreateOrganizationRequest {
     string name = 1;
-    string owner_id = 2;
 }
 message CreateOrganizationResponse {}
 
