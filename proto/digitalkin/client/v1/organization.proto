@@ -8,49 +8,49 @@ service OrganizationService {
     // CRD
     rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/createorganization"
+            post: "/v1/organization"
             body: "*"
         };
     }
     rpc ReadOrganization(ReadOrganizationRequest) returns (stream Organization) {
         option (google.api.http) = {
-            get: "/v1/organization/readorganization/{organization_id}"
+            get: "/v1/organization/{organization_id}"
         };
     }
     rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/deleteorganization/{organization_id}"
+            delete: "/v1/organization/{organization_id}"
         };
     }
 
     // Update
     rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (UpdateOrganizationActivatedResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/updateactivated"
+            put: "/v1/organization/activated"
             body: "*"
         };
     }
     rpc UpdateName(UpdateOrganizationNameRequest) returns (UpdateOrganizationNameResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/updatename"
+            put: "/v1/organization/name"
             body: "*"
         };
     }
     rpc UpdateCustomer(UpdateOrganizationCustomerRequest) returns (UpdateOrganizationCustomerResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/updatecustomer"
+            put: "/v1/organization/customer"
             body: "*"
         };
     }
     rpc UpdateSubscription(UpdateOrganizationSubscriptionRequest) returns (UpdateOrganizationSubscriptionResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/updatesubscription"
+            put: "/v1/organization/subscription"
             body: "*"
         };
     }
     rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/updatecreditamount"
+            put: "/v1/organization/creditamount"
             body: "*"
         };
     }
@@ -58,45 +58,42 @@ service OrganizationService {
     // User
     rpc AddUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/adduser"
+            post: "/v1/organization/user"
             body: "*"
         };
     }
     rpc RemoveUser(RemoveOrganizationUserRequest) returns (RemoveOrganizationUserResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/removeuser"
-            body: "*"
+            delete: "/v1/organization/user/{organization_id}/{user_id}"
         };
     }
     rpc AddModerator(AddOrganizationModeratorRequest) returns (AddOrganizationModeratorResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/addmoderator"
+            post: "/v1/organization/moderator"
             body: "*"
         };
     }
     rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (RemoveOrganizationModeratorResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/removemoderator"
-            body: "*"
+            delete: "/v1/organization/moderator/{organization_id}/{user_id}"
         };
     }
     rpc AddKin(AddOrganizationKinRequest) returns (AddOrganizationKinResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/addkin"
+            post: "/v1/organization/kin"
             body: "*"
         };
     }
     rpc RemoveKin(RemoveOrganizationKinRequest) returns (RemoveOrganizationKinResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/removekin"
-            body: "*"
+            delete: "/v1/organization/kin/{organization_id}/{kin_id}"
         };
     }
 
     // Other
     rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/regenerateinvitationcode"
+            put: "/v1/organization/invitationcode"
             body: "*"
         };
     }
