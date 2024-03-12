@@ -26,31 +26,31 @@ service OrganizationService {
     // Update
     rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (UpdateOrganizationActivatedResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/activated"
+            patch: "/v1/organization/{organization_id}/activated"
             body: "*"
         };
     }
     rpc UpdateName(UpdateOrganizationNameRequest) returns (UpdateOrganizationNameResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/name"
+            patch: "/v1/organization/{organization_id}/name"
             body: "*"
         };
     }
     rpc UpdateCustomer(UpdateOrganizationCustomerRequest) returns (UpdateOrganizationCustomerResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/customer"
+            patch: "/v1/organization/{organization_id}/customer"
             body: "*"
         };
     }
     rpc UpdateSubscription(UpdateOrganizationSubscriptionRequest) returns (UpdateOrganizationSubscriptionResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/subscription"
+            patch: "/v1/organization/{organization_id}/subscription"
             body: "*"
         };
     }
     rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/creditamount"
+            patch: "/v1/organization/{organization_id}/creditamount"
             body: "*"
         };
     }
@@ -58,42 +58,42 @@ service OrganizationService {
     // User
     rpc AddUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/user"
+            post: "/v1/organization/{organization_id}/user"
             body: "*"
         };
     }
     rpc RemoveUser(RemoveOrganizationUserRequest) returns (RemoveOrganizationUserResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/user/{organization_id}/{user_id}"
+            delete: "/v1/organization/{organization_id}/user/{user_id}"
         };
     }
     rpc AddModerator(AddOrganizationModeratorRequest) returns (AddOrganizationModeratorResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/moderator"
+            post: "/v1/organization/{organization_id}/moderator"
             body: "*"
         };
     }
     rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (RemoveOrganizationModeratorResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/moderator/{organization_id}/{user_id}"
+            delete: "/v1/organization/{organization_id}/moderator/{user_id}"
         };
     }
     rpc AddKin(AddOrganizationKinRequest) returns (AddOrganizationKinResponse) {
         option (google.api.http) = {
-            post: "/v1/organization/kin"
+            post: "/v1/organization/{organization_id}/kin"
             body: "*"
         };
     }
     rpc RemoveKin(RemoveOrganizationKinRequest) returns (RemoveOrganizationKinResponse) {
         option (google.api.http) = {
-            delete: "/v1/organization/kin/{organization_id}/{kin_id}"
+            delete: "/v1/organization/{organization_id}/kin/{kin_id}"
         };
     }
 
     // Other
     rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
         option (google.api.http) = {
-            put: "/v1/organization/invitationcode"
+            put: "/v1/organization/{organization_id}/invitationcode"
             body: "*"
         };
     }

@@ -2,26 +2,85 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "google/api/annotations.proto";
+
 import "digitalkin/client/v1/organization.proto";
 
 service UserService {
     // CRD
-    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
-    rpc ReadUser(ReadUserRequest) returns (stream User);
-    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/user"
+            body: "*"
+        };
+    }
+    rpc ReadUser(ReadUserRequest) returns (stream User) {
+        option (google.api.http) = {
+            get: "/v1/user/{user_id}"
+        };
+    }
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+        option (google.api.http) = {
+            delete: "/v1/user/{user_id}"
+        };
+    }
 
     // Update
-    rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse);
-    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse);
-    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse);
-    rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse);
-    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse);
-    rpc updateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse);
-    rpc updateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse);
+    rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/avatar"
+            body: "*"
+        };
+    }
+    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/email"
+            body: "*"
+        };
+    }
+    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/first_name"
+            body: "*"
+        };
+    }
+    rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/last_name"
+            body: "*"
+        };
+    }
+    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/password"
+            body: "*"
+        };
+    }
+    rpc updateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/user_name"
+            body: "*"
+        };
+    }
+    rpc updateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/customer"
+            body: "*"
+        };
+    }
 
     // Organization
-    rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse);
-    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse);
+    rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/{user_id}/organization"
+            body: "*"
+        };
+    }
+    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse) {
+        option (google.api.http) = {
+            delete: "/v1/user/{user_id}/organization/{organization_id}"
+        };
+    }
 }
 
 // Common

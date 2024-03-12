@@ -2,10 +2,24 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "google/api/annotations.proto";
+
 service AdminService {
-  rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse);
-  rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse);
-  rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse);
+  rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse) {
+    option (google.api.http) = {
+      get: "/v1/admin/users"
+    };
+  }
+  rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse) {
+    option (google.api.http) = {
+      get: "/v1/admin/organizations"
+    };
+  }
+  rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse) {
+    option (google.api.http) = {
+      get: "/v1/admin/kins"
+    };
+  }
 }
 
 message UserAdminReply {

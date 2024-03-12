@@ -2,19 +2,54 @@ syntax = "proto3";
 
 package digitalkin.kin.v1;
 
+import "google/api/annotations.proto";
+
 import "digitalkin/kin/v1/kin_thread.proto";
 
 service KinService {
     // CRD
-    rpc CreateKin(CreateKinRequest) returns (CreateKinResponse);
-    rpc ReadKin(ReadKinRequest) returns (stream Kin);
-    rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse);
+    rpc CreateKin(CreateKinRequest) returns (CreateKinResponse) {
+        option (google.api.http) = {
+            post: "/v1/kin"
+            body: "*"
+        };
+    }
+    rpc ReadKin(ReadKinRequest) returns (stream Kin) {
+        option (google.api.http) = {
+            get: "/v1/kin/{kin_id}"
+        };
+    }
+    rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
+        option (google.api.http) = {
+            delete: "/v1/kin/{kin_id}"
+        };
+    }
 
     // Update
-    rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse);
-    rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse);
-    rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse);
-    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse);
+    rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/activated"
+            body: "*"
+        };
+    }
+    rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/name"
+            body: "*"
+        };
+    }
+    rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/description"
+            body: "*"
+        };
+    }
+    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/origin"
+            body: "*"
+        };
+    }
 }
 
 // Common

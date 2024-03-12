@@ -2,9 +2,21 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "google/api/annotations.proto";
+
 service AuthService {
-    rpc Login(LoginRequest) returns (LoginResponse);
-    rpc logout(LogoutRequest) returns (LogoutResponse);
+    rpc Login(LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/v1/login"
+            body: "*"
+        };
+    }
+    rpc logout(LogoutRequest) returns (LogoutResponse) {
+        option (google.api.http) = {
+            post: "/v1/logout"
+            body: "*"
+        };
+    }
 }
 
 message LoginRequest {
