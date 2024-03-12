@@ -46,15 +46,15 @@ service KinThreadService {
             body: "*"
         };
     }
-    rpc UploadDocumentFile(UploadDocumentFileRequest) returns (UploadDocumentFileResponse) {
-        option (google.api.http) = {
-            post: "/v1/kin/thread/{kin_thread_id}/upload"
-            body: "*"
-        };
-    }
 }
 
 // Common
+message File {
+    string name = 1;
+    string type = 2;
+    bytes content = 3;
+}
+
 message KinThread {
     string id = 1;
     string thread_subject = 2;
@@ -91,6 +91,7 @@ message UpdateSubjectResponse {}
 message CreateKinResponseRequest {
     string kin_thread_id = 1;
     string mission = 2;
+    repeated File files = 3;
 }
 message CreateKinResponseResponse {}
 
@@ -98,14 +99,7 @@ message CreateKinResponseResponse {}
 message ReplyInTheThreadRequest {
     string kin_thread_id = 1;
     string mission = 2;
+    repeated File files = 3;
 }
 message ReplyInTheThreadResponse {}
-
-// Upload Document File
-message UploadDocumentFileRequest {
-    string kin_thread_id = 1;
-    string file_name = 2;
-    bytes file = 3;
-}
-message UploadDocumentFileResponse {}
 
