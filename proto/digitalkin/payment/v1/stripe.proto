@@ -3,259 +3,15 @@ syntax = "proto3";
 package digitalkin.payment.v1;
 
 service StripeService {
-  // Customer
-  rpc CreateCustomer(CreateCustomerRequest) returns (Customer);
-  rpc ReadCustomer(ReadCustomerRequest) returns (Customer);
-
-  // Payment intent
-  rpc CreatePaymentIntent(CreatePaymentIntentRequest) returns (PaymentIntent);
-
-  // Payment method
-  rpc AttachPaymentIntent(AttachPaymentIntentRequest) returns (PaymentMethod);
-
   // Subscription
-  rpc CreateSubscription(CreateSubscriptionRequest) returns (Subscription);
-  rpc ReadSubscription(ReadSubscriptionRequest) returns (Subscription);
-  rpc UpdateSubscription(UpdateSubscriptionRequest) returns (Subscription);
-  rpc CancelSubscription(CancelSubscriptionRequest) returns (Subscription);
+  rpc ReadSubscriptions(ReadSubscriptionsRequest) returns (stream ReadSubscriptionsResponse);
+  rpc CancelSubscription(CancelSubscriptionRequest) returns (CancelSubscriptionResponse);
 
-  // Product
-  rpc ReadProduct(ReadProductRequest) returns (ReadProductResponse);
+  // Prices
+  rpc ReadPrices(ReadPricesRequest) returns (ReadPricesResponse);
 
-  // Config
-  rpc ReadConfig(ReadConfigRequest) returns (ReadConfigResponse);
-}
-
-message Address {
-  optional string city = 1;
-  optional string country = 2;
-  optional string line1 = 3;
-  optional string line2 = 4;
-  optional string postal_code = 5;
-  optional string state = 6;
-}
-
-enum Currency {
-  AED = 0;
-  AFN = 1;
-  ALL = 2;
-  AMD = 3;
-  ANG = 4;
-  AOA = 5;
-  ARS = 6;
-  AUD = 7;
-  AWG = 8;
-  AZN = 9;
-  BAM = 10;
-  BBD = 11;
-  BDT = 12;
-  BGN = 13;
-  BIF = 14;
-  BMD = 15;
-  BND = 16;
-  BOB = 17;
-  BRL = 18;
-  BSD = 19;
-  BWP = 20;
-  BZD = 21;
-  CAD = 22;
-  CDF = 23;
-  CHF = 24;
-  CLP = 25;
-  CNY = 26;
-  COP = 27;
-  CRC = 28;
-  CVE = 29;
-  CZK = 30;
-  DJF = 31;
-  DKK = 32;
-  DOP = 33;
-  DZD = 34;
-  EEK = 35;
-  EGP = 36;
-  ETB = 37;
-  EUR = 38;
-  FJD = 39;
-  FKP = 40;
-  GBP = 41;
-  GEL = 42;
-  GIP = 43;
-  GMD = 44;
-  GNF = 45;
-  GTQ = 46;
-  GYD = 47;
-  HKD = 48;
-  HNL = 49;
-  HRK = 50;
-  HTG = 51;
-  HUF = 52;
-  IDR = 53;
-  ILS = 54;
-  INR = 55;
-  ISK = 56;
-  JMD = 57;
-  JPY = 58;
-  KES = 59;
-  KGS = 60;
-  KHR = 61;
-  KMF = 62;
-  KRW = 63;
-  KYD = 64;
-  KZT = 65;
-  LAK = 66;
-  LBP = 67;
-  LKR = 68;
-  LRD = 69;
-  LSL = 70;
-  LTL = 71;
-  LVL = 72;
-  MAD = 73;
-  MDL = 74;
-  MGA = 75;
-  MKD = 76;
-  MNT = 77;
-  MOP = 78;
-  MRO = 79;
-  MUR = 80;
-  MVR = 81;
-  MWK = 82;
-  MXN = 83;
-  MYR = 84;
-  MZN = 85;
-  NAD = 86;
-  NGN = 87;
-  NIO = 88;
-  NOK = 89;
-  NPR = 90;
-  NZD = 91;
-  PAB = 92;
-  PEN = 93;
-  PGK = 94;
-  PHP = 95;
-  PKR = 96;
-  PLN = 97;
-  PYG = 98;
-  QAR = 99;
-  RON = 100;
-  RSD = 101;
-  RUB = 102;
-  RWF = 103;
-  SAR = 104;
-  SBD = 105;
-  SCR = 106;
-  SEK = 107;
-  SGD = 108;
-  SHP = 109;
-  SLL = 110;
-  SOS = 111;
-  SRD = 112;
-  STD = 113;
-  SVC = 114;
-  SZL = 115;
-  THB = 116;
-  TJS = 117;
-  TOP = 118;
-  TRY = 119;
-  TTD = 120;
-  TWD = 121;
-  TZS = 122;
-  UAH = 123;
-  UGX = 124;
-  USD = 125;
-  UYU = 126;
-  UZS = 127;
-  VEF = 128;
-  VND = 129;
-  VUV = 130;
-  WST = 131;
-  XAF = 132;
-  XCD = 133;
-  XOF = 134;
-  XPF = 135;
-  YER = 136;
-  ZAR = 137;
-  ZMW = 138;
-}
-
-
-message Customer {
-  string id = 1;
-  optional Address address = 2;
-  optional int64 balance = 3;
-  optional int64 created = 4;
-  optional Currency currency = 5;
-  optional object default_source = 6;
-  bool deleted = 7;
-  optional bool delinquent = 8;
-  optional string description = 9;
-  optional object discount = 10;
-  optional string email = 11;
-  optional string invoice_prefix = 12;
-  optional object invoice_settings = 13;
-  optional bool livemode = 14;
-  object metadata = 15;
-  optional string name = 16;
-  optional int64 next_invoice_sequence = 17;
-  optional string phone = 18;
-  optional array preferred_locales = 19;
-  optional object shipping = 20;
-  array sources = 21;
-  array subscriptions = 22;
-  optional object tax = 23;
-  optional string tax_exempt = 24;
-  array tax_ids = 25;
-  optional object test_clock = 26;
-}
-
-message PaymentIntent {
-  string id = 1;
-  string object = 2;
-  int64 amount = 3;
-  int64 amount_capturable = 4;
-  int64 amount_received = 5;
-  string application = 6;
-  string application_fee_amount = 7;
-  string canceled_at = 8;
-  string cancellation_reason = 9;
-  string capture_method = 10;
-  string charges = 11;
-  string client_secret = 12;
-  string confirmation_method = 13;
-  string created = 14;
-  string currency = 15;
-  string customer = 16;
-  string description = 17;
-  string invoice = 18;
-  string last_payment_error = 19;
-  string livemode = 20;
-  string metadata = 21;
-  string next_action = 22;
-  string on_behalf_of = 23;
-  string payment_method = 24;
-  string payment_method_options = 25;
-  string payment_method_types = 26;
-  string receipt_email = 27;
-  string review = 28;
-  string setup_future_usage = 29;
-  string shipping = 30;
-  string source = 31;
-  string statement_descriptor = 32;
-  string statement_descriptor_suffix = 33;
-  string status = 34;
-  string transfer_data = 35;
-  string transfer_group = 36;
-}
-
-message PaymentMethod {
-  string id = 1;
-  string object = 2;
-  string billing_details = 3;
-  string card = 4;
-  string created = 5;
-  string customer = 6;
-  string livemode = 7;
-  string metadata = 8;
-  string type = 9;
+  // Checkout Session
+  rpc CreateCheckoutSession(CreateCheckoutSessionRequest) returns (CreateCheckoutSessionResponse);
 }
 
 message Subscription {
@@ -318,6 +74,19 @@ message Product {
   string url = 19;
 }
 
+message Recurring {
+  string aggregate_usage = 1;
+  string interval = 2;
+  string interval_count = 3;
+  string trial_period_days = 4;
+  string usage_type = 5;
+}
+
+message Metadata {
+  string key = 1;
+  number value = 2;
+}
+
 message Price {
   string id = 1;
   string object = 2;
@@ -327,10 +96,10 @@ message Price {
   string currency = 6;
   string livemode = 7;
   string lookup_key = 8;
-  string metadata = 9;
+  Metadata metadata = 9;
   string nickname = 10;
-  string product = 11;
-  string recurring = 12;
+  Product product = 11;
+  Recurring recurring = 12;
   string tiers = 13;
   string transform_quantity = 14;
   string type = 15;
@@ -339,70 +108,31 @@ message Price {
   string updated = 18;
 }
 
-// Create Customer
-message CreateCustomerRequest {
-  string email = 1;
-  string name = 2;
-  string address = 3;
-  string city = 4;
-  string state = 5;
-  string postal_code = 6;
-  optional string organization_id = 7;
+// Read Subscriptions
+message ReadSubscriptionsRequest {
+  string organization_id = 1;
 }
-
-// Read Customer
-message ReadCustomerRequest {
-  string customer_id = 1;
-}
-
-// Create Payment Intent
-message CreatePaymentIntentRequest {
-  int64 amount = 1;
-  string currency = 2;
-  string payment_method = 3;
-  optional string organization_id = 4;
-}
-
-// Attach Payment Intent
-message AttachPaymentIntentRequest {
-  string payment_intent_id = 1;
-  optional string organization_id = 2;
-}
-
-// Create Subscription
-message CreateSubscriptionRequest {
-  string price_id = 1;
-  optional string payment_method_id = 2;
-  optional string organization_id = 3;
-}
-
-// Read Subscription
-message ReadSubscriptionRequest {
-  optional string organization_id = 1;
-}
-
-// Update Subscription
-message UpdateSubscriptionRequest {
-  string subscription_id = 1;
-  string price_id = 2;
-  optional string organization_id = 3;
+message ReadSubscriptionsResponse {
+  repeated Subscription subscriptions = 1;
 }
 
 // Cancel Subscription
 message CancelSubscriptionRequest {
   string subscription_id = 1;
-  optional string organization_id = 2;
+}
+message CancelSubscriptionResponse {}
+
+// Read Prices
+message ReadPricesRequest {}
+message ReadPricesResponse {
+  repeated Price prices = 1;
 }
 
-// Read Product
-message ReadProductRequest {}
-message ReadProductResponse {
-  repeated Product products = 1;
+// Create Checkout Session
+message CreateCheckoutSessionRequest {
+  string customer_id = 1;
+  string price_id = 2;
 }
-
-// Read Config
-message ReadConfigRequest {}
-message ReadConfigResponse {
-  string publishable_key = 1;
-  repeated Price prices = 2;
+message CreateCheckoutSessionResponse {
+  string url = 1;
 }

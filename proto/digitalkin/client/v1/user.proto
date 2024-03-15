@@ -62,12 +62,6 @@ service UserService {
             body: "*"
         };
     }
-    rpc updateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse) {
-        option (google.api.http) = {
-            patch: "/v1/user/{user_id}/customer"
-            body: "*"
-        };
-    }
 
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse) {
@@ -87,8 +81,7 @@ service UserService {
 message OrganizationReply {
   string id = 1;
   string name = 2;
-  optional string subscription = 3;
-  bool activated = 4;
+  bool activated = 3;
 }
 
 message User {
@@ -98,11 +91,9 @@ message User {
   string email = 5;
   optional string avatar = 6;
   repeated OrganizationReply organizations = 7;
-  optional string customer_id = 8;
-  optional string subscription = 9;
-  optional int64 credit_amount = 10;
-  bool activated = 11;
-  bool is_admin = 12;
+  optional int64 credit_amount = 8;
+  bool activated = 9;
+  bool is_admin = 10;
 }
 
 // Create a new user
@@ -161,12 +152,6 @@ message UpdateUserNameRequest {
     string user_name = 1;
 }
 message UpdateUserNameResponse {}
-
-// Update a user customer
-message UpdateCustomerRequest {
-    string customer_id = 1;
-}
-message UpdateCustomerResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {

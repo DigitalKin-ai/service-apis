@@ -36,15 +36,9 @@ service OrganizationService {
             body: "*"
         };
     }
-    rpc UpdateCustomer(UpdateOrganizationCustomerRequest) returns (UpdateOrganizationCustomerResponse) {
+    rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
         option (google.api.http) = {
-            patch: "/v1/organization/{organization_id}/customer"
-            body: "*"
-        };
-    }
-    rpc UpdateSubscription(UpdateOrganizationSubscriptionRequest) returns (UpdateOrganizationSubscriptionResponse) {
-        option (google.api.http) = {
-            patch: "/v1/organization/{organization_id}/subscription"
+            patch: "/v1/organization/{organization_id}/email"
             body: "*"
         };
     }
@@ -118,20 +112,20 @@ message KinReply {
 message Organization {
     string id = 1;
     string name = 2;
-    UserReply owner = 3;
-    string invitation_code = 4;
-    repeated UserReply moderators = 5;
-    repeated UserReply users = 6;
-    repeated KinReply kins = 7;
-    optional string customer_id = 8;
-    optional string subscription = 9;
-    optional int64 credit_amount = 10;
-    bool activated = 11;
+    string email = 3;
+    UserReply owner = 4;
+    string invitation_code = 5;
+    repeated UserReply moderators = 6;
+    repeated UserReply users = 7;
+    repeated KinReply kins = 8;
+    optional int64 credit_amount = 9;
+    bool activated = 10;
 }
 
 // Create Organization
 message CreateOrganizationRequest {
     string name = 1;
+    string email = 2;
 }
 message CreateOrganizationResponse {}
 
@@ -160,19 +154,12 @@ message UpdateOrganizationNameRequest {
 }
 message UpdateOrganizationNameResponse {}
 
-// Update Organization customer
-message UpdateOrganizationCustomerRequest {
+// Update Organization email
+message UpdateOrganizationEmailRequest {
     string organization_id = 1;
-    string customer_id = 2;
+    string email = 2;
 }
-message UpdateOrganizationCustomerResponse {}
-
-// Update Organization subscription
-message UpdateOrganizationSubscriptionRequest {
-    string organization_id = 1;
-    string subscription = 2;
-}
-message UpdateOrganizationSubscriptionResponse {}
+message UpdateOrganizationEmailResponse {}
 
 // Update Organization credit amount
 message UpdateOrganizationCreditAmountRequest {

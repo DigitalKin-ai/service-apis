@@ -23,11 +23,10 @@ service AdminService {
 }
 
 message UserAdminReply {
-    string user_name = 2;
-    bool activated = 3;
-    optional int64 nb_kins = 4;
-    optional int64 nb_organizations = 5;
-    optional string subscription = 6;
+    string user_name = 1;
+    bool activated = 2;
+    optional int64 nb_kins = 3;
+    optional int64 nb_organizations = 4;
 }
 
 message OrganizationAdminReply {
@@ -36,7 +35,6 @@ message OrganizationAdminReply {
     bool activated = 3;
     optional int64 nb_members = 4;
     optional int64 nb_kins = 5;
-    optional string subscription = 6;
 }
 
 message KinAdminReply {
