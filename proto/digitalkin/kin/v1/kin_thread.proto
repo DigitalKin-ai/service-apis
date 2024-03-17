@@ -92,6 +92,7 @@ message CreateKinResponseRequest {
     string kin_thread_id = 1;
     string mission = 2;
     repeated File files = 3;
+    string organization_id = 4;
 }
 message CreateKinResponseResponse {}
 
