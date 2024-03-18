@@ -14,42 +14,28 @@ service StripeService {
   rpc CreateCheckoutSession(CreateCheckoutSessionRequest) returns (CreateCheckoutSessionResponse);
 }
 
+message SubscriptionItem {
+  string id = 1;
+  optional string metadata = 2;
+  optional Price price = 3;
+}
+
+enum SubscriptionStatus {
+  ACTIVE = 0;
+  CANCELED = 1;
+  INCOMPLETE = 2;
+  INCOMPLETE_EXPIRED = 3;
+  PAUSED = 4;
+  PAST_DUE = 5;
+  TRIALING = 6;
+  UNPAID = 7;
+}
+
 message Subscription {
   string id = 1;
-  string object = 2;
-  string application_fee_percent = 3;
-  string billing_cycle_anchor = 4;
-  string billing_thresholds = 5;
-  string cancel_at = 6;
-  string cancel_at_period_end = 7;
-  string canceled_at = 8;
-  string collection_method = 9;
-  string created = 10;
-  string current_period_end = 11;
-  string current_period_start = 12;
-  string customer = 13;
-  string days_until_due = 14;
-  string default_payment_method = 15;
-  string default_source = 16;
-  string default_tax_rates = 17;
-  string discount = 18;
-  string ended_at = 19;
-  string items = 20;
-  string latest_invoice = 21;
-  string livemode = 22;
-  string metadata = 23;
-  string next_pending_invoice_item_invoice = 24;
-  string pending_invoice_item_interval = 25;
-  string pending_setup_intent = 26;
-  string pending_update = 27;
-  string plan = 28;
-  string quantity = 29;
-  string schedule = 30;
-  string start_date = 31;
-  string status = 32;
-  string tax_percent = 33;
-  string trial_end = 34;
-  string trial_start = 35;
+  repeated SubscriptionItem items = 2;
+  int64 start_date = 3;
+  SubscriptionStatus status = 4;
 }
 
 message Product {
@@ -110,7 +96,7 @@ message Price {
 
 // Read Subscriptions
 message ReadSubscriptionsRequest {
-  string organization_id = 1;
+  string email = 1;
 }
 message ReadSubscriptionsResponse {
   repeated Subscription subscriptions = 1;
