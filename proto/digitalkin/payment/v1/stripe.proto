@@ -14,9 +14,18 @@ service StripeService {
   rpc CreateCheckoutSession(CreateCheckoutSessionRequest) returns (CreateCheckoutSessionResponse);
 }
 
+message Metadata {
+  string key = 1;
+  string value = 2;
+}
+
+message MetadataList {
+  repeated Metadata metadata = 1;
+}
+
 message SubscriptionItem {
   string id = 1;
-  optional string metadata = 2;
+  optional MetadataList metadata = 2;
   optional Price price = 3;
 }
 
@@ -60,6 +69,150 @@ message Product {
   string url = 19;
 }
 
+enum Currency {
+  USD = 0;
+  EUR = 1;
+  GBP = 2;
+  JPY = 3;
+  AUD = 4;
+  CAD = 5;
+  CHF = 6;
+  CNY = 7;
+  DKK = 8;
+  HKD = 9;
+  NOK = 10;
+  NZD = 11;
+  SEK = 12;
+  SGD = 13;
+  BYN = 14;
+  MMK = 15;
+  AED = 16;
+  AFN = 17;
+  ALL = 18;
+  AMD = 19;
+  ANG = 20;
+  AOA = 21;
+  ARS = 22;
+  AWG = 23;
+  AZN = 24;
+  BAM = 25;
+  BBD = 26;
+  BDT = 27;
+  BGN = 28;
+  BIF = 29;
+  BMD = 30;
+  BND = 31;
+  BOB = 32;
+  BRL = 33;
+  BSD = 34;
+  BWP = 35;
+  BZD = 36;
+  CDF = 37;
+  CLP = 38;
+  COP = 39;
+  CRC = 40;
+  CVE = 41;
+  CZK = 42;
+  DJF = 43;
+  DOP = 44;
+  DZD = 45;
+  EEK = 46;
+  EGP = 47;
+  ETB = 48;
+  FJD = 49;
+  FKP = 50;
+  GEL = 51;
+  GIP = 52;
+  GMD = 53;
+  GNF = 54;
+  GTQ = 55;
+  GYD = 56;
+  HNL = 57;
+  HRK = 58;
+  HTG = 59;
+  HUF = 60;
+  IDR = 61;
+  ILS = 62;
+  INR = 63;
+  ISK = 64;
+  JMD = 65;
+  KES = 66;
+  KGS = 67;
+  KHR = 68;
+  KMF = 69;
+  KRW = 70;
+  KYD = 71;
+  KZT = 72;
+  LAK = 73;
+  LBP = 74;
+  LKR = 75;
+  LRD = 76;
+  LSL = 77;
+  LTL = 78;
+  LVL = 79;
+  MAD = 80;
+  MDL = 81;
+  MGA = 82;
+  MKD = 83;
+  MNT = 84;
+  MOP = 85;
+  MRO = 86;
+  MUR = 87;
+  MVR = 88;
+  MWK = 89;
+  MXN = 90;
+  MYR = 91;
+  MZN = 92;
+  NAD = 93;
+  NGN = 94;
+  NIO = 95;
+  NPR = 96;
+  PAB = 97;
+  PEN = 98;
+  PGK = 99;
+  PHP = 100;
+  PKR = 101;
+  PLN = 102;
+  PYG = 103;
+  QAR = 104;
+  RON = 105;
+  RSD = 106;
+  RUB = 107;
+  RWF = 108;
+  SAR = 109;
+  SBD = 110;
+  SCR = 111;
+  SHP = 112;
+  SLL = 113;
+  SOS = 114;
+  SRD = 115;
+  STD = 116;
+  SVC = 117;
+  SZL = 118;
+  THB = 119;
+  TJS = 120;
+  TOP = 121;
+  TRY = 122;
+  TTD = 123;
+  TWD = 124;
+  TZS = 125;
+  UAH = 126;
+  UGX = 127;
+  UYU = 128;
+  UZS = 129;
+  VEF = 130;
+  VND = 131;
+  VUV = 132;
+  WST = 133;
+  XAF = 134;
+  XCD = 135;
+  XOF = 136;
+  XPF = 137;
+  YER = 138;
+  ZAR = 139;
+  ZMW = 140;
+}
+
 message Recurring {
   string aggregate_usage = 1;
   string interval = 2;
@@ -68,30 +221,25 @@ message Recurring {
   string usage_type = 5;
 }
 
-message Metadata {
-  string key = 1;
-  int64 value = 2;
+enum PriceTaxBehavior {
+  INCLUSIVE = 0;
+  EXCLUSIVE = 1;
+  UNSPECIFIED = 2;
+}
+
+enum PriceType {
+  ONE_TIME = 0;
+  RECURRING = 1;
 }
 
 message Price {
   string id = 1;
-  string object = 2;
-  string active = 3;
-  string billing_scheme = 4;
-  string created = 5;
-  string currency = 6;
-  string livemode = 7;
-  string lookup_key = 8;
-  Metadata metadata = 9;
-  string nickname = 10;
-  Product product = 11;
-  Recurring recurring = 12;
-  string tiers = 13;
-  string transform_quantity = 14;
-  string type = 15;
-  string unit_amount = 16;
-  string unit_amount_decimal = 17;
-  string updated = 18;
+  Currency currency = 2;
+  Product product = 3;
+  Recurring recurring = 4;
+  PriceTaxBehavior tax_behavior = 5;
+  PriceType type = 6;
+  optional int64 unit_amount = 7;
 }
 
 // Read Subscriptions
