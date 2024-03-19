@@ -198,11 +198,18 @@ enum Currency {
   ZMW = 140;
 }
 
+enum RecurringAggregateUsage {
+  SUM = 0;
+  LAST_DURING_PERIOD = 1;
+  LAST_EVER = 2;
+  MAX = 3;
+}
+
 message Recurring {
-  string aggregate_usage = 1;
+  RecurringAggregateUsage aggregate_usage = 1;
   string interval = 2;
-  string interval_count = 3;
-  string trial_period_days = 4;
+  uint64 interval_count = 3;
+  optional uint32 trial_period_days = 4;
   string usage_type = 5;
 }
 
