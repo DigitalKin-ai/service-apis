@@ -49,24 +49,9 @@ message Subscription {
 
 message Product {
   string id = 1;
-  string object = 2;
-  string active = 3;
-  string attributes = 4;
-  string caption = 5;
-  string created = 6;
-  string deactivate_on = 7;
-  string description = 8;
-  string images = 9;
-  string livemode = 10;
-  string metadata = 11;
-  string name = 12;
-  string package_dimensions = 13;
-  string shippable = 14;
-  string statement_descriptor = 15;
-  string type = 16;
-  string unit_label = 17;
-  string updated = 18;
-  string url = 19;
+  optional string description = 2;
+  optional MetadataList metadata = 3;
+  optional string name = 4;
 }
 
 enum Currency {
