@@ -206,7 +206,7 @@ enum RecurringAggregateUsage {
 }
 
 message Recurring {
-  RecurringAggregateUsage aggregate_usage = 1;
+  optional RecurringAggregateUsage aggregate_usage = 1;
   string interval = 2;
   uint64 interval_count = 3;
   optional uint32 trial_period_days = 4;
