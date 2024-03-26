@@ -108,9 +108,7 @@ message CreateUserRequest {
 message CreateUserResponse {}
 
 // Read a user
-message ReadUserRequest {
-    string user_id = 1;
-}
+message ReadUserRequest {}
 
 // Delete a user
 message DeleteUserRequest {}
