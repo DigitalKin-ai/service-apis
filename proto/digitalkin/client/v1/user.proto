@@ -56,7 +56,7 @@ service UserService {
             body: "*"
         };
     }
-    rpc updateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
+    rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
         option (google.api.http) = {
             patch: "/v1/user/{user_id}/user_name"
             body: "*"
@@ -75,6 +75,19 @@ service UserService {
             delete: "/v1/user/{user_id}/organization/{organization_id}"
         };
     }
+
+    // Kin
+    rpc AddFavKin(AddUserKinRequest) returns (AddUserKinResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/{user_id}/kin"
+            body: "*"
+        };
+    }
+    rpc RemoveFavKin(RemoveUserKinRequest) returns (RemoveUserKinResponse) {
+        option (google.api.http) = {
+            delete: "/v1/user/{user_id}/kin/{kin_id}"
+        };
+    }
 }
 
 // Common
@@ -91,9 +104,10 @@ message User {
   string email = 5;
   optional string avatar = 6;
   repeated OrganizationReply organizations = 7;
-  optional int64 credit_amount = 8;
-  bool activated = 9;
-  bool is_admin = 10;
+  repeated KinReply fav_kins = 8;
+  optional int64 credit_amount = 9;
+  bool activated = 10;
+  bool is_admin = 11;
 }
 
 // Create a new user
@@ -162,4 +176,16 @@ message RemoveUserOrganizationRequest {
     string organization_id = 1;
 }
 message RemoveUserOrganizationResponse {}
+
+// Add a user kin
+message AddUserKinRequest {
+    string kin_id = 1;
+}
+message AddUserKinResponse {}
+
+// Remove a user kin
+message RemoveUserKinRequest {
+    string kin_id = 1;
+}
+message RemoveUserKinResponse {}
 
