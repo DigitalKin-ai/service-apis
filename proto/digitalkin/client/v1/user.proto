@@ -94,7 +94,8 @@ service UserService {
 message OrganizationReply {
   string id = 1;
   string name = 2;
-  bool activated = 3;
+  repeated string kins = 3;
+  bool activated = 4;
 }
 
 message User {
