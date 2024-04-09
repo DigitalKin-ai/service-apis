@@ -120,7 +120,9 @@ message CreateUserRequest {
     optional string first_name = 5;
     optional string last_name = 6;
 }
-message CreateUserResponse {}
+message CreateUserResponse {
+    string token = 1;
+}
 
 // Read a user
 message ReadUserRequest {}
