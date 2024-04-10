@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 
 service OrganizationService {
     // CRD
-    rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {
+    rpc CreateOrganization(CreateOrganizationRequest) returns (Organization) {
         option (google.api.http) = {
             post: "/v1/organization"
             body: "*"
@@ -128,7 +128,6 @@ message CreateOrganizationRequest {
     string name = 1;
     string email = 2;
 }
-message CreateOrganizationResponse {}
 
 // Read Organization
 message ReadOrganizationRequest {

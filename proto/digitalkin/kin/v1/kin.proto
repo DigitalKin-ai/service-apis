@@ -8,7 +8,7 @@ import "digitalkin/kin/v1/kin_thread.proto";
 
 service KinService {
     // CRD
-    rpc CreateKin(CreateKinRequest) returns (CreateKinResponse) {
+    rpc CreateKin(CreateKinRequest) returns (Kin) {
         option (google.api.http) = {
             post: "/v1/kin"
             body: "*"
@@ -106,7 +106,6 @@ message CreateKinRequest {
     optional string description = 2;
     optional string origin_address = 3;
 }
-message CreateKinResponse {}
 
 // Read a Kin
 message ReadKinRequest {

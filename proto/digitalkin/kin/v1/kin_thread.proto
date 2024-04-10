@@ -8,7 +8,7 @@ import "digitalkin/kin/v1/kin_response.proto";
 
 service KinThreadService {
     // CRD
-    rpc CreateKinThread(CreateKinThreadRequest) returns (CreateKinThreadResponse) {
+    rpc CreateKinThread(CreateKinThreadRequest) returns (KinThread) {
         option (google.api.http) = {
             post: "/v1/kin/thread"
             body: "*"
@@ -67,7 +67,6 @@ message CreateKinThreadRequest {
     string thread_subject = 1;
     string kin_id = 2;
 }
-message CreateKinThreadResponse {}
 
 // Read Kin Thread
 message ReadKinThreadRequest {
