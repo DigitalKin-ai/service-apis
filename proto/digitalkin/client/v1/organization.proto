@@ -50,7 +50,7 @@ service OrganizationService {
     }
 
     // User
-    rpc AddUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse) {
+    rpc AddUser(AddOrganizationUserRequest) returns (UserReply) {
         option (google.api.http) = {
             post: "/v1/organization/{organization_id}/user"
             body: "*"
@@ -61,7 +61,7 @@ service OrganizationService {
             delete: "/v1/organization/{organization_id}/user/{user_id}"
         };
     }
-    rpc AddModerator(AddOrganizationModeratorRequest) returns (AddOrganizationModeratorResponse) {
+    rpc AddModerator(AddOrganizationModeratorRequest) returns (UserReply) {
         option (google.api.http) = {
             post: "/v1/organization/{organization_id}/moderator"
             body: "*"
@@ -72,7 +72,7 @@ service OrganizationService {
             delete: "/v1/organization/{organization_id}/moderator/{user_id}"
         };
     }
-    rpc AddKin(AddOrganizationKinRequest) returns (AddOrganizationKinResponse) {
+    rpc AddKin(AddOrganizationKinRequest) returns (KinReply) {
         option (google.api.http) = {
             post: "/v1/organization/{organization_id}/kin"
             body: "*"
@@ -173,7 +173,6 @@ message AddOrganizationUserRequest {
     string organization_id = 1;
     string user_name = 2;
 }
-message AddOrganizationUserResponse {}
 
 // Remove User
 message RemoveOrganizationUserRequest {
@@ -187,7 +186,6 @@ message AddOrganizationModeratorRequest {
     string organization_id = 1;
     string user_name = 2;
 }
-message AddOrganizationModeratorResponse {}
 
 // Remove Moderator
 message RemoveOrganizationModeratorRequest {
@@ -201,7 +199,6 @@ message AddOrganizationKinRequest {
     string organization_id = 1;
     string kin_id = 2;
 }
-message AddOrganizationKinResponse {}
 
 // Remove Kin
 message RemoveOrganizationKinRequest {

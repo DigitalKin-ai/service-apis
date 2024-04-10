@@ -70,7 +70,7 @@ service UserService {
     }
 
     // Organization
-    rpc AddOrganization(AddUserOrganizationRequest) returns (AddUserOrganizationResponse) {
+    rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
         option (google.api.http) = {
             post: "/v1/user/{user_id}/organization"
             body: "*"
@@ -83,7 +83,7 @@ service UserService {
     }
 
     // Kin
-    rpc AddFavKin(AddUserKinRequest) returns (AddUserKinResponse) {
+    rpc AddFavKin(AddUserKinRequest) returns (KinReply) {
         option (google.api.http) = {
             post: "/v1/user/{user_id}/kin"
             body: "*"
@@ -185,7 +185,6 @@ message UpdateUserNameResponse {}
 message AddUserOrganizationRequest {
     string invitation_code = 1;
 }
-message AddUserOrganizationResponse {}
 
 // Remove a user organization
 message RemoveUserOrganizationRequest {
@@ -197,7 +196,6 @@ message RemoveUserOrganizationResponse {}
 message AddUserKinRequest {
     string kin_id = 1;
 }
-message AddUserKinResponse {}
 
 // Remove a user kin
 message RemoveUserKinRequest {
