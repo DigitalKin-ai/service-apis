@@ -26,6 +26,12 @@ service UserService {
     }
 
     // Update
+    rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/{user_id}/activated"
+            body: "*"
+        };
+    }
     rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
         option (google.api.http) = {
             patch: "/v1/user/{user_id}/avatar"
@@ -130,6 +136,13 @@ message ReadUserRequest {}
 // Delete a user
 message DeleteUserRequest {}
 message DeleteUserResponse {}
+
+// Update a user activated
+message UpdateUserActivatedRequest {
+    string userName = 1;
+    bool activated = 2;
+}
+message UpdateUserActivatedResponse {}
 
 // Update a user avatar
 message UpdateUserAvatarRequest {
