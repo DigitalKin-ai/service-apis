@@ -256,7 +256,7 @@ message ReadPricesResponse {
 
 // Create Checkout Session
 message CreateCheckoutSessionRequest {
-  string customer_id = 1;
+  string email = 1;
   string price_id = 2;
 }
 message CreateCheckoutSessionResponse {
