@@ -101,7 +101,8 @@ message OrganizationReply {
   string id = 1;
   string name = 2;
   repeated string kins = 3;
-  bool activated = 4;
+  bool is_owner = 4;
+  bool activated = 5;
 }
 
 message User {
