@@ -3,3 +3,6 @@
 /.vscode
 run.sh
 node_modules
+*/buf.lock
+package-lock.json
+package.json
