@@ -40,7 +40,7 @@ service KinThreadService {
             body: "*"
         };
     }
-    rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (ReplyInTheThreadResponse) {
+    rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
         option (google.api.http) = {
             post: "/v1/kin/thread/{kin_thread_id}/reply"
             body: "*"
@@ -99,5 +99,4 @@ message ReplyInTheThreadRequest {
     string mission = 2;
     repeated File files = 3;
 }
-message ReplyInTheThreadResponse {}
 
