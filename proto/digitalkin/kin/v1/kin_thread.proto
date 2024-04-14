@@ -34,7 +34,7 @@ service KinThreadService {
     }
 
     // Kin response
-    rpc CreateKinResponse(CreateKinResponseRequest) returns (CreateKinResponseResponse) {
+    rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
         option (google.api.http) = {
             post: "/v1/kin/thread/{kin_thread_id}/create"
             body: "*"
@@ -92,7 +92,6 @@ message CreateKinResponseRequest {
     string mission = 2;
     repeated File files = 3;
 }
-message CreateKinResponseResponse {}
 
 // Reply In The Thread
 message ReplyInTheThreadRequest {
