@@ -19,10 +19,22 @@ service TriggerService {
     }
 }
 
+
+
+enum TriggerStatus {
+    ACTIVE = 0;
+    CANCELED = 1;
+    FAILED = 2;
+    EXPIRED = 3;
+    SUCCESS = 4;
+  }
+  
+
+
 // File attachment format
 message Attachment {
     string filename = 1;
-    binary binary_file = 2;
+    bytes binary_file = 2;
 }
 
 // Pdf trigger
@@ -53,6 +65,6 @@ message ReadTriggerRequest {
 
 // Response of read trigger
 message ReadTriggerResponse {
-    enum status = 1;
+    TriggerStatus status = 1;
     string log = 2;
 }
