@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package digitalkin.service.v1.trigger;
+
+import "google/protobuf/struct.proto";
+import "validate/validate.proto";
+
+service TriggerService {
+    rpc StartTrigger (stream StartTriggerRequest) returns (stream TriggerResponse);
+    rpc StopTrigger (StopTriggerRequest) returns (TriggerResponse);
+    rpc GetTriggerStatus (GetTriggerStatusRequest) returns (TriggerStatusResponse);
+    rpc GetTriggerInput (GetTriggerInputRequest) returns (TriggerInputResponse);
+    rpc GetTriggerOutput (GetTriggerOutputRequest) returns (TriggerOutputResponse);
+}
+
+enum TriggerStatus {
+    STARTING = 0;
+    PROCESSING = 1;
+    CANCELED = 2;
+    FAILED = 3;
+    EXPIRED = 4;
+    SUCCESS = 5;
+    STOPPED = 6;
+}
+
+
+message StartTriggerRequest {
+    google.protobuf.Struct input = 1;
+    google.protobuf.Struct setup = 2;
+    repeated string service_ids = 3;
+}
+
+message StopTriggerRequest {
+    string trigger_id = 1;
+}
+
+message GetTriggerStatusRequest {
+    string trigger_id = 1;
+}
+
+message GetTriggerInputRequest {
+    string trigger_id = 1;
+    bool llm_format = 2;
+}
+
+message GetTriggerOutputRequest {
+    string trigger_id = 1;
+    bool llm_format = 2;
+}
+
+message TriggerResponse {
+    bool success = 1;
+    string message = 2;
+    optional string trigger_id = 3;
+}
+
+message TriggerStatusResponse {
+    bool success = 1;
+    TriggerStatus status = 2;
+    string trigger_id = 3;
+}
+
+message TriggerInputResponse {
+    bool success = 1;
+    google.protobuf.Struct input_schema = 2;
+}
+
+message TriggerOutputResponse {
+    bool success = 1;
+    google.protobuf.Struct output_schema = 2;
+}

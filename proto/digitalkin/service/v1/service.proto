@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package digitalkin.service.v1;
+
+import "google/protobuf/struct.proto";
+import "validate/validate.proto";
+
+service Service {
+    rpc StartService (stream StartServiceRequest) returns (stream StartServiceResponse);
+    rpc StopService (StopServiceRequest) returns (ServiceResponse);
+    rpc GetServiceStatus (GetServiceStatusRequest) returns (ServiceStatusResponse);
+    rpc GetServiceInput (GetServiceInputRequest) returns (ServiceInputResponse);
+    rpc GetServiceOutput (GetServiceOutputRequest) returns (ServiceOutputResponse);
+    // rpc GetServiceSetup (GetServiceSetupRequest) returns (ServiceSetupResponse);
+}
+
+enum ServiceStatus {
+    STARTING = 0;
+    PROCESSING = 1;
+    CANCELED = 2;
+    FAILED = 3;
+    EXPIRED = 4;
+    SUCCESS = 5;
+    STOPPED = 6;
+}
+
+enum RequestType {
+    SEND = 0; // send a new message in the room
+    EXIT = 1; // Leave the room
+    VALIDATE = 2; // Launch the validation of requests in the room
+    DESTROY = 3; // Destroy the room
+}
+
+enum StartResponseType {
+    CONNECTION = 0; // Connection to the room
+    INPUT = 1; // New input data in the room
+    OUTPUT = 2; // New output data comming from a job instance
+    ERROR = 3; // Error message
+}
+
+message StartServiceRequest {
+    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }]; // Structured input data for the service
+    string setup_id = 2 [(validate.rules).string = { min_len: 1, prefix: "setups:" }]; // Database ID of the setupused to start the service
+    repeated string service_ids = 3 [(validate.rules).repeated = { min_items: 0, items: { string: { min_len: 1, prefix: "services:" } } }]; // List of Services IDs to start
+    RequestType request_type = 4 [(validate.rules).enum = { defined_only: true }]; // type of the request send to the Service
+}
+
+message StopServiceRequest {
+    string service_id = 1 [(validate.rules).string = { min_len: 1, prefix: "services:" }]; // Database ID of the Service to stop
+}
+
+message GetServiceStatusRequest {
+    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }]; // Database ID of the Job Service to get status
+}
+
+message GetServiceInputRequest {
+    string service_id = 1 [(validate.rules).string = { min_len: 1, prefix: "services:" }]; // Database ID of the Service to get input schema
+    bool llm_format = 2; // Define if the input schema should be in LLM format or raw pydantic format
+}
+
+message GetServiceOutputRequest {
+    string service_id = 1 [(validate.rules).string = { min_len: 1, prefix: "services:" }]; // Database ID of the Service to get output schema
+    bool llm_format = 2; // Define if the output schema should be in LLM format or raw pydantic format
+}
+
+// Connections information when starting a service
+message ConnectionResponse {
+    string message = 2 [(validate.rules).string = { min_len: 1 }]; // Message with the result of the operation
+    optional string room_id = 3 [(validate.rules).string = { min_len: 1 }]; // ID of the Room that was connected
+}
+
+// Input data for the service when starting a service
+message InputDataResponse {
+    string message = 2 [(validate.rules).string = { min_len: 1 }]; // Message with the result of the operation
+    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }]; // Structured input data for the service
+}
+
+// Output data for the service when starting a service
+message OutputDataResponse {
+    string message = 2 [(validate.rules).string = { min_len: 1 }]; // Message with the result of the operation
+    google.protobuf.Struct output = 1 [(validate.rules).any = { required: true }]; // Structured output data for the service
+    string job_id = 3 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }]; // Database ID of the job  inside the Service that was queried
+}
+
+// Error message when starting a service
+message ErrorResponse {
+    string message = 2 [(validate.rules).string = { min_len: 1 }]; // Message with the result of the operation
+    string details = 3 [(validate.rules).string = {  }]; // Message with the result of the operation
+}
+
+message StartServiceResponse {
+    bool success = 1; // Flag to indicate if the started/stopped request was successful
+    StartResponseType response_type = 2 [(validate.rules).enum = { defined_only: true }]; // Type of the response
+    oneof content {
+        // Response with the connection to the room
+        ConnectionResponse connection = 3;
+        // Response with the input data
+        InputDataResponse input_response = 4;
+        // Response with the output data
+        OutputDataResponse output_response = 5;
+        // Response with the error message
+        ErrorResponse error = 6;
+    }
+    optional string service_id = 7 [(validate.rules).string = { prefix: "services:" }]; // Database ID of the Service that was started/stopped
+}
+
+message ServiceResponse {
+    bool success = 1; // Flag to indicate if the started/stopped request was successful
+    string message = 2 [(validate.rules).string = { min_len: 1 }]; // Message with the result of the operation
+    optional string service_id = 3 [(validate.rules).string = { prefix: "services:" }]; // Database ID of the Service that was started/stopped
+}
+
+message ServiceStatusResponse {
+    bool success = 1; // Flag to indicate if the status request was successful
+    ServiceStatus status = 2 [(validate.rules).enum = { defined_only: true }]; // Status of the Service
+    string job_id = 3  [(validate.rules).string = { min_len: 1, prefix: "jobs:" }]; // Database ID of the job  inside the Service that was queried
+}
+
+message ServiceInputResponse {
+    bool success = 1; // Flag to indicate if the input schema request was successful
+    google.protobuf.Struct input_schema = 2 [(validate.rules).any = { required: true }]; // Input schema of the Service
+}
+
+message ServiceOutputResponse {
+    bool success = 1; // Flag to indicate if the output schema request was successful
+    google.protobuf.Struct output_schema = 2 [(validate.rules).any = { required: true }]; // Output schema of the Service
+}

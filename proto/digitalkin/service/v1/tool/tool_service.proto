@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package digitalkin.service.v1.tool;
+
+import "google/protobuf/struct.proto";
+import "validate/validate.proto";
+
+service ToolService {
+    rpc ExecuteTool(stream ExecuteRequest) returns (ExecuteResponse);
+}
+
+message ExecuteRequest {
+    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct setup = 2 [(validate.rules).any = { required: true }];
+    repeated string service_ids = 3 [(validate.rules).repeated = { min_items: 1 }];
+    string tool_id = 4 [(validate.rules).string = { min_len: 1 }];
+    string mission_id = 5 [(validate.rules).string = { min_len: 1 }];
+
+}
+
+message ExecuteResponse {
+    bool success = 1;
+    google.protobuf.Struct output = 2 [(validate.rules).any = { required: true }];
+}
