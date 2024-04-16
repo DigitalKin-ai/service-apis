@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package digitalkin.kin.v1.trigger;
+
+import "google/api/annotations.proto";
+
+service TriggerService {
+    // CR
+    rpc CreateCallTrigger(CreateCallTriggerRequest) returns (CreateCallTriggerResponse) {
+        option (google.api.http) = {
+            post: "/v1/kins/{kin_id}/triggers/{trigger_id}/setups/{setup_id}"
+            body: "*"
+        };
+    }
+    rpc ReadTrigger(ReadTriggerRequest) returns (ReadTriggerResponse) {
+        option (google.api.http) = {
+            get: "/v1/kins/{kin_id}/triggers/{trigger_id}/setups/{setup_id}"
+        };
+    }
+}
+
+// File attachment format
+message Attachment {
+    string filename = 1;
+    binary binary_file = 2;
+}
+
+// Pdf trigger
+message PdfTrigger {
+    repeated Attachment attachments = 1;
+    map<string, string> metadata = 2;
+}
+
+// Create a new specific trigger call
+message CreateCallTriggerRequest {
+    string kin_id = 1;
+    string trigger_id = 2;
+    string setup_id = 3;
+    oneof trigger {
+        PdfTrigger pdf_trigger = 4;
+    }
+}
+
+// Response of create call trigger
+message CreateCallTriggerResponse {}
+
+// Read a specific trigger call 
+message ReadTriggerRequest {
+    string kin_id = 1;
+    string trigger_id = 2;
+    string setup_id = 3;
+}
+
+// Response of read trigger
+message ReadTriggerResponse {
+    enum status = 1;
+    string log = 2;
+}
