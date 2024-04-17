@@ -2,21 +2,10 @@ syntax = "proto3";
 
 package digitalkin.kin.v1.trigger;
 
-import "google/api/annotations.proto";
-
 service TriggerService {
     // CR
-    rpc CreateCallTrigger(CreateCallTriggerRequest) returns (CreateCallTriggerResponse) {
-        option (google.api.http) = {
-            post: "/v1/kins/{kin_id}/triggers/{trigger_id}/setups/{setup_id}"
-            body: "*"
-        };
-    }
-    rpc ReadTrigger(ReadTriggerRequest) returns (ReadTriggerResponse) {
-        option (google.api.http) = {
-            get: "/v1/kins/{kin_id}/triggers/{trigger_id}/setups/{setup_id}"
-        };
-    }
+    rpc CreateCallTrigger(CreateCallTriggerRequest) returns (CreateCallTriggerResponse) {}
+    rpc ReadTrigger(ReadTriggerRequest) returns (ReadTriggerResponse) {}
 }
 
 
