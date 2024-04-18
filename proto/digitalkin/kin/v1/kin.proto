@@ -60,24 +60,24 @@ service KinService {
 
 // Common
 message KinThreadReply {
-    Thing id = 1;
+    string id = 1;
     string thread_subject = 2;
     bool activated = 3;
 }
 
 message Tag {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
     string organization_id = 3;
 }
 
 message Language {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
 }
 
 message StoreKin {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
     string description = 3;
     repeated Tag tags = 4;
@@ -92,7 +92,7 @@ message ListKin {
 }
 
 message Kin {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
     optional string description = 3;
     string origin_address = 4;
@@ -110,7 +110,7 @@ message CreateKinRequest {
 
 // Read a Kin
 message ReadKinRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
 }
 
 // Read a list of Kin
@@ -118,34 +118,34 @@ message ReadAllKinRequest {}
 
 // Delete a Kin
 message DeleteKinRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
 }
 message DeleteKinResponse {}
 
 // Update a Kin activated status
 message UpdateKinActivatedRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
     bool activated = 2;
 }
 message UpdateKinActivatedResponse { }
 
 // Update a Kin name
 message UpdateKinNameRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
     string name = 2;
 }
 message UpdateKinNameResponse { }
 
 // Update a Kin description
 message UpdateKinDescriptionRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
     string description = 2;
 }
 message UpdateKinDescriptionResponse { }
 
 // Update a Kin origin address
 message UpdateKinOriginAddressRequest {
-    Thing kin_id = 1;
+    string kin_id = 1;
     string origin_address = 2;
 }
 message UpdateKinOriginAddressResponse { }

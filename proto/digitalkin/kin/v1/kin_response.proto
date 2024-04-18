@@ -19,13 +19,8 @@ service KinResponseService {
 }
 
 // Common
-message Thing {
-  string id = 1;
-  string tb = 2;
-}
-
 message KinResponse {
-    Thing id = 1;
+    string id = 1;
     optional string role = 2;
     optional string status = 3;
     string mission = 4;
@@ -37,11 +32,11 @@ message KinResponse {
 
 // Read Response
 message ReadKinResponseRequest {
-    Thing kin_response_id = 1;
+    string kin_response_id = 1;
 }
 
 // Detete Response
 message DeleteKinResponseRequest {
-    Thing kin_response_id = 1;
+    string kin_response_id = 1;
 }
 message DeleteKinResponseResponse {}

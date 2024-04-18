@@ -56,7 +56,7 @@ message File {
 }
 
 message KinThread {
-    Thing id = 1;
+    string id = 1;
     string thread_subject = 2;
     repeated KinResponse responses = 3;
     bool activated = 4;
@@ -65,37 +65,37 @@ message KinThread {
 // Create Kin Thread
 message CreateKinThreadRequest {
     string thread_subject = 1;
-    Thing kin_id = 2;
+    string kin_id = 2;
 }
 
 // Read Kin Thread
 message ReadKinThreadRequest {
-    Thing kin_thread_id = 1;
+    string kin_thread_id = 1;
 }
 
 // Delete Kin Thread
 message DeleteKinThreadRequest {
-    Thing kin_thread_id = 1;
+    string kin_thread_id = 1;
 }
 message DeleteKinThreadResponse {}
 
 // Update Subject
 message UpdateSubjectRequest {
-    Thing kin_thread_id = 1;
+    string kin_thread_id = 1;
     string subject = 2;
 }
 message UpdateSubjectResponse {}
 
 // Create Kin Response
 message CreateKinResponseRequest {
-    Thing kin_thread_id = 1;
+    string kin_thread_id = 1;
     string mission = 2;
     repeated File files = 3;
 }
 
 // Reply In The Thread
 message ReplyInTheThreadRequest {
-    Thing kin_thread_id = 1;
+    string kin_thread_id = 1;
     string mission = 2;
     repeated File files = 3;
 }
