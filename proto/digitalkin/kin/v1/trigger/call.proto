@@ -34,7 +34,7 @@ message PdfTrigger {
 
 // Create a new specific trigger call
 message CreateCallTriggerRequest {
-    string kin_id = 1;
+    optional string kin_id = 1;
     string trigger_id = 2;
     string setup_id = 3;
     oneof trigger {
