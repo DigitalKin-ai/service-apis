@@ -68,20 +68,15 @@ message KinThreadReply {
 message Tag {
     string id = 1;
     string name = 2;
-    string organization_id = 3;
-}
-
-message Language {
-    string id = 1;
-    string name = 2;
+    optional string organization_id = 3;
 }
 
 message StoreKin {
     string id = 1;
     string name = 2;
-    string description = 3;
+    optional string description = 3;
     repeated Tag tags = 4;
-    repeated Language languages = 5;
+    repeated string languages = 5;
     optional string framework = 6;
     optional int32 review = 7;
     bool activated = 8;
