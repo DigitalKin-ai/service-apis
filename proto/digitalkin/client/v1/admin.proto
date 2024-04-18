@@ -23,11 +23,6 @@ service AdminService {
 }
 
 // Common
-message Thing {
-  string id = 1;
-  string tb = 2;
-}
-
 message UserAdminReply {
     string user_name = 1;
     bool activated = 2;
@@ -36,7 +31,7 @@ message UserAdminReply {
 }
 
 message OrganizationAdminReply {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
     bool activated = 3;
     optional int64 nb_members = 4;
@@ -44,7 +39,7 @@ message OrganizationAdminReply {
 }
 
 message KinAdminReply {
-    Thing id = 1;
+    string id = 1;
     string name = 2;
     bool activated = 3;
     optional int64 nb_members = 4;
