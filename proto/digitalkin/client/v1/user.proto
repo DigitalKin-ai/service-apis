@@ -5,6 +5,7 @@ package digitalkin.client.v1;
 import "google/api/annotations.proto";
 
 import "digitalkin/client/v1/organization.proto";
+import "digitalkin/client/v1/admin.proto";
 
 service UserService {
     // CRD
@@ -98,24 +99,24 @@ service UserService {
 
 // Common
 message OrganizationReply {
-  string id = 1;
-  string name = 2;
-  repeated string kins = 3;
-  bool is_owner = 4;
-  bool activated = 5;
+    Thing id = 1;
+    string name = 2;
+    repeated string kins = 3;
+    bool is_owner = 4;
+    bool activated = 5;
 }
 
 message User {
-  string user_name = 1;
-  optional string first_name = 3;
-  optional string last_name = 4;
-  string email = 5;
-  optional string avatar = 6;
-  repeated OrganizationReply organizations = 7;
-  repeated KinReply fav_kins = 8;
-  optional int64 credit_amount = 9;
-  bool activated = 10;
-  bool is_admin = 11;
+    string user_name = 1;
+    optional string first_name = 3;
+    optional string last_name = 4;
+    string email = 5;
+    optional string avatar = 6;
+    repeated OrganizationReply organizations = 7;
+    repeated KinReply fav_kins = 8;
+    optional int64 credit_amount = 9;
+    bool activated = 10;
+    bool is_admin = 11;
 }
 
 // Create a new user
@@ -189,18 +190,18 @@ message AddUserOrganizationRequest {
 
 // Remove a user organization
 message RemoveUserOrganizationRequest {
-    string organization_id = 1;
+    Thing organization_id = 1;
 }
 message RemoveUserOrganizationResponse {}
 
 // Add a user kin
 message AddUserKinRequest {
-    string kin_id = 1;
+    Thing kin_id = 1;
 }
 
 // Remove a user kin
 message RemoveUserKinRequest {
-    string kin_id = 1;
+    Thing kin_id = 1;
 }
 message RemoveUserKinResponse {}
 
