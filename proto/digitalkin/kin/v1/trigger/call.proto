@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package digitalkin.kin.v1.trigger;
 
+import "validate/validate.proto";
+
 service TriggerService {
     // CR
     rpc CreateCallTrigger(CreateCallTriggerRequest) returns (CreateCallTriggerResponse) {}
@@ -34,7 +36,7 @@ message PdfTrigger {
 
 // Create a new specific trigger call
 message CreateCallTriggerRequest {
-    optional string kin_id = 1;
+    string kin_id = 1 [(validate.rules).string = { min_len: 1 }];
     string trigger_id = 2;
     string setup_id = 3;
     oneof trigger {
@@ -47,7 +49,7 @@ message CreateCallTriggerResponse {}
 
 // Read a specific trigger call 
 message ReadTriggerRequest {
-    string kin_id = 1;
+    string kin_id = 1 [(validate.rules).string = { min_len: 1 }];
     string trigger_id = 2;
     string setup_id = 3;
 }

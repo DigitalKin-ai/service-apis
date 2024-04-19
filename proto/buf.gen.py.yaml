@@ -37,5 +37,3 @@ plugins:
       - pyi_out=true
   - plugin: buf.build/grpc/python:v1.62.0
     out: .
-  # - name: mypy
-  #   out: gen
