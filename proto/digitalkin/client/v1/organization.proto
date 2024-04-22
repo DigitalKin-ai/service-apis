@@ -127,6 +127,7 @@ message Organization {
 message CreateOrganizationRequest {
     string name = 1;
     string email = 2;
+    string user_id = 3;
 }
 
 // Read Organization

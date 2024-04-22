@@ -92,8 +92,7 @@ message Kin {
     optional string description = 3;
     string origin_address = 4;
     repeated KinThreadReply kin_threads = 5;
-    bool owner = 6;
-    bool activated = 7;
+    bool activated = 6;
 }
 
 // Create a new Kin
@@ -101,6 +100,7 @@ message CreateKinRequest {
     string name = 1;
     optional string description = 2;
     string origin_address = 3;
+    string user_id = 4;
 }
 
 // Read a Kin

@@ -132,10 +132,14 @@ message CreateUserResponse {
 }
 
 // Read a user
-message ReadUserRequest {}
+message ReadUserRequest {
+    string user_id = 1;
+}
 
 // Delete a user
-message DeleteUserRequest {}
+message DeleteUserRequest {
+  string user_id = 1;
+}
 message DeleteUserResponse {}
 
 // Update a user activated
@@ -148,24 +152,29 @@ message UpdateUserActivatedResponse {}
 // Update a user avatar
 message UpdateUserAvatarRequest {
     bytes avatar = 1;
+    string user_id = 2;
 }
 message UpdateUserAvatarResponse {}
 
 // Update a user email
 message UpdateUserEmailRequest {
     string email = 1;
+    string user_id = 2;
 }
 message UpdateUserEmailResponse {}
 
 // Update a user first name
 message UpdateUserFirstNameRequest {
     string first_name = 1;
+    string user_id = 2;
 }
 message UpdateUserFirstNameResponse {}
 
 // Update a user last name
 message UpdateUserLastNameRequest {
     string last_name = 1;
+    string user_id = 2;
+
 }
 message UpdateUserLastNameResponse {}
 
@@ -173,34 +182,40 @@ message UpdateUserLastNameResponse {}
 message UpdateUserPasswordRequest {
     string old_password = 1;
     string new_password = 2;
+    string user_id = 3;
 }
 message UpdateUserPasswordResponse {}
 
 // Update a user user name
 message UpdateUserNameRequest {
     string user_name = 1;
+    string user_id = 2;
 }
 message UpdateUserNameResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
     string invitation_code = 1;
+    string user_id = 2;
 }
 
 // Remove a user organization
 message RemoveUserOrganizationRequest {
     string organization_id = 1;
+    string user_id = 2;
 }
 message RemoveUserOrganizationResponse {}
 
 // Add a user kin
 message AddUserKinRequest {
     string kin_id = 1;
+    string user_id = 2;
 }
 
 // Remove a user kin
 message RemoveUserKinRequest {
     string kin_id = 1;
+    string user_id = 2;
 }
 message RemoveUserKinResponse {}
 
