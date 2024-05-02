@@ -16,55 +16,55 @@ service UserService {
     }
     rpc ReadUser(ReadUserRequest) returns (stream User) {
         option (google.api.http) = {
-            get: "/v1/user/{user_id}"
+            get: "/v1/user/"
         };
     }
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
         option (google.api.http) = {
-            delete: "/v1/user/{user_id}"
+            delete: "/v1/user"
         };
     }
 
     // Update
     rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/activated"
+            patch: "/v1/user/activated"
             body: "*"
         };
     }
     rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/avatar"
+            patch: "/v1/user/avatar"
             body: "*"
         };
     }
     rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/email"
+            patch: "/v1/user/email"
             body: "*"
         };
     }
     rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/first_name"
+            patch: "/v1/user/first_name"
             body: "*"
         };
     }
     rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/last_name"
+            patch: "/v1/user/last_name"
             body: "*"
         };
     }
     rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/password"
+            patch: "/v1/user/password"
             body: "*"
         };
     }
     rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
         option (google.api.http) = {
-            patch: "/v1/user/{user_id}/user_name"
+            patch: "/v1/user/user_name"
             body: "*"
         };
     }
@@ -72,26 +72,26 @@ service UserService {
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
         option (google.api.http) = {
-            post: "/v1/user/{user_id}/organization"
+            post: "/v1/user/organization"
             body: "*"
         };
     }
     rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse) {
         option (google.api.http) = {
-            delete: "/v1/user/{user_id}/organization/{organization_id}"
+            delete: "/v1/user/organization/{organization_id}"
         };
     }
 
     // Kin
     rpc AddFavKin(AddUserKinRequest) returns (KinReply) {
         option (google.api.http) = {
-            post: "/v1/user/{user_id}/kin"
+            post: "/v1/user/kin"
             body: "*"
         };
     }
     rpc RemoveFavKin(RemoveUserKinRequest) returns (RemoveUserKinResponse) {
         option (google.api.http) = {
-            delete: "/v1/user/{user_id}/kin/{kin_id}"
+            delete: "/v1/user/kin/{kin_id}"
         };
     }
 }
@@ -106,7 +106,6 @@ message OrganizationReply {
 }
 
 message User {
-    string id = 1;
     string user_name = 2;
     optional string first_name = 3;
     optional string last_name = 4;
@@ -134,12 +133,10 @@ message CreateUserResponse {
 
 // Read a user
 message ReadUserRequest {
-    string user_id = 1;
 }
 
 // Delete a user
 message DeleteUserRequest {
-  string user_id = 1;
 }
 message DeleteUserResponse {}
 
@@ -153,28 +150,24 @@ message UpdateUserActivatedResponse {}
 // Update a user avatar
 message UpdateUserAvatarRequest {
     bytes avatar = 1;
-    string user_id = 2;
 }
 message UpdateUserAvatarResponse {}
 
 // Update a user email
 message UpdateUserEmailRequest {
     string email = 1;
-    string user_id = 2;
 }
 message UpdateUserEmailResponse {}
 
 // Update a user first name
 message UpdateUserFirstNameRequest {
     string first_name = 1;
-    string user_id = 2;
 }
 message UpdateUserFirstNameResponse {}
 
 // Update a user last name
 message UpdateUserLastNameRequest {
     string last_name = 1;
-    string user_id = 2;
 
 }
 message UpdateUserLastNameResponse {}
@@ -183,40 +176,34 @@ message UpdateUserLastNameResponse {}
 message UpdateUserPasswordRequest {
     string old_password = 1;
     string new_password = 2;
-    string user_id = 3;
 }
 message UpdateUserPasswordResponse {}
 
 // Update a user user name
 message UpdateUserNameRequest {
     string user_name = 1;
-    string user_id = 2;
 }
 message UpdateUserNameResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
     string invitation_code = 1;
-    string user_id = 2;
 }
 
 // Remove a user organization
 message RemoveUserOrganizationRequest {
     string organization_id = 1;
-    string user_id = 2;
 }
 message RemoveUserOrganizationResponse {}
 
 // Add a user kin
 message AddUserKinRequest {
     string kin_id = 1;
-    string user_id = 2;
 }
 
 // Remove a user kin
 message RemoveUserKinRequest {
     string kin_id = 1;
-    string user_id = 2;
 }
 message RemoveUserKinResponse {}
 
