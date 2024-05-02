@@ -3,17 +3,17 @@ syntax = "proto3";
 package digitalkin.service.v1.tool;
 
 import "validate/validate.proto";
-import "google/protobuf/any.proto";
 
 service ToolService {
     rpc ExecuteTool(ExecuteRequest) returns (ExecuteResponse);
 }
 
 message ExecuteRequest {
-    google.protobuf.Any input = 1 [(validate.rules).any.required = true];
+    string input = 1 [(validate.rules).string = { min_len: 1 }];
 }
 
 message ExecuteResponse {
-    google.protobuf.Any output = 2 [(validate.rules).any.required = true];
     bool success = 1;
+    string output = 2 [(validate.rules).string = { min_len: 1 }];
+}
 }
