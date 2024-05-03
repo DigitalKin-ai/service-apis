@@ -16,4 +16,3 @@ message ExecuteResponse {
     bool success = 1;
     string output = 2 [(validate.rules).string = { min_len: 1 }];
 }
-}
