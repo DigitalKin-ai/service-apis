@@ -25,7 +25,7 @@ message KinResponse {
     optional string status = 3;
     string mission = 4;
     string created_at = 5;
-    string origin_id = 6;
+    optional string origin_id = 6;
     string thread_subject = 7;
     optional string model = 8;
 }

@@ -3,6 +3,7 @@ syntax = "proto3";
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/client/v1/user.proto";
 
 service AuthService {
     rpc Login(LoginRequest) returns (LoginResponse) {

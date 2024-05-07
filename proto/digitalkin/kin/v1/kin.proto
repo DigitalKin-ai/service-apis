@@ -5,6 +5,7 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 import "digitalkin/kin/v1/kin_thread.proto";
+import "digitalkin/kin/v1/kin_response.proto";
 
 service KinService {
     // CRD
@@ -67,20 +68,15 @@ message KinThreadReply {
 message Tag {
     string id = 1;
     string name = 2;
-    string organization_id = 3;
-}
-
-message Language {
-    string id = 1;
-    string name = 2;
+    optional string organization_id = 3;
 }
 
 message StoreKin {
     string id = 1;
     string name = 2;
-    string description = 3;
+    optional string description = 3;
     repeated Tag tags = 4;
-    repeated Language languages = 5;
+    repeated string languages = 5;
     optional string framework = 6;
     optional int32 review = 7;
     bool activated = 8;
@@ -96,8 +92,7 @@ message Kin {
     optional string description = 3;
     string origin_address = 4;
     repeated KinThreadReply kin_threads = 5;
-    bool owner = 6;
-    bool activated = 7;
+    bool activated = 6;
 }
 
 // Create a new Kin
