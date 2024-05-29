@@ -164,6 +164,9 @@ message UpdateKinOriginAddressResponse { }
 // Update a Kin review
 message UpdateKinReviewRequest {
     string kin_id = 1;
-    Review review = 2;
+    string user_name = 2;
+    optional string user_avatar = 3;
+    int64 review = 4;
+    optional string review_comment = 5;
 }
 message UpdateKinReviewResponse { }
