@@ -102,12 +102,6 @@ service UserService {
     }
 }
 
-message UsageType {
-    bool business = 1;
-    bool designer = 2;
-    bool developer = 3;
-}
-
 // Common
 message OrganizationReply {
     string id = 1;
@@ -126,7 +120,7 @@ message User {
     repeated OrganizationReply organizations = 7;
     repeated KinReply fav_kins = 8;
     optional int64 credit_amount = 9;
-    optional UsageType usage_type = 10;
+    repeated string usage_type = 10;
     bool activated = 11;
     bool is_admin = 12;
 }
@@ -200,7 +194,7 @@ message UpdateUserNameResponse {}
 
 // Update a user usage type
 message UpdateUserUsageTypeRequest {
-    UsageType usage_type = 1;
+    repeated string usage_type = 1;
 }
 message UpdateUserUsageTypeResponse {}
 
