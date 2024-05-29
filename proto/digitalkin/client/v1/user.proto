@@ -107,7 +107,7 @@ message OrganizationReply {
     string id = 1;
     string name = 2;
     repeated string kins = 3;
-    int32 credit_amount = 4;
+    optional int64 credit_amount = 4;
     bool is_owner = 5;
     bool activated = 6;
 }
