@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package digitalkin.service.v1.tool;
 
+import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
 service ToolService {
@@ -9,10 +10,10 @@ service ToolService {
 }
 
 message ExecuteRequest {
-    string input = 1 [(validate.rules).string = { min_len: 1 }];
+    google.protobuf.Struct input = 2 [(validate.rules).any = { required: true }];
 }
 
 message ExecuteResponse {
     bool success = 1;
-    string output = 2 [(validate.rules).string = { min_len: 1 }];
+    google.protobuf.Struct output = 2 [(validate.rules).any = { required: true }];
 }
