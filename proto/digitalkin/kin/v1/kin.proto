@@ -95,7 +95,7 @@ message StoreKin {
     optional string framework = 6;
     repeated Review reviews = 7;
     optional int64 score = 8;
-    optional int32 price = 9;
+    optional int64 price = 9;
     bool activated = 10;
 }
 
