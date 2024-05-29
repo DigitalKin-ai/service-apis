@@ -102,11 +102,10 @@ service UserService {
     }
 }
 
-enum UsageType {
-    UNKNOWN = 0;
-    BUSINESS = 1;
-    DESIGNER = 2;
-    DEVELOPER = 3;
+message UsageType {
+    bool business = 1;
+    bool designer = 2;
+    bool developer = 3;
 }
 
 // Common
