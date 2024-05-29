@@ -56,6 +56,12 @@ service KinService {
             body: "*"
         };
     }
+    rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/review"
+            body: "*"
+        };
+    }
 }
 
 // Common
@@ -71,6 +77,15 @@ message Tag {
     optional string organization_id = 3;
 }
 
+message Review {
+    string id = 1;
+    string reviewer = 2;
+    optional string reviewer_avatar = 3;
+    int32 review = 4;
+    optional string review_comment = 5;
+    string review_date = 6;
+}
+
 message StoreKin {
     string id = 1;
     string name = 2;
@@ -78,8 +93,10 @@ message StoreKin {
     repeated Tag tags = 4;
     repeated string languages = 5;
     optional string framework = 6;
-    optional int32 review = 7;
-    bool activated = 8;
+    repeated Review reviews = 7;
+    optional int32 score = 8;
+    optional int32 price = 9;
+    bool activated = 10;
 }
 
 message ListKin {
@@ -143,3 +160,10 @@ message UpdateKinOriginAddressRequest {
     string origin_address = 2;
 }
 message UpdateKinOriginAddressResponse { }
+
+// Update a Kin review
+message UpdateKinReviewRequest {
+    string kin_id = 1;
+    Review review = 2;
+}
+message UpdateKinReviewResponse { }
