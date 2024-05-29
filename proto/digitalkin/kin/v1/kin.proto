@@ -81,7 +81,7 @@ message Review {
     string id = 1;
     string reviewer = 2;
     optional string reviewer_avatar = 3;
-    int32 review = 4;
+    int64 review = 4;
     optional string review_comment = 5;
     string review_date = 6;
 }
@@ -94,7 +94,7 @@ message StoreKin {
     repeated string languages = 5;
     optional string framework = 6;
     repeated Review reviews = 7;
-    optional int32 score = 8;
+    optional int64 score = 8;
     optional int32 price = 9;
     bool activated = 10;
 }
