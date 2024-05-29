@@ -2,15 +2,14 @@ syntax = "proto3";
 
 package digitalkin.kin.v1.trigger;
 
+import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
 service TriggerService {
-    // CR
-    rpc CreateCallTrigger(CreateCallTriggerRequest) returns (CreateCallTriggerResponse) {}
-    rpc ReadTrigger(ReadTriggerRequest) returns (ReadTriggerResponse) {}
+    rpc StartTrigger (StartTriggerRequest) returns (TriggerResponse);
+    rpc StopTrigger (StopTriggerRequest) returns (TriggerResponse);
+    rpc GetTriggerStatus (GetTriggerStatusRequest) returns (TriggerStatusResponse);
 }
-
-
 
 enum TriggerStatus {
     ACTIVE = 0;
@@ -18,44 +17,31 @@ enum TriggerStatus {
     FAILED = 2;
     EXPIRED = 3;
     SUCCESS = 4;
-  }
-  
-
-
-// File attachment format
-message Attachment {
-    string filename = 1;
-    bytes binary_file = 2;
+    STOPPED = 5;
 }
 
-// Pdf trigger
-message PdfTrigger {
-    repeated Attachment attachments = 1;
-    map<string, string> metadata = 2;
+
+message StartTriggerRequest {
+    google.protobuf.Struct setup = 1;
+    repeated string service_ids = 2; // service ids to trigger
 }
 
-// Create a new specific trigger call
-message CreateCallTriggerRequest {
-    string kin_id = 1 [(validate.rules).string = { min_len: 1 }];
-    string trigger_id = 2;
-    string setup_id = 3;
-    oneof trigger {
-        PdfTrigger pdf_trigger = 4;
-    }
+message StopTriggerRequest {
+    string trigger_id = 1;
 }
 
-// Response of create call trigger
-message CreateCallTriggerResponse {}
-
-// Read a specific trigger call 
-message ReadTriggerRequest {
-    string kin_id = 1 [(validate.rules).string = { min_len: 1 }];
-    string trigger_id = 2;
-    string setup_id = 3;
+message GetTriggerStatusRequest {
+    string trigger_id = 1;
 }
 
-// Response of read trigger
-message ReadTriggerResponse {
-    TriggerStatus status = 1;
-    string log = 2;
+message TriggerResponse {
+    bool success = 1;
+    string message = 2;
+    optional string trigger_id = 3;
+}
+
+message TriggerStatusResponse {
+    bool success = 1;
+    TriggerStatus status = 2;
+    string trigger_id = 3;
 }
