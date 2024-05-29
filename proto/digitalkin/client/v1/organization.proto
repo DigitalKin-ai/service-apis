@@ -119,7 +119,7 @@ message Organization {
     repeated UserReply moderators = 6;
     repeated UserReply users = 7;
     repeated KinReply kins = 8;
-    int32 credit_amount = 9;
+    optional int64 credit_amount = 9;
     bool activated = 10;
 }
 
