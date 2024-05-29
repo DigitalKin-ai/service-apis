@@ -58,7 +58,7 @@ service KinService {
     }
 
     // Reviews
-    rpc CreateReview(UpdateKinReviewRequest) returns (Review) {
+    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
       option (google.api.http) = {
           post: "/v1/kin/{kin_id}/review"
           body: "*"
