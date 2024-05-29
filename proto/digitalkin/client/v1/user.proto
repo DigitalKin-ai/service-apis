@@ -68,6 +68,12 @@ service UserService {
             body: "*"
         };
     }
+    rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/usage_type"
+            body: "*"
+        };
+    }
 
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
@@ -96,6 +102,13 @@ service UserService {
     }
 }
 
+enum UsageType {
+    UNKNOWN = 0;
+    BUSINESS = 1;
+    DESIGNER = 2;
+    DEVELOPER = 3;
+}
+
 // Common
 message OrganizationReply {
     string id = 1;
@@ -114,8 +127,9 @@ message User {
     repeated OrganizationReply organizations = 7;
     repeated KinReply fav_kins = 8;
     optional int64 credit_amount = 9;
-    bool activated = 10;
-    bool is_admin = 11;
+    optional UsageType usage_type = 10;
+    bool activated = 11;
+    bool is_admin = 12;
 }
 
 // Create a new user
@@ -184,6 +198,12 @@ message UpdateUserNameRequest {
     string user_name = 1;
 }
 message UpdateUserNameResponse {}
+
+// Update a user usage type
+message UpdateUserUsageTypeRequest {
+    UsageType usage_type = 1;
+}
+message UpdateUserUsageTypeResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
