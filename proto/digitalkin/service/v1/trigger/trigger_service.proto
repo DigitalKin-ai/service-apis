@@ -12,12 +12,13 @@ service TriggerService {
 }
 
 enum TriggerStatus {
-    ACTIVE = 0;
-    CANCELED = 1;
-    FAILED = 2;
-    EXPIRED = 3;
-    SUCCESS = 4;
-    STOPPED = 5;
+    STARTING = 0;
+    PROCESSING = 1;
+    CANCELED = 2;
+    FAILED = 3;
+    EXPIRED = 4;
+    SUCCESS = 5;
+    STOPPED = 6;
 }
 
 
