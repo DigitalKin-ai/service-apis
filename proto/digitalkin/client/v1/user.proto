@@ -159,7 +159,9 @@ message UpdateUserActivatedResponse {}
 message UpdateUserAvatarRequest {
     bytes avatar = 1;
 }
-message UpdateUserAvatarResponse {}
+message UpdateUserAvatarResponse {
+    string avatar_link = 1;
+}
 
 // Update a user email
 message UpdateUserEmailRequest {
