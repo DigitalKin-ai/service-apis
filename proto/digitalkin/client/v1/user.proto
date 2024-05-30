@@ -126,6 +126,22 @@ message User {
     bool is_admin = 12;
 }
 
+message MetaData {
+  string name = 1;
+  string type = 2;
+}
+
+message File {
+  bytes content = 1;
+}
+
+enum Status {
+  PENDING = 0;
+  IN_PROGRESS = 1;
+  SUCCESS = 2;
+  FAILED = 3;
+}
+
 // Create a new user
 message CreateUserRequest {
     string user_name = 1;
@@ -157,10 +173,14 @@ message UpdateUserActivatedResponse {}
 
 // Update a user avatar
 message UpdateUserAvatarRequest {
-    bytes avatar = 1;
+    oneof request {
+      MetaData metadata = 1;
+      File file = 2;
+    }
 }
 message UpdateUserAvatarResponse {
     string avatar_link = 1;
+    Status status = 2;
 }
 
 // Update a user email
