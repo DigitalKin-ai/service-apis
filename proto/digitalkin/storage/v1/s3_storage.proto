@@ -4,7 +4,7 @@ package digitalkin.storage.v1;
 
 import "google/api/annotations.proto";
 
-service Storage {
+service StorageService {
   // Upload a file
   rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
     option (google.api.http) = {
