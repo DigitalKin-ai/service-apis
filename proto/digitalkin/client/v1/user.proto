@@ -32,12 +32,6 @@ service UserService {
             body: "*"
         };
     }
-    rpc UpdateAvatar(stream UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
-        option (google.api.http) = {
-            patch: "/v1/user/avatar"
-            body: "*"
-        };
-    }
     rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
         option (google.api.http) = {
             patch: "/v1/user/email"
@@ -65,6 +59,12 @@ service UserService {
     rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
         option (google.api.http) = {
             patch: "/v1/user/user_name"
+            body: "*"
+        };
+    }
+    rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/usage_type"
             body: "*"
         };
     }
@@ -101,8 +101,9 @@ message OrganizationReply {
     string id = 1;
     string name = 2;
     repeated string kins = 3;
-    bool is_owner = 4;
-    bool activated = 5;
+    optional int64 credit_amount = 4;
+    bool is_owner = 5;
+    bool activated = 6;
 }
 
 message User {
@@ -114,8 +115,9 @@ message User {
     repeated OrganizationReply organizations = 7;
     repeated KinReply fav_kins = 8;
     optional int64 credit_amount = 9;
-    bool activated = 10;
-    bool is_admin = 11;
+    repeated string usage_type = 10;
+    bool activated = 11;
+    bool is_admin = 12;
 }
 
 // Create a new user
@@ -146,12 +148,6 @@ message UpdateUserActivatedRequest {
     bool activated = 2;
 }
 message UpdateUserActivatedResponse {}
-
-// Update a user avatar
-message UpdateUserAvatarRequest {
-    bytes avatar = 1;
-}
-message UpdateUserAvatarResponse {}
 
 // Update a user email
 message UpdateUserEmailRequest {
@@ -184,6 +180,12 @@ message UpdateUserNameRequest {
     string user_name = 1;
 }
 message UpdateUserNameResponse {}
+
+// Update a user usage type
+message UpdateUserUsageTypeRequest {
+    repeated string usage_type = 1;
+}
+message UpdateUserUsageTypeResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
