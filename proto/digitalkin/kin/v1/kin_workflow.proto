@@ -5,7 +5,17 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
-
+  rpc ReadKinWorkflow(GetWorkflowRequest) returns (stream Workflow) {
+    option (google.api.http) = {
+      get: "/v1/workflow/{id}"
+    };
+  }
+  rpc UpdateKinWorkflow(UpdateWorkflowRequest) returns (UpdateWorkflowResponse) {
+    option (google.api.http) = {
+      post: "/v1/workflow/{id}/update"
+      body: "*"
+    };
+  }
 }
 
 // Common
@@ -68,4 +78,16 @@ message Workflow {
   repeated Edge edges = 1;
   repeated Node nodes = 2;
 }
+
+// Read Kin Workflow
+message GetWorkflowRequest {
+  string kinId = 1;
+}
+
+// Update Kin Workflow
+message UpdateWorkflowRequest {
+  string kinId = 1;
+  Workflow workflow = 2;
+}
+message UpdateWorkflowResponse {}
   
