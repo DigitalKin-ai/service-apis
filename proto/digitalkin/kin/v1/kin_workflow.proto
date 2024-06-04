@@ -61,7 +61,7 @@ message DataNode {
 
 message Measured {
   int64 width = 1;
-  int height = 2;
+  int64 height = 2;
 }
 
 message Node {
