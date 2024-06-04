@@ -6,11 +6,16 @@ import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
 service ToolService {
-    rpc ExecuteTool(ExecuteRequest) returns (ExecuteResponse);
+    rpc ExecuteTool(stream ExecuteRequest) returns (stream ExecuteResponse);
 }
 
 message ExecuteRequest {
-    google.protobuf.Struct input = 2 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct setup = 2 [(validate.rules).any = { required: true }];
+    repeated string service_ids = 3 [(validate.rules).repeated = { min_items: 1 }];
+    string tool_id = 4 [(validate.rules).string = { min_len: 1 }];
+    string mission_id = 5 [(validate.rules).string = { min_len: 1 }];
+
 }
 
 message ExecuteResponse {

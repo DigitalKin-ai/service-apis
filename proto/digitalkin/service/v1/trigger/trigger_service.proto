@@ -6,7 +6,7 @@ import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
 service TriggerService {
-    rpc StartTrigger (StartTriggerRequest) returns (TriggerResponse);
+    rpc StartTrigger (stream StartTriggerRequest) returns (stream TriggerResponse);
     rpc StopTrigger (StopTriggerRequest) returns (TriggerResponse);
     rpc GetTriggerStatus (GetTriggerStatusRequest) returns (TriggerStatusResponse);
 }
@@ -23,9 +23,9 @@ enum TriggerStatus {
 
 
 message StartTriggerRequest {
-    google.protobuf.Struct input = 1;
-    google.protobuf.Struct setup = 2;
-    repeated string service_ids = 3; // service ids to trigger
+    google.protobuf.Struct input = 1; // localhost 5000 localhost 5002 localhost 5003 (sub channel)
+    google.protobuf.Struct setup = 2; // localhost 5001
+    repeated string service_ids = 3; // localhost 5002
 }
 
 message StopTriggerRequest {
