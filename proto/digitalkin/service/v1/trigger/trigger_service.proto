@@ -23,8 +23,9 @@ enum TriggerStatus {
 
 
 message StartTriggerRequest {
-    google.protobuf.Struct setup = 1;
-    repeated string service_ids = 2; // service ids to trigger
+    google.protobuf.Struct input = 1;
+    google.protobuf.Struct setup = 2;
+    repeated string service_ids = 3; // service ids to trigger
 }
 
 message StopTriggerRequest {
