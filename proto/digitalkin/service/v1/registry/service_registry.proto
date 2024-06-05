@@ -15,7 +15,7 @@ service ServiceRegistry {
 // Request to register a service
 message RegisterRequest {
     string service_id = 1 [(validate.rules).string = { min_len: 1 }];
-    string service_type = 2 [(validate.rules).string = { in: ["trigger", "tool", "agent"] }];
+    string service_type = 2 [(validate.rules).string = { in: ["trigger", "tool", "kin"] }];
     string address = 3 [(validate.rules).string = { min_len: 1 }];
     int32 port = 4 [(validate.rules).int32 = { gte: 1, lte: 65535}];
 }
@@ -42,7 +42,7 @@ message DiscoverRequest {
 
 // Response to a discover request
 message DiscoverResponse {
-    string service_type = 1 [(validate.rules).string = { in: ["trigger", "tool", "agent"] }];
+    string service_type = 1 [(validate.rules).string = { in: ["trigger", "tool", "kin"] }];
     string address = 2 [(validate.rules).string = { min_len: 1 }];
     int32 port = 3 [(validate.rules).int32 = { gte: 1, lte: 65535}];
     bool status = 4;
