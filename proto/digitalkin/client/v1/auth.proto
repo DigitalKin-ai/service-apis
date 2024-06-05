@@ -18,6 +18,12 @@ service AuthService {
             body: "*"
         };
     }
+    rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
+        option (google.api.http) = {
+            post: "/v1/checkUserName"
+            body: "*"
+        };
+    }
 }
 
 message LoginRequest {
@@ -32,4 +38,11 @@ message LoginResponse {
 message LogoutRequest {}
 
 message LogoutResponse {}
+
+message CheckUserNameRequest {
+    string userName = 1;
+}
+message CheckUserNameResponse {
+    string userName = 1;
+}
 
