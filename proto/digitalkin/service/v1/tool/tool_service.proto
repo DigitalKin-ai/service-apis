@@ -6,7 +6,7 @@ import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
 service ToolService {
-    rpc ExecuteTool(stream ExecuteRequest) returns (stream ExecuteResponse);
+    rpc ExecuteTool(stream ExecuteRequest) returns (ExecuteResponse);
 }
 
 message ExecuteRequest {
