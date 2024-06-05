@@ -5,14 +5,23 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
+  // Read
   rpc ReadKinWorkflow(GetWorkflowRequest) returns (stream Workflow) {
     option (google.api.http) = {
       get: "/v1/workflow/{id}"
     };
   }
-  rpc UpdateKinWorkflow(UpdateWorkflowRequest) returns (UpdateWorkflowResponse) {
+
+  // Update
+  rpc UpdateNodesWorkflow(UpdateNodeWorkflowRequest) returns (UpdateNodeWorkflowResponse) {
     option (google.api.http) = {
-      post: "/v1/workflow/{id}/update"
+      post: "/v1/workflow/{id}/nodes"
+      body: "*"
+    };
+  }
+  rpc UpdateEdgesWorkflow(UpdateEdgeWorkflowRequest) returns (UpdateEdgeWorkflowResponse) {
+    option (google.api.http) = {
+      post: "/v1/workflow/{id}/edges"
       body: "*"
     };
   }
@@ -84,10 +93,17 @@ message GetWorkflowRequest {
   string kinId = 1;
 }
 
-// Update Kin Workflow
-message UpdateWorkflowRequest {
+// Update Node Kin Workflow
+message UpdateNodeWorkflowRequest {
   string kinId = 1;
-  Workflow workflow = 2;
+  repeated Node nodes = 2;
 }
-message UpdateWorkflowResponse {}
+message UpdateNodeWorkflowResponse {}
+
+// Update Edge Kin Workflow
+message UpdateEdgeWorkflowRequest {
+  string kinId = 1;
+  repeated Edge edges = 2;
+}
+message UpdateEdgeWorkflowResponse {}
   
