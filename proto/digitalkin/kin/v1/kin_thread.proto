@@ -34,13 +34,13 @@ service KinThreadService {
     }
 
     // Kin response
-    rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
+    rpc CreateKinResponse(stream CreateKinResponseRequest) returns (KinResponse) {
         option (google.api.http) = {
             post: "/v1/kin/thread/{kin_thread_id}/create"
             body: "*"
         };
     }
-    rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
+    rpc ReplyInTheThread(stream ReplyInTheThreadRequest) returns (KinResponse) {
         option (google.api.http) = {
             post: "/v1/kin/thread/{kin_thread_id}/reply"
             body: "*"
