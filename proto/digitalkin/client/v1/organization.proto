@@ -83,6 +83,12 @@ service OrganizationService {
             delete: "/v1/organization/{organization_id}/kin/{kin_id}"
         };
     }
+    rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (ChangeOrganizationOwnerResponse) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/owner"
+            body: "*"
+        };
+    }
 
     // Other
     rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
@@ -206,6 +212,13 @@ message RemoveOrganizationKinRequest {
     string kin_id = 2;
 }
 message RemoveOrganizationKinResponse {}
+
+// Change Owner
+message ChangeOrganizationOwnerRequest {
+    string organization_id = 1;
+    string user_name = 2;
+}
+message ChangeOrganizationOwnerResponse {}
 
 // Regenerate Invitation Code
 message RegenerateOrganizationInvitationCodeRequest {
