@@ -258,6 +258,7 @@ message ReadPricesResponse {
 message CreateCheckoutSessionRequest {
   string email = 1;
   string price_id = 2;
+  string return_url = 3;
 }
 message CreateCheckoutSessionResponse {
   string url = 1;

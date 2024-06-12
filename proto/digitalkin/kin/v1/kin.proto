@@ -5,6 +5,7 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 import "digitalkin/kin/v1/kin_thread.proto";
+import "digitalkin/kin/v1/kin_response.proto";
 
 service KinService {
     // CRD
@@ -55,6 +56,20 @@ service KinService {
             body: "*"
         };
     }
+
+    // Reviews
+    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
+      option (google.api.http) = {
+          post: "/v1/kin/{kin_id}/review"
+          body: "*"
+      };
+  }
+    rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/review/{review_id}",
+            body: "*"
+        };
+    }
 }
 
 // Common
@@ -64,26 +79,47 @@ message KinThreadReply {
     bool activated = 3;
 }
 
+message UserReply {
+    string user_name = 1;
+    optional string first_name = 2;
+    optional string last_name = 3;
+    string email = 4;
+    optional string avatar = 5;
+    bool activated = 6;
+}
+
 message Tag {
     string id = 1;
     string name = 2;
-    string organization_id = 3;
+    optional string organization_id = 3;
 }
 
-message Language {
+message Review {
     string id = 1;
-    string name = 2;
+    string reviewer = 2;
+    optional string reviewer_avatar = 3;
+    int64 review = 4;
+    optional string review_comment = 5;
+    string review_date = 6;
 }
 
 message StoreKin {
     string id = 1;
     string name = 2;
-    string description = 3;
+    optional string description = 3;
     repeated Tag tags = 4;
-    repeated Language languages = 5;
-    optional string framework = 6;
-    optional int32 review = 7;
-    bool activated = 8;
+    string creation_date = 5;
+    string last_update = 6;
+    float version = 7;
+    repeated string languages = 8;
+    optional string framework = 9;
+    optional string licence = 10;
+    repeated UserReply admins = 11;
+    repeated UserReply creators = 12;
+    repeated Review reviews = 13;
+    optional int64 score = 14;
+    optional int64 price = 15;
+    bool activated = 16;
 }
 
 message ListKin {
@@ -96,8 +132,7 @@ message Kin {
     optional string description = 3;
     string origin_address = 4;
     repeated KinThreadReply kin_threads = 5;
-    bool owner = 6;
-    bool activated = 7;
+    bool activated = 6;
 }
 
 // Create a new Kin
@@ -148,3 +183,21 @@ message UpdateKinOriginAddressRequest {
     string origin_address = 2;
 }
 message UpdateKinOriginAddressResponse { }
+
+// Create a Kin review
+message CreateKinReviewRequest {
+    string kin_id = 1;
+    string user_name = 2;
+    optional string user_avatar = 3;
+    int64 review = 4;
+    optional string review_comment = 5;
+}
+
+// Update a Kin review
+message UpdateKinReviewRequest {
+    string id = 1;
+    string kin_id = 2;
+    int64 review = 3;
+    optional string review_comment = 4;
+}
+message UpdateKinReviewResponse { }

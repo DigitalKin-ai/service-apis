@@ -21,7 +21,7 @@ service KinThreadService {
     }
     rpc DeleteKinThread(DeleteKinThreadRequest) returns (DeleteKinThreadResponse) {
         option (google.api.http) = {
-            delete: "/v1/kin/thread/{kin_thread_id}"
+            delete: "/v1/kin/thread/{kin_thread_id}/delete"
         };
     }
 

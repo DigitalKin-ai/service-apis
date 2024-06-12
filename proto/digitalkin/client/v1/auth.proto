@@ -3,6 +3,7 @@ syntax = "proto3";
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/client/v1/user.proto";
 
 service AuthService {
     rpc Login(LoginRequest) returns (LoginResponse) {
@@ -14,6 +15,12 @@ service AuthService {
     rpc Logout(LogoutRequest) returns (LogoutResponse) {
         option (google.api.http) = {
             post: "/v1/logout"
+            body: "*"
+        };
+    }
+    rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
+        option (google.api.http) = {
+            post: "/v1/checkUserName"
             body: "*"
         };
     }
@@ -31,4 +38,11 @@ message LoginResponse {
 message LogoutRequest {}
 
 message LogoutResponse {}
+
+message CheckUserNameRequest {
+    string userName = 1;
+}
+message CheckUserNameResponse {
+    string userName = 1;
+}
 

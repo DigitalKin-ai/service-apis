@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package digitalkin.kin.v1;
+
+import "google/api/annotations.proto";
+
+service KinWorkflowService {
+  // Read
+  rpc ReadKinWorkflow(GetWorkflowRequest) returns (stream Workflow) {
+    option (google.api.http) = {
+      get: "/v1/workflow/{id}"
+    };
+  }
+
+  // Update
+  rpc UpdateNodesWorkflow(UpdateNodeWorkflowRequest) returns (UpdateNodeWorkflowResponse) {
+    option (google.api.http) = {
+      post: "/v1/workflow/{id}/nodes"
+      body: "*"
+    };
+  }
+  rpc UpdateEdgesWorkflow(UpdateEdgeWorkflowRequest) returns (UpdateEdgeWorkflowResponse) {
+    option (google.api.http) = {
+      post: "/v1/workflow/{id}/edges"
+      body: "*"
+    };
+  }
+}
+
+// Common
+message DataEdge {
+  string color = 1;
+  string running = 2;
+}
+
+message Edge {
+  string id = 1;
+  string source = 2;
+  string sourceHandle = 3;
+  string target = 4;
+  string targetHandle = 5;
+  string type = 6;
+  DataEdge data = 7;
+}
+
+message Position {
+  float x = 1;
+  float y = 2;
+}
+
+message Target {
+  string label = 1;
+  string type = 2;
+}
+
+message Source {
+  string label = 1;
+  string type = 2;
+}
+  
+
+message DataNode {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string color = 4;
+  repeated Target targets = 5;
+  repeated Source sources = 6;
+}
+
+message Measured {
+  int64 width = 1;
+  int64 height = 2;
+}
+
+message Node {
+  string id = 1;
+  string type = 2;
+  Position position = 3;
+  DataNode data = 4;
+  Measured measured = 7;
+  bool selected = 8;
+  bool dragging = 9;
+}
+
+message Workflow {
+  repeated Edge edges = 1;
+  repeated Node nodes = 2;
+}
+
+// Read Kin Workflow
+message GetWorkflowRequest {
+  string kinId = 1;
+}
+
+// Update Node Kin Workflow
+message UpdateNodeWorkflowRequest {
+  string kinId = 1;
+  repeated Node nodes = 2;
+}
+message UpdateNodeWorkflowResponse {}
+
+// Update Edge Kin Workflow
+message UpdateEdgeWorkflowRequest {
+  string kinId = 1;
+  repeated Edge edges = 2;
+}
+message UpdateEdgeWorkflowResponse {}
+  
