@@ -12,12 +12,6 @@ service StorageService {
       body: "*"
     };
   }
-  rpc UploadUserAvatar(stream UploadFileRequest) returns (UploadFileResponse) {
-    option (google.api.http) = {
-      post: "/v1/storage/avatar"
-      body: "*"
-    };
-  }
 
   // Read a file
   rpc ReadFile(ReadFileRequest) returns (stream ReadFileResponse) {

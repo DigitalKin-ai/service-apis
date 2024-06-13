@@ -68,6 +68,12 @@ service UserService {
             body: "*"
         };
     }
+    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/avatar"
+            body: "*"
+        };
+    }
 
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
@@ -118,6 +124,11 @@ message User {
     repeated string usage_type = 10;
     bool activated = 11;
     bool is_admin = 12;
+}
+message File {
+    string name = 1;
+    string type = 2;
+    bytes content = 3;
 }
 
 // Create a new user
@@ -186,6 +197,12 @@ message UpdateUserUsageTypeRequest {
     repeated string usage_type = 1;
 }
 message UpdateUserUsageTypeResponse {}
+
+// Update a user avatar
+message UpdateUserAvatarRequest {
+  File avatar = 3;
+}
+message UpdateUserAvatarResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
