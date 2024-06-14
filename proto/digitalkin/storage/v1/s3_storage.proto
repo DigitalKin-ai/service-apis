@@ -33,7 +33,9 @@ message MetaData {
 }
 
 message File {
-  bytes content = 1;
+  string name = 1;
+  string type = 2;
+  bytes content = 3;
 }
 
 enum Status {
