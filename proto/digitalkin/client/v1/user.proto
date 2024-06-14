@@ -202,7 +202,9 @@ message UpdateUserUsageTypeResponse {}
 message UpdateUserAvatarRequest {
   File avatar = 3;
 }
-message UpdateUserAvatarResponse {}
+message UpdateUserAvatarResponse {
+  string avatar = 1;
+}
 
 // Add a user organization
 message AddUserOrganizationRequest {
