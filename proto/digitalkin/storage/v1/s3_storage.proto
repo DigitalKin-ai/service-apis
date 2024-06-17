@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 
 service StorageService {
   // Upload a file
-  rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {
     option (google.api.http) = {
       post: "/v1/storage/upload"
       body: "*"
@@ -19,11 +19,6 @@ service StorageService {
       get: "/v1/storage/read/{file_url}"
     };
   }
-}
-
-message MetaData {
-  string name = 1;
-  string type = 2;
 }
 
 message File {
@@ -40,19 +35,17 @@ enum Status {
 }
 
 message UploadFileRequest {
-  oneof request {
-    MetaData metadata = 1;
-    File file = 2;
-  }
+  File file = 1;
+  string organization_id = 2;
 }
 
 message UploadFileResponse {
   string file_url = 1;
-  Status status = 2;
 }
 
 message ReadFileRequest {
   string file_url = 1;
+  string organization_id = 2;
 }
 message ReadFileResponse {
   bytes content = 1;
