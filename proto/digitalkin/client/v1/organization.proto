@@ -36,18 +36,27 @@ service OrganizationService {
             body: "*"
         };
     }
-    rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
-        option (google.api.http) = {
-            patch: "/v1/organization/{organization_id}/email"
-            body: "*"
-        };
-    }
     rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse) {
         option (google.api.http) = {
             patch: "/v1/organization/{organization_id}/creditamount"
             body: "*"
         };
     }
+
+    // Protected
+    rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (ChangeOrganizationEmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/organization/{organization_id}/email/request"
+            body: "*"
+        };
+    }
+    rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/email"
+            body: "*"
+        };
+    }
+
 
     // User
     rpc AddUser(AddOrganizationUserRequest) returns (UserReply) {
@@ -160,10 +169,15 @@ message UpdateOrganizationNameRequest {
 }
 message UpdateOrganizationNameResponse {}
 
+// Request Change Email
+message ChangeOrganizationEmailRequest {}
+message ChangeOrganizationEmailResponse {}
+
 // Update Organization email
 message UpdateOrganizationEmailRequest {
     string organization_id = 1;
     string email = 2;
+    string temp_key = 3;
 }
 message UpdateOrganizationEmailResponse {}
 

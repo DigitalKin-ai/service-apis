@@ -32,12 +32,6 @@ service UserService {
             body: "*"
         };
     }
-    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
-        option (google.api.http) = {
-            patch: "/v1/user/email"
-            body: "*"
-        };
-    }
     rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
         option (google.api.http) = {
             patch: "/v1/user/first_name"
@@ -47,12 +41,6 @@ service UserService {
     rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
         option (google.api.http) = {
             patch: "/v1/user/last_name"
-            body: "*"
-        };
-    }
-    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
-        option (google.api.http) = {
-            patch: "/v1/user/password"
             body: "*"
         };
     }
@@ -74,6 +62,33 @@ service UserService {
             body: "*"
         };
     }
+
+    // Protected
+    rpc RequestChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/password/request"
+            body: "*"
+        };
+    }
+    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/password"
+            body: "*"
+        };
+    }
+    rpc RequestChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/email/request"
+            body: "*"
+        };
+    }
+    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/email"
+            body: "*"
+        };
+    }
+
 
     // Organization
     rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
@@ -160,12 +175,6 @@ message UpdateUserActivatedRequest {
 }
 message UpdateUserActivatedResponse {}
 
-// Update a user email
-message UpdateUserEmailRequest {
-    string email = 1;
-}
-message UpdateUserEmailResponse {}
-
 // Update a user first name
 message UpdateUserFirstNameRequest {
     string first_name = 1;
@@ -178,13 +187,6 @@ message UpdateUserLastNameRequest {
 
 }
 message UpdateUserLastNameResponse {}
-
-// Update a user password
-message UpdateUserPasswordRequest {
-    string old_password = 1;
-    string new_password = 2;
-}
-message UpdateUserPasswordResponse {}
 
 // Update a user user name
 message UpdateUserNameRequest {
@@ -205,6 +207,29 @@ message UpdateUserAvatarRequest {
 message UpdateUserAvatarResponse {
   string avatar = 1;
 }
+
+// Request a change password
+message ChangePasswordRequest {}
+message ChangePasswordResponse {}
+
+// Update a user password
+message UpdateUserPasswordRequest {
+    string old_password = 1;
+    string new_password = 2;
+    string temp_key = 3;
+}
+message UpdateUserPasswordResponse {}
+
+// Request a change email
+message ChangeEmailRequest {}
+message ChangeEmailResponse {}
+
+// Update a user email
+message UpdateUserEmailRequest {
+    string email = 1;
+    string temp_key = 2;
+}
+message UpdateUserEmailResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
