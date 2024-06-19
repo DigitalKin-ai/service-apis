@@ -173,9 +173,7 @@ message CreateUserRequest {
     optional string first_name = 5;
     optional string last_name = 6;
 }
-message CreateUserResponse {
-    string token = 1;
-}
+message CreateUserResponse {}
 
 // Read a user
 message ReadUserRequest {
@@ -267,7 +265,9 @@ message UpdateUserEmailResponse {}
 message VerifyUserRequest {
     string temp_key = 1;
 }
-message VerifyUserResponse {}
+message VerifyUserResponse {
+    string token = 1;
+}
 
 // Add a user organization
 message AddUserOrganizationRequest {
