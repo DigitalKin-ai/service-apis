@@ -247,7 +247,7 @@ message UpdateUserPasswordResponse {}
 message ChangeEmailRequest {}
 message ChangeEmailResponse {}
 
-// Request a change email
+// Reset a user email
 message ResetEmailRequest {
     string temp_key = 1;
     string email = 2;

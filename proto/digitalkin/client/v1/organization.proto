@@ -50,6 +50,12 @@ service OrganizationService {
             body: "*"
         };
     }
+    rpc ResetEmail(ResetOrganizationEmailRequest) returns (ResetOrganizationEmailResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/email/reset"
+            body: "*"
+        };
+    }
     rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
         option (google.api.http) = {
             patch: "/v1/organization/{organization_id}/email"
@@ -172,6 +178,13 @@ message UpdateOrganizationNameResponse {}
 // Request Change Email
 message ChangeOrganizationEmailRequest {}
 message ChangeOrganizationEmailResponse {}
+
+// Reset Email
+message ResetOrganizationEmailRequest {
+    string email = 1;
+    string temp_key = 2;
+}
+message ResetOrganizationEmailResponse {}
 
 // Update Organization email
 message UpdateOrganizationEmailRequest {
