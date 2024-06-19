@@ -176,7 +176,9 @@ message UpdateOrganizationNameRequest {
 message UpdateOrganizationNameResponse {}
 
 // Request Change Email
-message ChangeOrganizationEmailRequest {}
+message ChangeOrganizationEmailRequest {
+    string organization_id = 1;
+}
 message ChangeOrganizationEmailResponse {}
 
 // Reset Email
