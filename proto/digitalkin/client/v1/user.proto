@@ -70,6 +70,12 @@ service UserService {
             body: "*"
         };
     }
+    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/password/reset"
+            body: "*"
+        };
+    }
     rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
         option (google.api.http) = {
             patch: "/v1/user/password"
@@ -82,9 +88,21 @@ service UserService {
             body: "*"
         };
     }
+    rpc ResetEmail(ResetEmailRequest) returns (ResetEmailResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/email/reset"
+            body: "*"
+        };
+    }
     rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
         option (google.api.http) = {
             patch: "/v1/user/email"
+            body: "*"
+        };
+    }
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/verify"
             body: "*"
         };
     }
@@ -212,6 +230,13 @@ message UpdateUserAvatarResponse {
 message ChangePasswordRequest {}
 message ChangePasswordResponse {}
 
+// Reset a user password
+message ResetPasswordRequest {
+    string temp_key = 1;
+    string new_password = 2;
+}
+message ResetPasswordResponse {}
+
 // Update a user password
 message UpdateUserPasswordRequest {
     string old_password = 1;
@@ -224,12 +249,25 @@ message UpdateUserPasswordResponse {}
 message ChangeEmailRequest {}
 message ChangeEmailResponse {}
 
+// Request a change email
+message ResetEmailRequest {
+    string temp_key = 1;
+    string email = 2;
+}
+message ResetEmailResponse {}
+
 // Update a user email
 message UpdateUserEmailRequest {
     string email = 1;
     string temp_key = 2;
 }
 message UpdateUserEmailResponse {}
+
+// Verify a user account
+message VerifyUserRequest {
+    string temp_key = 1;
+}
+message VerifyUserResponse {}
 
 // Add a user organization
 message AddUserOrganizationRequest {
