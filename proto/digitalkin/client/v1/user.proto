@@ -267,6 +267,7 @@ message VerifyUserRequest {
 }
 message VerifyUserResponse {
     string token = 1;
+    string expireAt = 2;
 }
 
 // Add a user organization
