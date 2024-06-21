@@ -33,6 +33,7 @@ message LoginRequest {
 
 message LoginResponse {
     string token = 1;
+    string expireAt = 2;
 }
 
 message LogoutRequest {}
