@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 
 service KinWorkflowService {
   // Read
-  rpc ReadKinWorkflow(GetWorkflowRequest) returns (stream Workflow) {
+  rpc ReadKinWorkflow(ReadKinWorkflowRequest) returns (stream Workflow) {
     option (google.api.http) = {
       get: "/v1/workflow/{id}"
     };
@@ -89,7 +89,7 @@ message Workflow {
 }
 
 // Read Kin Workflow
-message GetWorkflowRequest {
+message ReadKinWorkflowRequest {
   string kinId = 1;
 }
 
