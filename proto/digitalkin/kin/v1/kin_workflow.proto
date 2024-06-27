@@ -3,6 +3,7 @@ syntax = "proto3";
 package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
 
 service KinWorkflowService {
   // Read
@@ -48,26 +49,6 @@ message Position {
   float y = 2;
 }
 
-message Target {
-  string label = 1;
-  string type = 2;
-}
-
-message Source {
-  string label = 1;
-  string type = 2;
-}
-  
-
-message DataNode {
-  string id = 1;
-  string name = 2;
-  string type = 3;
-  string color = 4;
-  repeated Target targets = 5;
-  repeated Source sources = 6;
-}
-
 message Measured {
   int64 width = 1;
   int64 height = 2;
@@ -77,7 +58,7 @@ message Node {
   string id = 1;
   string type = 2;
   Position position = 3;
-  DataNode data = 4;
+  map<string, google.protobuf.Any> data = 4;
   Measured measured = 7;
   bool selected = 8;
   bool dragging = 9;
