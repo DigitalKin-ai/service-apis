@@ -13,15 +13,15 @@ service KinWorkflowService {
   }
 
   // Update
-  rpc UpdateNodesWorkflow(UpdateNodeWorkflowRequest) returns (UpdateNodeWorkflowResponse) {
+  rpc UpdateNodeWorkflow(UpdateNodeWorkflowRequest) returns (UpdateNodeWorkflowResponse) {
     option (google.api.http) = {
-      post: "/v1/workflow/{id}/nodes"
+      post: "/v1/workflow/{id}/node"
       body: "*"
     };
   }
-  rpc UpdateEdgesWorkflow(UpdateEdgeWorkflowRequest) returns (UpdateEdgeWorkflowResponse) {
+  rpc UpdateEdgeWorkflow(UpdateEdgeWorkflowRequest) returns (UpdateEdgeWorkflowResponse) {
     option (google.api.http) = {
-      post: "/v1/workflow/{id}/edges"
+      post: "/v1/workflow/{id}/edge"
       body: "*"
     };
   }
@@ -30,16 +30,16 @@ service KinWorkflowService {
 // Common
 message DataEdge {
   string color = 1;
-  string running = 2;
+  bool running = 2;
 }
 
 message Edge {
   string id = 1;
   string source = 2;
-  string sourceHandle = 3;
+  optional string sourceHandle = 3;
   string target = 4;
-  string targetHandle = 5;
-  string type = 6;
+  optional string targetHandle = 5;
+  optional string type = 6;
   DataEdge data = 7;
 }
 
@@ -96,14 +96,14 @@ message ReadKinWorkflowRequest {
 // Update Node Kin Workflow
 message UpdateNodeWorkflowRequest {
   string kinId = 1;
-  repeated Node nodes = 2;
+  Node node = 2;
 }
 message UpdateNodeWorkflowResponse {}
 
 // Update Edge Kin Workflow
 message UpdateEdgeWorkflowRequest {
   string kinId = 1;
-  repeated Edge edges = 2;
+  Edge edge = 2;
 }
 message UpdateEdgeWorkflowResponse {}
   
