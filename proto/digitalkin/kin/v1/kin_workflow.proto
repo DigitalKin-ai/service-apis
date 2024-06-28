@@ -5,6 +5,14 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
+  // Create
+  rpc CreateKinWorkflow(CreateKinWorkflowRequest) returns (Workflow) {
+    option (google.api.http) = {
+      post: "/v1/workflow"
+      body: "*"
+    };
+  }
+
   // Read
   rpc ReadKinWorkflow(ReadKinWorkflowRequest) returns (stream Workflow) {
     option (google.api.http) = {
@@ -106,6 +114,11 @@ message Node {
 message Workflow {
   repeated Edge edges = 1;
   repeated Node nodes = 2;
+}
+
+// Create Kin Workflow
+message CreateKinWorkflowRequest {
+  string kinId = 1;
 }
 
 // Read Kin Workflow
