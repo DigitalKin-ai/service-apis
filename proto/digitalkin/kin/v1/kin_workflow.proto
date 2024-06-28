@@ -78,7 +78,7 @@ message Node {
   string type = 2;
   Position position = 3;
   DataNode data = 4;
-  Measured measured = 7;
+  optional Measured measured = 7;
   bool selected = 8;
   bool dragging = 9;
 }
