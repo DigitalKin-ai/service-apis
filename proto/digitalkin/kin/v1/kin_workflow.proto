@@ -5,24 +5,52 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
+  // Create
+  rpc CreateKinWorkflow(CreateKinWorkflowRequest) returns (Workflow) {
+    option (google.api.http) = {
+      post: "/v1/workflow"
+      body: "*"
+    };
+  }
+
   // Read
-  rpc ReadKinWorkflow(GetWorkflowRequest) returns (stream Workflow) {
+  rpc ReadKinWorkflow(ReadKinWorkflowRequest) returns (stream Workflow) {
     option (google.api.http) = {
       get: "/v1/workflow/{id}"
     };
   }
 
-  // Update
-  rpc UpdateNodesWorkflow(UpdateNodeWorkflowRequest) returns (UpdateNodeWorkflowResponse) {
+  // Add
+  rpc AddNodeWorkflow(AddNodeWorkflowRequest) returns (AddNodeWorkflowResponse) {
     option (google.api.http) = {
-      post: "/v1/workflow/{id}/nodes"
+      post: "/v1/workflow/{id}/node"
       body: "*"
     };
   }
-  rpc UpdateEdgesWorkflow(UpdateEdgeWorkflowRequest) returns (UpdateEdgeWorkflowResponse) {
+  rpc AddEdgeWorkflow(AddEdgeWorkflowRequest) returns (AddEdgeWorkflowResponse) {
     option (google.api.http) = {
-      post: "/v1/workflow/{id}/edges"
+      post: "/v1/workflow/{id}/edge"
       body: "*"
+    };
+  }
+
+  // Update Node
+  rpc UpdateNodePositionWorkflow(UpdateNodePositionWorkflowRequest) returns (UpdateNodePositionWorkflowResponse) {
+    option (google.api.http) = {
+      put: "/v1/workflow/{id}/node/{nodeId}/position"
+      body: "*"
+    };
+  }
+
+  // Delete
+  rpc DeleteNodeWorkflow(DeleteNodeWorkflowRequest) returns (DeleteNodeWorkflowResponse) {
+    option (google.api.http) = {
+      delete: "/v1/workflow/{id}/node/{nodeId}/delete"
+    };
+  }
+  rpc DeleteEdgeWorkflow(DeleteEdgeWorkflowRequest) returns (DeleteEdgeWorkflowResponse) {
+    option (google.api.http) = {
+      delete: "/v1/workflow/{id}/edge/{edgeId}/delete"
     };
   }
 }
@@ -30,16 +58,16 @@ service KinWorkflowService {
 // Common
 message DataEdge {
   string color = 1;
-  string running = 2;
+  bool running = 2;
 }
 
 message Edge {
   string id = 1;
   string source = 2;
-  string sourceHandle = 3;
+  optional string sourceHandle = 3;
   string target = 4;
-  string targetHandle = 5;
-  string type = 6;
+  optional string targetHandle = 5;
+  optional string type = 6;
   DataEdge data = 7;
 }
 
@@ -78,7 +106,7 @@ message Node {
   string type = 2;
   Position position = 3;
   DataNode data = 4;
-  Measured measured = 7;
+  optional Measured measured = 7;
   bool selected = 8;
   bool dragging = 9;
 }
@@ -88,22 +116,49 @@ message Workflow {
   repeated Node nodes = 2;
 }
 
+// Create Kin Workflow
+message CreateKinWorkflowRequest {
+  string kinId = 1;
+}
+
 // Read Kin Workflow
-message GetWorkflowRequest {
+message ReadKinWorkflowRequest {
   string kinId = 1;
 }
 
-// Update Node Kin Workflow
-message UpdateNodeWorkflowRequest {
+// Add Node Kin Workflow
+message AddNodeWorkflowRequest {
   string kinId = 1;
-  repeated Node nodes = 2;
+  Node node = 2;
 }
-message UpdateNodeWorkflowResponse {}
+message AddNodeWorkflowResponse {}
 
-// Update Edge Kin Workflow
-message UpdateEdgeWorkflowRequest {
+// Add Edge Kin Workflow
+message AddEdgeWorkflowRequest {
   string kinId = 1;
-  repeated Edge edges = 2;
+  Edge edge = 2;
 }
-message UpdateEdgeWorkflowResponse {}
+message AddEdgeWorkflowResponse {}
+
+// Update Node Position Kin Workflow
+message UpdateNodePositionWorkflowRequest {
+  string kinId = 1;
+  string nodeId = 2;
+  Position position = 3;
+}
+message UpdateNodePositionWorkflowResponse {}
+
+// Delete Node Kin Workflow
+message DeleteNodeWorkflowRequest {
+  string kinId = 1;
+  string nodeId = 2;
+}
+message DeleteNodeWorkflowResponse {}
+
+// Delete Edge Kin Workflow
+message DeleteEdgeWorkflowRequest {
+  string kinId = 1;
+  string edgeId = 2;
+}
+message DeleteEdgeWorkflowResponse {}
   
