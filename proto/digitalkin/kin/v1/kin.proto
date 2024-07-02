@@ -111,7 +111,7 @@ message StoreKin {
     string creation_date = 5;
     string last_update = 6;
     float version = 7;
-    optional string origin_address = 8;
+    string origin_address = 8;
     repeated string languages = 9;
     optional string framework = 10;
     optional string licence = 11;
