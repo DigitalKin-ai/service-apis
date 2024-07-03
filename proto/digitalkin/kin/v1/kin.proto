@@ -56,6 +56,12 @@ service KinService {
             body: "*"
         };
     }
+    rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/image"
+            body: "*"
+        };
+    }
 
     // Reviews
     rpc CreateReview(CreateKinReviewRequest) returns (Review) {
@@ -163,28 +169,37 @@ message UpdateKinActivatedRequest {
     string kin_id = 1;
     bool activated = 2;
 }
-message UpdateKinActivatedResponse { }
+message UpdateKinActivatedResponse {}
 
 // Update a Kin name
 message UpdateKinNameRequest {
     string kin_id = 1;
     string name = 2;
 }
-message UpdateKinNameResponse { }
+message UpdateKinNameResponse {}
 
 // Update a Kin description
 message UpdateKinDescriptionRequest {
     string kin_id = 1;
     string description = 2;
 }
-message UpdateKinDescriptionResponse { }
+message UpdateKinDescriptionResponse {}
 
 // Update a Kin origin address
 message UpdateKinOriginAddressRequest {
     string kin_id = 1;
     string origin_address = 2;
 }
-message UpdateKinOriginAddressResponse { }
+message UpdateKinOriginAddressResponse {}
+
+// Update a Kin image
+message UpdateKinImageRequest {
+    string kin_id = 1;
+    kin.v1.File image = 2;
+}
+message UpdateKinImageResponse {
+    string image = 1;
+}
 
 // Create a Kin review
 message CreateKinReviewRequest {
@@ -202,4 +217,4 @@ message UpdateKinReviewRequest {
     int64 review = 3;
     optional string review_comment = 4;
 }
-message UpdateKinReviewResponse { }
+message UpdateKinReviewResponse {}

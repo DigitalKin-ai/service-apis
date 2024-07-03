@@ -42,6 +42,12 @@ service OrganizationService {
             body: "*"
         };
     }
+    rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (UpdateOrganizationLogoResponse) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/logo"
+            body: "*"
+        };
+    }
 
     // Protected
     rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (ChangeOrganizationEmailResponse) {
@@ -123,6 +129,11 @@ message UserReply {
     optional string avatar = 5;
     bool activated = 6;
 }
+message File {
+    string name = 1;
+    string type = 2;
+    bytes content = 3;
+}
 
 message KinReply {
     string id = 1;
@@ -135,13 +146,14 @@ message Organization {
     string id = 1;
     string name = 2;
     string email = 3;
-    UserReply owner = 4;
-    string invitation_code = 5;
-    repeated UserReply moderators = 6;
-    repeated UserReply users = 7;
-    repeated KinReply kins = 8;
-    optional int64 credit_amount = 9;
-    bool activated = 10;
+    string logoUrl = 4;
+    UserReply owner = 5;
+    string invitation_code = 6;
+    repeated UserReply moderators = 7;
+    repeated UserReply users = 8;
+    repeated KinReply kins = 9;
+    optional int64 credit_amount = 10;
+    bool activated = 11;
 }
 
 // Create Organization
@@ -203,6 +215,15 @@ message UpdateOrganizationCreditAmountRequest {
     int64 credit_amount = 2;
 }
 message UpdateOrganizationCreditAmountResponse {}
+
+// Update Organization logo
+message UpdateOrganizationLogoRequest {
+    string organization_id = 1;
+    File logo = 2;
+}
+message UpdateOrganizationLogoResponse {
+    string logo = 1;
+}
 
 // Add User
 message AddOrganizationUserRequest {
