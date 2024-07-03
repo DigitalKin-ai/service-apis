@@ -146,7 +146,7 @@ message Organization {
     string id = 1;
     string name = 2;
     string email = 3;
-    string logoUrl = 4;
+    optional string logo = 4;
     UserReply owner = 5;
     string invitation_code = 6;
     repeated UserReply moderators = 7;
