@@ -5,7 +5,15 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
-  // Create
+  // Create Kin Workflow
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  //
+  // ## Returns
+  //
+  // - Workflow
   rpc CreateKinWorkflow(CreateKinWorkflowRequest) returns (Workflow) {
     option (google.api.http) = {
       post: "/v1/workflow"
@@ -13,7 +21,15 @@ service KinWorkflowService {
     };
   }
 
-  // Read
+  // Read Kin Workflow
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  //
+  // ## Returns
+  //
+  // - Workflow
   rpc ReadKinWorkflow(ReadKinWorkflowRequest) returns (stream Workflow) {
     option (google.api.http) = {
       get: "/v1/workflow/{id}"
@@ -25,13 +41,32 @@ service KinWorkflowService {
     };
   } */
 
-  // Add
+  // Add Node
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  // - node: Node
+  //
+  // ## Returns
+  //
+  // - Ok if the node was added
   rpc AddNodeWorkflow(AddNodeWorkflowRequest) returns (AddNodeWorkflowResponse) {
     option (google.api.http) = {
       post: "/v1/workflow/{id}/node"
       body: "*"
     };
   }
+  // Add Edge
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  // - edge: Edge
+  //
+  // ## Returns
+  //
+  // - Ok if the edge was added
   rpc AddEdgeWorkflow(AddEdgeWorkflowRequest) returns (AddEdgeWorkflowResponse) {
     option (google.api.http) = {
       post: "/v1/workflow/{id}/edge"
@@ -39,7 +74,16 @@ service KinWorkflowService {
     };
   }
 
-  // Update Node
+  // Update Node Position
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  // - nodeId: Node id
+  //
+  // ## Returns
+  //
+  // - Ok if the node position was updated
   rpc UpdateNodePositionWorkflow(UpdateNodePositionWorkflowRequest) returns (UpdateNodePositionWorkflowResponse) {
     option (google.api.http) = {
       put: "/v1/workflow/{id}/node/{nodeId}/position"
@@ -292,16 +336,36 @@ message UpdateNodePositionWorkflowRequest {
 message UpdateNodePositionWorkflowResponse {}
 
 // Delete Node Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
+// - nodeId: Node id
 message DeleteNodeWorkflowRequest {
   string kinId = 1;
   string nodeId = 2;
 }
+// Delete Node Kin Workflow Response
+//
+// ## Returns
+//
+// - Ok if the node was deleted
 message DeleteNodeWorkflowResponse {}
 
 // Delete Edge Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
+// - edgeId: Edge id
 message DeleteEdgeWorkflowRequest {
   string kinId = 1;
   string edgeId = 2;
 }
+// Delete Edge Kin Workflow Response
+//
+// ## Returns
+//
+// - Ok if the edge was deleted
 message DeleteEdgeWorkflowResponse {}
   
