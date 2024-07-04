@@ -151,17 +151,17 @@ message DataEdge {
 //
 // - id: Edge id
 // - source: Edge source
-// - sourceHandle: Edge source handle
+// - source_handle: Edge source handle
 // - target: Edge target
-// - targetHandle: Edge target handle
+// - target_handle: Edge target handle
 // - type: Edge type
 // - data: Edge data
 message Edge {
   string id = 1;
   string source = 2;
-  optional string sourceHandle = 3;
+  optional string source_handle = 3;
   string target = 4;
-  optional string targetHandle = 5;
+  optional string target_handle = 5;
   optional string type = 6;
   DataEdge data = 7;
 }
@@ -272,7 +272,7 @@ message WorkflowBlocksStore {
 //
 // - kinId: Kin id
 message CreateKinWorkflowRequest {
-  string kinId = 1;
+  string kin_id = 1;
 }
 
 // Read Kin Workflow
@@ -281,7 +281,7 @@ message CreateKinWorkflowRequest {
 //
 // - kinId: Kin id
 message ReadKinWorkflowRequest {
-  string kinId = 1;
+  string kin_id = 1;
 }
 
 // Read Store Blocks Kin Workflow
@@ -298,7 +298,7 @@ message ReadStoreBlocksWorkflowRequest {}
 // - kinId: Kin id
 // - node: Node
 message AddNodeWorkflowRequest {
-  string kinId = 1;
+  string kin_id = 1;
   Node node = 2;
 }
 // Add Node Kin Workflow Response
@@ -315,7 +315,7 @@ message AddNodeWorkflowResponse {}
 // - kinId: Kin id
 // - edge: Edge
 message AddEdgeWorkflowRequest {
-  string kinId = 1;
+  string kin_id = 1;
   Edge edge = 2;
 }
 // Add Edge Kin Workflow Response
@@ -333,8 +333,8 @@ message AddEdgeWorkflowResponse {}
 // - nodeId: Node id
 // - position: Position
 message UpdateNodePositionWorkflowRequest {
-  string kinId = 1;
-  string nodeId = 2;
+  string kin_id = 1;
+  string node_id = 2;
   Position position = 3;
 }
 // Update Node Position Kin Workflow Response
@@ -351,8 +351,8 @@ message UpdateNodePositionWorkflowResponse {}
 // - kinId: Kin id
 // - nodeId: Node id
 message DeleteNodeWorkflowRequest {
-  string kinId = 1;
-  string nodeId = 2;
+  string kin_id = 1;
+  string node_id = 2;
 }
 // Delete Node Kin Workflow Response
 //
@@ -368,8 +368,8 @@ message DeleteNodeWorkflowResponse {}
 // - kinId: Kin id
 // - edgeId: Edge id
 message DeleteEdgeWorkflowRequest {
-  string kinId = 1;
-  string edgeId = 2;
+  string kin_id = 1;
+  string edge_id = 2;
 }
 // Delete Edge Kin Workflow Response
 //
