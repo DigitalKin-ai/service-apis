@@ -21,6 +21,7 @@ package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
 
+// KinWorkflowService
 service KinWorkflowService {
   // CreateKinWorkflow
   //
@@ -52,6 +53,7 @@ service KinWorkflowService {
       get: "/v1/workflow/{id}"
     };
   }
+
   // ReadStoreBlocksWorkflow
   //
   // ## Parameters
@@ -61,11 +63,11 @@ service KinWorkflowService {
   // ## Returns
   //
   // - Store Blocks
-  /* rpc ReadStoreBlocksWorkflow(ReadStoreBlocksWorkflowRequest) returns (stream WorkflowBlocksStore) {
+  rpc ReadStoreBlocksWorkflow(ReadStoreBlocksWorkflowRequest) returns (stream WorkflowBlocksStore) {
     option (google.api.http) = {
       get: "/v1/workflow/store"
     };
-  } */
+  }
 
   // AddNodeWorkflow
   //
@@ -83,6 +85,7 @@ service KinWorkflowService {
       body: "*"
     };
   }
+
   // AddEdgeWorkflow
   //
   // ## Parameters
@@ -132,6 +135,7 @@ service KinWorkflowService {
       delete: "/v1/workflow/{id}/node/{node_id}/delete"
     };
   }
+  
   // DeleteEdgeWorkflow
   //
   // ## Parameters
