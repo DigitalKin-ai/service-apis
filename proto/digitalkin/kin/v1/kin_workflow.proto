@@ -295,7 +295,7 @@ message Node {
   bool dragging = 9;
 }
 
-// Kin Workflow
+// Workflow
 //
 // ## Properties
 //
