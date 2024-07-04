@@ -19,6 +19,11 @@ service KinWorkflowService {
       get: "/v1/workflow/{id}"
     };
   }
+  /* rpc ReadStoreBlocksWorkflow(ReadStoreBlocksWorkflowRequest) returns (stream WorkflowBlocksStore) {
+    option (google.api.http) = {
+      get: "/v1/workflow/store"
+    };
+  } */
 
   // Add
   rpc AddNodeWorkflow(AddNodeWorkflowRequest) returns (AddNodeWorkflowResponse) {
@@ -42,12 +47,31 @@ service KinWorkflowService {
     };
   }
 
-  // Delete
+  // Delete Node
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  // - nodeId: Node id
+  //
+  // ## Returns
+  //
+  // - Ok if the node was deleted
   rpc DeleteNodeWorkflow(DeleteNodeWorkflowRequest) returns (DeleteNodeWorkflowResponse) {
     option (google.api.http) = {
       delete: "/v1/workflow/{id}/node/{nodeId}/delete"
     };
   }
+  // Delete Edge
+  //
+  // ## Parameters
+  //
+  // - kinId: Kin id
+  // - edgeId: Edge id
+  //
+  // ## Returns
+  //
+  // - Ok if the edge was deleted
   rpc DeleteEdgeWorkflow(DeleteEdgeWorkflowRequest) returns (DeleteEdgeWorkflowResponse) {
     option (google.api.http) = {
       delete: "/v1/workflow/{id}/edge/{edgeId}/delete"
@@ -56,11 +80,29 @@ service KinWorkflowService {
 }
 
 // Common
+
+// Data Edge
+//
+// ## Properties
+//
+// - color: Edge color
+// - running: Edge running
 message DataEdge {
   string color = 1;
   bool running = 2;
 }
 
+// Edge
+//
+// ## Properties
+//
+// - id: Edge id
+// - source: Edge source
+// - sourceHandle: Edge source handle
+// - target: Edge target
+// - targetHandle: Edge target handle
+// - type: Edge type
+// - data: Edge data
 message Edge {
   string id = 1;
   string source = 2;
@@ -71,22 +113,45 @@ message Edge {
   DataEdge data = 7;
 }
 
+// Position
+//
+// ## Properties
+//
+// - x: X position
+// - y: Y position
 message Position {
   float x = 1;
   float y = 2;
 }
 
+// Target
+//
+// ## Properties
+//
+// - label: Target label
+// - type: Target type
 message Target {
   string label = 1;
   string type = 2;
 }
 
+// Source
+//
+// ## Properties
+//
+// - label: Source label
+// - type: Source type
 message Source {
   string label = 1;
   string type = 2;
 }
   
-
+// Data Node
+//
+// ## Properties
+//
+// - id: Node id
+// - name: Node name
 message DataNode {
   string id = 1;
   string name = 2;
@@ -96,11 +161,28 @@ message DataNode {
   repeated Source sources = 6;
 }
 
+// Measured
+//
+// ## Properties
+//
+// - width: Measured width
+// - height: Measured height
 message Measured {
   int64 width = 1;
   int64 height = 2;
 }
 
+// Node
+//
+// ## Properties
+//
+// - id: Node id
+// - type: Node type
+// - position: Node position
+// - data: Node data
+// - measured: Node measured
+// - selected: Node selected
+// - dragging: Node dragging
 message Node {
   string id = 1;
   string type = 2;
@@ -111,41 +193,102 @@ message Node {
   bool dragging = 9;
 }
 
+// Kin Workflow
+//
+// ## Properties
+//
+// - edges: List of edges
+// - nodes: List of nodes
 message Workflow {
   repeated Edge edges = 1;
   repeated Node nodes = 2;
 }
 
+// Store Blocks
+//
+// ## Properties
+//
+// - blocks: List of blocks
+message WorkflowBlocksStore {
+  repeated DataNode blocks = 1;
+}
+
 // Create Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
 message CreateKinWorkflowRequest {
   string kinId = 1;
 }
 
 // Read Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
 message ReadKinWorkflowRequest {
   string kinId = 1;
 }
 
+// Read Store Blocks Kin Workflow
+//
+// ## Properties
+//
+// - Nothing
+message ReadStoreBlocksWorkflowRequest {}
+
 // Add Node Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
+// - node: Node
 message AddNodeWorkflowRequest {
   string kinId = 1;
   Node node = 2;
 }
+// Add Node Kin Workflow Response
+//
+// ## Returns
+//
+// - Ok if the node was added
 message AddNodeWorkflowResponse {}
 
 // Add Edge Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
+// - edge: Edge
 message AddEdgeWorkflowRequest {
   string kinId = 1;
   Edge edge = 2;
 }
+// Add Edge Kin Workflow Response
+//
+// ## Returns
+//
+// - Ok if the edge was added
 message AddEdgeWorkflowResponse {}
 
 // Update Node Position Kin Workflow
+//
+// ## Properties
+//
+// - kinId: Kin id
+// - nodeId: Node id
+// - position: Position
 message UpdateNodePositionWorkflowRequest {
   string kinId = 1;
   string nodeId = 2;
   Position position = 3;
 }
+// Update Node Position Kin Workflow Response
+//
+// ## Returns
+//
+// - Ok if the node position was updated
 message UpdateNodePositionWorkflowResponse {}
 
 // Delete Node Kin Workflow
