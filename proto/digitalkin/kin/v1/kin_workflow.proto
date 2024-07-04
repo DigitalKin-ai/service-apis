@@ -135,7 +135,7 @@ service KinWorkflowService {
       delete: "/v1/workflow/{id}/node/{node_id}/delete"
     };
   }
-  
+
   // DeleteEdgeWorkflow
   //
   // ## Parameters
@@ -152,8 +152,6 @@ service KinWorkflowService {
     };
   }
 }
-
-// Common
 
 // DataEdge
 //
