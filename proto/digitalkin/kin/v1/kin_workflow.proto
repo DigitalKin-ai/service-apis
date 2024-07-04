@@ -35,6 +35,15 @@ service KinWorkflowService {
       get: "/v1/workflow/{id}"
     };
   }
+  // Read Store Blocks Kin Workflow
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - Store Blocks
   /* rpc ReadStoreBlocksWorkflow(ReadStoreBlocksWorkflowRequest) returns (stream WorkflowBlocksStore) {
     option (google.api.http) = {
       get: "/v1/workflow/store"
