@@ -22,11 +22,11 @@ package digitalkin.kin.v1;
 import "google/api/annotations.proto";
 
 service KinWorkflowService {
-  // Create Kin Workflow
+  // CreateKinWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
+  // - kin_id: Kin id
   //
   // ## Returns
   //
@@ -38,11 +38,11 @@ service KinWorkflowService {
     };
   }
 
-  // Read Kin Workflow
+  // ReadKinWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
+  // - kin_id: Kin id
   //
   // ## Returns
   //
@@ -52,7 +52,7 @@ service KinWorkflowService {
       get: "/v1/workflow/{id}"
     };
   }
-  // Read Store Blocks Kin Workflow
+  // ReadStoreBlocksWorkflow
   //
   // ## Parameters
   //
@@ -67,11 +67,11 @@ service KinWorkflowService {
     };
   } */
 
-  // Add Node
+  // AddNodeWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
+  // - kin_id: Kin id
   // - node: Node
   //
   // ## Returns
@@ -83,11 +83,11 @@ service KinWorkflowService {
       body: "*"
     };
   }
-  // Add Edge
+  // AddEdgeWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
+  // - kin_id: Kin id
   // - edge: Edge
   //
   // ## Returns
@@ -100,58 +100,58 @@ service KinWorkflowService {
     };
   }
 
-  // Update Node Position
+  // UpdateNodePositionWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
-  // - nodeId: Node id
+  // - kin_id: Kin id
+  // - node_id: Node id
   //
   // ## Returns
   //
   // - Ok if the node position was updated
   rpc UpdateNodePositionWorkflow(UpdateNodePositionWorkflowRequest) returns (UpdateNodePositionWorkflowResponse) {
     option (google.api.http) = {
-      put: "/v1/workflow/{id}/node/{nodeId}/position"
+      put: "/v1/workflow/{id}/node/{node_id}/position"
       body: "*"
     };
   }
 
-  // Delete Node
+  // DeleteNodeWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
-  // - nodeId: Node id
+  // - kin_id: Kin id
+  // - node_id: Node id
   //
   // ## Returns
   //
   // - Ok if the node was deleted
   rpc DeleteNodeWorkflow(DeleteNodeWorkflowRequest) returns (DeleteNodeWorkflowResponse) {
     option (google.api.http) = {
-      delete: "/v1/workflow/{id}/node/{nodeId}/delete"
+      delete: "/v1/workflow/{id}/node/{node_id}/delete"
     };
   }
-  // Delete Edge
+  // DeleteEdgeWorkflow
   //
   // ## Parameters
   //
-  // - kinId: Kin id
-  // - edgeId: Edge id
+  // - kin_id: Kin id
+  // - edge_id: Edge id
   //
   // ## Returns
   //
   // - Ok if the edge was deleted
   rpc DeleteEdgeWorkflow(DeleteEdgeWorkflowRequest) returns (DeleteEdgeWorkflowResponse) {
     option (google.api.http) = {
-      delete: "/v1/workflow/{id}/edge/{edgeId}/delete"
+      delete: "/v1/workflow/{id}/edge/{edge_id}/delete"
     };
   }
 }
 
 // Common
 
-// Data Edge
+// DataEdge
 //
 // ## Properties
 //
@@ -231,7 +231,7 @@ message Source {
   string type = 2;
 }
   
-// Data Node
+// DataNode
 //
 // ## Properties
 //
@@ -306,7 +306,7 @@ message Workflow {
   repeated Node nodes = 2;
 }
 
-// Store Blocks
+// WorkflowBlocksStore
 //
 // ## Properties
 //
@@ -316,27 +316,27 @@ message WorkflowBlocksStore {
   repeated DataNode blocks = 1;
 }
 
-// Create Kin Workflow
+// CreateKinWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
+// - kin_id: Kin id
 message CreateKinWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
 }
 
-// Read Kin Workflow
+// ReadKinWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
+// - kin_id: Kin id
 message ReadKinWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
 }
 
-// Read Store Blocks Kin Workflow
+// ReadStoreBlocksWorkflowRequest
 //
 // ## Properties
 //
@@ -344,19 +344,19 @@ message ReadKinWorkflowRequest {
 message ReadStoreBlocksWorkflowRequest {
 }
 
-// Add Node Kin Workflow
+// AddNodeWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
+// - kin_id: Kin id
 // - node: Node
 message AddNodeWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
   // node: Node
   Node node = 2;
 }
-// Add Node Kin Workflow Response
+// AddNodeWorkflowResponse
 //
 // ## Returns
 //
@@ -364,19 +364,19 @@ message AddNodeWorkflowRequest {
 message AddNodeWorkflowResponse {
 }
 
-// Add Edge Kin Workflow
+// AddEdgeWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
+// - kin_id: Kin id
 // - edge: Edge
 message AddEdgeWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
   // edge: Edge
   Edge edge = 2;
 }
-// Add Edge Kin Workflow Response
+// AddEdgeWorkflowResponse
 //
 // ## Returns
 //
@@ -384,22 +384,22 @@ message AddEdgeWorkflowRequest {
 message AddEdgeWorkflowResponse {
 }
 
-// Update Node Position Kin Workflow
+// UpdateNodePositionWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
-// - nodeId: Node id
+// - kin_id: Kin id
+// - node_id: Node id
 // - position: Position
 message UpdateNodePositionWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
-  // nodeId: Node id
+  // node_id: Node id
   string node_id = 2;
   // position: Position
   Position position = 3;
 }
-// Update Node Position Kin Workflow Response
+// UpdateNodePositionWorkflowResponse
 //
 // ## Returns
 //
@@ -407,19 +407,19 @@ message UpdateNodePositionWorkflowRequest {
 message UpdateNodePositionWorkflowResponse {
 }
 
-// Delete Node Kin Workflow
+// DeleteNodeWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
-// - nodeId: Node id
+// - kin_id: Kin id
+// - node_id: Node id
 message DeleteNodeWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
-  // nodeId: Node id
+  // node_id: Node id
   string node_id = 2;
 }
-// Delete Node Kin Workflow Response
+// DeleteNodeWorkflowResponse
 //
 // ## Returns
 //
@@ -427,19 +427,19 @@ message DeleteNodeWorkflowRequest {
 message DeleteNodeWorkflowResponse {
 }
 
-// Delete Edge Kin Workflow
+// DeleteEdgeWorkflowRequest
 //
 // ## Properties
 //
-// - kinId: Kin id
-// - edgeId: Edge id
+// - kin_id: Kin id
+// - edge_id: Edge id
 message DeleteEdgeWorkflowRequest {
-  // kinId: Kin id
+  // kin_id: Kin id
   string kin_id = 1;
-  // edgeId: Edge id
+  // edge_id: Edge id
   string edge_id = 2;
 }
-// Delete Edge Kin Workflow Response
+// DeleteEdgeWorkflowResponse
 //
 // ## Returns
 //
