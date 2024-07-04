@@ -1,4 +1,19 @@
+# Copyright 2024 DigitalKin Inc.
+#
+# Licensed under the GNU General Public License, Version 3.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.gnu.org/licenses/gpl-3.0.html
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
+# List of available options:
+# https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
 
 syntax = "proto3";
 
@@ -143,7 +158,9 @@ service KinWorkflowService {
 // - color: Edge color
 // - running: Edge running
 message DataEdge {
+  // color: Edge color
   string color = 1;
+  // running: Edge running
   bool running = 2;
 }
 
@@ -159,12 +176,19 @@ message DataEdge {
 // - type: Edge type
 // - data: Edge data
 message Edge {
+  // id: Edge id
   string id = 1;
+  // source: Edge source
   string source = 2;
+  // source_handle: Edge source handle
   optional string source_handle = 3;
+  // target: Edge target
   string target = 4;
+  // target_handle: Edge target handle
   optional string target_handle = 5;
+  // type: Edge type
   optional string type = 6;
+  // data: Edge data
   DataEdge data = 7;
 }
 
@@ -175,7 +199,9 @@ message Edge {
 // - x: X position
 // - y: Y position
 message Position {
+  // x: X position
   float x = 1;
+  // y: Y position
   float y = 2;
 }
 
@@ -186,7 +212,9 @@ message Position {
 // - label: Target label
 // - type: Target type
 message Target {
+  // label: Target label
   string label = 1;
+  // type: Target type
   string type = 2;
 }
 
@@ -197,7 +225,9 @@ message Target {
 // - label: Source label
 // - type: Source type
 message Source {
+  // label: Source label
   string label = 1;
+  // type: Source type
   string type = 2;
 }
   
@@ -208,11 +238,17 @@ message Source {
 // - id: Node id
 // - name: Node name
 message DataNode {
+  // id: Node id
   string id = 1;
+  // name: Node name
   string name = 2;
+  // type: Node type
   string type = 3;
+  // color: Node color
   string color = 4;
+  // targets: List of targets
   repeated Target targets = 5;
+  // sources: List of sources
   repeated Source sources = 6;
 }
 
@@ -223,7 +259,9 @@ message DataNode {
 // - width: Measured width
 // - height: Measured height
 message Measured {
+  // width: Measured width
   int64 width = 1;
+  // height: Measured height
   int64 height = 2;
 }
 
@@ -239,12 +277,19 @@ message Measured {
 // - selected: Node selected
 // - dragging: Node dragging
 message Node {
+  // id: Node id
   string id = 1;
+  // type: Node type
   string type = 2;
+  // position: Node position
   Position position = 3;
+  // data: Node data
   DataNode data = 4;
+  // measured: Node measured
   optional Measured measured = 7;
+  // selected: Node selected
   bool selected = 8;
+  // dragging: Node dragging
   bool dragging = 9;
 }
 
@@ -255,7 +300,9 @@ message Node {
 // - edges: List of edges
 // - nodes: List of nodes
 message Workflow {
+  // edges: List of edges
   repeated Edge edges = 1;
+  // nodes: List of nodes
   repeated Node nodes = 2;
 }
 
@@ -265,6 +312,7 @@ message Workflow {
 //
 // - blocks: List of blocks
 message WorkflowBlocksStore {
+  // blocks: List of blocks
   repeated DataNode blocks = 1;
 }
 
@@ -274,6 +322,7 @@ message WorkflowBlocksStore {
 //
 // - kinId: Kin id
 message CreateKinWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
 }
 
@@ -283,6 +332,7 @@ message CreateKinWorkflowRequest {
 //
 // - kinId: Kin id
 message ReadKinWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
 }
 
@@ -291,7 +341,8 @@ message ReadKinWorkflowRequest {
 // ## Properties
 //
 // - Nothing
-message ReadStoreBlocksWorkflowRequest {}
+message ReadStoreBlocksWorkflowRequest {
+}
 
 // Add Node Kin Workflow
 //
@@ -300,7 +351,9 @@ message ReadStoreBlocksWorkflowRequest {}
 // - kinId: Kin id
 // - node: Node
 message AddNodeWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
+  // node: Node
   Node node = 2;
 }
 // Add Node Kin Workflow Response
@@ -308,7 +361,8 @@ message AddNodeWorkflowRequest {
 // ## Returns
 //
 // - Ok if the node was added
-message AddNodeWorkflowResponse {}
+message AddNodeWorkflowResponse {
+}
 
 // Add Edge Kin Workflow
 //
@@ -317,7 +371,9 @@ message AddNodeWorkflowResponse {}
 // - kinId: Kin id
 // - edge: Edge
 message AddEdgeWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
+  // edge: Edge
   Edge edge = 2;
 }
 // Add Edge Kin Workflow Response
@@ -325,7 +381,8 @@ message AddEdgeWorkflowRequest {
 // ## Returns
 //
 // - Ok if the edge was added
-message AddEdgeWorkflowResponse {}
+message AddEdgeWorkflowResponse {
+}
 
 // Update Node Position Kin Workflow
 //
@@ -335,8 +392,11 @@ message AddEdgeWorkflowResponse {}
 // - nodeId: Node id
 // - position: Position
 message UpdateNodePositionWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
+  // nodeId: Node id
   string node_id = 2;
+  // position: Position
   Position position = 3;
 }
 // Update Node Position Kin Workflow Response
@@ -344,7 +404,8 @@ message UpdateNodePositionWorkflowRequest {
 // ## Returns
 //
 // - Ok if the node position was updated
-message UpdateNodePositionWorkflowResponse {}
+message UpdateNodePositionWorkflowResponse {
+}
 
 // Delete Node Kin Workflow
 //
@@ -353,7 +414,9 @@ message UpdateNodePositionWorkflowResponse {}
 // - kinId: Kin id
 // - nodeId: Node id
 message DeleteNodeWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
+  // nodeId: Node id
   string node_id = 2;
 }
 // Delete Node Kin Workflow Response
@@ -361,7 +424,8 @@ message DeleteNodeWorkflowRequest {
 // ## Returns
 //
 // - Ok if the node was deleted
-message DeleteNodeWorkflowResponse {}
+message DeleteNodeWorkflowResponse {
+}
 
 // Delete Edge Kin Workflow
 //
@@ -370,7 +434,9 @@ message DeleteNodeWorkflowResponse {}
 // - kinId: Kin id
 // - edgeId: Edge id
 message DeleteEdgeWorkflowRequest {
+  // kinId: Kin id
   string kin_id = 1;
+  // edgeId: Edge id
   string edge_id = 2;
 }
 // Delete Edge Kin Workflow Response
@@ -378,5 +444,6 @@ message DeleteEdgeWorkflowRequest {
 // ## Returns
 //
 // - Ok if the edge was deleted
-message DeleteEdgeWorkflowResponse {}
+message DeleteEdgeWorkflowResponse {
+}
   
