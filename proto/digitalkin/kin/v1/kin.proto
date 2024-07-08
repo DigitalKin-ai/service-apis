@@ -21,197 +21,187 @@ package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
 
-import "digitalkin/kin/v1/kin_thread.proto";
 import "digitalkin/kin/v1/kin_response.proto";
+import "digitalkin/kin/v1/kin_thread.proto";
 
 // KinService
 service KinService {
-    // CreateKin
-    //
-    // ## Parameters
-    //
-    // - name: Kin name
-    // - description: Kin description
-    // - origin_address: Kin origin address
-    //
-    // ## Returns
-    //
-    // - Kin
-    rpc CreateKin(CreateKinRequest) returns (Kin) {
-        option (google.api.http) = {
-            post: "/v1/kin"
-            body: "*"
-        };
-    }
-
-    // ReadKin
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    //
-    // ## Returns
-    //
-    // - Kin
-    rpc ReadKin(ReadKinRequest) returns (stream Kin) {
-        option (google.api.http) = {
-            get: "/v1/kin/{kin_id}"
-        };
-    }
-
-    // ReadAllKin
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // - ListKin
-    rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
-        option (google.api.http) = {
-            get: "/v1/kin"
-        };
-    }
-
-    // DeleteKin
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin was deleted
-    rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
-        option (google.api.http) = {
-            delete: "/v1/kin/{kin_id}"
-        };
-    }
-
-    // UpdateActivated
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - activated: Kin activated status
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin was updated
-    rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/activated"
-            body: "*"
-        };
-    }
-
-    // UpdateName
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - name: Kin name
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin name was updated
-    rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/name"
-            body: "*"
-        };
-    }
-
-    // UpdateDescription
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - description: Kin description
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin description was updated
-    rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/description"
-            body: "*"
-        };
-    }
-
-    // UpdateOriginAddress
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - origin_address: Kin origin address
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin origin address was updated
-    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/origin"
-            body: "*"
-        };
-    }
-
-    // UpdateImage
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - image: Kin image
-    //
-    // ## Returns
-    //
-    // - Ok if the Kin image was updated
-    rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/image"
-            body: "*"
-        };
-    }
-
-    // CreateReview
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    // - user_name: User name
-    // - user_avatar: User avatar
-    // - review: Review
-    // - review_comment: Review comment
-    //
-    // ## Returns
-    //
-    // - Review
-    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
-        option (google.api.http) = {
-            post: "/v1/kin/{kin_id}/review"
-            body: "*"
-        };
-    }
-
-    // UpdateReview
-    //
-    // ## Parameters
-    //
-    // - id: Review id
-    // - kin_id: Kin id
-    // - review: Review
-    // - review_comment: Review comment
-    //
-    // ## Returns
-    //
-    // - Ok if the review was updated
-    rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/review/{review_id}",
-            body: "*"
-        };
-    }
+  // CreateKin
+  //
+  // ## Parameters
+  //
+  // - name: Kin name
+  // - description: Kin description
+  // - origin_address: Kin origin address
+  //
+  // ## Returns
+  //
+  // - Kin
+  rpc CreateKin(CreateKinRequest) returns (Kin) {
+    option (google.api.http) = {
+        post: "/v1/kin"
+        body: "*"
+    };
+  }
+  // ReadKin
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  //
+  // ## Returns
+  //
+  // - Kin
+  rpc ReadKin(ReadKinRequest) returns (stream Kin) {
+    option (google.api.http) = {
+        get: "/v1/kin/{kin_id}"
+    };
+  }
+  // ReadAllKin
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - ListKin
+  rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
+    option (google.api.http) = {
+        get: "/v1/kin"
+    };
+  }
+  // DeleteKin
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin was deleted
+  rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
+    option (google.api.http) = {
+        delete: "/v1/kin/{kin_id}"
+    };
+  }
+  // UpdateActivated
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - activated: Kin activated status
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin was updated
+  rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/activated"
+        body: "*"
+    };
+  }
+  // UpdateName
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - name: Kin name
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin name was updated
+  rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/name"
+        body: "*"
+    };
+  }
+  // UpdateDescription
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - description: Kin description
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin description was updated
+  rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/description"
+        body: "*"
+    };
+  }
+  // UpdateOriginAddress
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - origin_address: Kin origin address
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin origin address was updated
+  rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/origin"
+        body: "*"
+    };
+  }
+  // UpdateImage
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - image: Kin image
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin image was updated
+  rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/image"
+        body: "*"
+    };
+  }
+  // CreateReview
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - user_name: User name
+  // - user_avatar: User avatar
+  // - review: Review
+  // - review_comment: Review comment
+  //
+  // ## Returns
+  //
+  // - Review
+  rpc CreateReview(CreateKinReviewRequest) returns (Review) {
+    option (google.api.http) = {
+        post: "/v1/kin/{kin_id}/review"
+        body: "*"
+    };
+  }
+  // UpdateReview
+  //
+  // ## Parameters
+  //
+  // - id: Review id
+  // - kin_id: Kin id
+  // - review: Review
+  // - review_comment: Review comment
+  //
+  // ## Returns
+  //
+  // - Ok if the review was updated
+  rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
+    option (google.api.http) = {
+        patch: "/v1/kin/{kin_id}/review/{review_id}",
+        body: "*"
+    };
+  }
 }
 
 // KinThreadReply
@@ -547,6 +537,7 @@ message UpdateKinImageRequest {
 //
 // - image: Kin image path
 message UpdateKinImageResponse {
+    // image: Kin image path
     string image = 1;
 }
 
