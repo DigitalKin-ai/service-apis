@@ -137,14 +137,14 @@ service UserService {
   //
   // ## Parameters
   //
-  // - usage_type: Usage type
+  // - usage_types: Usage type
   //
   // ## Returns
   //
   // Ok if the user was updated
   rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
     option (google.api.http) = {
-      patch: "/v1/user/usage_type"
+      patch: "/v1/user/usage_types"
       body: "*"
     };
   }
@@ -382,7 +382,7 @@ message OrganizationReply {
 // - organizations: List of organizations
 // - fav_kins: List of fav kins
 // - credit_amount: Credit amount
-// - usage_type: Usage type
+// - usage_types: Usage type
 // - activated: Is the user activated
 // - is_admin: Is the user an admin
 message User {
@@ -402,8 +402,8 @@ message User {
   repeated KinReply fav_kins = 7;
   // credit_amount: Credit amount
   optional int64 credit_amount = 8;
-  // usage_type: Usage type
-  repeated string usage_type = 9;
+  // usage_types: Usage type
+  repeated string usage_types = 9;
   // activated: Is the user activated
   bool activated = 10;
   // is_admin: Is the user an admin
@@ -544,8 +544,8 @@ message UpdateUserNameResponse {
 
 // UpdateUserUsageTypeRequest
 message UpdateUserUsageTypeRequest {
-  // usage_type: Usage type
-  repeated string usage_type = 1;
+  // usage_types: Usage type
+  repeated string usage_types = 1;
 }
 
 // UpdateUserUsageTypeResponse
@@ -713,8 +713,8 @@ message VerifyUserRequest {
 message VerifyUserResponse {
   // token: Token
   string token = 1;
-  // expireAt: Expire at
-  string expireAt = 2;
+  // expire_date: Expire date
+  string expire_date = 2;
 }
 
 // AddUserOrganizationRequest

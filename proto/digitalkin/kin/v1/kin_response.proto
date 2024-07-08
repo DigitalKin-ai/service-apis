@@ -61,7 +61,7 @@ service KinResponseService {
 // - role: Role of the user who created the response
 // - status: Status of the response
 // - mission: Mission of the response
-// - created_at: Time the response was created
+// - create_date: Time the response was created
 // - origin_id: Origin id of the response
 // - thread_subject: Subject of the thread
 // - model: Model of the response
@@ -74,8 +74,8 @@ message KinResponse {
   optional string status = 3;
   // mission: Mission of the response
   string mission = 4;
-  // created_at: Time the response was created
-  string created_at = 5;
+  // create_date: Time the response was created
+  string create_date = 5;
   // origin_id: Origin id of the response
   optional string origin_id = 6;
   // thread_subject: Subject of the thread

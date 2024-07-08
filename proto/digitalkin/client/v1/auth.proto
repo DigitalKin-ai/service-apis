@@ -35,7 +35,7 @@ service AuthService {
   // ## Returns
   //
   // - token: Token
-  // - expire_at: ExpireAt
+  // - expire_date: Expiration date
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/v1/login"
@@ -94,11 +94,12 @@ message LoginRequest {
 // ## Fields
 //
 // - token: Token
+// - expire_date: Expiration date
 message LoginResponse {
   // token: Token
   string token = 1;
-  // expire_at: ExpireAt
-  string expire_at = 2;
+  // expire_date: Expiration date
+  string expire_date = 2;
 }
 
 // LogoutRequest
