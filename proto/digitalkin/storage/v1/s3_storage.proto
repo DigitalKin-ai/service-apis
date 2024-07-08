@@ -65,12 +65,12 @@ service StorageService {
 // - type: File type
 // - content: File content
 message File {
-    // name: File name
-    string name = 1;
-    // type: File type
-    string type = 2;
-    // content: File content
-    bytes content = 3;
+  // name: File name
+  string name = 1;
+  // type: File type
+  string type = 2;
+  // content: File content
+  bytes content = 3;
 }
 
 // Status
@@ -82,14 +82,14 @@ message File {
 // - SUCCESS: Success status
 // - FAILED: Failed status
 enum Status {
-    // PENDING: Pending status
-    PENDING = 0;
-    // IN_PROGRESS: In progress status
-    IN_PROGRESS = 1;
-    // SUCCESS: Success status
-    SUCCESS = 2;
-    // FAILED: Failed status
-    FAILED = 3;
+  // PENDING: Pending status
+  PENDING = 0;
+  // IN_PROGRESS: In progress status
+  IN_PROGRESS = 1;
+  // SUCCESS: Success status
+  SUCCESS = 2;
+  // FAILED: Failed status
+  FAILED = 3;
 }
 
 // UploadFileRequest
@@ -99,10 +99,10 @@ enum Status {
 // - file: File to upload
 // - organization_id: Organization id
 message UploadFileRequest {
-    // file: File to upload
-    File file = 1;
-    // organization_id: Organization id
-    string organization_id = 2;
+  // file: File to upload
+  File file = 1;
+  // organization_id: Organization id
+  string organization_id = 2;
 }
 
 // UploadFileResponse
@@ -111,8 +111,8 @@ message UploadFileRequest {
 //
 // - file_url: File url
 message UploadFileResponse {
-    // file_url: File url
-    string file_url = 1;
+  // file_url: File url
+  string file_url = 1;
 }
 
 // ReadFileRequest
@@ -122,10 +122,10 @@ message UploadFileResponse {
 // - file_url: File url
 // - organization_id: Organization id
 message ReadFileRequest {
-    // file_url: File url
-    string file_url = 1;
-    // organization_id: Organization id
-    string organization_id = 2;
+  // file_url: File url
+  string file_url = 1;
+  // organization_id: Organization id
+  string organization_id = 2;
 }
 
 // ReadFileResponse
@@ -134,6 +134,6 @@ message ReadFileRequest {
 //
 // - content: File content
 message ReadFileResponse {
-    // content: File content
-    bytes content = 1;
+  // content: File content
+  bytes content = 1;
 }

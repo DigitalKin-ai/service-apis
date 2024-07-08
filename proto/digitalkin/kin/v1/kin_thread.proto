@@ -134,12 +134,12 @@ service KinThreadService {
 // - type: Type of the file
 // - content: Content of the file
 message File {
-    // name: Name of the file
-    string name = 1;
-    // type: Type of the file
-    string type = 2;
-    // content: Content of the file
-    bytes content = 3;
+  // name: Name of the file
+  string name = 1;
+  // type: Type of the file
+  string type = 2;
+  // content: Content of the file
+  bytes content = 3;
 }
 
 // KinThread
@@ -151,14 +151,14 @@ message File {
 // - responses: Responses
 // - activated: Activated
 message KinThread {
-    // id: Kin thread id
-    string id = 1;
-    // thread_subject: Subject of the thread
-    string thread_subject = 2;
-    // responses: Responses
-    repeated KinResponse responses = 3;
-    // activated: Activated
-    bool activated = 4;
+  // id: Kin thread id
+  string id = 1;
+  // thread_subject: Subject of the thread
+  string thread_subject = 2;
+  // responses: Responses
+  repeated KinResponse responses = 3;
+  // activated: Activated
+  bool activated = 4;
 }
 
 // CreateKinThreadRequest
@@ -168,10 +168,10 @@ message KinThread {
 // - thread_subject: Thread subject
 // - kin_id: Kin id
 message CreateKinThreadRequest {
-    // thread_subject: Thread subject
-    string thread_subject = 1;
-    // kin_id: Kin id
-    string kin_id = 2;
+  // thread_subject: Thread subject
+  string thread_subject = 1;
+  // kin_id: Kin id
+  string kin_id = 2;
 }
 
 // ReadKinThreadRequest
@@ -180,8 +180,8 @@ message CreateKinThreadRequest {
 //
 // - kin_thread_id: Kin thread id
 message ReadKinThreadRequest {
-    // kin_thread_id: Kin thread id
-    string kin_thread_id = 1;
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
 }
 
 // DeleteKinThreadRequest
@@ -190,8 +190,8 @@ message ReadKinThreadRequest {
 //
 // - kin_thread_id: Kin thread id
 message DeleteKinThreadRequest {
-    // kin_thread_id: Kin thread id
-    string kin_thread_id = 1;
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
 }
 
 // DeleteKinThreadResponse
@@ -209,10 +209,10 @@ message DeleteKinThreadResponse {
 // - kin_thread_id: Kin thread id
 // - subject: Subject of the thread
 message UpdateSubjectRequest {
-   // kin_thread_id: Kin thread id
-    string kin_thread_id = 1;
-    // subject: Subject of the thread
-    string subject = 2;
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
+  // subject: Subject of the thread
+  string subject = 2;
 }
 
 // UpdateSubjectResponse
@@ -231,12 +231,12 @@ message UpdateSubjectResponse {
 // - mission: Mission of the response
 // - files: Files
 message CreateKinResponseRequest {
-   // kin_thread_id: Kin thread id
-    string kin_thread_id = 1;
-    // mission: Mission of the response
-    string mission = 2;
-    // files: Files
-    repeated File files = 3;
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
+  // mission: Mission of the response
+  string mission = 2;
+  // files: Files
+  repeated File files = 3;
 }
 
 // ReplyInTheThreadRequest
@@ -247,11 +247,11 @@ message CreateKinResponseRequest {
 // - mission: Mission of the response
 // - files: Files
 message ReplyInTheThreadRequest {
-   // kin_thread_id: Kin thread id
-    string kin_thread_id = 1;
-    // mission: Mission of the response
-    string mission = 2;
-    // files: Files
-    repeated File files = 3;
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
+  // mission: Mission of the response
+  string mission = 2;
+  // files: Files
+  repeated File files = 3;
 }
 

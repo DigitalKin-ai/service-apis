@@ -23,35 +23,34 @@ import "google/api/annotations.proto";
 
 // KinResponseService
 service KinResponseService {
-    // ReadKinResponse
-    //
-    // ## Parameters
-    //
-    // - kin_response_id: Kin response id
-    //
-    // ## Returns
-    //
-    // - KinResponse
-    rpc ReadKinResponse(ReadKinResponseRequest) returns (KinResponse) {
-        option (google.api.http) = {
-            get: "/v1/kin/response/{kin_response_id}"
-        };
-    }
-
-    // DeteteKinResponse
-    //
-    // ## Parameters
-    //
-    // - kin_response_id: Kin response id
-    //
-    // ## Returns
-    //
-    // - Ok if the response was deleted
-    rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse) {
-        option (google.api.http) = {
-            delete: "/v1/kin/response/{kin_response_id}"
-        };
-    }
+  // ReadKinResponse
+  //
+  // ## Parameters
+  //
+  // - kin_response_id: Kin response id
+  //
+  // ## Returns
+  //
+  // - KinResponse
+  rpc ReadKinResponse(ReadKinResponseRequest) returns (KinResponse) {
+      option (google.api.http) = {
+          get: "/v1/kin/response/{kin_response_id}"
+      };
+  }
+  // DeteteKinResponse
+  //
+  // ## Parameters
+  //
+  // - kin_response_id: Kin response id
+  //
+  // ## Returns
+  //
+  // - Ok if the response was deleted
+  rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse) {
+      option (google.api.http) = {
+          delete: "/v1/kin/response/{kin_response_id}"
+      };
+  }
 }
 
 // KinResponse
@@ -67,22 +66,22 @@ service KinResponseService {
 // - thread_subject: Subject of the thread
 // - model: Model of the response
 message KinResponse {
-    // id: Kin response id
-    string id = 1;
-    // role: Role of the user who created the response
-    optional string role = 2;
-    // status: Status of the response
-    optional string status = 3;
-    // mission: Mission of the response
-    string mission = 4;
-    // created_at: Time the response was created
-    string created_at = 5;
-    // origin_id: Origin id of the response
-    optional string origin_id = 6;
-    // thread_subject: Subject of the thread
-    string thread_subject = 7;
-    // model: Model of the response
-    optional string model = 8;
+  // id: Kin response id
+  string id = 1;
+  // role: Role of the user who created the response
+  optional string role = 2;
+  // status: Status of the response
+  optional string status = 3;
+  // mission: Mission of the response
+  string mission = 4;
+  // created_at: Time the response was created
+  string created_at = 5;
+  // origin_id: Origin id of the response
+  optional string origin_id = 6;
+  // thread_subject: Subject of the thread
+  string thread_subject = 7;
+  // model: Model of the response
+  optional string model = 8;
 }
 
 // ReadKinResponseRequest
@@ -91,8 +90,8 @@ message KinResponse {
 //
 // - kin_response_id: Kin response id
 message ReadKinResponseRequest {
-    // kin_response_id: Kin response id
-    string kin_response_id = 1;
+  // kin_response_id: Kin response id
+  string kin_response_id = 1;
 }
 
 // DeleteKinResponseRequest
@@ -101,8 +100,8 @@ message ReadKinResponseRequest {
 //
 // - kin_response_id: Kin response id
 message DeleteKinResponseRequest {
-    // kin_response_id: Kin response id
-    string kin_response_id = 1;
+  // kin_response_id: Kin response id
+  string kin_response_id = 1;
 }
 
 // DeleteKinResponseResponse
