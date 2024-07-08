@@ -36,10 +36,10 @@ service KinThreadService {
   //
   // - KinThread
   rpc CreateKinThread(CreateKinThreadRequest) returns (KinThread) {
-      option (google.api.http) = {
-          post: "/v1/kin/thread"
-          body: "*"
-      };
+    option (google.api.http) = {
+        post: "/v1/kin/thread"
+        body: "*"
+    };
   }
   // ReadKinThread
   //
@@ -51,9 +51,9 @@ service KinThreadService {
   //
   // - KinThread
   rpc ReadKinThread(ReadKinThreadRequest) returns (stream KinThread) {
-      option (google.api.http) = {
-          get: "/v1/kin/thread/{kin_thread_id}"
-      };
+    option (google.api.http) = {
+        get: "/v1/kin/thread/{kin_thread_id}"
+    };
   }
   // DeleteKinThread
   //
@@ -65,9 +65,9 @@ service KinThreadService {
   //
   // - Ok if the thread was deleted
   rpc DeleteKinThread(DeleteKinThreadRequest) returns (DeleteKinThreadResponse) {
-      option (google.api.http) = {
-          delete: "/v1/kin/thread/{kin_thread_id}/delete"
-      };
+    option (google.api.http) = {
+        delete: "/v1/kin/thread/{kin_thread_id}/delete"
+    };
   }
   // UpdateSubject
   //
@@ -80,10 +80,10 @@ service KinThreadService {
   //
   // - Ok if the subject was updated
   rpc UpdateSubject(UpdateSubjectRequest) returns (UpdateSubjectResponse) {
-      option (google.api.http) = {
-          patch: "/v1/kin/thread/{kin_thread_id}/subject"
-          body: "*"
-      };
+    option (google.api.http) = {
+        patch: "/v1/kin/thread/{kin_thread_id}/subject"
+        body: "*"
+    };
   }
   // CreateKinResponse
   //
@@ -97,10 +97,10 @@ service KinThreadService {
   //
   // - KinResponse
   rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
-      option (google.api.http) = {
-          post: "/v1/kin/thread/{kin_thread_id}/create"
-          body: "*"
-      };
+    option (google.api.http) = {
+        post: "/v1/kin/thread/{kin_thread_id}/create"
+        body: "*"
+    };
   }
   // ReplyInTheThread
   //
@@ -114,10 +114,10 @@ service KinThreadService {
   //
   // - KinResponse
   rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
-      option (google.api.http) = {
-          post: "/v1/kin/thread/{kin_thread_id}/reply"
-          body: "*"
-      };
+    option (google.api.http) = {
+        post: "/v1/kin/thread/{kin_thread_id}/reply"
+        body: "*"
+    };
   }
 }
 
