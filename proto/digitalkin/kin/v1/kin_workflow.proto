@@ -155,7 +155,7 @@ service KinWorkflowService {
 
 // DataEdge
 //
-// ## Properties
+// ## Fields
 //
 // - color: Edge color
 // - running: Edge running
@@ -168,7 +168,7 @@ message DataEdge {
 
 // Edge
 //
-// ## Properties
+// ## Fields
 //
 // - id: Edge id
 // - source: Edge source
@@ -196,7 +196,7 @@ message Edge {
 
 // Position
 //
-// ## Properties
+// ## Fields
 //
 // - x: X position
 // - y: Y position
@@ -209,7 +209,7 @@ message Position {
 
 // Target
 //
-// ## Properties
+// ## Fields
 //
 // - label: Target label
 // - type: Target type
@@ -222,7 +222,7 @@ message Target {
 
 // Source
 //
-// ## Properties
+// ## Fields
 //
 // - label: Source label
 // - type: Source type
@@ -235,7 +235,7 @@ message Source {
   
 // DataNode
 //
-// ## Properties
+// ## Fields
 //
 // - id: Node id
 // - name: Node name
@@ -256,7 +256,7 @@ message DataNode {
 
 // Measured
 //
-// ## Properties
+// ## Fields
 //
 // - width: Measured width
 // - height: Measured height
@@ -269,7 +269,7 @@ message Measured {
 
 // Node
 //
-// ## Properties
+// ## Fields
 //
 // - id: Node id
 // - type: Node type
@@ -297,7 +297,7 @@ message Node {
 
 // Workflow
 //
-// ## Properties
+// ## Fields
 //
 // - edges: List of edges
 // - nodes: List of nodes
@@ -310,7 +310,7 @@ message Workflow {
 
 // WorkflowBlocksStore
 //
-// ## Properties
+// ## Fields
 //
 // - blocks: List of blocks
 message WorkflowBlocksStore {
@@ -320,7 +320,7 @@ message WorkflowBlocksStore {
 
 // CreateKinWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 message CreateKinWorkflowRequest {
@@ -330,7 +330,7 @@ message CreateKinWorkflowRequest {
 
 // ReadKinWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 message ReadKinWorkflowRequest {
@@ -340,7 +340,7 @@ message ReadKinWorkflowRequest {
 
 // ReadStoreBlocksWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - Nothing
 message ReadStoreBlocksWorkflowRequest {
@@ -348,7 +348,7 @@ message ReadStoreBlocksWorkflowRequest {
 
 // AddNodeWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 // - node: Node
@@ -368,7 +368,7 @@ message AddNodeWorkflowResponse {
 
 // AddEdgeWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 // - edge: Edge
@@ -388,7 +388,7 @@ message AddEdgeWorkflowResponse {
 
 // UpdateNodePositionWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 // - node_id: Node id
@@ -411,7 +411,7 @@ message UpdateNodePositionWorkflowResponse {
 
 // DeleteNodeWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 // - node_id: Node id
@@ -431,7 +431,7 @@ message DeleteNodeWorkflowResponse {
 
 // DeleteEdgeWorkflowRequest
 //
-// ## Properties
+// ## Fields
 //
 // - kin_id: Kin id
 // - edge_id: Edge id
