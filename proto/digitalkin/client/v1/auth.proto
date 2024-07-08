@@ -5,45 +5,117 @@ package digitalkin.client.v1;
 import "google/api/annotations.proto";
 import "digitalkin/client/v1/user.proto";
 
+// AuthService
 service AuthService {
-    rpc Login(LoginRequest) returns (LoginResponse) {
-        option (google.api.http) = {
-            post: "/v1/login"
-            body: "*"
-        };
-    }
-    rpc Logout(LogoutRequest) returns (LogoutResponse) {
-        option (google.api.http) = {
-            post: "/v1/logout"
-            body: "*"
-        };
-    }
-    rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
-        option (google.api.http) = {
-            post: "/v1/checkUserName"
-            body: "*"
-        };
-    }
+  // Login
+  //
+  // ## Parameters
+  //
+  // - email: Email
+  // - password: Password
+  //
+  // ## Returns
+  //
+  // - token: Token
+  // - expireAt: ExpireAt
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+  // Logout
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - Ok if the user was logged out
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v1/logout"
+      body: "*"
+    };
+  }
+
+  // CheckUserName
+  //
+  // ## Parameters
+  //
+  // - userName: UserName
+  //
+  // ## Returns
+  //
+  // - userName: UserName if it is available or the closest available
+  rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
+    option (google.api.http) = {
+      post: "/v1/checkUserName"
+      body: "*"
+    };
+  }
 }
 
+// LoginRequest
+//
+// ## Fields
+//
+// - email: Email
+// - password: Password
 message LoginRequest {
-    string email = 1;
-    string password = 2;
+  // email: Email
+  string email = 1;
+  // password: Password
+  string password = 2;
 }
 
+// LoginResponse
+//
+// ## Fields
+//
+// - token: Token
 message LoginResponse {
-    string token = 1;
-    string expireAt = 2;
+  // token: Token
+  string token = 1;
+  // expireAt: ExpireAt
+  string expireAt = 2;
 }
 
-message LogoutRequest {}
+// LogoutRequest
+//
+// ## Fields
+//
+// - Nothing
+message LogoutRequest {
+}
 
-message LogoutResponse {}
+// LogoutResponse
+//
+// ## Fields
+//
+// - Ok if the user was logged out
+message LogoutResponse {
+}
 
+// CheckUserNameRequest
+//
+// ## Fields
+//
+// - userName: UserName
 message CheckUserNameRequest {
-    string userName = 1;
+  // userName: UserName
+  string userName = 1;
 }
+
+// CheckUserNameResponse
+//
+// ## Fields
+//
+// - userName: UserName if it is available or the closest available
 message CheckUserNameResponse {
-    string userName = 1;
+  // userName: UserName if it is available or the closest available
+  string userName = 1;
 }
 
