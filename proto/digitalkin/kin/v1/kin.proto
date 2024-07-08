@@ -39,8 +39,8 @@ service KinService {
   // - Kin
   rpc CreateKin(CreateKinRequest) returns (Kin) {
     option (google.api.http) = {
-        post: "/v1/kin"
-        body: "*"
+      post: "/v1/kin"
+      body: "*"
     };
   }
   // ReadKin
@@ -54,7 +54,7 @@ service KinService {
   // - Kin
   rpc ReadKin(ReadKinRequest) returns (stream Kin) {
     option (google.api.http) = {
-        get: "/v1/kin/{kin_id}"
+      get: "/v1/kin/{kin_id}"
     };
   }
   // ReadAllKin
@@ -68,7 +68,7 @@ service KinService {
   // - ListKin
   rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
     option (google.api.http) = {
-        get: "/v1/kin"
+      get: "/v1/kin"
     };
   }
   // DeleteKin
@@ -82,7 +82,7 @@ service KinService {
   // - Ok if the Kin was deleted
   rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
     option (google.api.http) = {
-        delete: "/v1/kin/{kin_id}"
+      delete: "/v1/kin/{kin_id}"
     };
   }
   // UpdateActivated
@@ -97,8 +97,8 @@ service KinService {
   // - Ok if the Kin was updated
   rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/activated"
-        body: "*"
+      patch: "/v1/kin/{kin_id}/activated"
+      body: "*"
     };
   }
   // UpdateName
@@ -113,8 +113,8 @@ service KinService {
   // - Ok if the Kin name was updated
   rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/name"
-        body: "*"
+      patch: "/v1/kin/{kin_id}/name"
+      body: "*"
     };
   }
   // UpdateDescription
@@ -129,8 +129,8 @@ service KinService {
   // - Ok if the Kin description was updated
   rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/description"
-        body: "*"
+      patch: "/v1/kin/{kin_id}/description"
+      body: "*"
     };
   }
   // UpdateOriginAddress
@@ -145,8 +145,8 @@ service KinService {
   // - Ok if the Kin origin address was updated
   rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/origin"
-        body: "*"
+      patch: "/v1/kin/{kin_id}/origin"
+      body: "*"
     };
   }
   // UpdateImage
@@ -161,8 +161,8 @@ service KinService {
   // - Ok if the Kin image was updated
   rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/image"
-        body: "*"
+      patch: "/v1/kin/{kin_id}/image"
+      body: "*"
     };
   }
   // CreateReview
@@ -180,8 +180,8 @@ service KinService {
   // - Review
   rpc CreateReview(CreateKinReviewRequest) returns (Review) {
     option (google.api.http) = {
-        post: "/v1/kin/{kin_id}/review"
-        body: "*"
+      post: "/v1/kin/{kin_id}/review"
+      body: "*"
     };
   }
   // UpdateReview
@@ -198,8 +198,8 @@ service KinService {
   // - Ok if the review was updated
   rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
     option (google.api.http) = {
-        patch: "/v1/kin/{kin_id}/review/{review_id}",
-        body: "*"
+      patch: "/v1/kin/{kin_id}/review/{review_id}",
+      body: "*"
     };
   }
 }
@@ -212,12 +212,12 @@ service KinService {
 // - thread_subject: Subject of the thread
 // - activated: Kin thread activated status
 message KinThreadReply {
-    // id: Kin thread id
-    string id = 1;
-    // thread_subject: Subject of the thread
-    string thread_subject = 2;
-    // activated: Kin thread activated status
-    bool activated = 3;
+  // id: Kin thread id
+  string id = 1;
+  // thread_subject: Subject of the thread
+  string thread_subject = 2;
+  // activated: Kin thread activated status
+  bool activated = 3;
 }
 
 // UserReply
@@ -231,18 +231,18 @@ message KinThreadReply {
 // - avatar: User avatar
 // - activated: User activated status
 message UserReply {
-    // user_name: User name
-    string user_name = 1;
-    // first_name: User first name
-    optional string first_name = 2;
-    // last_name: User last name
-    optional string last_name = 3;
-    // email: User email
-    string email = 4;
-    // avatar: User avatar
-    optional string avatar = 5;
-    // activated: User activated status
-    bool activated = 6;
+  // user_name: User name
+  string user_name = 1;
+  // first_name: User first name
+  optional string first_name = 2;
+  // last_name: User last name
+  optional string last_name = 3;
+  // email: User email
+  string email = 4;
+  // avatar: User avatar
+  optional string avatar = 5;
+  // activated: User activated status
+  bool activated = 6;
 }
 
 // Tag
@@ -253,12 +253,12 @@ message UserReply {
 // - name: Tag name
 // - organization_id: Tag organization id
 message Tag {
-    // id: Tag id
-    string id = 1;
-    // name: Tag name
-    string name = 2;
-    // organization_id: Tag organization id
-    optional string organization_id = 3;
+  // id: Tag id
+  string id = 1;
+  // name: Tag name
+  string name = 2;
+  // organization_id: Tag organization id
+  optional string organization_id = 3;
 }
 
 // Review
@@ -272,18 +272,18 @@ message Tag {
 // - review_comment: Review comment
 // - review_date: Review date
 message Review {
-    // id: Review id
-    string id = 1;
-    // reviewer: Reviewer name
-    string reviewer = 2;
-    // reviewer_avatar: Reviewer avatar
-    optional string reviewer_avatar = 3;
-    // review: Review
-    int64 review = 4;
-    // review_comment: Review comment
-    optional string review_comment = 5;
-    // review_date: Review date
-    string review_date = 6;
+  // id: Review id
+  string id = 1;
+  // reviewer: Reviewer name
+  string reviewer = 2;
+  // reviewer_avatar: Reviewer avatar
+  optional string reviewer_avatar = 3;
+  // review: Review
+  int64 review = 4;
+  // review_comment: Review comment
+  optional string review_comment = 5;
+  // review_date: Review date
+  string review_date = 6;
 }
 
 // StoreKin
@@ -309,42 +309,42 @@ message Review {
 // - price: Kin price
 // - activated: Kin activated status
 message StoreKin {
-    // id: Kin id
-    string id = 1;
-    // name: Kin name
-    string name = 2;
-    // description: Kin description
-    optional string description = 3;
-    // image: Kin image
-    optional string image = 4;
-    // tags: Kin tags
-    repeated Tag tags = 5;
-    // creation_date: Kin creation date
-    string creation_date = 6;
-    // last_update: Kin last update
-    string last_update = 7;
-    // version: Kin version
-    float version = 8;
-    // origin_address: Kin origin address
-    string origin_address = 9;
-    // languages: Kin languages
-    repeated string languages = 10;
-    // framework: Kin framework
-    optional string framework = 11;
-    // licence: Kin licence
-    optional string licence = 12;
-    // admins: Kin admins
-    repeated UserReply admins = 13;
-    // creators: Kin creators
-    repeated UserReply creators = 14;
-    // reviews: Kin reviews
-    repeated Review reviews = 15;
-    // score: Kin score
-    optional int64 score = 16;
-    // price: Kin price
-    optional int64 price = 17;
-    // activated: Kin activated status
-    bool activated = 18;
+  // id: Kin id
+  string id = 1;
+  // name: Kin name
+  string name = 2;
+  // description: Kin description
+  optional string description = 3;
+  // image: Kin image
+  optional string image = 4;
+  // tags: Kin tags
+  repeated Tag tags = 5;
+  // creation_date: Kin creation date
+  string creation_date = 6;
+  // last_update: Kin last update
+  string last_update = 7;
+  // version: Kin version
+  float version = 8;
+  // origin_address: Kin origin address
+  string origin_address = 9;
+  // languages: Kin languages
+  repeated string languages = 10;
+  // framework: Kin framework
+  optional string framework = 11;
+  // licence: Kin licence
+  optional string licence = 12;
+  // admins: Kin admins
+  repeated UserReply admins = 13;
+  // creators: Kin creators
+  repeated UserReply creators = 14;
+  // reviews: Kin reviews
+  repeated Review reviews = 15;
+  // score: Kin score
+  optional int64 score = 16;
+  // price: Kin price
+  optional int64 price = 17;
+  // activated: Kin activated status
+  bool activated = 18;
 }
 
 // ListKin
@@ -353,8 +353,8 @@ message StoreKin {
 //
 // - kins: List of Kins
 message ListKin {
-    // kins: List of Kins
-    repeated StoreKin kins = 1;
+  // kins: List of Kins
+  repeated StoreKin kins = 1;
 }
 
 // Kin
@@ -368,18 +368,18 @@ message ListKin {
 // - kin_threads: Kin threads
 // - activated: Kin activated status
 message Kin {
-    // id: Kin id
-    string id = 1;
-    // name: Kin name
-    string name = 2;
-    // description: Kin description
-    optional string description = 3;
-    // origin_address: Kin origin address
-    string origin_address = 4;
-    // kin_threads: Kin threads
-    repeated KinThreadReply kin_threads = 5;
-    // activated: Kin activated status
-    bool activated = 6;
+  // id: Kin id
+  string id = 1;
+  // name: Kin name
+  string name = 2;
+  // description: Kin description
+  optional string description = 3;
+  // origin_address: Kin origin address
+  string origin_address = 4;
+  // kin_threads: Kin threads
+  repeated KinThreadReply kin_threads = 5;
+  // activated: Kin activated status
+  bool activated = 6;
 }
 
 // CreateKinRequest
@@ -390,12 +390,12 @@ message Kin {
 // - description: Kin description
 // - origin_address: Kin origin address
 message CreateKinRequest {
-    // name: Kin name
-    string name = 1;
-    // description: Kin description
-    optional string description = 2;
-    // origin_address: Kin origin address
-    string origin_address = 3;
+  // name: Kin name
+  string name = 1;
+  // description: Kin description
+  optional string description = 2;
+  // origin_address: Kin origin address
+  string origin_address = 3;
 }
 
 // ReadKinRequest
@@ -404,8 +404,8 @@ message CreateKinRequest {
 //
 // - kin_id: Kin id
 message ReadKinRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
+  // kin_id: Kin id
+  string kin_id = 1;
 }
 
 // ReadAllKinRequest
@@ -422,8 +422,8 @@ message ReadAllKinRequest {
 //
 // - kin_id: Kin id
 message DeleteKinRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
+  // kin_id: Kin id
+  string kin_id = 1;
 }
 
 // DeleteKinResponse
@@ -441,10 +441,10 @@ message DeleteKinResponse {
 // - kin_id: Kin id
 // - activated: Kin activated status
 message UpdateKinActivatedRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-    // activated: Kin activated status
-    bool activated = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // activated: Kin activated status
+  bool activated = 2;
 }
 
 // UpdateKinActivatedResponse
@@ -462,10 +462,10 @@ message UpdateKinActivatedResponse {
 // - kin_id: Kin id
 // - name: Kin name
 message UpdateKinNameRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-    // name: Kin name
-    string name = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // name: Kin name
+  string name = 2;
 }
 
 // UpdateKinNameResponse
@@ -483,10 +483,10 @@ message UpdateKinNameResponse {
 // - kin_id: Kin id
 // - description: Kin description
 message UpdateKinDescriptionRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-    // description: Kin description
-    string description = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // description: Kin description
+  string description = 2;
 }
 
 // UpdateKinDescriptionResponse
@@ -504,10 +504,10 @@ message UpdateKinDescriptionResponse {
 // - kin_id: Kin id
 // - origin_address: Kin origin address
 message UpdateKinOriginAddressRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-    // origin_address: Kin origin address
-    string origin_address = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // origin_address: Kin origin address
+  string origin_address = 2;
 }
 
 // UpdateKinOriginAddressResponse
@@ -525,10 +525,10 @@ message UpdateKinOriginAddressResponse {
 // - kin_id: Kin id
 // - image: Kin image
 message UpdateKinImageRequest {
-   // kin_id: Kin id
-    string kin_id = 1;
-    // image: Kin image
-    kin.v1.File image = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // image: Kin image
+  kin.v1.File image = 2;
 }
 
 // UpdateKinImageResponse
@@ -537,8 +537,8 @@ message UpdateKinImageRequest {
 //
 // - image: Kin image path
 message UpdateKinImageResponse {
-    // image: Kin image path
-    string image = 1;
+  // image: Kin image path
+  string image = 1;
 }
 
 // CreateKinReviewRequest
@@ -551,16 +551,16 @@ message UpdateKinImageResponse {
 // - review: Review
 // - review_comment: Review comment
 message CreateKinReviewRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-    // user_name: User name
-    string user_name = 2;
-    // user_avatar: User avatar
-    optional string user_avatar = 3;
-    // review: Review
-    int64 review = 4;
-    // review_comment: Review comment
-    optional string review_comment = 5;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // user_name: User name
+  string user_name = 2;
+  // user_avatar: User avatar
+  optional string user_avatar = 3;
+  // review: Review
+  int64 review = 4;
+  // review_comment: Review comment
+  optional string review_comment = 5;
 }
 
 // UpdateKinReviewRequest
@@ -572,14 +572,14 @@ message CreateKinReviewRequest {
 // - review: Review
 // - review_comment: Review comment
 message UpdateKinReviewRequest {
-    // id: Review id
-    string id = 1;
-    // kin_id: Kin id
-    string kin_id = 2;
-    // review: Review
-    int64 review = 3;
-    // review_comment: Review comment
-    optional string review_comment = 4;
+  // id: Review id
+  string id = 1;
+  // kin_id: Kin id
+  string kin_id = 2;
+  // review: Review
+  int64 review = 3;
+  // review_comment: Review comment
+  optional string review_comment = 4;
 }
 
 // UpdateKinReviewResponse
