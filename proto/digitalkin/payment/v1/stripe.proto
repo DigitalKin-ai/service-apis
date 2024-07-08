@@ -528,7 +528,7 @@ enum Currency {
   MYR = 91;
   // MZN: Mozambican Metical
   MZN = 92;
-  // MZR: Mozambican Metical
+  // NAD: Namibian Dollar
   NAD = 93;
   // NGN: Nigerian Naira
   NGN = 94;
