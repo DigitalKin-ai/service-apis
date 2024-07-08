@@ -33,9 +33,9 @@ service KinResponseService {
   //
   // - KinResponse
   rpc ReadKinResponse(ReadKinResponseRequest) returns (KinResponse) {
-      option (google.api.http) = {
-        get: "/v1/kin/response/{kin_response_id}"
-      };
+    option (google.api.http) = {
+      get: "/v1/kin/response/{kin_response_id}"
+    };
   }
   // DeteteKinResponse
   //
@@ -47,9 +47,9 @@ service KinResponseService {
   //
   // - Ok if the response was deleted
   rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse) {
-      option (google.api.http) = {
-        delete: "/v1/kin/response/{kin_response_id}"
-      };
+    option (google.api.http) = {
+      delete: "/v1/kin/response/{kin_response_id}"
+    };
   }
 }
 
