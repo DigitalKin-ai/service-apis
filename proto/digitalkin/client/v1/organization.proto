@@ -595,6 +595,7 @@ message UpdateOrganizationLogoRequest {
 //
 // - logo: The path of the logo
 message UpdateOrganizationLogoResponse {
+  // logo: The path of the logo
   string logo = 1;
 }
 
