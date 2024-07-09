@@ -54,7 +54,7 @@ service KinWorkflowService {
     };
   }
 
-  // ReadStoreBlocksWorkflow
+  // ReadKinNodesWorkflow
   //
   // ## Parameters
   //
@@ -62,10 +62,10 @@ service KinWorkflowService {
   //
   // ## Returns
   //
-  // - Store Blocks
-  rpc ReadStoreBlocksWorkflow(ReadStoreBlocksWorkflowRequest) returns (stream WorkflowBlocksStore) {
+  // - nodes: List of nodes
+  rpc ReadKinNodesWorkflow(ReadKinNodesWorkflowRequest) returns (ReadKinNodesWorkflowResponse) {
     option (google.api.http) = {
-      get: "/v1/workflow/store"
+      get: "/v1/workflow/nodes"
     };
   }
 
@@ -308,16 +308,6 @@ message Workflow {
   repeated Node nodes = 2;
 }
 
-// WorkflowBlocksStore
-//
-// ## Fields
-//
-// - blocks: List of blocks
-message WorkflowBlocksStore {
-  // blocks: List of blocks
-  repeated DataNode blocks = 1;
-}
-
 // CreateKinWorkflowRequest
 //
 // ## Fields
@@ -338,12 +328,22 @@ message ReadKinWorkflowRequest {
   string kin_id = 1;
 }
 
-// ReadStoreBlocksWorkflowRequest
+// ReadKinNodesWorkflowRequest
 //
 // ## Fields
 //
 // - Nothing
-message ReadStoreBlocksWorkflowRequest {
+message ReadKinNodesWorkflowRequest {
+}
+
+// ReadKinNodesWorkflowResponse
+//
+// ## Returns
+//
+// - nodes: List of nodes
+message ReadKinNodesWorkflowResponse {
+  // nodes: List of nodes
+  repeated Node nodes = 1;
 }
 
 // AddNodeWorkflowRequest
