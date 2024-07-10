@@ -1,220 +1,591 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
 syntax = "proto3";
 
 package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
 
-import "digitalkin/kin/v1/kin_thread.proto";
 import "digitalkin/kin/v1/kin_response.proto";
+import "digitalkin/kin/v1/kin_thread.proto";
 
+// KinService
 service KinService {
-    // CRD
-    rpc CreateKin(CreateKinRequest) returns (Kin) {
-        option (google.api.http) = {
-            post: "/v1/kin"
-            body: "*"
-        };
-    }
-    rpc ReadKin(ReadKinRequest) returns (stream Kin) {
-        option (google.api.http) = {
-            get: "/v1/kin/{kin_id}"
-        };
-    }
-    rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
-        option (google.api.http) = {
-            get: "/v1/kin"
-        };
-    }
-    rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
-        option (google.api.http) = {
-            delete: "/v1/kin/{kin_id}"
-        };
-    }
-
-    // Update
-    rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/activated"
-            body: "*"
-        };
-    }
-    rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/name"
-            body: "*"
-        };
-    }
-    rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/description"
-            body: "*"
-        };
-    }
-    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/origin"
-            body: "*"
-        };
-    }
-    rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/image"
-            body: "*"
-        };
-    }
-
-    // Reviews
-    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
-      option (google.api.http) = {
-          post: "/v1/kin/{kin_id}/review"
-          body: "*"
-      };
+  // CreateKin
+  //
+  // ## Parameters
+  //
+  // - name: Kin name
+  // - description: Kin description
+  // - origin_address: Kin origin address
+  //
+  // ## Returns
+  //
+  // - Kin
+  rpc CreateKin(CreateKinRequest) returns (Kin) {
+    option (google.api.http) = {
+      post: "/v1/kin"
+      body: "*"
+    };
   }
-    rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
-        option (google.api.http) = {
-            patch: "/v1/kin/{kin_id}/review/{review_id}",
-            body: "*"
-        };
-    }
+  // ReadKin
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  //
+  // ## Returns
+  //
+  // - Kin
+  rpc ReadKin(ReadKinRequest) returns (stream Kin) {
+    option (google.api.http) = {
+      get: "/v1/kin/{kin_id}"
+    };
+  }
+  // ReadAllKin
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - ListKin
+  rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
+    option (google.api.http) = {
+      get: "/v1/kin"
+    };
+  }
+  // DeleteKin
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin was deleted
+  rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
+    option (google.api.http) = {
+      delete: "/v1/kin/{kin_id}"
+    };
+  }
+  // UpdateActivated
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - activated: Kin activated status
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin was updated
+  rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/activated"
+      body: "*"
+    };
+  }
+  // UpdateName
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - name: Kin name
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin name was updated
+  rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/name"
+      body: "*"
+    };
+  }
+  // UpdateDescription
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - description: Kin description
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin description was updated
+  rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/description"
+      body: "*"
+    };
+  }
+  // UpdateOriginAddress
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - origin_address: Kin origin address
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin origin address was updated
+  rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/origin"
+      body: "*"
+    };
+  }
+  // UpdateImage
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - image: Kin image
+  //
+  // ## Returns
+  //
+  // - Ok if the Kin image was updated
+  rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/image"
+      body: "*"
+    };
+  }
+  // CreateReview
+  //
+  // ## Parameters
+  //
+  // - kin_id: Kin id
+  // - user_name: User name
+  // - user_avatar: User avatar
+  // - review: Review
+  // - review_comment: Review comment
+  //
+  // ## Returns
+  //
+  // - Review
+  rpc CreateReview(CreateKinReviewRequest) returns (Review) {
+    option (google.api.http) = {
+      post: "/v1/kin/{kin_id}/review"
+      body: "*"
+    };
+  }
+  // UpdateReview
+  //
+  // ## Parameters
+  //
+  // - id: Review id
+  // - kin_id: Kin id
+  // - review: Review
+  // - review_comment: Review comment
+  //
+  // ## Returns
+  //
+  // - Ok if the review was updated
+  rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
+    option (google.api.http) = {
+      patch: "/v1/kin/{kin_id}/review/{review_id}",
+      body: "*"
+    };
+  }
 }
 
-// Common
+// KinThreadReply
+//
+// ## Fields
+//
+// - id: Kin thread id
+// - thread_subject: Subject of the thread
+// - activated: Kin thread activated status
 message KinThreadReply {
-    string id = 1;
-    string thread_subject = 2;
-    bool activated = 3;
+  // id: Kin thread id
+  string id = 1;
+  // thread_subject: Subject of the thread
+  string thread_subject = 2;
+  // activated: Kin thread activated status
+  bool activated = 3;
 }
 
+// UserReply
+//
+// ## Fields
+//
+// - user_name: User name
+// - first_name: User first name
+// - last_name: User last name
+// - email: User email
+// - avatar: User avatar
+// - activated: User activated status
 message UserReply {
-    string user_name = 1;
-    optional string first_name = 2;
-    optional string last_name = 3;
-    string email = 4;
-    optional string avatar = 5;
-    bool activated = 6;
+  // user_name: User name
+  string user_name = 1;
+  // first_name: User first name
+  optional string first_name = 2;
+  // last_name: User last name
+  optional string last_name = 3;
+  // email: User email
+  string email = 4;
+  // avatar: User avatar
+  optional string avatar = 5;
+  // activated: User activated status
+  bool activated = 6;
 }
 
+// Tag
+//
+// ## Fields
+//
+// - id: Tag id
+// - name: Tag name
+// - organization_id: Tag organization id
 message Tag {
-    string id = 1;
-    string name = 2;
-    optional string organization_id = 3;
+  // id: Tag id
+  string id = 1;
+  // name: Tag name
+  string name = 2;
+  // organization_id: Tag organization id
+  optional string organization_id = 3;
 }
 
+// Review
+//
+// ## Fields
+//
+// - id: Review id
+// - reviewer: Reviewer name
+// - reviewer_avatar: Reviewer avatar
+// - review: Review
+// - review_comment: Review comment
+// - review_date: Review date
 message Review {
-    string id = 1;
-    string reviewer = 2;
-    optional string reviewer_avatar = 3;
-    int64 review = 4;
-    optional string review_comment = 5;
-    string review_date = 6;
+  // id: Review id
+  string id = 1;
+  // reviewer: Reviewer name
+  string reviewer = 2;
+  // reviewer_avatar: Reviewer avatar
+  optional string reviewer_avatar = 3;
+  // review: Review
+  int64 review = 4;
+  // review_comment: Review comment
+  optional string review_comment = 5;
+  // review_date: Review date
+  string review_date = 6;
 }
 
+// StoreKin
+//
+// ## Fields
+//
+// - id: Kin id
+// - name: Kin name
+// - description: Kin description
+// - image: Kin image
+// - tags: Kin tags
+// - creation_date: Kin creation date
+// - last_update: Kin last update
+// - version: Kin version
+// - origin_address: Kin origin address
+// - languages: Kin languages
+// - framework: Kin framework
+// - licence: Kin licence
+// - admins: Kin admins
+// - creators: Kin creators
+// - reviews: Kin reviews
+// - score: Kin score
+// - price: Kin price
+// - activated: Kin activated status
 message StoreKin {
-    string id = 1;
-    string name = 2;
-    optional string description = 3;
-    optional string image = 4;
-    repeated Tag tags = 5;
-    string creation_date = 6;
-    string last_update = 7;
-    float version = 8;
-    string origin_address = 9;
-    repeated string languages = 10;
-    optional string framework = 11;
-    optional string licence = 12;
-    repeated UserReply admins = 13;
-    repeated UserReply creators = 14;
-    repeated Review reviews = 15;
-    optional int64 score = 16;
-    optional int64 price = 17;
-    bool activated = 18;
+  // id: Kin id
+  string id = 1;
+  // name: Kin name
+  string name = 2;
+  // description: Kin description
+  optional string description = 3;
+  // image: Kin image
+  optional string image = 4;
+  // tags: Kin tags
+  repeated Tag tags = 5;
+  // creation_date: Kin creation date
+  string creation_date = 6;
+  // last_update: Kin last update
+  string last_update = 7;
+  // version: Kin version
+  float version = 8;
+  // origin_address: Kin origin address
+  string origin_address = 9;
+  // languages: Kin languages
+  repeated string languages = 10;
+  // framework: Kin framework
+  optional string framework = 11;
+  // licence: Kin licence
+  optional string licence = 12;
+  // admins: Kin admins
+  repeated UserReply admins = 13;
+  // creators: Kin creators
+  repeated UserReply creators = 14;
+  // reviews: Kin reviews
+  repeated Review reviews = 15;
+  // score: Kin score
+  optional int64 score = 16;
+  // price: Kin price
+  optional int64 price = 17;
+  // activated: Kin activated status
+  bool activated = 18;
 }
 
+// ListKin
+//
+// ## Fields
+//
+// - kins: List of Kins
 message ListKin {
-    repeated StoreKin kins = 1;
+  // kins: List of Kins
+  repeated StoreKin kins = 1;
 }
 
+// Kin
+//
+// ## Fields
+//
+// - id: Kin id
+// - name: Kin name
+// - description: Kin description
+// - origin_address: Kin origin address
+// - kin_threads: Kin threads
+// - activated: Kin activated status
 message Kin {
-    string id = 1;
-    string name = 2;
-    optional string description = 3;
-    string origin_address = 4;
-    repeated KinThreadReply kin_threads = 5;
-    bool activated = 6;
+  // id: Kin id
+  string id = 1;
+  // name: Kin name
+  string name = 2;
+  // description: Kin description
+  optional string description = 3;
+  // origin_address: Kin origin address
+  string origin_address = 4;
+  // kin_threads: Kin threads
+  repeated KinThreadReply kin_threads = 5;
+  // activated: Kin activated status
+  bool activated = 6;
 }
 
-// Create a new Kin
+// CreateKinRequest
+//
+// ## Fields
+//
+// - name: Kin name
+// - description: Kin description
+// - origin_address: Kin origin address
 message CreateKinRequest {
-    string name = 1;
-    optional string description = 2;
-    string origin_address = 3;
+  // name: Kin name
+  string name = 1;
+  // description: Kin description
+  optional string description = 2;
+  // origin_address: Kin origin address
+  string origin_address = 3;
 }
 
-// Read a Kin
+// ReadKinRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
 message ReadKinRequest {
-    string kin_id = 1;
+  // kin_id: Kin id
+  string kin_id = 1;
 }
 
-// Read a list of Kin
-message ReadAllKinRequest {}
+// ReadAllKinRequest
+//
+// ## Fields
+//
+// - Nothing
+message ReadAllKinRequest {
+}
 
-// Delete a Kin
+// DeleteKinRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
 message DeleteKinRequest {
-    string kin_id = 1;
+  // kin_id: Kin id
+  string kin_id = 1;
 }
-message DeleteKinResponse {}
 
-// Update a Kin activated status
+// DeleteKinResponse
+//
+// ## Fields
+//
+// - Ok if the Kin was deleted
+message DeleteKinResponse {
+}
+
+// UpdateKinActivatedRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - activated: Kin activated status
 message UpdateKinActivatedRequest {
-    string kin_id = 1;
-    bool activated = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // activated: Kin activated status
+  bool activated = 2;
 }
-message UpdateKinActivatedResponse {}
 
-// Update a Kin name
+// UpdateKinActivatedResponse
+//
+// ## Returns
+//
+// - Ok if the Kin was updated
+message UpdateKinActivatedResponse {
+}
+
+// UpdateKinNameRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - name: Kin name
 message UpdateKinNameRequest {
-    string kin_id = 1;
-    string name = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // name: Kin name
+  string name = 2;
 }
-message UpdateKinNameResponse {}
 
-// Update a Kin description
+// UpdateKinNameResponse
+//
+// ## Returns
+//
+// - Ok if the Kin name was updated
+message UpdateKinNameResponse {
+}
+
+// UpdateKinDescriptionRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - description: Kin description
 message UpdateKinDescriptionRequest {
-    string kin_id = 1;
-    string description = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // description: Kin description
+  string description = 2;
 }
-message UpdateKinDescriptionResponse {}
 
-// Update a Kin origin address
+// UpdateKinDescriptionResponse
+//
+// ## Returns
+//
+// - Ok if the Kin description was updated
+message UpdateKinDescriptionResponse {
+}
+
+// UpdateKinOriginAddressRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - origin_address: Kin origin address
 message UpdateKinOriginAddressRequest {
-    string kin_id = 1;
-    string origin_address = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // origin_address: Kin origin address
+  string origin_address = 2;
 }
-message UpdateKinOriginAddressResponse {}
 
-// Update a Kin image
+// UpdateKinOriginAddressResponse
+//
+// ## Returns
+//
+// - Ok if the Kin origin address was updated
+message UpdateKinOriginAddressResponse {
+}
+
+// UpdateKinImageRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - image: Kin image
 message UpdateKinImageRequest {
-    string kin_id = 1;
-    kin.v1.File image = 2;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // image: Kin image
+  kin.v1.File image = 2;
 }
+
+// UpdateKinImageResponse
+//
+// ## Returns
+//
+// - image: Kin image path
 message UpdateKinImageResponse {
-    string image = 1;
+  // image: Kin image path
+  string image = 1;
 }
 
-// Create a Kin review
+// CreateKinReviewRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - user_name: User name
+// - user_avatar: User avatar
+// - review: Review
+// - review_comment: Review comment
 message CreateKinReviewRequest {
-    string kin_id = 1;
-    string user_name = 2;
-    optional string user_avatar = 3;
-    int64 review = 4;
-    optional string review_comment = 5;
+  // kin_id: Kin id
+  string kin_id = 1;
+  // user_name: User name
+  string user_name = 2;
+  // user_avatar: User avatar
+  optional string user_avatar = 3;
+  // review: Review
+  int64 review = 4;
+  // review_comment: Review comment
+  optional string review_comment = 5;
 }
 
-// Update a Kin review
+// UpdateKinReviewRequest
+//
+// ## Fields
+//
+// - id: Review id
+// - kin_id: Kin id
+// - review: Review
+// - review_comment: Review comment
 message UpdateKinReviewRequest {
-    string id = 1;
-    string kin_id = 2;
-    int64 review = 3;
-    optional string review_comment = 4;
+  // id: Review id
+  string id = 1;
+  // kin_id: Kin id
+  string kin_id = 2;
+  // review: Review
+  int64 review = 3;
+  // review_comment: Review comment
+  optional string review_comment = 4;
 }
-message UpdateKinReviewResponse {}
+
+// UpdateKinReviewResponse
+//
+// ## Returns
+//
+// - Ok if the review was updated
+message UpdateKinReviewResponse {
+}

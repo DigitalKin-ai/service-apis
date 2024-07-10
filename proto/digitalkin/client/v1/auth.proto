@@ -1,49 +1,140 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
 syntax = "proto3";
 
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+
 import "digitalkin/client/v1/user.proto";
 
+// AuthService
 service AuthService {
-    rpc Login(LoginRequest) returns (LoginResponse) {
-        option (google.api.http) = {
-            post: "/v1/login"
-            body: "*"
-        };
-    }
-    rpc Logout(LogoutRequest) returns (LogoutResponse) {
-        option (google.api.http) = {
-            post: "/v1/logout"
-            body: "*"
-        };
-    }
-    rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
-        option (google.api.http) = {
-            post: "/v1/checkUserName"
-            body: "*"
-        };
-    }
+  // Login
+  //
+  // ## Parameters
+  //
+  // - email: Email
+  // - password: Password
+  //
+  // ## Returns
+  //
+  // - token: Token
+  // - expire_date: Expiration date
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+  // Logout
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - Ok if the user was logged out
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v1/logout"
+      body: "*"
+    };
+  }
+
+  // CheckUserName
+  //
+  // ## Parameters
+  //
+  // - user_name: UserName
+  //
+  // ## Returns
+  //
+  // - user_name: UserName if it is available or the closest available
+  rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
+    option (google.api.http) = {
+      post: "/v1/checkUserName"
+      body: "*"
+    };
+  }
 }
 
+// LoginRequest
+//
+// ## Fields
+//
+// - email: Email
+// - password: Password
 message LoginRequest {
-    string email = 1;
-    string password = 2;
+  // email: Email
+  string email = 1;
+  // password: Password
+  string password = 2;
 }
 
+// LoginResponse
+//
+// ## Fields
+//
+// - token: Token
+// - expire_date: Expiration date
 message LoginResponse {
-    string token = 1;
-    string expireAt = 2;
+  // token: Token
+  string token = 1;
+  // expire_date: Expiration date
+  string expire_date = 2;
 }
 
-message LogoutRequest {}
+// LogoutRequest
+//
+// ## Fields
+//
+// - Nothing
+message LogoutRequest {
+}
 
-message LogoutResponse {}
+// LogoutResponse
+//
+// ## Fields
+//
+// - Ok if the user was logged out
+message LogoutResponse {
+}
 
+// CheckUserNameRequest
+//
+// ## Fields
+//
+// - user_name: UserName
 message CheckUserNameRequest {
-    string userName = 1;
+  // user_name: UserName
+  string user_name = 1;
 }
+
+// CheckUserNameResponse
+//
+// ## Fields
+//
+// - user_name: UserName if it is available or the closest available
 message CheckUserNameResponse {
-    string userName = 1;
+  // user_name: UserName if it is available or the closest available
+  string user_name = 1;
 }
 
