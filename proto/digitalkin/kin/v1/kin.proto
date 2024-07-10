@@ -43,6 +43,7 @@ service KinService {
       body: "*"
     };
   }
+
   // ReadKin
   //
   // ## Parameters
@@ -57,6 +58,7 @@ service KinService {
       get: "/v1/kin/{kin_id}"
     };
   }
+
   // ReadAllKin
   //
   // ## Parameters
@@ -71,6 +73,7 @@ service KinService {
       get: "/v1/kin"
     };
   }
+
   // DeleteKin
   //
   // ## Parameters
@@ -85,6 +88,7 @@ service KinService {
       delete: "/v1/kin/{kin_id}"
     };
   }
+
   // UpdateActivated
   //
   // ## Parameters
@@ -101,6 +105,7 @@ service KinService {
       body: "*"
     };
   }
+
   // UpdateName
   //
   // ## Parameters
@@ -117,6 +122,7 @@ service KinService {
       body: "*"
     };
   }
+
   // UpdateDescription
   //
   // ## Parameters
@@ -133,6 +139,7 @@ service KinService {
       body: "*"
     };
   }
+
   // UpdateOriginAddress
   //
   // ## Parameters
@@ -149,6 +156,7 @@ service KinService {
       body: "*"
     };
   }
+
   // UpdateImage
   //
   // ## Parameters
@@ -165,6 +173,7 @@ service KinService {
       body: "*"
     };
   }
+
   // CreateReview
   //
   // ## Parameters
@@ -184,6 +193,7 @@ service KinService {
       body: "*"
     };
   }
+
   // UpdateReview
   //
   // ## Parameters
@@ -199,6 +209,23 @@ service KinService {
   rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/review/{review_id}",
+      body: "*"
+    };
+  }
+
+  // UploadKinInterface
+  //
+  // ## Paramerters
+  //
+  // - kin_id: Kin id
+  // - files: Files to upload
+  //
+  // ## Returns
+  //
+  // - link_url: Link to the uploaded file
+  rpc UploadKinInterface(UploadKinInterfaceRequest) returns (UploadKinInterfaceResponse) {
+    option (google.api.http) = {
+      post: "/v1/kin/{kin_id}/interface"
       body: "*"
     };
   }
@@ -365,6 +392,7 @@ message ListKin {
 // - name: Kin name
 // - description: Kin description
 // - origin_address: Kin origin address
+// - interface_address: Kin interface address
 // - kin_threads: Kin threads
 // - activated: Kin activated status
 message Kin {
@@ -376,10 +404,12 @@ message Kin {
   optional string description = 3;
   // origin_address: Kin origin address
   string origin_address = 4;
+  // interface_address: Kin interface address
+  optional string interface_address = 5;
   // kin_threads: Kin threads
-  repeated KinThreadReply kin_threads = 5;
+  repeated KinThreadReply kin_threads = 6;
   // activated: Kin activated status
-  bool activated = 6;
+  bool activated = 7;
 }
 
 // CreateKinRequest
@@ -588,4 +618,27 @@ message UpdateKinReviewRequest {
 //
 // - Ok if the review was updated
 message UpdateKinReviewResponse {
+}
+
+// UploadKinInterfaceRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+// - files: Files to upload
+message UploadKinInterfaceRequest {
+  // kin_id: Kin id
+  string kin_id = 1;
+  // files: Files to upload
+  repeated kin.v1.File files = 2;
+}
+
+// UploadKinInterfaceResponse
+//
+// ## Returns
+//
+// - link_url: Link to the uploaded file
+message UploadKinInterfaceResponse {
+  // link_url: Link to the uploaded file
+  string link_url = 1;
 }
