@@ -76,17 +76,51 @@ service AuthService {
   }
 }
 
+// TraceInfo
+//
+// ## Fields
+// 
+// - country_code: Country code
+// - country_name: Country name
+// - city: City
+// - postal: Postal code
+// - latitude: Latitude
+// - longitude: Longitude
+// - ipv4: IPv4
+// - state: State
+message TraceInfo {
+  // country_code: Country code
+  string country_code = 1;
+  // country_name: Country name
+  string country_name = 2;
+  // city: City
+  string city = 3;
+  // postal: Postal code
+  string postal = 4;
+  // latitude: Latitude
+  string latitude = 5;
+  // longitude: Longitude
+  string longitude = 6;
+  // ipv4: IPv4
+  string ipv4 = 7;
+  // state: State
+  string state = 8;
+}
+
 // LoginRequest
 //
 // ## Fields
 //
 // - email: Email
 // - password: Password
+// - trace_info: TraceInfo
 message LoginRequest {
   // email: Email
   string email = 1;
   // password: Password
   string password = 2;
+  // trace_info: TraceInfo
+  TraceInfo trace_info = 3;
 }
 
 // LoginResponse
