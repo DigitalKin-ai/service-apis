@@ -106,9 +106,9 @@ message TraceInfo {
   // isp: Internet Service Provider
   string isp = 5;
   // lat: Latitude
-  string lat = 6;
+  float lat = 6;
   // lon: Longitude
-  string lon = 7;
+  float lon = 7;
   // org: Organization
   string org = 8;
   // query: IPv4 address
