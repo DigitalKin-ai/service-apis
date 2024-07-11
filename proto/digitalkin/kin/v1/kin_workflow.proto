@@ -343,7 +343,7 @@ message ReadKinNodesWorkflowRequest {
 // - nodes: List of nodes
 message ReadKinNodesWorkflowResponse {
   // nodes: List of nodes
-  repeated Node nodes = 1;
+  repeated DataNode data_nodes = 1;
 }
 
 // AddNodeWorkflowRequest
