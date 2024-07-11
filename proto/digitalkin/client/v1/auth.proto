@@ -80,31 +80,49 @@ service AuthService {
 //
 // ## Fields
 // 
-// - country_code: Country code
-// - country_name: Country name
+// - as: the name of the operator
 // - city: City
-// - postal: Postal code
-// - latitude: Latitude
-// - longitude: Longitude
-// - ipv4: IPv4
-// - state: State
+// - country: Country name
+// - country_code: Country code
+// - isp: Internet Service Provider
+// - lat: Latitude
+// - lon: Longitude
+// - org: Organization
+// - query: IPv4 address
+// - region: Region code
+// - region_name: Region name
+// - status: Status message
+// - timezone: Timezone
+// - zip: Zip code
 message TraceInfo {
-  // country_code: Country code
-  string country_code = 1;
-  // country_name: Country name
-  string country_name = 2;
+  // as: the name of the operator
+  string as = 1;
   // city: City
-  string city = 3;
-  // postal: Postal code
-  string postal = 4;
-  // latitude: Latitude
-  string latitude = 5;
-  // longitude: Longitude
-  string longitude = 6;
-  // ipv4: IPv4
-  string ipv4 = 7;
-  // state: State
-  string state = 8;
+  string city = 2;
+  // country: Country name
+  string country = 3;
+  // country_code: Country code
+  string country_code = 4;
+  // isp: Internet Service Provider
+  string isp = 5;
+  // lat: Latitude
+  string lat = 6;
+  // lon: Longitude
+  string lon = 7;
+  // org: Organization
+  string org = 8;
+  // query: IPv4 address
+  string query = 9;
+  // region: Region code
+  string region = 10;
+  // region_name: Region name
+  string region_name = 11;
+  // status: Status message
+  string status = 12;
+  // timezone: Timezone
+  string timezone = 13;
+  // zip: Zip code
+  string zip = 14;
 }
 
 // LoginRequest
