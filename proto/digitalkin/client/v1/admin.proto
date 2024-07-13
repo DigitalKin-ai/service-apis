@@ -20,6 +20,7 @@ syntax = "proto3";
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/common/v1/common.proto";
 
 // AdminService
 service AdminService {
@@ -99,7 +100,7 @@ message UserAdminReply {
 // - nb_kins: Number of kins
 message OrganizationAdminReply {
   // id: Organization ID
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Organization name
   string name = 2;
   // activated: Is the organization activated
@@ -122,7 +123,7 @@ message OrganizationAdminReply {
 // - nb_threads: Number of threads
 message KinAdminReply {
   // id: Kin ID
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Kin name
   string name = 2;
   // activated: Is the kin activated

@@ -17,33 +17,8 @@
 
 syntax = "proto3";
 
-package digitalkin.common;
+package digitalkin.common.v1;
 
-// CommonService
-service CommonService {
-}
-
-// Id
-// 
-// ## Enum
-//
-// - NUMBER: Number
-// - STRING: String
-// - ARRAY: Array
-// - OBJECT: Object
-// - GENERATE: Generate
-enum Id {
-  // NUMBER: Number
-  NUMBER = 0;
-  // STRING: String
-  STRING = 1;
-  // ARRAY: Array
-  ARRAY = 2;
-  // OBJECT: Object
-  OBJECT = 3;
-  // GENERATE: Generate
-  GENERATE = 4;
-}
 
 // Thing
 //
@@ -52,6 +27,47 @@ enum Id {
 // - id: Id
 // - tb: Type
 message Thing {
-  Id id = 1;
+  string id = 1;
   string tb = 2;
+}
+
+// File
+//
+// ## Fields
+//
+// - name: Name of the file
+// - type: Type of the file
+// - content: Content of the file
+message File {
+  // name: Name of the file
+  string name = 1;
+  // type: Type of the file
+  string type = 2;
+  // content: Content of the file
+  bytes content = 3;
+}
+
+// UserReply
+//
+// ## Fields
+//
+// - user_name: The name of the user
+// - first_name: The first name of the user
+// - last_name: The last name of the user
+// - email: The email of the user
+// - avatar: The avatar of the user
+// - activated: True if the user is activated
+message UserReply {
+  // user_name: The name of the user
+  string user_name = 1;
+  // first_name: The first name of the user
+  optional string first_name = 2;
+  // last_name: The last name of the user
+  optional string last_name = 3;
+  // email: The email of the user
+  string email = 4;
+  // avatar: The avatar of the user
+  optional string avatar = 5;
+  // activated: True if the user is activated
+  bool activated = 6;
 }

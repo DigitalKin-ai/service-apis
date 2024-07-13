@@ -22,6 +22,7 @@ package digitalkin.client.v1;
 import "google/api/annotations.proto";
 
 import "digitalkin/client/v1/organization.proto";
+import "digitalkin/common/v1/common.proto";
 
 // UserService
 service UserService {
@@ -357,11 +358,11 @@ service UserService {
 // - activated: Is the organization activated
 message OrganizationReply {
   // id: Organization ID
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Organization name
   string name = 2;
   // kins: List of kins
-  repeated string kins = 3;
+  repeated digitalkin.common.v1.Thing kins = 3;
   // credit_amount: Credit amount
   optional int64 credit_amount = 4;
   // is_owner: Is the user the owner
@@ -381,7 +382,6 @@ message OrganizationReply {
 // - avatar: Avatar
 // - organizations: List of organizations
 // - fav_kins: List of fav kins
-// - credit_amount: Credit amount
 // - usage_types: Usage type
 // - activated: Is the user activated
 // - is_admin: Is the user an admin
@@ -400,14 +400,12 @@ message User {
   repeated OrganizationReply organizations = 6;
   // fav_kins: List of fav kins
   repeated KinReply fav_kins = 7;
-  // credit_amount: Credit amount
-  optional int64 credit_amount = 8;
   // usage_types: Usage type
-  repeated string usage_types = 9;
+  repeated string usage_types = 8;
   // activated: Is the user activated
-  bool activated = 10;
+  bool activated = 9;
   // is_admin: Is the user an admin
-  bool is_admin = 11;
+  bool is_admin = 10;
 }
 
 // CreateUserRequest
@@ -563,7 +561,7 @@ message UpdateUserUsageTypeResponse {
 // - avatar: Avatar
 message UpdateUserAvatarRequest {
   // avatar: Avatar
-  client.v1.File avatar = 3;
+  digitalkin.common.v1.File avatar = 3;
 }
 
 // UpdateUserAvatarResponse
@@ -734,7 +732,7 @@ message AddUserOrganizationRequest {
 // - organization_id: Organization id
 message RemoveUserOrganizationRequest {
   // organization_id: Organization id
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
 }
 
 // RemoveUserOrganizationResponse
@@ -752,7 +750,7 @@ message RemoveUserOrganizationResponse {
 // - kin_id: Kin id
 message AddUserKinRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // RemoveUserKinRequest
@@ -762,7 +760,7 @@ message AddUserKinRequest {
 // - kin_id: Kin id
 message RemoveUserKinRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // RemoveUserKinResponse

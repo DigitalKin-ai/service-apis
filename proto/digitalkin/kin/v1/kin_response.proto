@@ -20,6 +20,7 @@ syntax = "proto3";
 package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/common/v1/common.proto";
 
 // KinResponseService
 service KinResponseService {
@@ -37,6 +38,7 @@ service KinResponseService {
       get: "/v1/kin/response/{kin_response_id}"
     };
   }
+
   // DeteteKinResponse
   //
   // ## Parameters
@@ -49,6 +51,42 @@ service KinResponseService {
   rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse) {
     option (google.api.http) = {
       delete: "/v1/kin/response/{kin_response_id}"
+    };
+  }
+
+  // CreateKinResponse
+  //
+  // ## Parameters
+  //
+  // - kin_thread_id: Kin thread id
+  // - mission: Mission of the response
+  // - files: Files
+  //
+  // ## Returns
+  //
+  // - KinResponse
+  rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
+    option (google.api.http) = {
+        post: "/v1/kin/thread/{kin_thread_id}/create"
+        body: "*"
+    };
+  }
+
+  // ReplyInTheThread
+  //
+  // ## Parameters
+  //
+  // - kin_thread_id: Kin thread id
+  // - mission: Mission of the response
+  // - files: Files
+  //
+  // ## Returns
+  //
+  // - KinResponse
+  rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
+    option (google.api.http) = {
+        post: "/v1/kin/thread/{kin_thread_id}/reply"
+        body: "*"
     };
   }
 }
@@ -67,7 +105,7 @@ service KinResponseService {
 // - model: Model of the response
 message KinResponse {
   // id: Kin response id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // role: Role of the user who created the response
   optional string role = 2;
   // status: Status of the response
@@ -91,7 +129,7 @@ message KinResponse {
 // - kin_response_id: Kin response id
 message ReadKinResponseRequest {
   // kin_response_id: Kin response id
-  string kin_response_id = 1;
+  digitalkin.common.v1.Thing kin_response_id = 1;
 }
 
 // DeleteKinResponseRequest
@@ -101,7 +139,7 @@ message ReadKinResponseRequest {
 // - kin_response_id: Kin response id
 message DeleteKinResponseRequest {
   // kin_response_id: Kin response id
-  string kin_response_id = 1;
+  digitalkin.common.v1.Thing kin_response_id = 1;
 }
 
 // DeleteKinResponseResponse
@@ -110,4 +148,36 @@ message DeleteKinResponseRequest {
 //
 // - Ok if the response was deleted
 message DeleteKinResponseResponse {
+}
+
+// CreateKinResponseRequest
+//
+// ## Fields
+//
+// - kin_thread_id: Kin thread id
+// - mission: Mission of the response
+// - files: Files
+message CreateKinResponseRequest {
+  // kin_thread_id: Kin thread id
+  digitalkin.common.v1.Thing kin_thread_id = 1;
+  // mission: Mission of the response
+  string mission = 2;
+  // files: Files
+  repeated digitalkin.common.v1.File files = 3;
+}
+
+// ReplyInTheThreadRequest
+//
+// ## Fields
+//
+// - kin_thread_id: Kin thread id
+// - mission: Mission of the response
+// - files: Files
+message ReplyInTheThreadRequest {
+  // kin_thread_id: Kin thread id
+  digitalkin.common.v1.Thing kin_thread_id = 1;
+  // mission: Mission of the response
+  string mission = 2;
+  // files: Files
+  repeated digitalkin.common.v1.File files = 3;
 }

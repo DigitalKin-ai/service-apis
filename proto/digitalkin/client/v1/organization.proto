@@ -20,6 +20,7 @@ syntax = "proto3";
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/common/v1/common.proto";
 
 // OrganizationService
 service OrganizationService {
@@ -190,7 +191,7 @@ service OrganizationService {
   // ## Returns
   //
   // - Ok if the user was added
-  rpc AddUser(AddOrganizationUserRequest) returns (UserReply) {
+  rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
     option (google.api.http) = {
       post: "/v1/organization/{organization_id}/user"
       body: "*"
@@ -221,7 +222,7 @@ service OrganizationService {
   // ## Returns
   //
   // - Ok if the user was added
-  rpc AddModerator(AddOrganizationModeratorRequest) returns (UserReply) {
+  rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
     option (google.api.http) = {
       post: "/v1/organization/{organization_id}/moderator"
       body: "*"
@@ -306,47 +307,6 @@ service OrganizationService {
   }
 }
 
-// UserReply
-//
-// ## Fields
-//
-// - user_name: The name of the user
-// - first_name: The first name of the user
-// - last_name: The last name of the user
-// - email: The email of the user
-// - avatar: The avatar of the user
-// - activated: True if the user is activated
-message UserReply {
-  // user_name: The name of the user
-  string user_name = 1;
-  // first_name: The first name of the user
-  optional string first_name = 2;
-  // last_name: The last name of the user
-  optional string last_name = 3;
-  // email: The email of the user
-  string email = 4;
-  // avatar: The avatar of the user
-  optional string avatar = 5;
-  // activated: True if the user is activated
-  bool activated = 6;
-}
-
-// File
-//
-// ## Fields
-//
-// - name: The name of the file
-// - type: The type of the file
-// - content: The content of the file
-message File {
-  // name: The name of the file
-  string name = 1;
-  // type: The type of the file
-  string type = 2;
-  // content: The content of the file
-  bytes content = 3;
-}
-
 // KinReply
 //
 // ## Fields
@@ -357,7 +317,7 @@ message File {
 // - activated: True if the kin is activated
 message KinReply {
   // id: The id of the kin
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: The name of the kin
   string name = 2;
   // description: The description of the kin
@@ -383,7 +343,7 @@ message KinReply {
 // - activated: True if the organization is activated
 message Organization {
   // id: The id of the organization
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: The name of the organization
   string name = 2;
   // email: The email of the organization
@@ -391,13 +351,13 @@ message Organization {
   // logo: The logo of the organization
   optional string logo = 4;
   // owner: The owner of the organization
-  UserReply owner = 5;
+  digitalkin.common.v1.UserReply owner = 5;
   // invitation_code: The invitation code of the organization
   string invitation_code = 6;
   // moderators: The moderators of the organization
-  repeated UserReply moderators = 7;
+  repeated digitalkin.common.v1.UserReply moderators = 7;
   // users: The users of the organization
-  repeated UserReply users = 8;
+  repeated digitalkin.common.v1.UserReply users = 8;
   // kins: The kins of the organization
   repeated KinReply kins = 9;
   // credit_amount: The credit amount of the organization
@@ -426,7 +386,7 @@ message CreateOrganizationRequest {
 // - organization_id: The id of the organization
 message ReadOrganizationRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
 }
 
 // DeleteOrganizationRequest
@@ -436,7 +396,7 @@ message ReadOrganizationRequest {
 // - organization_id: The id of the organization
 message DeleteOrganizationRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
 }
 
 // DeleteOrganizationResponse
@@ -455,7 +415,7 @@ message DeleteOrganizationResponse {
 // - activated: True if the organization is activated
 message UpdateOrganizationActivatedRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // activated: True if the organization is activated
   bool activated = 2;
 }
@@ -476,7 +436,7 @@ message UpdateOrganizationActivatedResponse {
 // - name: The name of the organization
 message UpdateOrganizationNameRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // name: The name of the organization
   string name = 2;
 }
@@ -496,7 +456,7 @@ message UpdateOrganizationNameResponse {
 // - organization_id: The id of the organization
 message ChangeOrganizationEmailRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
 }
 
 // ChangeOrganizationEmailResponse
@@ -516,7 +476,7 @@ message ChangeOrganizationEmailResponse {
 // - temp_key: The temp key of the email
 message ResetOrganizationEmailRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // email: The email of the organization
   string email = 2;
   // temp_key: The temp key of the email
@@ -540,7 +500,7 @@ message ResetOrganizationEmailResponse {
 // - temp_key: The temp key of the email
 message UpdateOrganizationEmailRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // email: The email of the organization
   string email = 2;
   // temp_key: The temp key of the email
@@ -563,7 +523,7 @@ message UpdateOrganizationEmailResponse {
 // - credit_amount: The credit amount of the organization
 message UpdateOrganizationCreditAmountRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // credit_amount: The credit amount of the organization
   int64 credit_amount = 2;
 }
@@ -584,9 +544,9 @@ message UpdateOrganizationCreditAmountResponse {
 // - logo: The logo of the organization
 message UpdateOrganizationLogoRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // logo: The logo of the organization
-  File logo = 2;
+  digitalkin.common.v1.File logo = 2;
 }
 
 // UpdateOrganizationLogoResponse
@@ -607,7 +567,7 @@ message UpdateOrganizationLogoResponse {
 // - user_name: The name of the user
 message AddOrganizationUserRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // user_name: The name of the user
   string user_name = 2;
 }
@@ -620,7 +580,7 @@ message AddOrganizationUserRequest {
 // - user_name: The name of the user
 message RemoveOrganizationUserRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // user_name: The name of the user
   string user_name = 2;
 }
@@ -641,7 +601,7 @@ message RemoveOrganizationUserResponse {
 // - user_name: The name of the user
 message AddOrganizationModeratorRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // user_name: The name of the user
   string user_name = 2;
 }
@@ -654,7 +614,7 @@ message AddOrganizationModeratorRequest {
 // - user_name: The name of the user
 message RemoveOrganizationModeratorRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // user_name: The name of the user
   string user_name = 2;
 }
@@ -675,9 +635,9 @@ message RemoveOrganizationModeratorResponse {
 // - kin_id: The id of the kin
 message AddOrganizationKinRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // kin_id: The id of the kin
-  string kin_id = 2;
+  digitalkin.common.v1.Thing kin_id = 2;
 }
 
 // RemoveOrganizationKinRequest
@@ -688,9 +648,9 @@ message AddOrganizationKinRequest {
 // - kin_id: The id of the kin
 message RemoveOrganizationKinRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // kin_id: The id of the kin
-  string kin_id = 2;
+  digitalkin.common.v1.Thing kin_id = 2;
 }
 
 // RemoveOrganizationKinResponse
@@ -709,7 +669,7 @@ message RemoveOrganizationKinResponse {
 // - user_name: The name of the user
 message ChangeOrganizationOwnerRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // user_name: The name of the user
   string user_name = 2;
 }
@@ -730,7 +690,7 @@ message ChangeOrganizationOwnerResponse {
 // - name: The name of the user
 message RegenerateOrganizationInvitationCodeRequest {
   // organization_id: The id of the organization
-  string organization_id = 1;
+  digitalkin.common.v1.Thing organization_id = 1;
   // name: The name of the user
   string name = 2;
 }

@@ -21,6 +21,8 @@ package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
 
+import "digitalkin/common/v1/common.proto";
+
 // KinWorkflowService
 service KinWorkflowService {
   // CreateKinWorkflow
@@ -179,7 +181,7 @@ message DataEdge {
 // - data: Edge data
 message Edge {
   // id: Edge id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // source: Edge source
   string source = 2;
   // source_handle: Edge source handle
@@ -241,7 +243,7 @@ message Source {
 // - name: Node name
 message DataNode {
   // id: Node id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Node name
   string name = 2;
   // type: Node type
@@ -280,7 +282,7 @@ message Measured {
 // - dragging: Node dragging
 message Node {
   // id: Node id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // type: Node type
   string type = 2;
   // position: Node position
@@ -315,7 +317,7 @@ message Workflow {
 // - kin_id: Kin id
 message CreateKinWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // ReadKinWorkflowRequest
@@ -325,7 +327,7 @@ message CreateKinWorkflowRequest {
 // - kin_id: Kin id
 message ReadKinWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // ReadKinNodesWorkflowRequest
@@ -354,7 +356,7 @@ message ReadKinNodesWorkflowResponse {
 // - node: Node
 message AddNodeWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // node: Node
   Node node = 2;
 }
@@ -374,7 +376,7 @@ message AddNodeWorkflowResponse {
 // - edge: Edge
 message AddEdgeWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // edge: Edge
   Edge edge = 2;
 }
@@ -395,9 +397,9 @@ message AddEdgeWorkflowResponse {
 // - position: Position
 message UpdateNodePositionWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // node_id: Node id
-  string node_id = 2;
+  digitalkin.common.v1.Thing node_id = 2;
   // position: Position
   Position position = 3;
 }
@@ -417,9 +419,9 @@ message UpdateNodePositionWorkflowResponse {
 // - node_id: Node id
 message DeleteNodeWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // node_id: Node id
-  string node_id = 2;
+  digitalkin.common.v1.Thing node_id = 2;
 }
 // DeleteNodeWorkflowResponse
 //
@@ -437,9 +439,9 @@ message DeleteNodeWorkflowResponse {
 // - edge_id: Edge id
 message DeleteEdgeWorkflowRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // edge_id: Edge id
-  string edge_id = 2;
+  digitalkin.common.v1.Thing edge_id = 2;
 }
 // DeleteEdgeWorkflowResponse
 //

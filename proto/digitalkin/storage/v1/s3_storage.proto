@@ -20,6 +20,7 @@ syntax = "proto3";
 package digitalkin.storage.v1;
 
 import "google/api/annotations.proto";
+import "digitalkin/common/v1/common.proto";
 
 // StorageService
 service StorageService {
@@ -102,7 +103,7 @@ message UploadFileRequest {
   // file: File to upload
   File file = 1;
   // organization_id: Organization id
-  string organization_id = 2;
+  digitalkin.common.v1.Thing organization_id = 2;
 }
 
 // UploadFileResponse
@@ -125,7 +126,7 @@ message ReadFileRequest {
   // file_url: File url
   string file_url = 1;
   // organization_id: Organization id
-  string organization_id = 2;
+  digitalkin.common.v1.Thing organization_id = 2;
 }
 
 // ReadFileResponse

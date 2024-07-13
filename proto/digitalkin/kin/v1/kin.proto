@@ -23,6 +23,7 @@ import "google/api/annotations.proto";
 
 import "digitalkin/kin/v1/kin_response.proto";
 import "digitalkin/kin/v1/kin_thread.proto";
+import "digitalkin/common/v1/common.proto";
 
 // KinService
 service KinService {
@@ -240,36 +241,11 @@ service KinService {
 // - activated: Kin thread activated status
 message KinThreadReply {
   // id: Kin thread id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
   // activated: Kin thread activated status
   bool activated = 3;
-}
-
-// UserReply
-//
-// ## Fields
-//
-// - user_name: User name
-// - first_name: User first name
-// - last_name: User last name
-// - email: User email
-// - avatar: User avatar
-// - activated: User activated status
-message UserReply {
-  // user_name: User name
-  string user_name = 1;
-  // first_name: User first name
-  optional string first_name = 2;
-  // last_name: User last name
-  optional string last_name = 3;
-  // email: User email
-  string email = 4;
-  // avatar: User avatar
-  optional string avatar = 5;
-  // activated: User activated status
-  bool activated = 6;
 }
 
 // Tag
@@ -281,11 +257,11 @@ message UserReply {
 // - organization_id: Tag organization id
 message Tag {
   // id: Tag id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Tag name
   string name = 2;
   // organization_id: Tag organization id
-  optional string organization_id = 3;
+  optional digitalkin.common.v1.Thing organization_id = 3;
 }
 
 // Review
@@ -300,7 +276,7 @@ message Tag {
 // - review_date: Review date
 message Review {
   // id: Review id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // reviewer: Reviewer name
   string reviewer = 2;
   // reviewer_avatar: Reviewer avatar
@@ -337,7 +313,7 @@ message Review {
 // - activated: Kin activated status
 message StoreKin {
   // id: Kin id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Kin name
   string name = 2;
   // description: Kin description
@@ -361,9 +337,9 @@ message StoreKin {
   // licence: Kin licence
   optional string licence = 12;
   // admins: Kin admins
-  repeated UserReply admins = 13;
+  repeated digitalkin.common.v1.UserReply admins = 13;
   // creators: Kin creators
-  repeated UserReply creators = 14;
+  repeated digitalkin.common.v1.UserReply creators = 14;
   // reviews: Kin reviews
   repeated Review reviews = 15;
   // score: Kin score
@@ -397,7 +373,7 @@ message ListKin {
 // - activated: Kin activated status
 message Kin {
   // id: Kin id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // name: Kin name
   string name = 2;
   // description: Kin description
@@ -435,7 +411,7 @@ message CreateKinRequest {
 // - kin_id: Kin id
 message ReadKinRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // ReadAllKinRequest
@@ -453,7 +429,7 @@ message ReadAllKinRequest {
 // - kin_id: Kin id
 message DeleteKinRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
 }
 
 // DeleteKinResponse
@@ -472,7 +448,7 @@ message DeleteKinResponse {
 // - activated: Kin activated status
 message UpdateKinActivatedRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // activated: Kin activated status
   bool activated = 2;
 }
@@ -493,7 +469,7 @@ message UpdateKinActivatedResponse {
 // - name: Kin name
 message UpdateKinNameRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // name: Kin name
   string name = 2;
 }
@@ -514,7 +490,7 @@ message UpdateKinNameResponse {
 // - description: Kin description
 message UpdateKinDescriptionRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // description: Kin description
   string description = 2;
 }
@@ -535,7 +511,7 @@ message UpdateKinDescriptionResponse {
 // - origin_address: Kin origin address
 message UpdateKinOriginAddressRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // origin_address: Kin origin address
   string origin_address = 2;
 }
@@ -556,9 +532,9 @@ message UpdateKinOriginAddressResponse {
 // - image: Kin image
 message UpdateKinImageRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // image: Kin image
-  kin.v1.File image = 2;
+  digitalkin.common.v1.File image = 2;
 }
 
 // UpdateKinImageResponse
@@ -582,7 +558,7 @@ message UpdateKinImageResponse {
 // - review_comment: Review comment
 message CreateKinReviewRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // user_name: User name
   string user_name = 2;
   // user_avatar: User avatar
@@ -603,7 +579,7 @@ message CreateKinReviewRequest {
 // - review_comment: Review comment
 message UpdateKinReviewRequest {
   // id: Review id
-  string id = 1;
+  digitalkin.common.v1.Thing id = 1;
   // kin_id: Kin id
   string kin_id = 2;
   // review: Review
@@ -628,9 +604,9 @@ message UpdateKinReviewResponse {
 // - files: Files to upload
 message UploadKinInterfaceRequest {
   // kin_id: Kin id
-  string kin_id = 1;
+  digitalkin.common.v1.Thing kin_id = 1;
   // files: Files to upload
-  repeated kin.v1.File files = 2;
+  repeated digitalkin.common.v1.File files = 2;
 }
 
 // UploadKinInterfaceResponse
