@@ -101,7 +101,7 @@ service KinThreadService {
 // - activated: Activated
 message KinThread {
   // id: Kin thread id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
   // responses: Responses
@@ -120,7 +120,7 @@ message CreateKinThreadRequest {
   // thread_subject: Thread subject
   string thread_subject = 1;
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 2;
+  string kin_id = 2;
 }
 
 // ReadKinThreadRequest
@@ -130,7 +130,7 @@ message CreateKinThreadRequest {
 // - kin_thread_id: Kin thread id
 message ReadKinThreadRequest {
   // kin_thread_id: Kin thread id
-  digitalkin.common.v1.Thing kin_thread_id = 1;
+  string kin_thread_id = 1;
 }
 
 // DeleteKinThreadRequest
@@ -140,7 +140,7 @@ message ReadKinThreadRequest {
 // - kin_thread_id: Kin thread id
 message DeleteKinThreadRequest {
   // kin_thread_id: Kin thread id
-  digitalkin.common.v1.Thing kin_thread_id = 1;
+  string kin_thread_id = 1;
 }
 
 // DeleteKinThreadResponse
@@ -159,7 +159,7 @@ message DeleteKinThreadResponse {
 // - subject: Subject of the thread
 message UpdateSubjectRequest {
   // kin_thread_id: Kin thread id
-  digitalkin.common.v1.Thing kin_thread_id = 1;
+  string kin_thread_id = 1;
   // subject: Subject of the thread
   string subject = 2;
 }

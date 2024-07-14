@@ -103,7 +103,7 @@ message UploadFileRequest {
   // file: File to upload
   File file = 1;
   // organization_id: Organization id
-  digitalkin.common.v1.Thing organization_id = 2;
+  string organization_id = 2;
 }
 
 // UploadFileResponse
@@ -126,7 +126,7 @@ message ReadFileRequest {
   // file_url: File url
   string file_url = 1;
   // organization_id: Organization id
-  digitalkin.common.v1.Thing organization_id = 2;
+  string organization_id = 2;
 }
 
 // ReadFileResponse

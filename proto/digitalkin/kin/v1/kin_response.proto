@@ -105,7 +105,7 @@ service KinResponseService {
 // - model: Model of the response
 message KinResponse {
   // id: Kin response id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // role: Role of the user who created the response
   optional string role = 2;
   // status: Status of the response
@@ -129,7 +129,7 @@ message KinResponse {
 // - kin_response_id: Kin response id
 message ReadKinResponseRequest {
   // kin_response_id: Kin response id
-  digitalkin.common.v1.Thing kin_response_id = 1;
+  string kin_response_id = 1;
 }
 
 // DeleteKinResponseRequest
@@ -139,7 +139,7 @@ message ReadKinResponseRequest {
 // - kin_response_id: Kin response id
 message DeleteKinResponseRequest {
   // kin_response_id: Kin response id
-  digitalkin.common.v1.Thing kin_response_id = 1;
+  string kin_response_id = 1;
 }
 
 // DeleteKinResponseResponse
@@ -159,7 +159,7 @@ message DeleteKinResponseResponse {
 // - files: Files
 message CreateKinResponseRequest {
   // kin_thread_id: Kin thread id
-  digitalkin.common.v1.Thing kin_thread_id = 1;
+  string kin_thread_id = 1;
   // mission: Mission of the response
   string mission = 2;
   // files: Files
@@ -175,7 +175,7 @@ message CreateKinResponseRequest {
 // - files: Files
 message ReplyInTheThreadRequest {
   // kin_thread_id: Kin thread id
-  digitalkin.common.v1.Thing kin_thread_id = 1;
+  string kin_thread_id = 1;
   // mission: Mission of the response
   string mission = 2;
   // files: Files

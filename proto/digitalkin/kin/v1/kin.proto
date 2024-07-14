@@ -241,7 +241,7 @@ service KinService {
 // - activated: Kin thread activated status
 message KinThreadReply {
   // id: Kin thread id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
   // activated: Kin thread activated status
@@ -257,11 +257,11 @@ message KinThreadReply {
 // - organization_id: Tag organization id
 message Tag {
   // id: Tag id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // name: Tag name
   string name = 2;
   // organization_id: Tag organization id
-  optional digitalkin.common.v1.Thing organization_id = 3;
+  optional string organization_id = 3;
 }
 
 // Review
@@ -276,7 +276,7 @@ message Tag {
 // - review_date: Review date
 message Review {
   // id: Review id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // reviewer: Reviewer name
   string reviewer = 2;
   // reviewer_avatar: Reviewer avatar
@@ -313,7 +313,7 @@ message Review {
 // - activated: Kin activated status
 message StoreKin {
   // id: Kin id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // name: Kin name
   string name = 2;
   // description: Kin description
@@ -373,7 +373,7 @@ message ListKin {
 // - activated: Kin activated status
 message Kin {
   // id: Kin id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // name: Kin name
   string name = 2;
   // description: Kin description
@@ -411,7 +411,7 @@ message CreateKinRequest {
 // - kin_id: Kin id
 message ReadKinRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
 }
 
 // ReadAllKinRequest
@@ -429,7 +429,7 @@ message ReadAllKinRequest {
 // - kin_id: Kin id
 message DeleteKinRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
 }
 
 // DeleteKinResponse
@@ -448,7 +448,7 @@ message DeleteKinResponse {
 // - activated: Kin activated status
 message UpdateKinActivatedRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // activated: Kin activated status
   bool activated = 2;
 }
@@ -469,7 +469,7 @@ message UpdateKinActivatedResponse {
 // - name: Kin name
 message UpdateKinNameRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // name: Kin name
   string name = 2;
 }
@@ -490,7 +490,7 @@ message UpdateKinNameResponse {
 // - description: Kin description
 message UpdateKinDescriptionRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // description: Kin description
   string description = 2;
 }
@@ -511,7 +511,7 @@ message UpdateKinDescriptionResponse {
 // - origin_address: Kin origin address
 message UpdateKinOriginAddressRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // origin_address: Kin origin address
   string origin_address = 2;
 }
@@ -532,7 +532,7 @@ message UpdateKinOriginAddressResponse {
 // - image: Kin image
 message UpdateKinImageRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // image: Kin image
   digitalkin.common.v1.File image = 2;
 }
@@ -558,7 +558,7 @@ message UpdateKinImageResponse {
 // - review_comment: Review comment
 message CreateKinReviewRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // user_name: User name
   string user_name = 2;
   // user_avatar: User avatar
@@ -579,7 +579,7 @@ message CreateKinReviewRequest {
 // - review_comment: Review comment
 message UpdateKinReviewRequest {
   // id: Review id
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // kin_id: Kin id
   string kin_id = 2;
   // review: Review
@@ -604,7 +604,7 @@ message UpdateKinReviewResponse {
 // - files: Files to upload
 message UploadKinInterfaceRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
   // files: Files to upload
   repeated digitalkin.common.v1.File files = 2;
 }

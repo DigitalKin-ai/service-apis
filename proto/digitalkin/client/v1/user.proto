@@ -358,11 +358,11 @@ service UserService {
 // - activated: Is the organization activated
 message OrganizationReply {
   // id: Organization ID
-  digitalkin.common.v1.Thing id = 1;
+  string id = 1;
   // name: Organization name
   string name = 2;
   // kins: List of kins
-  repeated digitalkin.common.v1.Thing kins = 3;
+  repeated string kins = 3;
   // credit_amount: Credit amount
   optional int64 credit_amount = 4;
   // is_owner: Is the user the owner
@@ -732,7 +732,7 @@ message AddUserOrganizationRequest {
 // - organization_id: Organization id
 message RemoveUserOrganizationRequest {
   // organization_id: Organization id
-  digitalkin.common.v1.Thing organization_id = 1;
+  string organization_id = 1;
 }
 
 // RemoveUserOrganizationResponse
@@ -750,7 +750,7 @@ message RemoveUserOrganizationResponse {
 // - kin_id: Kin id
 message AddUserKinRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
 }
 
 // RemoveUserKinRequest
@@ -760,7 +760,7 @@ message AddUserKinRequest {
 // - kin_id: Kin id
 message RemoveUserKinRequest {
   // kin_id: Kin id
-  digitalkin.common.v1.Thing kin_id = 1;
+  string kin_id = 1;
 }
 
 // RemoveUserKinResponse
