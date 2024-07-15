@@ -19,8 +19,8 @@ syntax = "proto3";
 
 package digitalkin.kin.v1;
 
-import "google/api/annotations.proto";
 import "digitalkin/common/v1/common.proto";
+import "google/api/annotations.proto";
 
 // KinResponseService
 service KinResponseService {

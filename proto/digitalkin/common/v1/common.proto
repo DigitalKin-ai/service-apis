@@ -27,7 +27,9 @@ package digitalkin.common.v1;
 // - id: Id
 // - tb: Type
 message Thing {
+  // id: Id
   string id = 1;
+  // tb: Type
   string tb = 2;
 }
 
