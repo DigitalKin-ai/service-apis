@@ -46,12 +46,24 @@ service TicketingService {
 // ## Fields
 //
 // - ticket_title: Ticket title
-// - ticket_body: Ticket body
+// - description: Ticket description
+// - steps_to_reproduce: Steps to reproduce
+// - expected_behavior: Expected behavior
+// - actual_behavior: Actual behavior
+// - additional_information: Additional information
 message CreateTicketRequest {
   // ticket_title: Ticket title
   string ticket_title = 1;
-  // ticket_body: Ticket body
-  string ticket_body = 2;
+  // description: Ticket description
+  string description = 2;
+  // steps_to_reproduce: Steps to reproduce
+  optional string steps_to_reproduce = 3;
+  // expected_behavior: Expected behavior
+  optional string expected_behavior = 4;
+  // actual_behavior: Actual behavior
+  optional string actual_behavior = 5;
+  // additional_information: Additional information
+  optional string additional_information = 6;
 }
 
 // CreateTicketResponse
