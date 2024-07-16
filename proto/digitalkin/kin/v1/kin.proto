@@ -214,17 +214,17 @@ service KinService {
     };
   }
 
-  // UploadKinInterface
+  // UpdateKinInterface
   //
   // ## Paramerters
   //
   // - kin_id: Kin id
-  // - files: Files to upload
+  // - interface_url: Interface url
   //
   // ## Returns
   //
-  // - link_url: Link to the uploaded file
-  rpc UploadKinInterface(UploadKinInterfaceRequest) returns (UploadKinInterfaceResponse) {
+  // - Ok if the link was updated
+  rpc UpdateKinInterface(UpdateKinInterfaceRequest) returns (UpdateKinInterfaceResponse) {
     option (google.api.http) = {
       post: "/v1/kin/{kin_id}/interface"
       body: "*"
@@ -596,25 +596,23 @@ message UpdateKinReviewRequest {
 message UpdateKinReviewResponse {
 }
 
-// UploadKinInterfaceRequest
+// UpdateKinInterfaceRequest
 //
 // ## Fields
 //
 // - kin_id: Kin id
-// - files: Files to upload
-message UploadKinInterfaceRequest {
+// - interface_url: Interface url
+message UpdateKinInterfaceRequest {
   // kin_id: Kin id
   string kin_id = 1;
-  // files: Files to upload
-  repeated digitalkin.common.v1.File files = 2;
+  // interface_url: Interface url
+  string interface_url = 2;
 }
 
-// UploadKinInterfaceResponse
+// UpdateKinInterfaceResponse
 //
 // ## Returns
 //
-// - link_url: Link to the uploaded file
-message UploadKinInterfaceResponse {
-  // link_url: Link to the uploaded file
-  string link_url = 1;
+// - Ok if the link was updated
+message UpdateKinInterfaceResponse {
 }
