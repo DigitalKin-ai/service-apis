@@ -48,9 +48,9 @@ service TicketingService {
 // - ticket_title: Ticket title
 // - ticket_body: Ticket body
 message CreateTicketRequest {
-  // - ticket_title: Ticket title
+  // ticket_title: Ticket title
   string ticket_title = 1;
-  // - ticket_body: Ticket body
+  // ticket_body: Ticket body
   string ticket_body = 2;
 }
 
