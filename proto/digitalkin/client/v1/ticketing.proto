@@ -1,0 +1,75 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.client.v1;
+
+import "google/api/annotations.proto";
+
+// TicketingService
+service TicketingService {
+  // CreateTicket
+  //
+  // ## Parameters
+  //
+  // - ticket_title Ticket title
+  // - ticket_body: Ticket body
+  //
+  // ## Returns
+  //
+  // - Nothing
+  rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
+    option (google.api.http) = {
+      post: "/v1/ticket"
+      body: "*"
+    };
+  }
+}
+
+// CreateTicketRequest
+//
+// ## Fields
+//
+// - ticket_title: Ticket title
+// - description: Ticket description
+// - steps_to_reproduce: Steps to reproduce
+// - expected_behavior: Expected behavior
+// - actual_behavior: Actual behavior
+// - additional_information: Additional information
+message CreateTicketRequest {
+  // ticket_title: Ticket title
+  string ticket_title = 1;
+  // description: Ticket description
+  string description = 2;
+  // steps_to_reproduce: Steps to reproduce
+  optional string steps_to_reproduce = 3;
+  // expected_behavior: Expected behavior
+  optional string expected_behavior = 4;
+  // actual_behavior: Actual behavior
+  optional string actual_behavior = 5;
+  // additional_information: Additional information
+  optional string additional_information = 6;
+}
+
+// CreateTicketResponse
+//
+// ## Returns
+//
+// - Ok if the ticket was created
+message CreateTicketResponse {
+}
