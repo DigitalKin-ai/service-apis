@@ -214,17 +214,17 @@ service KinService {
     };
   }
 
-  // UploadKinInterface
+  // UpdateKinInterface
   //
   // ## Paramerters
   //
   // - kin_id: Kin id
-  // - files: Files to upload
+  // - interface_url: Interface url
   //
   // ## Returns
   //
-  // - link_url: Link to the uploaded file
-  rpc UploadKinInterface(UploadKinInterfaceRequest) returns (UploadKinInterfaceResponse) {
+  // - Ok if the link was updated
+  rpc UpdateKinInterface(UpdateKinInterfaceRequest) returns (UpdateKinInterfaceResponse) {
     option (google.api.http) = {
       post: "/v1/kin/{kin_id}/interface"
       body: "*"
@@ -330,24 +330,26 @@ message StoreKin {
   float version = 8;
   // origin_address: Kin origin address
   string origin_address = 9;
+  // interface_address: Kin interface address
+  optional string interface_address = 10;
   // languages: Kin languages
-  repeated string languages = 10;
+  repeated string languages = 11;
   // framework: Kin framework
-  optional string framework = 11;
+  optional string framework = 12;
   // licence: Kin licence
-  optional string licence = 12;
+  optional string licence = 13;
   // admins: Kin admins
-  repeated digitalkin.common.v1.UserReply admins = 13;
+  repeated digitalkin.common.v1.UserReply admins = 14;
   // creators: Kin creators
-  repeated digitalkin.common.v1.UserReply creators = 14;
+  repeated digitalkin.common.v1.UserReply creators = 15;
   // reviews: Kin reviews
-  repeated Review reviews = 15;
+  repeated Review reviews = 16;
   // score: Kin score
-  optional int64 score = 16;
+  optional int64 score = 17;
   // price: Kin price
-  optional int64 price = 17;
+  optional int64 price = 18;
   // activated: Kin activated status
-  bool activated = 18;
+  bool activated = 19;
 }
 
 // ListKin
@@ -596,25 +598,23 @@ message UpdateKinReviewRequest {
 message UpdateKinReviewResponse {
 }
 
-// UploadKinInterfaceRequest
+// UpdateKinInterfaceRequest
 //
 // ## Fields
 //
 // - kin_id: Kin id
-// - files: Files to upload
-message UploadKinInterfaceRequest {
+// - interface_url: Interface url
+message UpdateKinInterfaceRequest {
   // kin_id: Kin id
   string kin_id = 1;
-  // files: Files to upload
-  repeated digitalkin.common.v1.File files = 2;
+  // interface_url: Interface url
+  string interface_url = 2;
 }
 
-// UploadKinInterfaceResponse
+// UpdateKinInterfaceResponse
 //
 // ## Returns
 //
-// - link_url: Link to the uploaded file
-message UploadKinInterfaceResponse {
-  // link_url: Link to the uploaded file
-  string link_url = 1;
+// - Ok if the link was updated
+message UpdateKinInterfaceResponse {
 }
