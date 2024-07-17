@@ -19,6 +19,7 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "digitalkin/common/v1/common.proto";
 import "google/api/annotations.proto";
 
 // OrganizationService
@@ -190,7 +191,7 @@ service OrganizationService {
   // ## Returns
   //
   // - Ok if the user was added
-  rpc AddUser(AddOrganizationUserRequest) returns (UserReply) {
+  rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
     option (google.api.http) = {
       post: "/v1/organization/{organization_id}/user"
       body: "*"
@@ -221,7 +222,7 @@ service OrganizationService {
   // ## Returns
   //
   // - Ok if the user was added
-  rpc AddModerator(AddOrganizationModeratorRequest) returns (UserReply) {
+  rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
     option (google.api.http) = {
       post: "/v1/organization/{organization_id}/moderator"
       body: "*"
@@ -306,47 +307,6 @@ service OrganizationService {
   }
 }
 
-// UserReply
-//
-// ## Fields
-//
-// - user_name: The name of the user
-// - first_name: The first name of the user
-// - last_name: The last name of the user
-// - email: The email of the user
-// - avatar: The avatar of the user
-// - activated: True if the user is activated
-message UserReply {
-  // user_name: The name of the user
-  string user_name = 1;
-  // first_name: The first name of the user
-  optional string first_name = 2;
-  // last_name: The last name of the user
-  optional string last_name = 3;
-  // email: The email of the user
-  string email = 4;
-  // avatar: The avatar of the user
-  optional string avatar = 5;
-  // activated: True if the user is activated
-  bool activated = 6;
-}
-
-// File
-//
-// ## Fields
-//
-// - name: The name of the file
-// - type: The type of the file
-// - content: The content of the file
-message File {
-  // name: The name of the file
-  string name = 1;
-  // type: The type of the file
-  string type = 2;
-  // content: The content of the file
-  bytes content = 3;
-}
-
 // KinReply
 //
 // ## Fields
@@ -391,13 +351,13 @@ message Organization {
   // logo: The logo of the organization
   optional string logo = 4;
   // owner: The owner of the organization
-  UserReply owner = 5;
+  digitalkin.common.v1.UserReply owner = 5;
   // invitation_code: The invitation code of the organization
   string invitation_code = 6;
   // moderators: The moderators of the organization
-  repeated UserReply moderators = 7;
+  repeated digitalkin.common.v1.UserReply moderators = 7;
   // users: The users of the organization
-  repeated UserReply users = 8;
+  repeated digitalkin.common.v1.UserReply users = 8;
   // kins: The kins of the organization
   repeated KinReply kins = 9;
   // credit_amount: The credit amount of the organization
@@ -586,7 +546,7 @@ message UpdateOrganizationLogoRequest {
   // organization_id: The id of the organization
   string organization_id = 1;
   // logo: The logo of the organization
-  File logo = 2;
+  digitalkin.common.v1.File logo = 2;
 }
 
 // UpdateOrganizationLogoResponse

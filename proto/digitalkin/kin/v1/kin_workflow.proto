@@ -21,6 +21,8 @@ package digitalkin.kin.v1;
 
 import "google/api/annotations.proto";
 
+import "digitalkin/common/v1/common.proto";
+
 // KinWorkflowService
 service KinWorkflowService {
   // CreateKinWorkflow
@@ -340,10 +342,10 @@ message ReadKinNodesWorkflowRequest {
 //
 // ## Returns
 //
-// - nodes: List of nodes
+// - data_nodes: List of nodes
 message ReadKinNodesWorkflowResponse {
-  // nodes: List of nodes
-  repeated Node nodes = 1;
+  // data_nodes: List of nodes
+  repeated DataNode data_nodes = 1;
 }
 
 // AddNodeWorkflowRequest

@@ -19,6 +19,7 @@ syntax = "proto3";
 
 package digitalkin.storage.v1;
 
+import "digitalkin/common/v1/common.proto";
 import "google/api/annotations.proto";
 
 // StorageService

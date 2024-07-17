@@ -19,9 +19,9 @@ syntax = "proto3";
 
 package digitalkin.kin.v1;
 
-import "google/api/annotations.proto";
-
+import "digitalkin/common/v1/common.proto";
 import "digitalkin/kin/v1/kin_response.proto";
+import "google/api/annotations.proto";
 
 // KinThreadService
 service KinThreadService {
@@ -41,6 +41,7 @@ service KinThreadService {
         body: "*"
     };
   }
+
   // ReadKinThread
   //
   // ## Parameters
@@ -55,6 +56,7 @@ service KinThreadService {
         get: "/v1/kin/thread/{kin_thread_id}"
     };
   }
+
   // DeleteKinThread
   //
   // ## Parameters
@@ -69,6 +71,7 @@ service KinThreadService {
         delete: "/v1/kin/thread/{kin_thread_id}/delete"
     };
   }
+
   // UpdateSubject
   //
   // ## Parameters
@@ -85,56 +88,6 @@ service KinThreadService {
         body: "*"
     };
   }
-  // CreateKinResponse
-  //
-  // ## Parameters
-  //
-  // - kin_thread_id: Kin thread id
-  // - mission: Mission of the response
-  // - files: Files
-  //
-  // ## Returns
-  //
-  // - KinResponse
-  rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
-    option (google.api.http) = {
-        post: "/v1/kin/thread/{kin_thread_id}/create"
-        body: "*"
-    };
-  }
-  // ReplyInTheThread
-  //
-  // ## Parameters
-  //
-  // - kin_thread_id: Kin thread id
-  // - mission: Mission of the response
-  // - files: Files
-  //
-  // ## Returns
-  //
-  // - KinResponse
-  rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
-    option (google.api.http) = {
-        post: "/v1/kin/thread/{kin_thread_id}/reply"
-        body: "*"
-    };
-  }
-}
-
-// File
-//
-// ## Fields
-//
-// - name: Name of the file
-// - type: Type of the file
-// - content: Content of the file
-message File {
-  // name: Name of the file
-  string name = 1;
-  // type: Type of the file
-  string type = 2;
-  // content: Content of the file
-  bytes content = 3;
 }
 
 // KinThread
@@ -216,37 +169,5 @@ message UpdateSubjectRequest {
 //
 // - Ok if the subject was updated
 message UpdateSubjectResponse {
-}
-
-// CreateKinResponseRequest
-//
-// ## Fields
-//
-// - kin_thread_id: Kin thread id
-// - mission: Mission of the response
-// - files: Files
-message CreateKinResponseRequest {
-  // kin_thread_id: Kin thread id
-  string kin_thread_id = 1;
-  // mission: Mission of the response
-  string mission = 2;
-  // files: Files
-  repeated File files = 3;
-}
-
-// ReplyInTheThreadRequest
-//
-// ## Fields
-//
-// - kin_thread_id: Kin thread id
-// - mission: Mission of the response
-// - files: Files
-message ReplyInTheThreadRequest {
-  // kin_thread_id: Kin thread id
-  string kin_thread_id = 1;
-  // mission: Mission of the response
-  string mission = 2;
-  // files: Files
-  repeated File files = 3;
 }
 

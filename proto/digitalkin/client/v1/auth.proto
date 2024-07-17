@@ -76,17 +76,69 @@ service AuthService {
   }
 }
 
+// TraceInfo
+//
+// ## Fields
+// 
+// - as: the name of the operator
+// - city: City
+// - country: Country name
+// - country_code: Country code
+// - isp: Internet Service Provider
+// - lat: Latitude
+// - lon: Longitude
+// - org: Organization
+// - query: IPv4 address
+// - region: Region code
+// - region_name: Region name
+// - status: Status message
+// - timezone: Timezone
+// - zip: Zip code
+message TraceInfo {
+  // as: the name of the operator
+  string as = 1;
+  // city: City
+  string city = 2;
+  // country: Country name
+  string country = 3;
+  // country_code: Country code
+  string country_code = 4;
+  // isp: Internet Service Provider
+  string isp = 5;
+  // lat: Latitude
+  float lat = 6;
+  // lon: Longitude
+  float lon = 7;
+  // org: Organization
+  string org = 8;
+  // query: IPv4 address
+  string query = 9;
+  // region: Region code
+  string region = 10;
+  // region_name: Region name
+  string region_name = 11;
+  // status: Status message
+  string status = 12;
+  // timezone: Timezone
+  string timezone = 13;
+  // zip: Zip code
+  string zip = 14;
+}
+
 // LoginRequest
 //
 // ## Fields
 //
 // - email: Email
 // - password: Password
+// - trace_info: TraceInfo
 message LoginRequest {
   // email: Email
   string email = 1;
   // password: Password
   string password = 2;
+  // trace_info: TraceInfo
+  TraceInfo trace_info = 3;
 }
 
 // LoginResponse
