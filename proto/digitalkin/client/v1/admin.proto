@@ -87,7 +87,7 @@ message UserAdminReply {
   // activated: Is the user activated
   bool activated = 3;
   // avatar: User avatar
-  string avatar = 4;
+  optional string avatar = 4;
   // nb_kins: Number of kins
   optional int64 nb_kins = 5;
   // nb_organizations: Number of organizations
