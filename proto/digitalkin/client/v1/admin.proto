@@ -74,19 +74,24 @@ service AdminService {
 //
 // ## Fields
 //
+// - id: User ID
 // - user_name: User name
 // - activated: Is the user activated
 // - nb_kins: Number of kins
 // - nb_organizations: Number of organizations
 message UserAdminReply {
+  // id: User ID
+  string id = 1;
   // user_name: User name
-  string user_name = 1;
+  string user_name = 2;
   // activated: Is the user activated
-  bool activated = 2;
+  bool activated = 3;
+  // avatar: User avatar
+  string avatar = 4;
   // nb_kins: Number of kins
-  optional int64 nb_kins = 3;
+  optional int64 nb_kins = 5;
   // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 4;
+  optional int64 nb_organizations = 6;
 }
 
 // OrganizationAdminReply
