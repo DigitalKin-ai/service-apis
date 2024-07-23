@@ -83,11 +83,11 @@ message UserAdminReply {
   // id: User ID
   string id = 1;
   // user_name: User name
-  string user_name = 2;
+  string name = 2;
   // activated: Is the user activated
   bool activated = 3;
   // avatar: User avatar
-  optional string avatar = 4;
+  optional string logo = 4;
   // nb_kins: Number of kins
   optional int64 nb_kins = 5;
   // nb_organizations: Number of organizations
@@ -101,6 +101,7 @@ message UserAdminReply {
 // - id: Organization ID
 // - name: Organization name
 // - activated: Is the organization activated
+// - logo: Organization logo
 // - nb_members: Number of members
 // - nb_kins: Number of kins
 message OrganizationAdminReply {
@@ -110,10 +111,12 @@ message OrganizationAdminReply {
   string name = 2;
   // activated: Is the organization activated
   bool activated = 3;
+  // logo: Organization logo
+  optional string logo = 4;
   // nb_members: Number of members
-  optional int64 nb_members = 4;
+  optional int64 nb_members = 5;
   // nb_kins: Number of kins
-  optional int64 nb_kins = 5;
+  optional int64 nb_kins = 6;
 }
 
 // KinAdminReply
@@ -123,6 +126,7 @@ message OrganizationAdminReply {
 // - id: Kin ID
 // - name: Kin name
 // - activated: Is the kin activated
+// - logo: Kin logo
 // - nb_members: Number of members
 // - nb_organizations: Number of organizations
 // - nb_threads: Number of threads
@@ -133,12 +137,14 @@ message KinAdminReply {
   string name = 2;
   // activated: Is the kin activated
   bool activated = 3;
+  // logo: Kin logo
+  optional string logo = 4;
   // nb_members: Number of members
-  optional int64 nb_members = 4;
+  optional int64 nb_members = 5;
   // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 5;
+  optional int64 nb_organizations = 6;
   // nb_threads: Number of threads
-  optional int64 nb_threads = 6;
+  optional int64 nb_threads = 7;
 }
 
 // ReadUsersAdminRequest
