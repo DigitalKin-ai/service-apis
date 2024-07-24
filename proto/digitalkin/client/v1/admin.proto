@@ -128,10 +128,10 @@ service AdminService {
   //
   // - Ok if the invitation code was regenerated
   rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
-   option (google.api.http) = {
-     post: "/v1/admin/regenerate_invitation_code"
-     body: "*"
-   };
+    option (google.api.http) = {
+      post: "/v1/admin/regenerate_invitation_code"
+      body: "*"
+    };
   }
 
   // GetExperimentalKins
