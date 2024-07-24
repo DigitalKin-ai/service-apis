@@ -68,6 +68,86 @@ service AdminService {
       get: "/v1/admin/kins"
     };
   }
+
+  // UpdateActivation
+  //
+  // ## Parameters
+  //
+  // - id: ID of the object to update
+  // - activated: New activation status
+  //
+  // ## Returns
+  //
+  // - Ok if the object was updated
+  rpc UpdateActivation(UpdateActivationRequest) returns (UpdateActivationResponse) {
+    option (google.api.http) = {
+      post: "/v1/admin/update_activation"
+      body: "*"
+    };
+  }
+
+  // SendResetEmail
+  //
+  // ## Parameters
+  //
+  // - id: ID of the object to send the email
+  //
+  // ## Returns
+  //
+  // - Ok if the email was sent
+    rpc SendResetEmail(SendResetEmailRequest) returns (SendResetEmailResponse) {
+      option (google.api.http) = {
+        post: "/v1/admin/send_reset_email"
+        body: "*"
+      };
+    }
+
+    // SendResetPassword
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to reset the password
+    //
+    // ## Returns
+    //
+    // - Ok if the password was reset
+    rpc SendResetPassword(SendResetPasswordRequest) returns (SendResetPasswordResponse) {
+      option (google.api.http) = {
+        post: "/v1/admin/send_reset_password"
+        body: "*"
+      };
+    }
+
+    // RegenerateInvitationCode
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to regenerate the invitation code
+    //
+    // ## Returns
+    //
+    // - Ok if the invitation code was regenerated
+    rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
+      option (google.api.http) = {
+        post: "/v1/admin/regenerate_invitation_code"
+        body: "*"
+      };
+    }
+
+    // GetExperimentalKins
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - Ok if the experimental kins were retrieved
+    rpc GetExperimentalKins(GetExperimentalKinsRequest) returns (GetExperimentalKinsResponse) {
+      option (google.api.http) = {
+        get: "/v1/admin/experimental_kins"
+      };
+    }
 }
 
 // UserAdminReply
@@ -197,6 +277,99 @@ message ReadKinsAdminRequest {
 //
 // - A stream of kins
 message ReadKinsAdminResponse {
+  // kins: A stream of kins
+  repeated KinAdminReply kins = 1;
+}
+
+// UpdateActivationRequest
+//
+// ## Fields
+//
+// - id: ID of the object to update
+// - activated: New activation status
+message UpdateActivationRequest {
+  // id: ID of the object to update
+  string id = 1;
+  // activated: New activation status
+  bool activated = 2;
+}
+
+// UpdateActivationResponse
+//
+// ## Returns
+//
+// - Ok if the object was updated
+message UpdateActivationResponse {
+}
+
+// SendResetEmailRequest
+//
+// ## Fields
+//
+// - id: ID of the object to send the email
+message SendResetEmailRequest {
+  // id: ID of the object to send the email
+  string id = 1;
+}
+
+// SendResetEmailResponse
+//
+// ## Returns
+//
+// - Ok if the email was sent
+message SendResetEmailResponse {
+}
+
+// SendResetPasswordRequest
+//
+// ## Fields
+//
+// - id: ID of the object to reset the password
+message SendResetPasswordRequest {
+  // id: ID of the object to reset the password
+  string id = 1;
+}
+
+// SendResetPasswordResponse
+//
+// ## Returns
+//
+// - Ok if the password was reset
+message SendResetPasswordResponse {
+}
+
+// RegenerateInvitationCodeRequest
+//
+// ## Fields
+//
+// - id: ID of the object to regenerate the invitation code
+message RegenerateInvitationCodeRequest {
+  // id: ID of the object to regenerate the invitation code
+  string id = 1;
+}
+
+// RegenerateInvitationCodeResponse
+//
+// ## Returns
+//
+// - Ok if the invitation code was regenerated
+message RegenerateInvitationCodeResponse {
+}
+
+// GetExperimentalKinsRequest
+//
+// ## Fields
+//
+// - Nothing
+message GetExperimentalKinsRequest {
+}
+
+// GetExperimentalKinsResponse
+//
+// ## Returns
+//
+// - Ok if the experimental kins were retrieved
+message GetExperimentalKinsResponse {
   // kins: A stream of kins
   repeated KinAdminReply kins = 1;
 }
