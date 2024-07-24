@@ -95,59 +95,59 @@ service AdminService {
   // ## Returns
   //
   // - Ok if the email was sent
-    rpc SendResetEmail(SendResetEmailRequest) returns (SendResetEmailResponse) {
-      option (google.api.http) = {
-        post: "/v1/admin/send_reset_email"
-        body: "*"
-      };
-    }
+  rpc SendResetEmail(SendResetEmailRequest) returns (SendResetEmailResponse) {
+    option (google.api.http) = {
+      post: "/v1/admin/send_reset_email"
+      body: "*"
+    };
+  }
 
-    // SendResetPassword
-    //
-    // ## Parameters
-    //
-    // - id: ID of the object to reset the password
-    //
-    // ## Returns
-    //
-    // - Ok if the password was reset
-    rpc SendResetPassword(SendResetPasswordRequest) returns (SendResetPasswordResponse) {
-      option (google.api.http) = {
-        post: "/v1/admin/send_reset_password"
-        body: "*"
-      };
-    }
+  // SendResetPassword
+  //
+  // ## Parameters
+  //
+  // - id: ID of the object to reset the password
+  //
+  // ## Returns
+  //
+  // - Ok if the password was reset
+  rpc SendResetPassword(SendResetPasswordRequest) returns (SendResetPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v1/admin/send_reset_password"
+      body: "*"
+    };
+  }
 
-    // RegenerateInvitationCode
-    //
-    // ## Parameters
-    //
-    // - id: ID of the object to regenerate the invitation code
-    //
-    // ## Returns
-    //
-    // - Ok if the invitation code was regenerated
-    rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
-      option (google.api.http) = {
-        post: "/v1/admin/regenerate_invitation_code"
-        body: "*"
-      };
-    }
+  // RegenerateInvitationCode
+  //
+  // ## Parameters
+  //
+  // - id: ID of the object to regenerate the invitation code
+  //
+  // ## Returns
+  //
+  // - Ok if the invitation code was regenerated
+  rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
+   option (google.api.http) = {
+     post: "/v1/admin/regenerate_invitation_code"
+     body: "*"
+   };
+  }
 
-    // GetExperimentalKins
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // - Ok if the experimental kins were retrieved
-    rpc GetExperimentalKins(GetExperimentalKinsRequest) returns (GetExperimentalKinsResponse) {
-      option (google.api.http) = {
-        get: "/v1/admin/experimental_kins"
-      };
-    }
+  // GetExperimentalKins
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - Ok if the experimental kins were retrieved
+  rpc GetExperimentalKins(GetExperimentalKinsRequest) returns (GetExperimentalKinsResponse) {
+    option (google.api.http) = {
+      get: "/v1/admin/experimental_kins"
+    };
+  }
 }
 
 // UserAdminReply
@@ -162,11 +162,11 @@ service AdminService {
 message UserAdminReply {
   // id: User ID
   string id = 1;
-  // user_name: User name
+  // name: User name
   string name = 2;
   // activated: Is the user activated
   bool activated = 3;
-  // avatar: User avatar
+  // logo: User logo
   optional string logo = 4;
   // nb_kins: Number of kins
   optional int64 nb_kins = 5;
