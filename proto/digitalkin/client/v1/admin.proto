@@ -174,6 +174,7 @@ service AdminService {
 // - id: User ID
 // - user_name: User name
 // - activated: Is the user activated
+// - isAdmin: Is the user an admin
 // - nb_kins: Number of kins
 // - nb_organizations: Number of organizations
 message UserAdminReply {
@@ -183,12 +184,14 @@ message UserAdminReply {
   string name = 2;
   // activated: Is the user activated
   bool activated = 3;
+  // isAdmin: Is the user an admin
+  bool isAdmin = 4;
   // logo: User logo
-  optional string logo = 4;
+  optional string logo = 5;
   // nb_kins: Number of kins
-  optional int64 nb_kins = 5;
+  optional int64 nb_kins = 6;
   // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 6;
+  optional int64 nb_organizations = 7;
 }
 
 // OrganizationAdminReply
