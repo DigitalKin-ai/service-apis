@@ -385,6 +385,4 @@ message GetExperimentalKinsRequest {
 //
 // - Ok if the experimental kins were retrieved
 message GetExperimentalKinsResponse {
-  // kins: A stream of kins
-  repeated KinAdminReply kins = 1;
 }
