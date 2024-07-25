@@ -355,9 +355,12 @@ message SendResetPasswordResponse {
 // ## Fields
 //
 // - id: ID of the object to regenerate the invitation code
+// - name: Name of the object to regenerate the invitation code
 message RegenerateInvitationCodeRequest {
   // id: ID of the object to regenerate the invitation code
   string id = 1;
+  // name: Name of the object to regenerate the invitation code
+  string name = 2;
 }
 
 // RegenerateInvitationCodeResponse
