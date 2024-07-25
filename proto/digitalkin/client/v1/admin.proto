@@ -307,9 +307,15 @@ message UpdateActivationResponse {
 // ## Fields
 //
 // - id: ID of the object to send the email
+// - email: Email to send the reset email to
+// - name: Name of the object to send the email to
 message SendResetEmailRequest {
   // id: ID of the object to send the email
   string id = 1;
+  // email: Email to send the reset email to
+  string email = 2;
+  // name: Name of the object to send the email to
+  string name = 3;
 }
 
 // SendResetEmailResponse
@@ -325,9 +331,15 @@ message SendResetEmailResponse {
 // ## Fields
 //
 // - id: ID of the object to reset the password
+// - email: Email to send the reset email to
+// - name: Name of the object to send the email to
 message SendResetPasswordRequest {
   // id: ID of the object to reset the password
   string id = 1;
+  // email: Email to send the reset email to
+  string email = 2;
+  // name: Name of the object to send the email to
+  string name = 3;
 }
 
 // SendResetPasswordResponse
