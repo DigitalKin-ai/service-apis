@@ -173,6 +173,7 @@ service AdminService {
 //
 // - id: User ID
 // - user_name: User name
+// - email: User email
 // - activated: Is the user activated
 // - isAdmin: Is the user an admin
 // - nb_kins: Number of kins
@@ -182,16 +183,18 @@ message UserAdminReply {
   string id = 1;
   // name: User name
   string name = 2;
+  // email: User email
+  string email = 3;
   // activated: Is the user activated
-  bool activated = 3;
+  bool activated = 4;
   // isAdmin: Is the user an admin
-  bool isAdmin = 4;
+  bool isAdmin = 5;
   // logo: User logo
-  optional string logo = 5;
+  optional string logo = 6;
   // nb_kins: Number of kins
-  optional int64 nb_kins = 6;
+  optional int64 nb_kins = 7;
   // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 7;
+  optional int64 nb_organizations = 8;
 }
 
 // OrganizationAdminReply
@@ -200,6 +203,7 @@ message UserAdminReply {
 //
 // - id: Organization ID
 // - name: Organization name
+// - email: Organization email
 // - activated: Is the organization activated
 // - logo: Organization logo
 // - nb_members: Number of members
@@ -209,14 +213,16 @@ message OrganizationAdminReply {
   string id = 1;
   // name: Organization name
   string name = 2;
+  // email: Organization email
+  string email = 3;
   // activated: Is the organization activated
-  bool activated = 3;
+  bool activated = 4;
   // logo: Organization logo
-  optional string logo = 4;
+  optional string logo = 5;
   // nb_members: Number of members
-  optional int64 nb_members = 5;
+  optional int64 nb_members = 6;
   // nb_kins: Number of kins
-  optional int64 nb_kins = 6;
+  optional int64 nb_kins = 7;
 }
 
 // KinAdminReply
