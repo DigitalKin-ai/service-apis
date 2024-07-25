@@ -86,6 +86,23 @@ service AdminService {
     };
   }
 
+  // UpdateIsAdmin
+  //
+  // ## Parameters
+  //
+  // - id: ID of the object to update
+  // - is_admin: New is_admin status
+  //
+  // ## Returns
+  //
+  // - Ok if the object was updated
+  rpc UpdateIsAdmin(UpdateIsAdminRequest) returns (UpdateIsAdminResponse) {
+    option (google.api.http) = {
+      post: "/v1/admin/update_is_admin"
+      body: "*"
+    };
+  }
+
   // SendResetEmail
   //
   // ## Parameters
@@ -300,6 +317,27 @@ message UpdateActivationRequest {
 //
 // - Ok if the object was updated
 message UpdateActivationResponse {
+}
+
+// UpdateIsAdminRequest
+//
+// ## Fields
+//
+// - id: ID of the object to update
+// - is_admin: New is_admin status
+message UpdateIsAdminRequest {
+  // id: ID of the object to update
+  string id = 1;
+  // is_admin: New is_admin status
+  bool is_admin = 2;
+}
+
+// UpdateIsAdminResponse
+//
+// ## Returns
+//
+// - Ok if the object was updated
+message UpdateIsAdminResponse {
 }
 
 // SendResetEmailRequest
