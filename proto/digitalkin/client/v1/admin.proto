@@ -175,7 +175,7 @@ service AdminService {
 // - user_name: User name
 // - email: User email
 // - activated: Is the user activated
-// - isAdmin: Is the user an admin
+// - is_admin: Is the user an admin
 // - nb_kins: Number of kins
 // - nb_organizations: Number of organizations
 message UserAdminReply {
@@ -187,8 +187,8 @@ message UserAdminReply {
   string email = 3;
   // activated: Is the user activated
   bool activated = 4;
-  // isAdmin: Is the user an admin
-  bool isAdmin = 5;
+  // is_admin: Is the user an admin
+  bool is_admin = 5;
   // logo: User logo
   optional string logo = 6;
   // nb_kins: Number of kins
