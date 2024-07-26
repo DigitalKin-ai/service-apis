@@ -120,8 +120,8 @@ message KinThread {
   string id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
-  // worflow: worflow
-  optional digitalkin.common.v1.WorkflowReply worflow = 3;
+  // workflow: workflow
+  optional digitalkin.common.v1.WorkflowReply workflow = 3;
   // kin: kin
   digitalkin.common.v1.KinReply kin = 4;
   // responses: Responses
