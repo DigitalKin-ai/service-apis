@@ -1,0 +1,75 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.common.v1;
+
+
+// Thing
+//
+// ## Fields
+//
+// - id: Id
+// - tb: Type
+message Thing {
+  // id: Id
+  string id = 1;
+  // tb: Type
+  string tb = 2;
+}
+
+// File
+//
+// ## Fields
+//
+// - name: Name of the file
+// - type: Type of the file
+// - content: Content of the file
+message File {
+  // name: Name of the file
+  string name = 1;
+  // type: Type of the file
+  string type = 2;
+  // content: Content of the file
+  bytes content = 3;
+}
+
+// UserReply
+//
+// ## Fields
+//
+// - user_name: The name of the user
+// - first_name: The first name of the user
+// - last_name: The last name of the user
+// - email: The email of the user
+// - avatar: The avatar of the user
+// - activated: True if the user is activated
+message UserReply {
+  // user_name: The name of the user
+  string user_name = 1;
+  // first_name: The first name of the user
+  optional string first_name = 2;
+  // last_name: The last name of the user
+  optional string last_name = 3;
+  // email: The email of the user
+  string email = 4;
+  // avatar: The avatar of the user
+  optional string avatar = 5;
+  // activated: True if the user is activated
+  bool activated = 6;
+}

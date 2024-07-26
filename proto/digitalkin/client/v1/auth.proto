@@ -1,49 +1,192 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
 syntax = "proto3";
 
 package digitalkin.client.v1;
 
 import "google/api/annotations.proto";
+
 import "digitalkin/client/v1/user.proto";
 
+// AuthService
 service AuthService {
-    rpc Login(LoginRequest) returns (LoginResponse) {
-        option (google.api.http) = {
-            post: "/v1/login"
-            body: "*"
-        };
-    }
-    rpc Logout(LogoutRequest) returns (LogoutResponse) {
-        option (google.api.http) = {
-            post: "/v1/logout"
-            body: "*"
-        };
-    }
-    rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
-        option (google.api.http) = {
-            post: "/v1/checkUserName"
-            body: "*"
-        };
-    }
+  // Login
+  //
+  // ## Parameters
+  //
+  // - email: Email
+  // - password: Password
+  //
+  // ## Returns
+  //
+  // - token: Token
+  // - expire_date: Expiration date
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+  // Logout
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - Ok if the user was logged out
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v1/logout"
+      body: "*"
+    };
+  }
+
+  // CheckUserName
+  //
+  // ## Parameters
+  //
+  // - user_name: UserName
+  //
+  // ## Returns
+  //
+  // - user_name: UserName if it is available or the closest available
+  rpc CheckUserName(CheckUserNameRequest) returns (CheckUserNameResponse) {
+    option (google.api.http) = {
+      post: "/v1/checkUserName"
+      body: "*"
+    };
+  }
 }
 
+// TraceInfo
+//
+// ## Fields
+// 
+// - as: the name of the operator
+// - city: City
+// - country: Country name
+// - country_code: Country code
+// - isp: Internet Service Provider
+// - lat: Latitude
+// - lon: Longitude
+// - org: Organization
+// - query: IPv4 address
+// - region: Region code
+// - region_name: Region name
+// - status: Status message
+// - timezone: Timezone
+// - zip: Zip code
+message TraceInfo {
+  // as: the name of the operator
+  string as = 1;
+  // city: City
+  string city = 2;
+  // country: Country name
+  string country = 3;
+  // country_code: Country code
+  string country_code = 4;
+  // isp: Internet Service Provider
+  string isp = 5;
+  // lat: Latitude
+  float lat = 6;
+  // lon: Longitude
+  float lon = 7;
+  // org: Organization
+  string org = 8;
+  // query: IPv4 address
+  string query = 9;
+  // region: Region code
+  string region = 10;
+  // region_name: Region name
+  string region_name = 11;
+  // status: Status message
+  string status = 12;
+  // timezone: Timezone
+  string timezone = 13;
+  // zip: Zip code
+  string zip = 14;
+}
+
+// LoginRequest
+//
+// ## Fields
+//
+// - email: Email
+// - password: Password
+// - trace_info: TraceInfo
 message LoginRequest {
-    string email = 1;
-    string password = 2;
+  // email: Email
+  string email = 1;
+  // password: Password
+  string password = 2;
+  // trace_info: TraceInfo
+  TraceInfo trace_info = 3;
 }
 
+// LoginResponse
+//
+// ## Fields
+//
+// - token: Token
+// - expire_date: Expiration date
 message LoginResponse {
-    string token = 1;
-    string expireAt = 2;
+  // token: Token
+  string token = 1;
+  // expire_date: Expiration date
+  string expire_date = 2;
 }
 
-message LogoutRequest {}
+// LogoutRequest
+//
+// ## Fields
+//
+// - Nothing
+message LogoutRequest {
+}
 
-message LogoutResponse {}
+// LogoutResponse
+//
+// ## Fields
+//
+// - Ok if the user was logged out
+message LogoutResponse {
+}
 
+// CheckUserNameRequest
+//
+// ## Fields
+//
+// - user_name: UserName
 message CheckUserNameRequest {
-    string userName = 1;
+  // user_name: UserName
+  string user_name = 1;
 }
+
+// CheckUserNameResponse
+//
+// ## Fields
+//
+// - user_name: UserName if it is available or the closest available
 message CheckUserNameResponse {
-    string userName = 1;
+  // user_name: UserName if it is available or the closest available
+  string user_name = 1;
 }
 

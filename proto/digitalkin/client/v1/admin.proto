@@ -1,20 +1,68 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
 syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "digitalkin/common/v1/common.proto";
 import "google/api/annotations.proto";
 
+// AdminService
 service AdminService {
+  // ReadUsersAdmin
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - A stream of users
   rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse) {
     option (google.api.http) = {
       get: "/v1/admin/users"
     };
   }
+
+  // ReadOrganizationsAdmin
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - A stream of organizations
   rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse) {
     option (google.api.http) = {
       get: "/v1/admin/organizations"
     };
   }
+
+  // ReadKinsAdmin
+  //
+  // ## Parameters
+  //
+  // - Nothing
+  //
+  // ## Returns
+  //
+  // - A stream of kins
   rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse) {
     option (google.api.http) = {
       get: "/v1/admin/kins"
@@ -22,45 +70,122 @@ service AdminService {
   }
 }
 
-// Common
+// UserAdminReply
+//
+// ## Fields
+//
+// - user_name: User name
+// - activated: Is the user activated
+// - nb_kins: Number of kins
+// - nb_organizations: Number of organizations
 message UserAdminReply {
-    string user_name = 1;
-    bool activated = 2;
-    optional int64 nb_kins = 3;
-    optional int64 nb_organizations = 4;
+  // user_name: User name
+  string user_name = 1;
+  // activated: Is the user activated
+  bool activated = 2;
+  // nb_kins: Number of kins
+  optional int64 nb_kins = 3;
+  // nb_organizations: Number of organizations
+  optional int64 nb_organizations = 4;
 }
 
+// OrganizationAdminReply
+//
+// ## Fields
+//
+// - id: Organization ID
+// - name: Organization name
+// - activated: Is the organization activated
+// - nb_members: Number of members
+// - nb_kins: Number of kins
 message OrganizationAdminReply {
-    string id = 1;
-    string name = 2;
-    bool activated = 3;
-    optional int64 nb_members = 4;
-    optional int64 nb_kins = 5;
+  // id: Organization ID
+  string id = 1;
+  // name: Organization name
+  string name = 2;
+  // activated: Is the organization activated
+  bool activated = 3;
+  // nb_members: Number of members
+  optional int64 nb_members = 4;
+  // nb_kins: Number of kins
+  optional int64 nb_kins = 5;
 }
 
+// KinAdminReply
+//
+// ## Fields
+//
+// - id: Kin ID
+// - name: Kin name
+// - activated: Is the kin activated
+// - nb_members: Number of members
+// - nb_organizations: Number of organizations
+// - nb_threads: Number of threads
 message KinAdminReply {
-    string id = 1;
-    string name = 2;
-    bool activated = 3;
-    optional int64 nb_members = 4;
-    optional int64 nb_organizations = 5;
-    optional int64 nb_threads = 6;
+  // id: Kin ID
+  string id = 1;
+  // name: Kin name
+  string name = 2;
+  // activated: Is the kin activated
+  bool activated = 3;
+  // nb_members: Number of members
+  optional int64 nb_members = 4;
+  // nb_organizations: Number of organizations
+  optional int64 nb_organizations = 5;
+  // nb_threads: Number of threads
+  optional int64 nb_threads = 6;
 }
 
-// Read users
-message ReadUsersAdminRequest { }
+// ReadUsersAdminRequest
+//
+// ## Fields
+//
+// - Nothing
+message ReadUsersAdminRequest {
+}
+
+// ReadUsersAdminResponse0
+//
+// ## Returns
+//
+// - A stream of users
 message ReadUsersAdminResponse {
-    repeated UserAdminReply users = 1;
+  // users: A stream of users
+  repeated UserAdminReply users = 1;
 }
 
-// Read organizations
-message ReadOrganizationsAdminRequest { }
+// ReadOrganizationsAdminRequest
+//
+// ## Fields
+//
+// - Nothing
+message ReadOrganizationsAdminRequest {
+}
+
+// ReadOrganizationsAdminResponse0
+//
+// ## Returns
+//
+// - A stream of organizations
 message ReadOrganizationsAdminResponse {
-    repeated OrganizationAdminReply organizations = 1;
+  // organizations: A stream of organizations
+  repeated OrganizationAdminReply organizations = 1;
 }
 
-// Read kins
-message ReadKinsAdminRequest { }
+// ReadKinsAdminRequest
+//
+// ## Fields
+//
+// - Nothing
+message ReadKinsAdminRequest {
+}
+
+// ReadKinsAdminResponse0
+//
+// ## Returns
+//
+// - A stream of kins
 message ReadKinsAdminResponse {
-    repeated KinAdminReply kins = 1;
+  // kins: A stream of kins
+  repeated KinAdminReply kins = 1;
 }
