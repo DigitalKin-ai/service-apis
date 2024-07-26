@@ -73,3 +73,60 @@ message UserReply {
   // activated: True if the user is activated
   bool activated = 6;
 }
+
+// KinReply
+//
+// ## Fields
+//
+// - id: The id of the kin
+// - name: The name of the kin
+// - description: The description of the kin
+// - activated: True if the kin is activated
+message KinReply {
+  // id: The id of the kin
+  string id = 1;
+  // name: The name of the kin
+  string name = 2;
+  // description: The description of the kin
+  optional string description = 3;
+  // activated: True if the kin is activated
+  bool activated = 4;
+}
+
+// KinThreadReply
+//
+// ## Fields
+//
+// - id: Kin thread id
+// - thread_subject: Subject of the thread
+// - activated: Kin thread activated status
+message KinThreadReply {
+  // id: Kin thread id
+  string id = 1;
+  // thread_subject: Subject of the thread
+  string thread_subject = 2;
+  // activated: Kin thread activated status
+  bool activated = 3;
+}
+
+// WorkflowReply
+//
+// ## Fields
+//
+// - id: The id of the workflow
+// - name: The name of the workflow
+// - status: The status of the workflow
+// - duration: The duration of the workflow
+// - price: The price of the workflow
+message WorkflowReply {
+  // id: The id of the workflow
+  string id = 1;
+  // name: The name of the workflow
+  string name = 2;
+  // status: The status of the workflow
+  string status = 3;
+  // duration: The duration of the workflow
+  string duration = 4;
+  // price: The price of the workflow
+  string price = 5;
+}
