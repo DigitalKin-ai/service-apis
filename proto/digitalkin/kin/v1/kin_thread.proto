@@ -66,7 +66,7 @@ service KinThreadService {
   // ## Returns
   //
   // - KinThreadsActivity
-  rpc ReadKinThreadsActivity(ReadKinThreadsActivityRequest) returns (stream KinThreadsActivity) {
+  rpc ReadKinThreadsActivity(ReadKinThreadsActivitiesRequest) returns (stream KinThreadsActivities) {
     option (google.api.http) = {
       get: "/v1/kin/thread/activity"
     };
@@ -120,10 +120,10 @@ message KinThread {
   string id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
-  // worflow: Workflow
-  optional digitalkin.common.v1.WorkflowReply Workflow = 3;
-  // kin: Kin
-  digitalkin.common.v1.KinReply Kin = 4;
+  // worflow: worflow
+  optional digitalkin.common.v1.WorkflowReply worflow = 3;
+  // kin: kin
+  digitalkin.common.v1.KinReply kin = 4;
   // responses: Responses
   repeated KinResponse responses = 5;
   // activated: Activated
@@ -153,24 +153,24 @@ message ReadKinThreadRequest {
   string kin_thread_id = 1;
 }
 
-// ReadKinThreadsActivityRequest
+// ReadKinThreadsActivitiesRequest
 //
 // ## Fields
 //
 // - kin_id: Kin id
-message ReadKinThreadsActivityRequest {
+message ReadKinThreadsActivitiesRequest {
   // kin_id: Kin id
   optional string kin_id = 1;
 }
 
-// KinThreadsActivity
+// KinThreadsActivities
 //
 // ## Fields
 //
 // - kin_threads_activity: Kin threads activity
-message KinThreadsActivity {
-  // kin_threads_activity: Kin threads activity
-  repeated KinThread kin_threads_activity = 1;
+message KinThreadsActivities {
+  // kin_threads_activities: Kin threads activities
+  repeated KinThread kin_threads_activities = 1;
 }
 
 // DeleteKinThreadRequest
