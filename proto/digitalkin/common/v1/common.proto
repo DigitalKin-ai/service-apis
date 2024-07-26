@@ -128,5 +128,5 @@ message WorkflowReply {
   // duration: The duration of the workflow
   string duration = 4;
   // price: The price of the workflow
-  string price = 5;
+  int64 price = 5;
 }
