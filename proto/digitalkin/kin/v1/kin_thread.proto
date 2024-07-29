@@ -191,7 +191,7 @@ message KinThreadActivity {
   // date: Date
   optional string date = 7;
   // price: Price
-  optional string price = 8;
+  optional int64 price = 8;
 }
 
 // KinThreadsActivities
