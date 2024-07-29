@@ -189,9 +189,9 @@ message KinThreadActivity {
   // duration: Duration
   optional string duration = 6;
   // date: Date
-  string date = 7;
+  optional string date = 7;
   // price: Price
-  string price = 8;
+  optional string price = 8;
 }
 
 // KinThreadsActivities
