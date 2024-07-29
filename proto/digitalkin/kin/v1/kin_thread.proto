@@ -163,6 +163,37 @@ message ReadKinThreadsActivitiesRequest {
   optional string kin_id = 1;
 }
 
+// KinThreadActivity
+//
+// ## Fields
+//
+// - id: Kin thread activity id
+// - kin_id: Kin id
+// - status: Status
+// - workflow_name: Workflow name
+// - kin_name: Kin name
+// - duration: Duration
+// - date: Date
+// - price: Price
+message KinThreadActivity {
+  // id: Kin thread activity id
+  string id = 1;
+  // kin_id: Kin id
+  string kin_id = 2;
+  // status: Status
+  optional string status = 3;
+  // workflow_name: Workflow name
+  optional string workflow_name = 4;
+  // kin_name: Kin name
+  optional string kin_name = 5;
+  // duration: Duration
+  optional string duration = 6;
+  // date: Date
+  string date = 7;
+  // price: Price
+  string price = 8;
+}
+
 // KinThreadsActivities
 //
 // ## Fields
@@ -170,7 +201,7 @@ message ReadKinThreadsActivitiesRequest {
 // - kin_threads_activity: Kin threads activity
 message KinThreadsActivities {
   // kin_threads_activities: Kin threads activities
-  repeated KinThread kin_threads_activities = 1;
+  repeated KinThreadActivity kin_threads_activities = 1;
 }
 
 // DeleteKinThreadRequest
