@@ -141,21 +141,21 @@ message SubscriptionItem {
 // - UNPAID: Unpaid
 enum SubscriptionStatus {
   // ACTIVE: Active
-  ACTIVE = 0;
+  SUBSCRIPTION_STATUS_ACTIVE_UNSPECIFIED = 0;
   // CANCELED: Canceled
-  CANCELED = 1;
+  SUBSCRIPTION_STATUS_CANCELED = 1;
   // INCOMPLETE: Incomplete
-  INCOMPLETE = 2;
+  SUBSCRIPTION_STATUS_INCOMPLETE = 2;
   // INCOMPLETE_EXPIRED: Incomplete expired
-  INCOMPLETE_EXPIRED = 3;
+  SUBSCRIPTION_STATUS_INCOMPLETE_EXPIRED = 3;
   // PAUSED: Paused
-  PAUSED = 4;
+  SUBSCRIPTION_STATUS_PAUSED = 4;
   // PAST_DUE: Past due
-  PAST_DUE = 5;
+  SUBSCRIPTION_STATUS_PAST_DUE = 5;
   // TRIALING: Trialing
-  TRIALING = 6;
+  SUBSCRIPTION_STATUS_TRIALING = 6;
   // UNPAID: Unpaid
-  UNPAID = 7;
+  SUBSCRIPTION_STATUS_UNPAID = 7;
 }
 
 // Subscription
@@ -343,287 +343,287 @@ message Product {
 // - ZMW: Zambian Kwacha
 enum Currency {
   // USD: US Dollar
-  USD = 0;
+  CURRENCY_USD_UNSPECIFIED = 0;
   // EUR: Euro
-  EUR = 1;
+  CURRENCY_EUR = 1;
   // GBP: British Pound
-  GBP = 2;
+  CURRENCY_GBP = 2;
   // JPY: Japanese Yen
-  JPY = 3;
+  CURRENCY_JPY = 3;
   // AUD: Australian Dollar
-  AUD = 4;
+  CURRENCY_AUD = 4;
   // CAD: Canadian Dollar
-  CAD = 5;
+  CURRENCY_CAD = 5;
   // CHF: Swiss Franc
-  CHF = 6;
+  CURRENCY_CHF = 6;
   // CNY: Chinese Yuan
-  CNY = 7;
+  CURRENCY_CNY = 7;
   // DKK: Danish Krone
-  DKK = 8;
+  CURRENCY_DKK = 8;
   // HKD: Hong Kong Dollar
-  HKD = 9;
+  CURRENCY_HKD = 9;
   // NOK: Norwegian Krone
-  NOK = 10;
+  CURRENCY_NOK = 10;
   // NZD: New Zealand Dollar
-  NZD = 11;
+  CURRENCY_NZD = 11;
   // SEK: Swedish Krona
-  SEK = 12;
+  CURRENCY_SEK = 12;
   // SGD: Singapore Dollar
-  SGD = 13;
+  CURRENCY_SGD = 13;
   // BYN: Belarusian Ruble
-  BYN = 14;
+  CURRENCY_BYN = 14;
   // MMK: Burmese Kyat
-  MMK = 15;
+  CURRENCY_MMK = 15;
   // AED: United Arab Emirates Dirham
-  AED = 16;
+  CURRENCY_AED = 16;
   // AFN: Afghan Afghani
-  AFN = 17;
+  CURRENCY_AFN = 17;
   // ALL: Albanian Lek
-  ALL = 18;
+  CURRENCY_ALL = 18;
   // AMD: Armenian Dram
-  AMD = 19;
+  CURRENCY_AMD = 19;
   // ANG: Netherlands Antillean Guilder
-  ANG = 20;
+  CURRENCY_ANG = 20;
   // AOA: Angolan Kwanza
-  AOA = 21;
+  CURRENCY_AOA = 21;
   // ARS: Argentine Peso
-  ARS = 22;
+  CURRENCY_ARS = 22;
   // AWG: Aruban Florin
-  AWG = 23;
+  CURRENCY_AWG = 23;
   // AZN: Azerbaijani Manat
-  AZN = 24;
+  CURRENCY_AZN = 24;
   // BAM: Bosnia and Herzegovina Convertible Mark
-  BAM = 25;
+  CURRENCY_BAM = 25;
   // BBD: Barbadian Dollar
-  BBD = 26;
+  CURRENCY_BBD = 26;
   // BDT: Bangladeshi Taka
-  BDT = 27;
+  CURRENCY_BDT = 27;
   // BGN: Bulgarian Lev
-  BGN = 28;
+  CURRENCY_BGN = 28;
   // BIF: Burundian Franc
-  BIF = 29;
+  CURRENCY_BIF = 29;
   // BMD: Bermudian Dollar
-  BMD = 30;
+  CURRENCY_BMD = 30;
   // BND: Brunei Dollar
-  BND = 31;
+  CURRENCY_BND = 31;
   // BOB: Bolivian Boliviano
-  BOB = 32;
+  CURRENCY_BOB = 32;
   // BRL: Brazilian Real
-  BRL = 33;
+  CURRENCY_BRL = 33;
   // BSD: Bahamian Dollar
-  BSD = 34;
+  CURRENCY_BSD = 34;
   // BWP: Botswana Pula
-  BWP = 35;
+  CURRENCY_BWP = 35;
   // BZD: Belize Dollar
-  BZD = 36;
+  CURRENCY_BZD = 36;
   // CDF: Congolese Franc
-  CDF = 37;
+  CURRENCY_CDF = 37;
   // CLP: Chilean Peso
-  CLP = 38;
+  CURRENCY_CLP = 38;
   // COP: Colombian Peso
-  COP = 39;
+  CURRENCY_COP = 39;
   // CRC: Costa Rican Colón
-  CRC = 40;
+  CURRENCY_CRC = 40;
   // CVE: Cape Verdean Escudo
-  CVE = 41;
+  CURRENCY_CVE = 41;
   // CZK: Czech Koruna
-  CZK = 42;
+  CURRENCY_CZK = 42;
   // DJF: Djiboutian Franc
-  DJF = 43;
+  CURRENCY_DJF = 43;
   // DOP: Dominican Peso
-  DOP = 44;
+  CURRENCY_DOP = 44;
   // DZD: Algerian Dinar
-  DZD = 45;
+  CURRENCY_DZD = 45;
   // EEK: Estonian Kroon
-  EEK = 46;
+  CURRENCY_EEK = 46;
   // EGP: Egyptian Pound
-  EGP = 47;
+  CURRENCY_EGP = 47;
   // ETB: Ethiopian Birr
-  ETB = 48;
+  CURRENCY_ETB = 48;
   // FJD: Fijian Dollar
-  FJD = 49;
+  CURRENCY_FJD = 49;
   // FKP: Falkland Islands Pound
-  FKP = 50;
+  CURRENCY_FKP = 50;
   // GEL: Georgian Lari
-  GEL = 51;
+  CURRENCY_GEL = 51;
   // GIP: Gibraltar Pound
-  GIP = 52;
+  CURRENCY_GIP = 52;
   // GMD: Gambian Dalasi
-  GMD = 53;
+  CURRENCY_GMD = 53;
   // GNF: Guinean Franc
-  GNF = 54;
+  CURRENCY_GNF = 54;
   // GTQ: Guatemalan Quetzal
-  GTQ = 55;
+  CURRENCY_GTQ = 55;
   // GYD: Guyanese Dollar
-  GYD = 56;
+  CURRENCY_GYD = 56;
   // HNL: Honduran Lempira
-  HNL = 57;
+  CURRENCY_HNL = 57;
   // HRK: Croatian Kuna
-  HRK = 58;
+  CURRENCY_HRK = 58;
   // HTG: Haitian Gourde
-  HTG = 59;
+  CURRENCY_HTG = 59;
   // HUF: Hungarian Forint
-  HUF = 60;
+  CURRENCY_HUF = 60;
   // IDR: Indonesian Rupiah
-  IDR = 61;
+  CURRENCY_IDR = 61;
   // ILS: Israeli New Shekel
-  ILS = 62;
+  CURRENCY_ILS = 62;
   // INR: Indian Rupee
-  INR = 63;
+  CURRENCY_INR = 63;
   // ISK: Icelandic Króna
-  ISK = 64;
+  CURRENCY_ISK = 64;
   // JMD: Jamaican Dollar
-  JMD = 65;
+  CURRENCY_JMD = 65;
   // KES: Kenyan Shilling
-  KES = 66;
+  CURRENCY_KES = 66;
   // KGS: Kyrgyzstani Som
-  KGS = 67;
+  CURRENCY_KGS = 67;
   // KHR: Cambodian Riel
-  KHR = 68;
+  CURRENCY_KHR = 68;
   // KMF: Comorian Franc
-  KMF = 69;
+  CURRENCY_KMF = 69;
   // KRW: South Korean Won
-  KRW = 70;
+  CURRENCY_KRW = 70;
   // KYD: Cayman Islands Dollar
-  KYD = 71;
+  CURRENCY_KYD = 71;
   // KZT: Kazakhstani Tenge
-  KZT = 72;
+  CURRENCY_KZT = 72;
   // LAK: Lao Kip
-  LAK = 73;
+  CURRENCY_LAK = 73;
   // LBP: Lebanese Pound
-  LBP = 74;
+  CURRENCY_LBP = 74;
   // LKR: Sri Lankan Rupee
-  LKR = 75;
+  CURRENCY_LKR = 75;
   // LRD: Liberian Dollar
-  LRD = 76;
+  CURRENCY_LRD = 76;
   // LSL: Lesotho Loti
-  LSL = 77;
+  CURRENCY_LSL = 77;
   // LTL: Lithuanian Litas
-  LTL = 78;
+  CURRENCY_LTL = 78;
   // LVL: Latvian Lats
-  LVL = 79;
+  CURRENCY_LVL = 79;
   // MAD: Moroccan Dirham
-  MAD = 80;
+  CURRENCY_MAD = 80;
   // MDL: Moldovan Leu
-  MDL = 81;
+  CURRENCY_MDL = 81;
   // MGA: Malagasy Ariary
-  MGA = 82;
+  CURRENCY_MGA = 82;
   // MKD: Macedonian Denar
-  MKD = 83;
+  CURRENCY_MKD = 83;
   // MNT: Mongolian Tögrög
-  MNT = 84;
+  CURRENCY_MNT = 84;
   // MOP: Macanese Pataca
-  MOP = 85;
+  CURRENCY_MOP = 85;
   // MRO: Mauritanian Ouguiya
-  MRO = 86;
+  CURRENCY_MRO = 86;
   // MUR: Mauritian Rupee
-  MUR = 87;
+  CURRENCY_MUR = 87;
   // MVR: Maldivian Rufiyaa
-  MVR = 88;
+  CURRENCY_MVR = 88;
   // MWK: Malawian Kwacha
-  MWK = 89;
+  CURRENCY_MWK = 89;
   // MXN: Mexican Peso
-  MXN = 90;
+  CURRENCY_MXN = 90;
   // MYR: Malaysian Ringgit
-  MYR = 91;
+  CURRENCY_MYR = 91;
   // MZN: Mozambican Metical
-  MZN = 92;
+  CURRENCY_MZN = 92;
   // NAD: Namibian Dollar
-  NAD = 93;
+  CURRENCY_NAD = 93;
   // NGN: Nigerian Naira
-  NGN = 94;
+  CURRENCY_NGN = 94;
   // NIO: Nicaraguan Córdoba
-  NIO = 95;
+  CURRENCY_NIO = 95;
   // NPR: Nepalese Rupee
-  NPR = 96;
+  CURRENCY_NPR = 96;
   // PAB: Panamanian Balboa
-  PAB = 97;
+  CURRENCY_PAB = 97;
   // PEN: Peruvian Nuevo Sol
-  PEN = 98;
+  CURRENCY_PEN = 98;
   // PGK: Papua New Guinean Kina
-  PGK = 99;
+  CURRENCY_PGK = 99;
   // PHP: Philippine Peso
-  PHP = 100;
+  CURRENCY_PHP = 100;
   // PKR: Pakistani Rupee
-  PKR = 101;
+  CURRENCY_PKR = 101;
   // PLN: Polish Złoty
-  PLN = 102;
+  CURRENCY_PLN = 102;
   // PYG: Paraguayan Guaraní
-  PYG = 103;
+  CURRENCY_PYG = 103;
   // QAR: Qatari Riyal
-  QAR = 104;
+  CURRENCY_QAR = 104;
   // RON: Romanian Leu
-  RON = 105;
+  CURRENCY_RON = 105;
   // RSD: Serbian Dinar
-  RSD = 106;
+  CURRENCY_RSD = 106;
   // RUB: Russian Ruble
-  RUB = 107;
+  CURRENCY_RUB = 107;
   // RWF: Rwandan Franc
-  RWF = 108;
+  CURRENCY_RWF = 108;
   // SAR: Saudi Riyal
-  SAR = 109;
+  CURRENCY_SAR = 109;
   // SBD: Solomon Islands Dollar
-  SBD = 110;
+  CURRENCY_SBD = 110;
   // SCR: Seychellois Rupee
-  SCR = 111;
+  CURRENCY_SCR = 111;
   // SHP: Saint Helena Pound
-  SHP = 112;
+  CURRENCY_SHP = 112;
   // SLL: Sierra Leonean Leone
-  SLL = 113;
+  CURRENCY_SLL = 113;
   // SOS: Somali Shilling
-  SOS = 114;
+  CURRENCY_SOS = 114;
   // SRD: Surinamese Dollar
-  SRD = 115;
+  CURRENCY_SRD = 115;
   // STD: São Tomé and Príncipe Dobra
-  STD = 116;
+  CURRENCY_STD = 116;
   // SVC: Salvadoran Colón
-  SVC = 117;
+  CURRENCY_SVC = 117;
   // SZL: Swazi Lilangeni
-  SZL = 118;
+  CURRENCY_SZL = 118;
   // THB: Thai Baht
-  THB = 119;
+  CURRENCY_THB = 119;
   // TJS: Tajikistani Somoni
-  TJS = 120;
+  CURRENCY_TJS = 120;
   // TOP: Tongan Paʻanga
-  TOP = 121;
+  CURRENCY_TOP = 121;
   // TRY: Turkish Lira
-  TRY = 122;
+  CURRENCY_TRY = 122;
   // TTD: Trinidad and Tobago Dollar
-  TTD = 123;
+  CURRENCY_TTD = 123;
   // TWD: New Taiwan Dollar
-  TWD = 124;
+  CURRENCY_TWD = 124;
   // TZS: Tanzanian Shilling
-  TZS = 125;
+  CURRENCY_TZS = 125;
   // UAH: Ukrainian Hryvnia
-  UAH = 126;
+  CURRENCY_UAH = 126;
   // UGX: Ugandan Shilling
-  UGX = 127;
+  CURRENCY_UGX = 127;
   // UYU: Uruguayan Peso
-  UYU = 128;
+  CURRENCY_UYU = 128;
   // UZS: Uzbekistani Som
-  UZS = 129;
+  CURRENCY_UZS = 129;
   // VEF: Venezuelan Bolívar
-  VEF = 130;
+  CURRENCY_VEF = 130;
   // VND: Vietnamese Đồng
-  VND = 131;
+  CURRENCY_VND = 131;
   // VUV: Vanuatu Vatu
-  VUV = 132;
+  CURRENCY_VUV = 132;
   // WST: Samoan Tala
-  WST = 133;
+  CURRENCY_WST = 133;
   // XAF: Central African CFA Franc
-  XAF = 134;
+  CURRENCY_XAF = 134;
   // XCD: East Caribbean Dollar
-  XCD = 135;
+  CURRENCY_XCD = 135;
   // XOF: West African CFA Franc
-  XOF = 136;
+  CURRENCY_XOF = 136;
   // XPF: CFP Franc
-  XPF = 137;
+  CURRENCY_XPF = 137;
   // YER: Yemeni Rial
-  YER = 138;
+  CURRENCY_YER = 138;
   // ZAR: South African Rand
-  ZAR = 139;
+  CURRENCY_ZAR = 139;
   // ZMW: Zambian Kwacha
-  ZMW = 140;
+  CURRENCY_ZMW = 140;
 }
 
 // RecurringAggregateUsage
@@ -636,13 +636,13 @@ enum Currency {
 // - MAX: Max
 enum RecurringAggregateUsage {
   // SUM: Sum
-  SUM = 0;
+  RECURRING_AGGREGATE_USAGE_SUM_UNSPECIFIED = 0;
   // LAST_DURING_PERIOD: Last during period
-  LAST_DURING_PERIOD = 1;
+  RECURRING_AGGREGATE_USAGE_LAST_DURING_PERIOD = 1;
   // LAST_EVER: Last ever
-  LAST_EVER = 2;
+  RECURRING_AGGREGATE_USAGE_LAST_EVER = 2;
   // MAX: Max
-  MAX = 3;
+  RECURRING_AGGREGATE_USAGE_MAX = 3;
 }
 
 // Recurring
@@ -676,11 +676,11 @@ message Recurring {
 // - UNSPECIFIED: Unspecified
 enum PriceTaxBehavior {
   // INCLUSIVE: Inclusive
-  INCLUSIVE = 0;
+  PRICE_TAX_BEHAVIOR_INCLUSIVE_UNSPECIFIED = 0;
   // EXCLUSIVE: Exclusive
-  EXCLUSIVE = 1;
+  PRICE_TAX_BEHAVIOR_EXCLUSIVE = 1;
   // UNSPECIFIED: Unspecified
-  UNSPECIFIED = 2;
+  PRICE_TAX_BEHAVIOR_UNSPECIFIED = 2;
 }
 
 // PriceType
@@ -691,9 +691,9 @@ enum PriceTaxBehavior {
 // - RECURRING: Recurring
 enum PriceType {
   // ONE_TIME: One time
-  ONE_TIME = 0;
+  PRICE_TYPE_ONE_TIME_UNSPECIFIED = 0;
   // RECURRING: Recurring
-  RECURRING = 1;
+  PRICE_TYPE_RECURRING = 1;
 }
 
 // Price

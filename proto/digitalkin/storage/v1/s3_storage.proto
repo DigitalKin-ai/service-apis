@@ -84,13 +84,13 @@ message File {
 // - FAILED: Failed status
 enum Status {
   // PENDING: Pending status
-  PENDING = 0;
+  STATUS_PENDING_UNSPECIFIED = 0;
   // IN_PROGRESS: In progress status
-  IN_PROGRESS = 1;
+  STATUS_IN_PROGRESS = 1;
   // SUCCESS: Success status
-  SUCCESS = 2;
+  STATUS_SUCCESS = 2;
   // FAILED: Failed status
-  FAILED = 3;
+  STATUS_FAILED = 3;
 }
 
 // UploadFileRequest

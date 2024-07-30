@@ -6,55 +6,55 @@ import "validate/validate.proto";
 
 // Service definition for the Service Registry
 service ServiceRegistry {
-    rpc RegisterService(RegisterRequest) returns (RegisterResponse) {}
-    rpc DeregisterService(DeregisterRequest) returns (DeregisterResponse) {}
-    rpc DiscoverService(DiscoverRequest) returns (DiscoverResponse) {}
-    rpc UpdateServiceStatus(UpdateStatusRequest) returns (UpdateStatusResponse) {}
+  rpc RegisterService(RegisterRequest) returns (RegisterResponse) {}
+  rpc DeregisterService(DeregisterRequest) returns (DeregisterResponse) {}
+  rpc DiscoverService(DiscoverRequest) returns (DiscoverResponse) {}
+  rpc UpdateServiceStatus(UpdateStatusRequest) returns (UpdateStatusResponse) {}
 }
 
 // Request to register a service
 message RegisterRequest {
-    string service_id = 1 [(validate.rules).string = { min_len: 1 }];
-    string service_type = 2 [(validate.rules).string = { in: ["trigger", "tool", "kin"] }];
-    string address = 3 [(validate.rules).string = { min_len: 1 }];
-    int32 port = 4 [(validate.rules).int32 = { gte: 1, lte: 65535}];
+  string service_id = 1 [(validate.rules).string = { min_len: 1 }];
+  string service_type = 2 [(validate.rules).string = { in: ["trigger", "tool", "kin"] }];
+  string address = 3 [(validate.rules).string = { min_len: 1 }];
+  int32 port = 4 [(validate.rules).int32 = { gte: 1, lte: 65535}];
 }
 
 // Response to a register request
 message RegisterResponse {
-    bool success = 1;
+  bool success = 1;
 }
 
 // Request to deregister a service
 message DeregisterRequest {
-    string service_id = 1;
+  string service_id = 1;
 }
 
 // Response to a deregister request
 message DeregisterResponse {
-    bool success = 1 [(validate.rules).string = { min_len: 1 }];
+  bool success = 1 [(validate.rules).string = { min_len: 1 }];
 }
 
 // Request for discovering a service
 message DiscoverRequest {
-    string service_id = 1 [(validate.rules).string = { min_len: 1 }];
+  string service_id = 1 [(validate.rules).string = { min_len: 1 }];
 }
 
 // Response to a discover request
 message DiscoverResponse {
-    string service_type = 1 [(validate.rules).string = { in: ["trigger", "tool", "kin", "view"] }];
-    string address = 2 [(validate.rules).string = { min_len: 1 }];
-    int32 port = 3 [(validate.rules).int32 = { gte: 1, lte: 65535}];
-    bool status = 4;
+  string service_type = 1 [(validate.rules).string = { in: ["trigger", "tool", "kin", "view"] }];
+  string address = 2 [(validate.rules).string = { min_len: 1 }];
+  int32 port = 3 [(validate.rules).int32 = { gte: 1, lte: 65535}];
+  bool status = 4;
 }
 
 // Request to update the status of a service
 message UpdateStatusRequest {
-    string service_id = 1 [(validate.rules).string = { min_len: 1 }];
-    bool status = 2;
+  string service_id = 1 [(validate.rules).string = { min_len: 1 }];
+  bool status = 2;
 }
 
 // Response to an update status request
 message UpdateStatusResponse {
-    bool success = 1;
+  bool success = 1;
 }
