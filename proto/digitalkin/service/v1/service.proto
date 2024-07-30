@@ -11,7 +11,7 @@ service Service {
     rpc GetServiceStatus (GetServiceStatusRequest) returns (ServiceStatusResponse);
     rpc GetServiceInput (GetServiceInputRequest) returns (ServiceInputResponse);
     rpc GetServiceOutput (GetServiceOutputRequest) returns (ServiceOutputResponse);
-    // rpc GetServiceSetup (GetServiceSetupRequest) returns (ServiceSetupResponse);
+    // rpc GetServiceSetup (GetServiceSetupRequest) returns (ServiceSetupResponse); // coming soon
 }
 
 enum ServiceStatus {
