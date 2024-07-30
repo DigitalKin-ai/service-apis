@@ -169,8 +169,8 @@ message ReadKinThreadsActivitiesRequest {
 //
 // - id: Kin thread activity id
 // - kin_id: Kin id
-// - subject: Subject
 // - status: Status
+// - subject: Subject
 // - workflow_name: Workflow name
 // - kin_name: Kin name
 // - date: Date
@@ -181,10 +181,10 @@ message KinThreadActivity {
   string id = 1;
   // kin_id: Kin id
   string kin_id = 2;
-  // subject: Subject
-  string subject = 3;
   // status: Status
-  optional string status = 4;
+  optional string status = 3;
+  // subject: Subject
+  string subject = 4;
   // workflow_name: Workflow name
   optional string workflow_name = 5;
   // kin_name: Kin name
