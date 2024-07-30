@@ -169,27 +169,30 @@ message ReadKinThreadsActivitiesRequest {
 //
 // - id: Kin thread activity id
 // - kin_id: Kin id
+// - subject: Subject
 // - status: Status
 // - workflow_name: Workflow name
 // - kin_name: Kin name
-// - duration: Duration
 // - date: Date
+// - duration: Duration
 // - price: Price
 message KinThreadActivity {
   // id: Kin thread activity id
   string id = 1;
   // kin_id: Kin id
   string kin_id = 2;
+  // subject: Subject
+  string subject = 3;
   // status: Status
   optional string status = 3;
   // workflow_name: Workflow name
   optional string workflow_name = 4;
   // kin_name: Kin name
   optional string kin_name = 5;
-  // duration: Duration
-  optional string duration = 6;
   // date: Date
-  optional string date = 7;
+  optional string date = 6;
+  // duration: Duration
+  optional string duration = 7;
   // price: Price
   optional int64 price = 8;
 }
