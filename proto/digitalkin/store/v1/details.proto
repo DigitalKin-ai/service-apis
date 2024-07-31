@@ -1,0 +1,79 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "google/api/field_behavior.proto";
+
+// Licence
+//
+// Licence section in project resume.
+//
+// Fields:
+//
+// - name: Licence name
+// - url: Licence url
+message Licence {
+    // name: Licence name
+    string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // url: Licence url
+    string url = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Documentation
+//
+// Documentation section in project resume.
+//
+// Fields:
+//
+// - url: Documentation url
+message Documentation {
+    // url: Documentation url
+    string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Details
+//
+// Details section in project resume.
+//
+// Fields:
+//
+// - creation_date: Project creation date
+// - last_update: Project last update
+// - version: Project version
+// - languages: Project languages
+// - framework: Project framework
+// - licence: Project licence
+// - documentation: Project documentation
+message Details {
+    // creation_date: Project creation date
+    google.protobuf.Timestamp creation_date = 1 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+    // last_update: Project last update
+    google.protobuf.Timestamp last_update = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // version: Project version
+    float version = 3 [(google.api.field_behavior) = INPUT_ONLY];
+    // languages: Project languages
+    repeated string languages = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // framework: Project framework
+    optional string framework = 5;
+    // licence: Project licence
+    optional Licence licence = 6;
+    // documentation: Project documentation
+    optional Documentation documentation = 7;
+}

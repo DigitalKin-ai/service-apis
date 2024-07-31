@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// List of available options:
-// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
-
 syntax = "proto3";
 
-package digitalkin.kin.v1;
+package digitalkin.project.v1;
 
 import "google/api/annotations.proto";
 
@@ -25,8 +22,8 @@ import "digitalkin/common/v1/common.proto";
 import "digitalkin/kin/v1/kin_response.proto";
 import "digitalkin/kin/v1/kin_thread.proto";
 
-// KinService
-service KinService {
+// StoreService
+service StoreService {
   // CreateKin
   //
   // ## Parameters
@@ -38,9 +35,9 @@ service KinService {
   // ## Returns
   //
   // - Kin
-  rpc CreateKin(CreateKinRequest) returns (Kin) {
+  rpc CreateKin(CreateKinRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/v1/kin"
+      post: "/v1/kin/create"
       body: "*"
     };
   }
@@ -84,7 +81,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the Kin was deleted
-  rpc DeleteKin(DeleteKinRequest) returns (DeleteKinResponse) {
+  rpc DeleteKin(DeleteKinRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/kin/{kin_id}"
     };
@@ -100,7 +97,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the Kin was updated
-  rpc UpdateActivated(UpdateKinActivatedRequest) returns (UpdateKinActivatedResponse) {
+  rpc UpdateActivated(UpdateKinActivatedRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/activated"
       body: "*"
@@ -117,7 +114,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the Kin name was updated
-  rpc UpdateName(UpdateKinNameRequest) returns (UpdateKinNameResponse) {
+  rpc UpdateName(UpdateKinNameRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/name"
       body: "*"
@@ -134,7 +131,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the Kin description was updated
-  rpc UpdateDescription(UpdateKinDescriptionRequest) returns (UpdateKinDescriptionResponse) {
+  rpc UpdateDescription(UpdateKinDescriptionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/description"
       body: "*"
@@ -151,7 +148,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the Kin origin address was updated
-  rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (UpdateKinOriginAddressResponse) {
+  rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/origin"
       body: "*"
@@ -207,7 +204,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the review was updated
-  rpc UpdateReview(UpdateKinReviewRequest) returns (UpdateKinReviewResponse) {
+  rpc UpdateReview(UpdateKinReviewRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/review/{review_id}",
       body: "*"
@@ -224,7 +221,7 @@ service KinService {
   // ## Returns
   //
   // - Ok if the link was updated
-  rpc UpdateKinInterface(UpdateKinInterfaceRequest) returns (UpdateKinInterfaceResponse) {
+  rpc UpdateKinInterface(UpdateKinInterfaceRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/v1/kin/{kin_id}/interface"
       body: "*"
@@ -232,119 +229,6 @@ service KinService {
   }
 }
 
-// Tag
-//
-// ## Fields
-//
-// - id: Tag id
-// - name: Tag name
-// - organization_id: Tag organization id
-message Tag {
-  // id: Tag id
-  string id = 1;
-  // name: Tag name
-  string name = 2;
-  // organization_id: Tag organization id
-  optional string organization_id = 3;
-}
-
-// Review
-//
-// ## Fields
-//
-// - id: Review id
-// - reviewer: Reviewer name
-// - reviewer_avatar: Reviewer avatar
-// - review: Review
-// - review_comment: Review comment
-// - review_date: Review date
-message Review {
-  // id: Review id
-  string id = 1;
-  // reviewer: Reviewer name
-  string reviewer = 2;
-  // reviewer_avatar: Reviewer avatar
-  optional string reviewer_avatar = 3;
-  // review: Review
-  int64 review = 4;
-  // review_comment: Review comment
-  optional string review_comment = 5;
-  // review_date: Review date
-  string review_date = 6;
-}
-
-// StoreKin
-//
-// ## Fields
-//
-// - id: Kin id
-// - name: Kin name
-// - description: Kin description
-// - image: Kin image
-// - tags: Kin tags
-// - creation_date: Kin creation date
-// - last_update: Kin last update
-// - version: Kin version
-// - origin_address: Kin origin address
-// - languages: Kin languages
-// - framework: Kin framework
-// - licence: Kin licence
-// - admins: Kin admins
-// - creators: Kin creators
-// - reviews: Kin reviews
-// - score: Kin score
-// - price: Kin price
-// - activated: Kin activated status
-message StoreKin {
-  // id: Kin id
-  string id = 1;
-  // name: Kin name
-  string name = 2;
-  // description: Kin description
-  optional string description = 3;
-  // image: Kin image
-  optional string image = 4;
-  // tags: Kin tags
-  repeated Tag tags = 5;
-  // creation_date: Kin creation date
-  string creation_date = 6;
-  // last_update: Kin last update
-  string last_update = 7;
-  // version: Kin version
-  float version = 8;
-  // origin_address: Kin origin address
-  string origin_address = 9;
-  // interface_address: Kin interface address
-  optional string interface_address = 10;
-  // languages: Kin languages
-  repeated string languages = 11;
-  // framework: Kin framework
-  optional string framework = 12;
-  // licence: Kin licence
-  optional string licence = 13;
-  // admins: Kin admins
-  repeated digitalkin.common.v1.UserReply admins = 14;
-  // creators: Kin creators
-  repeated digitalkin.common.v1.UserReply creators = 15;
-  // reviews: Kin reviews
-  repeated Review reviews = 16;
-  // score: Kin score
-  optional int64 score = 17;
-  // price: Kin price
-  optional int64 price = 18;
-  // activated: Kin activated status
-  bool activated = 19;
-}
-
-// ListKin
-//
-// ## Fields
-//
-// - kins: List of Kins
-message ListKin {
-  // kins: List of Kins
-  repeated StoreKin kins = 1;
-}
 
 // Kin
 //

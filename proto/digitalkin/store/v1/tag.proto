@@ -1,0 +1,75 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "google/api/field_behavior.proto";
+
+// TagType
+//
+// Enum for tag type
+//
+// Fields :
+//
+// - TAG_TYPE_UNSPECIFIED: Unspecified tag type
+// - TAG_TYPE_EXPERTISE: Expertise tag type
+// - TAG_TYPE_JOB: Job tag type
+// - TAG_TYPE_COMPETENCY: Competency tag type
+// - TAG_TYPE_SECTOR: Sector tag type
+// - TAG_TYPE_GLOBAL: Global tag type
+enum TagType {
+    // - TAG_TYPE_UNSPECIFIED: Unspecified tag type
+    TAG_TYPE_UNSPECIFIED = 0;
+    // - TAG_TYPE_EXPERTISE: Expertise tag type
+    TAG_TYPE_EXPERTISE = 1;
+    // - TAG_TYPE_JOB: Job tag type
+    TAG_TYPE_JOB = 2;
+    // - TAG_TYPE_COMPETENCY: Competency tag type
+    TAG_TYPE_COMPETENCY = 3;
+    // - TAG_TYPE_SECTOR: Sector tag type
+    TAG_TYPE_SECTOR = 4;
+    // - TAG_TYPE_GLOBAL: Global tag type
+    TAG_TYPE_GLOBAL = 5;
+}
+
+// Tag
+//
+// Fields :
+//
+// - id: Tag id
+// - name: Tag name
+// - type: Tag type
+message Tag {
+    // - id: Tag id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // - name: Tag name
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // - type: Tag type
+    TagType type = 3 [(google.api.field_behavior) = INPUT_ONLY];
+}
+
+// TagBlock
+//
+// Fields :
+//
+// - title: Title of the tag block
+// - tags: List of tags
+message TagBlock {
+    // - title: Title of the tag block
+    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // - tags: List of tags
+    repeated Tag tags = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

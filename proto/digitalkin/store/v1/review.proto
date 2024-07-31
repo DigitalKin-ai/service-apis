@@ -1,0 +1,48 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// Review
+//
+// ## Fields
+//
+// - id: Review id
+// - reviewer: Reviewer name
+// - reviewer_avatar: Reviewer avatar
+// - review: Review
+// - review_comment: Review comment
+// - review_date: Review date
+message Review {
+    // id: Review id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // reviewer: Reviewer name
+    string reviewer = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // reviewer_avatar: Reviewer avatar
+    optional string reviewer_avatar = 3;
+    // review: Review
+    int64 review = 4 [(google.api.field_behavior) = INPUT_ONLY];
+    // review_comment: Review comment
+    optional string review_comment = 5;
+    // review_date: Review date
+    google.protobuf.Timestamp review_date = 6 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+}
