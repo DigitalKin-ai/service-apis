@@ -16,24 +16,32 @@ syntax = "proto3";
 
 package digitalkin.store.v1;
 
+import "digitalkin/store/v1/card.proto";
+import "digitalkin/store/v1/store.proto";
+import "digitalkin/store/v1/review.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
 // StoreService
 service StoreService {
-    // ReadAllStore
+    // ReadAllKins
     //
     // Parameters:
     //
-    // - pagination: Pagination
+    // - page: Page number
+    // - limit: Limit of items per page
     //
     // Returns:
     //
     // - ListStore
-    rpc ReadAllKin(ReadAllKinRequest) returns (stream ListStore) {
+    rpc ReadAllKins(ReadAllKinsRequest) returns (ReadAllKinsResponse) {
         option (google.api.http) = {
             get: "/v1/store/read"
         };
     }
 
-    // ReadStoreResume
+    // ReadKinResume
     //
     // Parameters:
     //
@@ -48,76 +56,76 @@ service StoreService {
         };
     }
 
-  // UpdateName
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - name: Kin name
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin name was updated
-  rpc UpdateName(UpdateKinNameRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/name"
-      body: "*"
-    };
-  }
+    // UpdateName
+    //
+    // ## Parameters
+    //
+    // - kin_id: Kin id
+    // - name: Kin name
+    //
+    // ## Returns
+    //
+    // - Ok if the Kin name was updated
+    rpc UpdateName(UpdateKinNameRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/name"
+            body: "*"
+        };
+    }
 
-  // UpdateImage
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - image: Kin image
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin image was updated
-  rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/image"
-      body: "*"
-    };
-  }
+    // UpdateImage
+    //
+    // ## Parameters
+    //
+    // - kin_id: Kin id
+    // - image: Kin image
+    //
+    // ## Returns
+    //
+    // - Ok if the Kin image was updated
+    rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/image"
+            body: "*"
+        };
+    }
 
-  // CreateReview
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - user_name: User name
-  // - user_avatar: User avatar
-  // - review: Review
-  // - review_comment: Review comment
-  //
-  // ## Returns
-  //
-  // - Review
-  rpc CreateReview(CreateKinReviewRequest) returns (Review) {
-    option (google.api.http) = {
-      post: "/v1/kin/{kin_id}/review"
-      body: "*"
-    };
-  }
+    // CreateReview
+    //
+    // ## Parameters
+    //
+    // - kin_id: Kin id
+    // - user_name: User name
+    // - user_avatar: User avatar
+    // - review: Review
+    // - review_comment: Review comment
+    //
+    // ## Returns
+    //
+    // - Review
+    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
+        option (google.api.http) = {
+            post: "/v1/kin/{kin_id}/review"
+            body: "*"
+        };
+    }
 
-  // UpdateReview
-  //
-  // ## Parameters
-  //
-  // - id: Review id
-  // - kin_id: Kin id
-  // - review: Review
-  // - review_comment: Review comment
-  //
-  // ## Returns
-  //
-  // - Ok if the review was updated
-  rpc UpdateReview(UpdateKinReviewRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/review/{review_id}",
-      body: "*"
-    };
-  }
+    // UpdateReview
+    //
+    // ## Parameters
+    //
+    // - id: Review id
+    // - kin_id: Kin id
+    // - review: Review
+    // - review_comment: Review comment
+    //
+    // ## Returns
+    //
+    // - Ok if the review was updated
+    rpc UpdateReview(UpdateKinReviewRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/kin/{kin_id}/review/{review_id}",
+            body: "*"
+        };
+    }
 }

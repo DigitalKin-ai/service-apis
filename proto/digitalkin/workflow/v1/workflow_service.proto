@@ -14,24 +14,12 @@
 
 syntax = "proto3";
 
-package digitalkin.store.v1;
+package digitalkin.workflow.v1;
 
-import "google/api/field_behavior.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
-// TextBlock
-//
-// A block of text with a title and content.
-//
-// Fields:
-//
-// - title: The title of the text block.
-// - subtitle: The subtitle of the text block.
-// - content: The content of the text block.
-message TextBlock {
-    // title: The title of the text block.
-    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // subtitle: The subtitle of the text block.
-    optional string subtitle = 2;
-    // content: The content of the text block.
-    string content = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+// WorkflowService
+service WorkflowService {
+
 }

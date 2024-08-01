@@ -7,7 +7,7 @@
 Ensure [buf](https://buf.build/docs/installation) and [protoc](https://grpc.io/docs/protoc-installation/) are installed on your system.
 
 ```sh
-buf mod update ./proto
+buf dep update ./proto
 ```
 
 #### Rust (tonic):

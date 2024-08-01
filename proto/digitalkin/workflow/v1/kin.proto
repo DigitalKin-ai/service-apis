@@ -57,21 +57,6 @@ service StoreService {
     };
   }
 
-  // ReadAllKin
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - ListKin
-  rpc ReadAllKin(ReadAllKinRequest) returns (stream ListKin) {
-    option (google.api.http) = {
-      get: "/v1/kin"
-    };
-  }
-
   // DeleteKin
   //
   // ## Parameters
@@ -104,40 +89,6 @@ service StoreService {
     };
   }
 
-  // UpdateName
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - name: Kin name
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin name was updated
-  rpc UpdateName(UpdateKinNameRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/name"
-      body: "*"
-    };
-  }
-
-  // UpdateDescription
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - description: Kin description
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin description was updated
-  rpc UpdateDescription(UpdateKinDescriptionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/description"
-      body: "*"
-    };
-  }
-
   // UpdateOriginAddress
   //
   // ## Parameters
@@ -151,62 +102,6 @@ service StoreService {
   rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/v1/kin/{kin_id}/origin"
-      body: "*"
-    };
-  }
-
-  // UpdateImage
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - image: Kin image
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin image was updated
-  rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/image"
-      body: "*"
-    };
-  }
-
-  // CreateReview
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  // - user_name: User name
-  // - user_avatar: User avatar
-  // - review: Review
-  // - review_comment: Review comment
-  //
-  // ## Returns
-  //
-  // - Review
-  rpc CreateReview(CreateKinReviewRequest) returns (Review) {
-    option (google.api.http) = {
-      post: "/v1/kin/{kin_id}/review"
-      body: "*"
-    };
-  }
-
-  // UpdateReview
-  //
-  // ## Parameters
-  //
-  // - id: Review id
-  // - kin_id: Kin id
-  // - review: Review
-  // - review_comment: Review comment
-  //
-  // ## Returns
-  //
-  // - Ok if the review was updated
-  rpc UpdateReview(UpdateKinReviewRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      patch: "/v1/kin/{kin_id}/review/{review_id}",
       body: "*"
     };
   }

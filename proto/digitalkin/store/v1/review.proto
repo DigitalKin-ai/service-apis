@@ -21,7 +21,7 @@ import "google/protobuf/timestamp.proto";
 
 // Review
 //
-// ## Fields
+// Fields:
 //
 // - id: Review id
 // - reviewer: Reviewer name
@@ -45,4 +45,49 @@ message Review {
         (google.api.field_behavior) = IMMUTABLE,
         (google.api.field_behavior) = OUTPUT_ONLY
     ];
+}
+
+// CreateKinReviewRequest
+//
+// Create a new review
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - user_name: User name
+// - user_avatar: User avatar
+// - review: Review
+// - review_comment: Review comment
+message CreateKinReviewRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // user_name: User name
+    string user_name = 2 [(google.api.field_behavior) = REQUIRED];
+    // user_avatar: User avatar
+    optional string user_avatar = 3;
+    // review: Review
+    int64 review = 4 [(google.api.field_behavior) = REQUIRED];
+    // review_comment: Review comment
+    optional string review_comment = 5;
+}
+
+// UpdateKinReviewRequest
+//
+// Update a review
+//
+// Fields:
+//
+// - id: Review id
+// - kin_id: Kin id
+// - review: Review
+// - review_comment: Review comment
+message UpdateKinReviewRequest {
+    // id: Review id
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+    // kin_id: Kin id
+    string kin_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // review: Review
+    int64 review = 3 [(google.api.field_behavior) = REQUIRED];
+    // review_comment: Review comment
+    optional string review_comment = 4;
 }

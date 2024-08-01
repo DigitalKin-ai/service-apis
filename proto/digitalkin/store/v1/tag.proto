@@ -31,17 +31,17 @@ import "google/api/field_behavior.proto";
 // - TAG_TYPE_SECTOR: Sector tag type
 // - TAG_TYPE_GLOBAL: Global tag type
 enum TagType {
-    // - TAG_TYPE_UNSPECIFIED: Unspecified tag type
+    // TAG_TYPE_UNSPECIFIED: Unspecified tag type
     TAG_TYPE_UNSPECIFIED = 0;
-    // - TAG_TYPE_EXPERTISE: Expertise tag type
+    // TAG_TYPE_EXPERTISE: Expertise tag type
     TAG_TYPE_EXPERTISE = 1;
-    // - TAG_TYPE_JOB: Job tag type
+    // TAG_TYPE_JOB: Job tag type
     TAG_TYPE_JOB = 2;
-    // - TAG_TYPE_COMPETENCY: Competency tag type
+    // TAG_TYPE_COMPETENCY: Competency tag type
     TAG_TYPE_COMPETENCY = 3;
-    // - TAG_TYPE_SECTOR: Sector tag type
+    // TAG_TYPE_SECTOR: Sector tag type
     TAG_TYPE_SECTOR = 4;
-    // - TAG_TYPE_GLOBAL: Global tag type
+    // TAG_TYPE_GLOBAL: Global tag type
     TAG_TYPE_GLOBAL = 5;
 }
 
@@ -53,11 +53,11 @@ enum TagType {
 // - name: Tag name
 // - type: Tag type
 message Tag {
-    // - id: Tag id
+    // id: Tag id
     string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - name: Tag name
+    // name: Tag name
     string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - type: Tag type
+    // type: Tag type
     TagType type = 3 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
@@ -68,8 +68,8 @@ message Tag {
 // - title: Title of the tag block
 // - tags: List of tags
 message TagBlock {
-    // - title: Title of the tag block
+    // title: Title of the tag block
     string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - tags: List of tags
+    // tags: List of tags
     repeated Tag tags = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

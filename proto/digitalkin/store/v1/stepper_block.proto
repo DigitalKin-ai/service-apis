@@ -28,25 +28,28 @@ import "google/api/field_behavior.proto";
 // - contents: The content of the step.
 // - image: The image of the step.
 message Step {
-    // - title: The title of the step.
+    // title: The title of the step.
     string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - contents: The content of the step.
+    // contents: The content of the step.
     repeated string contents = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - image: The image of the step.
+    // image: The image of the step.
     string image = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// StepBlock
+// StepperBlock
 //
-// A step block entity that contains a title and a list of steps.
+// A stepper block entity that contains a title and a list of steps.
 //
 // Fields:
 //
 // - title: The title of the step block.
+// - subtitle: The subtitle of the step block.
 // - steps: The list of steps.
-message StepBlock {
-    // - title: The title of the step block.
+message StepperBlock {
+    // title: The title of the step block.
     string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - steps: The list of steps.
-    repeated Step steps = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // subtitle: The subtitle of the step block.
+    optional string subtitle = 2;
+    // steps: The list of steps.
+    repeated Step steps = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

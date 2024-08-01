@@ -16,10 +16,11 @@ syntax = "proto3";
 
 package digitalkin.store.v1;
 
+import "digitalkin/store/v1/card.proto";
 import "digitalkin/store/v1/details.proto";
 import "digitalkin/store/v1/faq.proto";
 import "digitalkin/store/v1/review.proto";
-import "digitalkin/store/v1/step_block.proto";
+import "digitalkin/store/v1/stepper_block.proto";
 import "digitalkin/store/v1/tag.proto";
 import "digitalkin/store/v1/text_block.proto";
 
@@ -39,22 +40,22 @@ import "google/api/field_behavior.proto";
 // - competencies: Competency tags
 // - sectors: Sector tags
 message Others {
-    // - expertises: Expertise tags
-    TagBlock expertises = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - jobs: Job tags
-    TagBlock jobs = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - competencies: Competency tags
-    TagBlock competencies = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - sectors: Sector tags
-    TagBlock sectors = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - tools_and_technologies: Tools and technologies
-    TextBlock tools_and_technologies = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - work_kit: Work kit
-    TextBlock work_kit = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - pricing: Pricing
-    TextBlock pricing = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - Modalities: Modalities
-    TextBlock modalities = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // expertises: Expertise tags
+    optional TagBlock expertises = 1;
+    // jobs: Job tags
+    optional TagBlock jobs = 2;
+    // competencies: Competency tags
+    optional TagBlock competencies = 3;
+    // sectors: Sector tags
+    optional TagBlock sectors = 4;
+    // tools_and_technologies: Tools and technologies
+    optional TextBlock tools_and_technologies = 5;
+    // work_kit: Work kit
+    optional TextBlock work_kit = 6;
+    // pricing: Pricing
+    optional TextBlock pricing = 7;
+    // modalities: Modalities
+    optional TextBlock modalities = 8;
 }
 
 // Description
@@ -72,64 +73,22 @@ message Others {
 // - results: Kin results
 // - faqs: Kin faqs
 message Description {
-    // - introduction: Kin introduction
+    // introduction: Kin introduction
     optional TextBlock introduction = 1;
-    // - benefits: Kin benefits
+    // benefits: Kin benefits
     optional TextBlock benefits = 2;
-    // - synthesis: Kin synthesis
+    // synthesis: Kin synthesis
     optional TextBlock synthesis = 3;
-    // - integration: Kin integration
-    optional StepBlock integration = 4;
-    // - work_done: Kin work_done
+    // integration: Kin integration
+    optional StepperBlock integration = 4;
+    // work_done: Kin work_done
     optional TextBlock work_done = 5;
-    // - render: Kin render
+    // render: Kin render
     optional TextBlock render = 6;
-    // - results: Kin results
+    // results: Kin results
     optional TextBlock results = 7;
-    // - faqs: Kin faqs
-    repeated Faq faqs = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
-}
-
-// Card
-//
-// Card of a Kin
-//
-// Fields:
-//
-// - id: Kin id
-// - name: Kin name
-// - short_description: Kin description
-// - image: Kin image
-// - tags: Kin tags
-// - score: Kin score
-// - organizations_count: Kin organizations_count
-// - threads_count: Kin threads_count
-// - users_count: Kin users_count
-// - price: Kin price
-// - fav_users: Kin fav_users
-message Card {
-    // - id: Kin id
-    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - name: Kin name
-    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - short_description: Kin description
-    optional string short_description = 3;
-    // - image: Kin image
-    optional string image = 4;
-    // - tags: Kin tags
-    repeated Tag tags = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - score: Kin score
-    optional float score = 6;
-    // - organizations_count: Kin organizations_count
-    optional int32 organizations_count = 7 ;
-    // - threads_count: Kin threads_count
-    optional int32 threads_count = 8;
-    // - users_count: Kin users_count
-    optional int32 users_count = 9;
-    // - price: Kin price
-    optional float price = 10;
-    // - fav_users: Kin fav_users
-    repeated string fav_users = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // faq: Kin faq
+    optional FaqBlock faq = 8;
 }
 
 // StoreResume
@@ -144,26 +103,53 @@ message Card {
 // - reviews: Kin reviews
 // - others: Kin others
 message StoreResume {
-    // - card: Kin card
+    // card: Kin card
     Card card = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - description: Kin description
+    // description: Kin description
     Description description = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - details: Kin details
+    // details: Kin details
     Details details = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - reviews: Kin reviews
+    // reviews: Kin reviews
     repeated Review reviews = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - others: Kin others
+    // others: Kin others
     Others others = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// ListKin
+// ReadAllKinsRequest
 //
-// List of Kins
+// Request to read all Kins
 //
 // Fields:
 //
+// - page: Page number
+// - limit: Limit of items per page
+message ReadAllKinsRequest {
+    // page: Page number
+    optional int32 page = 1;
+    // limit: Limit of items per page
+    optional int32 limit = 2;
+}
+
+// ReadAllKinsResponse
+//
+// Response to read all Kins
+//
+// returns:
+//
 // - kins: List of Kins
-message ListStore {
-  // - kins: List of Kins
-  repeated Card kins = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+message ReadAllKinsResponse {
+    // kins: List of Kins
+    repeated Card kins = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ReadKinResumeRequest
+//
+// Request to read a Kin resume
+//
+// Fields:
+//
+// - kin_id: Kin id
+message ReadKinResumeRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
 }

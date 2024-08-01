@@ -17,6 +17,7 @@ syntax = "proto3";
 package digitalkin.store.v1;
 
 import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 
 // Licence
 //

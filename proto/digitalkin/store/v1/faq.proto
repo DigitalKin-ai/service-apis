@@ -27,8 +27,26 @@ import "google/api/field_behavior.proto";
 // - question: The question.
 // - answer: The answer.
 message Faq {
-    // - question: The question.
+    // question: The question.
     string question = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // - answer: The answer.
+    // answer: The answer.
     string answer = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// FaqBlock
+//
+// FaqBlock is a message that contains a list of Faq messages.
+//
+// Fields:
+//
+// - title: The title of the FaqBlock.
+// - subtitle: The subtitle of the FaqBlock.
+// - faqs: The list of Faq messages.
+message FaqBlock {
+    // title: The title of the FaqBlock.
+    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // subtitle: The subtitle of the FaqBlock.
+    optional string subtitle = 2;
+    // faqs: The list of Faq messages.
+    repeated Faq faqs = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
