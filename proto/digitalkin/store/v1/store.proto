@@ -18,7 +18,7 @@ package digitalkin.store.v1;
 
 import "digitalkin/store/v1/card.proto";
 import "digitalkin/store/v1/details.proto";
-import "digitalkin/store/v1/faq.proto";
+import "digitalkin/store/v1/faq_block.proto";
 import "digitalkin/store/v1/review.proto";
 import "digitalkin/store/v1/stepper_block.proto";
 import "digitalkin/store/v1/tag.proto";
