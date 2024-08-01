@@ -35,3 +35,21 @@ message TextBlock {
     // content: The content of the text block.
     string content = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
+
+// UpdateTextBlockRequest
+//
+// Request message for the UpdateTextBlock method.
+//
+// Fields:
+//
+// - title: The title of the text block.
+// - subtitle: The subtitle of the text block.
+// - content: The content of the text block.
+message UpdateTextBlockRequest {
+    // title: The title of the text block.
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    // subtitle: The subtitle of the text block.
+    optional string subtitle = 2;
+    // content: The content of the text block.
+    string content = 3 [(google.api.field_behavior) = REQUIRED];
+}

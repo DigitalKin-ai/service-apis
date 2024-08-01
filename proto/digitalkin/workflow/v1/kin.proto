@@ -24,24 +24,6 @@ import "digitalkin/kin/v1/kin_thread.proto";
 
 // StoreService
 service StoreService {
-  // CreateKin
-  //
-  // ## Parameters
-  //
-  // - name: Kin name
-  // - description: Kin description
-  // - origin_address: Kin origin address
-  //
-  // ## Returns
-  //
-  // - Kin
-  rpc CreateKin(CreateKinRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v1/kin/create"
-      body: "*"
-    };
-  }
-
   // ReadKin
   //
   // ## Parameters
@@ -54,21 +36,6 @@ service StoreService {
   rpc ReadKin(ReadKinRequest) returns (stream Kin) {
     option (google.api.http) = {
       get: "/v1/kin/{kin_id}"
-    };
-  }
-
-  // DeleteKin
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  //
-  // ## Returns
-  //
-  // - Ok if the Kin was deleted
-  rpc DeleteKin(DeleteKinRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/v1/kin/{kin_id}"
     };
   }
 

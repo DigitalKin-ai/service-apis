@@ -50,3 +50,21 @@ message FaqBlock {
     // faqs: The list of Faq messages.
     repeated Faq faqs = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
+
+// UpdateFaqBlockRequest
+//
+// UpdateFaqBlockRequest is a message that contains the request to update a FaqBlock.
+//
+// Fields:
+//
+// - title: The title of the FaqBlock.
+// - subtitle: The subtitle of the FaqBlock.
+// - faqs: The list of Faq messages.
+message UpdateFaqBlockRequest {
+    // title: The title of the FaqBlock.
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    // subtitle: The subtitle of the FaqBlock.
+    optional string subtitle = 2;
+    // faqs: The list of Faq messages.
+    repeated Faq faqs = 3 [(google.api.field_behavior) = REQUIRED];
+}

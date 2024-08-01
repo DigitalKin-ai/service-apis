@@ -16,80 +16,13 @@ syntax = "proto3";
 
 package digitalkin.store.v1;
 
+import "digitalkin/store/v1/block.proto";
 import "digitalkin/store/v1/card.proto";
 import "digitalkin/store/v1/details.proto";
-import "digitalkin/store/v1/faq_block.proto";
 import "digitalkin/store/v1/review.proto";
-import "digitalkin/store/v1/stepper_block.proto";
 import "digitalkin/store/v1/tag.proto";
-import "digitalkin/store/v1/text_block.proto";
 
 import "google/api/field_behavior.proto";
-
-// Others
-//
-// Others information of a Kin
-//
-// Use for the left side of the Kin page to show the tags and other information
-//
-// Fields:
-//
-// - roles: Role tags
-// - expertises: Expertise tags
-// - jobs: Job tags
-// - competencies: Competency tags
-// - sectors: Sector tags
-message Others {
-    // expertises: Expertise tags
-    optional TagBlock expertises = 1;
-    // jobs: Job tags
-    optional TagBlock jobs = 2;
-    // competencies: Competency tags
-    optional TagBlock competencies = 3;
-    // sectors: Sector tags
-    optional TagBlock sectors = 4;
-    // tools_and_technologies: Tools and technologies
-    optional TextBlock tools_and_technologies = 5;
-    // work_kit: Work kit
-    optional TextBlock work_kit = 6;
-    // pricing: Pricing
-    optional TextBlock pricing = 7;
-    // modalities: Modalities
-    optional TextBlock modalities = 8;
-}
-
-// Description
-//
-// Description of a Kin
-//
-// Fields:
-//
-// - introduction: Kin introduction
-// - benefits: Kin benefits
-// - synthesis: Kin synthesis
-// - integration: Kin integration
-// - work_done: Kin work_done
-// - render: Kin render
-// - results: Kin results
-// - faqs: Kin faqs
-message Description {
-    // introduction: Kin introduction
-    optional TextBlock introduction = 1;
-    // benefits: Kin benefits
-    optional TextBlock benefits = 2;
-    // synthesis: Kin synthesis
-    optional TextBlock synthesis = 3;
-    // integration: Kin integration
-    optional StepperBlock integration = 4;
-    // work_done: Kin work_done
-    optional TextBlock work_done = 5;
-    // render: Kin render
-    optional TextBlock render = 6;
-    // results: Kin results
-    optional TextBlock results = 7;
-    // faq: Kin faq
-    optional FaqBlock faq = 8;
-}
 
 // StoreResume
 //
@@ -99,20 +32,32 @@ message Description {
 //
 // - card: Kin card
 // - description: Kin description
-// - details: Kin details
+// - list_blocks: Kin list blocks
 // - reviews: Kin reviews
-// - others: Kin others
 message StoreResume {
     // card: Kin card
     Card card = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // description: Kin description
-    Description description = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // list_blocks: Kin list blocks
+    ListBlock list_blocks = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // details: Kin details
     Details details = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // reviews: Kin reviews
     repeated Review reviews = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // others: Kin others
-    Others others = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// CreateKinResumeRequest
+//
+// Create Kin resume request
+//
+// Fields:
+//
+// - name: Kin name
+// - short_description: Kin description
+message CreateKinResumeRequest {
+    // name: Kin name
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+    // short_description: Kin description
+    optional string short_description = 2;
 }
 
 // ReadAllKinsRequest
@@ -152,4 +97,61 @@ message ReadAllKinsResponse {
 message ReadKinResumeRequest {
     // kin_id: Kin id
     string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinNameRequest
+//
+// Update Kin name request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - name: Kin name
+message UpdateKinNameRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // name: Kin name
+    string name = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinImageRequest
+//
+// Update Kin image request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - image: Kin image
+message UpdateKinImageRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // image: Kin image
+    string image = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinShortDescriptionRequest
+//
+// Update Kin short description request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - short_description: Kin short description
+message UpdateKinShortDescriptionRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // short_description: Kin short description
+    string short_description = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinImageResponse
+//
+// Update Kin image response
+//
+// Fields:
+//
+// - url: Kin image url
+message UpdateKinImageResponse {
+    // url: Kin image url
+    string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

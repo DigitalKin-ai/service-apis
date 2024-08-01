@@ -53,3 +53,21 @@ message StepperBlock {
     // steps: The list of steps.
     repeated Step steps = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
+
+// UpdateStepperBlockRequest
+//
+// Request message for the UpdateStepperBlock method.
+//
+// Fields:
+//
+// - title: The title of the step block.
+// - subtitle: The subtitle of the step block.
+// - steps: The list of steps.
+message UpdateStepperBlockRequest {
+    // title: The title of the step block.
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    // subtitle: The subtitle of the step block.
+    optional string subtitle = 2;
+    // steps: The list of steps.
+    repeated Step steps = 3 [(google.api.field_behavior) = REQUIRED];
+}

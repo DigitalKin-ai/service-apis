@@ -19,18 +19,18 @@ package digitalkin.store.v1;
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 
-// Licence
+// License
 //
-// Licence section in project resume.
+// License section in project resume.
 //
 // Fields:
 //
-// - name: Licence name
-// - url: Licence url
-message Licence {
-    // name: Licence name
+// - name: License name
+// - url: License url
+message License {
+    // name: License name
     string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // url: Licence url
+    // url: License url
     string url = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
@@ -57,7 +57,7 @@ message Documentation {
 // - version: Project version
 // - languages: Project languages
 // - framework: Project framework
-// - licence: Project licence
+// - license: Project licence
 // - documentation: Project documentation
 message Details {
     // creation_date: Project creation date
@@ -73,8 +73,69 @@ message Details {
     repeated string languages = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // framework: Project framework
     optional string framework = 5;
-    // licence: Project licence
-    optional Licence licence = 6;
+    // license: Project license
+    optional License license = 6;
     // documentation: Project documentation
     optional Documentation documentation = 7;
+}
+
+// UpdateKinLanguagesRequest
+//
+// Request message for `UpdateKinLanguages` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - languages: Kin languages
+message UpdateKinLanguagesRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // languages: Kin languages
+    repeated string languages = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinFrameworkRequest
+//
+// Request message for `UpdateKinFramework` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - framework: Kin framework
+message UpdateKinFrameworkRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // framework: Kin framework
+    string framework = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinLicenseRequest
+//
+// Request message for `UpdateKinLicense` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - license: Kin license
+message UpdateKinLicenseRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // license: Kin license
+    License license = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+
+// UpdateKinDocumentationRequest
+//
+// Request message for `UpdateKinDocumentation` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - documentation: Kin documentation
+message UpdateKinDocumentationRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // documentation: Kin documentation
+    Documentation documentation = 2 [(google.api.field_behavior) = REQUIRED];
 }
