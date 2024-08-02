@@ -92,7 +92,18 @@ service KinResponseService {
     };
   }
 
-  rpc ChatWithKin(ChatWithKinRequest) returns (stream ChatWithKinResponse) {
+  // ChatKin
+  //
+  // ## Parameters
+  //
+  // - kin_thread_id: Kin thread id
+  // - message: Message
+  // - prompt: Prompt
+  //
+  // ## Returns
+  //
+  // - ChatKinResponse
+  rpc ChatKin(ChatKinRequest) returns (stream ChatKinResponse) {
     option (google.api.http) = {
       post: "/v1/kin/chat"
       body: "*"
@@ -192,14 +203,14 @@ message ReplyInTheThreadRequest {
   repeated digitalkin.common.v1.File files = 3;
 }
 
-// ChatWithKinRequest
+// ChatKinRequest
 //
 // ## Fields
 //
 // - kin_thread_id: Kin thread id
 // - message: Message
 // - prompt: Prompt
-message ChatWithKinRequest {
+message ChatKinRequest {
   // kin_thread_id: Kin thread id
   string kin_thread_id = 1;
   // message: Message
@@ -208,12 +219,12 @@ message ChatWithKinRequest {
   string prompt = 3;
 }
 
-// ChatWithKinResponse
+// ChatKinResponse
 //
 // ## Returns
 //
 // - content: Content
-message ChatWithKinResponse {
+message ChatKinResponse {
   // content: Content
   string content = 1;
 }
