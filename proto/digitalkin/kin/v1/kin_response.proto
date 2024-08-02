@@ -20,7 +20,9 @@ syntax = "proto3";
 package digitalkin.kin.v1;
 
 import "digitalkin/common/v1/common.proto";
+
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 // KinResponseService
 service KinResponseService {
@@ -89,7 +91,15 @@ service KinResponseService {
         body: "*"
     };
   }
+
+  rpc ChatWithKin(ChatWithKinRequest) returns (stream ChatWithKinResponse) {
+    option (google.api.http) = {
+      post: "/v1/kin/chat"
+      body: "*"
+    };
+  }
 }
+
 
 // KinResponse
 //
@@ -180,4 +190,26 @@ message ReplyInTheThreadRequest {
   string mission = 2;
   // files: Files
   repeated digitalkin.common.v1.File files = 3;
+}
+
+// ChatWithKinRequest
+//
+// ## Fields
+//
+// - message: Message
+message ChatWithKinRequest {
+  // message: Message
+  string message = 1;
+  // prompt: Prompt
+  string prompt = 2;
+}
+
+// ChatWithKinResponse
+//
+// ## Returns
+//
+// - content: Content
+message ChatWithKinResponse {
+  // content: Content
+  string content = 1;
 }
