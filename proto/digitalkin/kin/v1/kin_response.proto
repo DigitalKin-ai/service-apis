@@ -117,7 +117,7 @@ message KinResponse {
   // id: Kin response id
   string id = 1;
   // role: Role of the user who created the response
-  optional string role = 2;
+  string role = 2;
   // status: Status of the response
   optional string status = 3;
   // mission: Mission of the response
@@ -196,12 +196,16 @@ message ReplyInTheThreadRequest {
 //
 // ## Fields
 //
+// - kin_thread_id: Kin thread id
 // - message: Message
+// - prompt: Prompt
 message ChatWithKinRequest {
+  // kin_thread_id: Kin thread id
+  string kin_thread_id = 1;
   // message: Message
-  string message = 1;
+  string message = 2;
   // prompt: Prompt
-  string prompt = 2;
+  string prompt = 3;
 }
 
 // ChatWithKinResponse
