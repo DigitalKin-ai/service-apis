@@ -313,7 +313,7 @@ service UserService {
       delete: "/v1/user/organization/{organization_id}"
     };
   }
-  
+
   // AddFavKin
   //
   // ## Parameters
@@ -323,7 +323,7 @@ service UserService {
   // ## Returns
   //
   // Ok if the kin was added
-  rpc AddFavKin(AddUserKinRequest) returns (KinReply) {
+  rpc AddFavKin(AddUserKinRequest) returns (digitalkin.common.v1.KinReply) {
     option (google.api.http) = {
       post: "/v1/user/kin"
       body: "*"
@@ -399,7 +399,7 @@ message User {
   // organizations: List of organizations
   repeated OrganizationReply organizations = 6;
   // fav_kins: List of fav kins
-  repeated KinReply fav_kins = 7;
+  repeated digitalkin.common.v1.KinReply fav_kins = 7;
   // usage_types: Usage type
   repeated string usage_types = 8;
   // activated: Is the user activated
@@ -770,4 +770,3 @@ message RemoveUserKinRequest {
 // Ok if the kin was removed
 message RemoveUserKinResponse {
 }
-

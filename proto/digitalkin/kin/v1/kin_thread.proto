@@ -57,6 +57,21 @@ service KinThreadService {
     };
   }
 
+  // ReadKinThreadsActivity
+  //
+  // ## Parameters
+  //
+  // - optional kin_id: Kin id
+  //
+  // ## Returns
+  //
+  // - KinThreadsActivity
+  rpc ReadKinThreadsActivity(ReadKinThreadsActivitiesRequest) returns (stream KinThreadsActivities) {
+    option (google.api.http) = {
+      get: "/v1/kin/thread/activity"
+    };
+  }
+
   // DeleteKinThread
   //
   // ## Parameters
@@ -96,6 +111,8 @@ service KinThreadService {
 //
 // - id: Kin thread id
 // - thread_subject: Subject of the thread
+// - worflow: Workflow
+// - kin: Kin
 // - responses: Responses
 // - activated: Activated
 message KinThread {
@@ -103,10 +120,14 @@ message KinThread {
   string id = 1;
   // thread_subject: Subject of the thread
   string thread_subject = 2;
+  // workflow: workflow
+  optional digitalkin.common.v1.WorkflowReply workflow = 3;
+  // kin: kin
+  digitalkin.common.v1.KinReply kin = 4;
   // responses: Responses
-  repeated KinResponse responses = 3;
+  repeated KinResponse responses = 5;
   // activated: Activated
-  bool activated = 4;
+  bool activated = 6;
 }
 
 // CreateKinThreadRequest
@@ -130,6 +151,60 @@ message CreateKinThreadRequest {
 message ReadKinThreadRequest {
   // kin_thread_id: Kin thread id
   string kin_thread_id = 1;
+}
+
+// ReadKinThreadsActivitiesRequest
+//
+// ## Fields
+//
+// - kin_id: Kin id
+message ReadKinThreadsActivitiesRequest {
+  // kin_id: Kin id
+  optional string kin_id = 1;
+}
+
+// KinThreadActivity
+//
+// ## Fields
+//
+// - id: Kin thread activity id
+// - kin_id: Kin id
+// - status: Status
+// - subject: Subject
+// - workflow_name: Workflow name
+// - kin_name: Kin name
+// - date: Date
+// - duration: Duration
+// - price: Price
+message KinThreadActivity {
+  // id: Kin thread activity id
+  string id = 1;
+  // kin_id: Kin id
+  string kin_id = 2;
+  // status: Status
+  optional string status = 3;
+  // subject: Subject
+  string subject = 4;
+  // workflow_name: Workflow name
+  optional string workflow_name = 5;
+  // kin_name: Kin name
+  optional string kin_name = 6;
+  // date: Date
+  optional string date = 7;
+  // duration: Duration
+  optional string duration = 8;
+  // price: Price
+  optional int64 price = 9;
+}
+
+// KinThreadsActivities
+//
+// ## Fields
+//
+// - kin_threads_activity: Kin threads activity
+message KinThreadsActivities {
+  // kin_threads_activities: Kin threads activities
+  repeated KinThreadActivity kin_threads_activities = 1;
 }
 
 // DeleteKinThreadRequest
@@ -170,4 +245,3 @@ message UpdateSubjectRequest {
 // - Ok if the subject was updated
 message UpdateSubjectResponse {
 }
-

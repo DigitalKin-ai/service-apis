@@ -253,7 +253,7 @@ service OrganizationService {
   // ## Returns
   //
   // - Ok if the kin was added
-  rpc AddKin(AddOrganizationKinRequest) returns (KinReply) {
+  rpc AddKin(AddOrganizationKinRequest) returns (digitalkin.common.v1.KinReply) {
     option (google.api.http) = {
       post: "/v1/organization/{organization_id}/kin"
       body: "*"
@@ -307,25 +307,6 @@ service OrganizationService {
   }
 }
 
-// KinReply
-//
-// ## Fields
-//
-// - id: The id of the kin
-// - name: The name of the kin
-// - description: The description of the kin
-// - activated: True if the kin is activated
-message KinReply {
-  // id: The id of the kin
-  string id = 1;
-  // name: The name of the kin
-  string name = 2;
-  // description: The description of the kin
-  optional string description = 3;
-  // activated: True if the kin is activated
-  bool activated = 4;
-}
-
 // Organization
 //
 // ## Fields
@@ -359,7 +340,7 @@ message Organization {
   // users: The users of the organization
   repeated digitalkin.common.v1.UserReply users = 8;
   // kins: The kins of the organization
-  repeated KinReply kins = 9;
+  repeated digitalkin.common.v1.KinReply kins = 9;
   // credit_amount: The credit amount of the organization
   optional int64 credit_amount = 10;
   // activated: True if the organization is activated

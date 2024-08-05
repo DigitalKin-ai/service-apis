@@ -232,22 +232,6 @@ service KinService {
   }
 }
 
-// KinThreadReply
-//
-// ## Fields
-//
-// - id: Kin thread id
-// - thread_subject: Subject of the thread
-// - activated: Kin thread activated status
-message KinThreadReply {
-  // id: Kin thread id
-  string id = 1;
-  // thread_subject: Subject of the thread
-  string thread_subject = 2;
-  // activated: Kin thread activated status
-  bool activated = 3;
-}
-
 // Tag
 //
 // ## Fields
@@ -385,7 +369,7 @@ message Kin {
   // interface_address: Kin interface address
   optional string interface_address = 5;
   // kin_threads: Kin threads
-  repeated KinThreadReply kin_threads = 6;
+  repeated digitalkin.common.v1.KinThreadReply kin_threads = 6;
   // activated: Kin activated status
   bool activated = 7;
 }
