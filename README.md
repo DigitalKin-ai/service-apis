@@ -59,3 +59,9 @@ When using "vscode-proto3" extention in VS Code, add the following to the '.vsco
   }
 }
 ```
+
+## Optionals
+how to select only specific proto, use `--path` args
+```sh
+ buf generate proto --template service-apis/proto/buf.gen.py.yaml -o gen --path service-apis/proto/digitalkin/kin --path service-apis/proto/google
+```
