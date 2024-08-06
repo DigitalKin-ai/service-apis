@@ -208,15 +208,18 @@ message ReplyInTheThreadRequest {
 // ## Fields
 //
 // - kin_thread_id: Kin thread id
+// - organization_id: Organization id
 // - message: Message
 // - prompt: Prompt
 message ChatKinRequest {
   // kin_thread_id: Kin thread id
   string kin_thread_id = 1;
+  // organization_id: Organization id
+  string organization_id = 2;
   // message: Message
-  string message = 2;
+  string message = 3;
   // prompt: Prompt
-  string prompt = 3;
+  string prompt = 4;
 }
 
 // ChatKinResponse
