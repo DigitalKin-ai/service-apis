@@ -26,21 +26,6 @@ import "google/protobuf/empty.proto";
 
 // KinResponseService
 service KinResponseService {
-  // ReadKinResponse
-  //
-  // ## Parameters
-  //
-  // - kin_response_id: Kin response id
-  //
-  // ## Returns
-  //
-  // - KinResponse
-  rpc ReadKinResponse(ReadKinResponseRequest) returns (KinResponse) {
-    option (google.api.http) = {
-      get: "/v1/kin/response/{kin_response_id}"
-    };
-  }
-
   // DeteteKinResponse
   //
   // ## Parameters
@@ -53,42 +38,6 @@ service KinResponseService {
   rpc DeteteKinResponse(DeleteKinResponseRequest) returns (DeleteKinResponseResponse) {
     option (google.api.http) = {
       delete: "/v1/kin/response/{kin_response_id}"
-    };
-  }
-
-  // CreateKinResponse
-  //
-  // ## Parameters
-  //
-  // - kin_thread_id: Kin thread id
-  // - mission: Mission of the response
-  // - files: Files
-  //
-  // ## Returns
-  //
-  // - KinResponse
-  rpc CreateKinResponse(CreateKinResponseRequest) returns (KinResponse) {
-    option (google.api.http) = {
-        post: "/v1/kin/thread/{kin_thread_id}/create"
-        body: "*"
-    };
-  }
-
-  // ReplyInTheThread
-  //
-  // ## Parameters
-  //
-  // - kin_thread_id: Kin thread id
-  // - mission: Mission of the response
-  // - files: Files
-  //
-  // ## Returns
-  //
-  // - KinResponse
-  rpc ReplyInTheThread(ReplyInTheThreadRequest) returns (KinResponse) {
-    option (google.api.http) = {
-        post: "/v1/kin/thread/{kin_thread_id}/reply"
-        body: "*"
     };
   }
 
@@ -143,16 +92,6 @@ message KinResponse {
   optional string model = 8;
 }
 
-// ReadKinResponseRequest
-//
-// ## Fields
-//
-// - kin_response_id: Kin response id
-message ReadKinResponseRequest {
-  // kin_response_id: Kin response id
-  string kin_response_id = 1;
-}
-
 // DeleteKinResponseRequest
 //
 // ## Fields
@@ -171,38 +110,6 @@ message DeleteKinResponseRequest {
 message DeleteKinResponseResponse {
 }
 
-// CreateKinResponseRequest
-//
-// ## Fields
-//
-// - kin_thread_id: Kin thread id
-// - mission: Mission of the response
-// - files: Files
-message CreateKinResponseRequest {
-  // kin_thread_id: Kin thread id
-  string kin_thread_id = 1;
-  // mission: Mission of the response
-  string mission = 2;
-  // files: Files
-  repeated digitalkin.common.v1.File files = 3;
-}
-
-// ReplyInTheThreadRequest
-//
-// ## Fields
-//
-// - kin_thread_id: Kin thread id
-// - mission: Mission of the response
-// - files: Files
-message ReplyInTheThreadRequest {
-  // kin_thread_id: Kin thread id
-  string kin_thread_id = 1;
-  // mission: Mission of the response
-  string mission = 2;
-  // files: Files
-  repeated digitalkin.common.v1.File files = 3;
-}
-
 // ChatKinRequest
 //
 // ## Fields
@@ -210,6 +117,7 @@ message ReplyInTheThreadRequest {
 // - kin_thread_id: Kin thread id
 // - organization_id: Organization id
 // - message: Message
+// - files: Files
 // - prompt: Prompt
 message ChatKinRequest {
   // kin_thread_id: Kin thread id
@@ -218,8 +126,10 @@ message ChatKinRequest {
   string organization_id = 2;
   // message: Message
   string message = 3;
+  // files: Files
+  repeated digitalkin.common.v1.File files = 4;
   // prompt: Prompt
-  string prompt = 4;
+  string prompt = 5;
 }
 
 // ChatKinResponse
