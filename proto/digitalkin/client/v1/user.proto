@@ -26,324 +26,324 @@ import "digitalkin/common/v1/common.proto";
 
 // UserService
 service UserService {
-  // CreateUser
-  //
-  // ## Parameters
-  //
-  // - user_name: User name
-  // - user_email: User email
-  // - user_password: <PASSWORD>
-  //
-  // ## Returns
-  //
-  // Ok if the user was created
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
-    option (google.api.http) = {
+    // CreateUser
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    // - user_email: User email
+    // - user_password: <PASSWORD>
+    //
+    // ## Returns
+    //
+    // Ok if the user was created
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+        option (google.api.http) = {
       post: "/v1/user"
       body: "*"
     };
-  }
-  // ReadUser
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - User
-  rpc ReadUser(ReadUserRequest) returns (stream User) {
-    option (google.api.http) = {
+    }
+    // ReadUser
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - User
+    rpc ReadUser(ReadUserRequest) returns (stream User) {
+        option (google.api.http) = {
       get: "/v1/user/"
     };
-  }
-  // DeleteUser
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // Ok if the user was deleted
-  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
-    option (google.api.http) = {
+    }
+    // DeleteUser
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // Ok if the user was deleted
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+        option (google.api.http) = {
       delete: "/v1/user"
     };
-  }
-  // UpdateActivated
-  //
-  // ## Parameters
-  //
-  // - user_name: User name
-  // - user_activated: User activated
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse) {
-    option (google.api.http) = {
+    }
+    // UpdateActivated
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    // - user_activated: User activated
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/activated"
       body: "*"
     };
-  }
-  // UpdateFirstName
-  //
-  // ## Parameters
-  //
-  // - first_name: First name
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
-    option (google.api.http) = {
+    }
+    // UpdateFirstName
+    //
+    // ## Parameters
+    //
+    // - first_name: First name
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/first_name"
       body: "*"
     };
-  }
-  // UpdateLastName
-  //
-  // ## Parameters
-  //
-  // - last_name: Last name
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
-    option (google.api.http) = {
+    }
+    // UpdateLastName
+    //
+    // ## Parameters
+    //
+    // - last_name: Last name
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/last_name"
       body: "*"
     };
-  }
+    }
 
-  // UpdateUserName
-  //
-  // ## Parameters
-  //
-  // - user_name: User name
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
-    option (google.api.http) = {
+    // UpdateUserName
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/user_name"
       body: "*"
     };
-  }
+    }
 
-  // UpdateUserUsageType
-  //
-  // ## Parameters
-  //
-  // - usage_types: Usage type
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
-    option (google.api.http) = {
+    // UpdateUserUsageType
+    //
+    // ## Parameters
+    //
+    // - usage_types: Usage type
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/usage_types"
       body: "*"
     };
-  }
+    }
 
-  // UpdateAvatar
-  //
-  // ## Parameters
-  //
-  // - avatar: Avatar
-  //
-  // ## Returns
-  //
-  // - avatar: Avatar path
-  rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
-    option (google.api.http) = {
+    // UpdateAvatar
+    //
+    // ## Parameters
+    //
+    // - avatar: Avatar
+    //
+    // ## Returns
+    //
+    // - avatar: Avatar path
+    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/avatar"
       body: "*"
     };
-  }
+    }
 
-  // RequestChangePassword
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // Ok if the mail was sent
-  rpc RequestChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
-    option (google.api.http) = {
+    // RequestChangePassword
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // Ok if the mail was sent
+    rpc RequestChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
+        option (google.api.http) = {
       post: "/v1/user/password/request"
       body: "*"
     };
-  }
+    }
 
-  // ResetPassword
-  //
-  // ## Parameters
-  //
-  // - temp_key: Temp key
-  // - new_password: New password
-  //
-  // ## Returns
-  //
-  // Ok if the mail was sent
-  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
-    option (google.api.http) = {
+    // ResetPassword
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    // - new_password: New password
+    //
+    // ## Returns
+    //
+    // Ok if the mail was sent
+    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/password/reset"
       body: "*"
     };
-  }
+    }
 
-  // UpdatePassword
-  //
-  // ## Parameters
-  //
-  // - new_password: New password
-  // - old_password: Old password
-  // - temp_key: Temp key
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
-    option (google.api.http) = {
+    // UpdatePassword
+    //
+    // ## Parameters
+    //
+    // - new_password: New password
+    // - old_password: Old password
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/password"
       body: "*"
     };
-  }
+    }
 
-  // RequestChangeEmail
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // Ok if the mail was sent
-  rpc RequestChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {
-    option (google.api.http) = {
+    // RequestChangeEmail
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // Ok if the mail was sent
+    rpc RequestChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {
+        option (google.api.http) = {
       post: "/v1/user/email/request"
       body: "*"
     };
-  }
+    }
 
-  // ResetEmail
-  //
-  // ## Parameters
-  //
-  // - temp_key: Temp key
-  // - email: Email
-  //
-  // ## Returns
-  //
-  // Ok if the mail was sent
-  rpc ResetEmail(ResetEmailRequest) returns (ResetEmailResponse) {
-    option (google.api.http) = {
+    // ResetEmail
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    // - email: Email
+    //
+    // ## Returns
+    //
+    // Ok if the mail was sent
+    rpc ResetEmail(ResetEmailRequest) returns (ResetEmailResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/email/reset"
       body: "*"
     };
-  }
+    }
 
-  // UpdateEmail
-  //
-  // ## Parameters
-  //
-  // - email: Email
-  // - temp_key: Temp key
-  //
-  // ## Returns
-  //
-  // Ok if the user was updated
-  rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
-    option (google.api.http) = {
+    // UpdateEmail
+    //
+    // ## Parameters
+    //
+    // - email: Email
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // Ok if the user was updated
+    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/email"
       body: "*"
     };
-  }
+    }
 
-  // VerifyUser
-  //
-  // ## Parameters
-  //
-  // - temp_key: Temp key
-  //
-  // ## Returns
-  //
-  // Ok if the user was verified
-  rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
-    option (google.api.http) = {
+    // VerifyUser
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // Ok if the user was verified
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
+        option (google.api.http) = {
       patch: "/v1/user/verify"
       body: "*"
     };
-  }
+    }
 
-  // AddOrganization
-  //
-  // ## Parameters
-  //
-  // - invitation_code: Invitation code
-  //
-  // ## Returns
-  //
-  // Ok if the organization was added
-  rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
-    option (google.api.http) = {
+    // AddOrganization
+    //
+    // ## Parameters
+    //
+    // - invitation_code: Invitation code
+    //
+    // ## Returns
+    //
+    // Ok if the organization was added
+    rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
+        option (google.api.http) = {
       post: "/v1/user/organization"
       body: "*"
     };
-  }
+    }
 
-  // RemoveOrganization
-  //
-  // ## Parameters
-  //
-  // - organization_id: Organization id
-  //
-  // ## Returns
-  //
-  // Ok if the organization was removed
-  rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse) {
-    option (google.api.http) = {
+    // RemoveOrganization
+    //
+    // ## Parameters
+    //
+    // - organization_id: Organization id
+    //
+    // ## Returns
+    //
+    // Ok if the organization was removed
+    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse) {
+        option (google.api.http) = {
       delete: "/v1/user/organization/{organization_id}"
     };
-  }
+    }
 
-  // AddFavKin
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  //
-  // ## Returns
-  //
-  // Ok if the kin was added
-  rpc AddFavKin(AddUserKinRequest) returns (digitalkin.common.v1.KinReply) {
-    option (google.api.http) = {
+    // AddFavKin
+    //
+    // ## Parameters
+    //
+    // - kin_id: Kin id
+    //
+    // ## Returns
+    //
+    // Ok if the kin was added
+    rpc AddFavKin(AddUserKinRequest) returns (digitalkin.common.v1.KinReply) {
+        option (google.api.http) = {
       post: "/v1/user/kin"
       body: "*"
     };
-  }
+    }
 
-  // RemoveFavKin
-  //
-  // ## Parameters
-  //
-  // - kin_id: Kin id
-  //
-  // ## Returns
-  //
-  // Ok if the kin was removed
-  rpc RemoveFavKin(RemoveUserKinRequest) returns (RemoveUserKinResponse) {
-    option (google.api.http) = {
+    // RemoveFavKin
+    //
+    // ## Parameters
+    //
+    // - kin_id: Kin id
+    //
+    // ## Returns
+    //
+    // Ok if the kin was removed
+    rpc RemoveFavKin(RemoveUserKinRequest) returns (RemoveUserKinResponse) {
+        option (google.api.http) = {
       delete: "/v1/user/kin/{kin_id}"
     };
-  }
+    }
 }
 
 // OrganizationReply
@@ -357,18 +357,18 @@ service UserService {
 // - is_owner: Is the user the owner
 // - activated: Is the organization activated
 message OrganizationReply {
-  // id: Organization ID
-  string id = 1;
-  // name: Organization name
-  string name = 2;
-  // kins: List of kins
-  repeated string kins = 3;
-  // credit_amount: Credit amount
-  optional int64 credit_amount = 4;
-  // is_owner: Is the user the owner
-  bool is_owner = 5;
-  // activated: Is the organization activated
-  bool activated = 6;
+    // id: Organization ID
+    string id = 1;
+    // name: Organization name
+    string name = 2;
+    // kins: List of kins
+    repeated string kins = 3;
+    // credit_amount: Credit amount
+    optional int64 credit_amount = 4;
+    // is_owner: Is the user the owner
+    bool is_owner = 5;
+    // activated: Is the organization activated
+    bool activated = 6;
 }
 
 // User
@@ -386,26 +386,26 @@ message OrganizationReply {
 // - activated: Is the user activated
 // - is_admin: Is the user an admin
 message User {
-  // user_name: User name
-  string user_name = 1;
-  // first_name: First name
-  optional string first_name = 2;
-  // last_name: Last name
-  optional string last_name = 3;
-  // email: Email
-  string email = 4;
-  // avatar: Avatar
-  optional string avatar = 5;
-  // organizations: List of organizations
-  repeated OrganizationReply organizations = 6;
-  // fav_kins: List of fav kins
-  repeated digitalkin.common.v1.KinReply fav_kins = 7;
-  // usage_types: Usage type
-  repeated string usage_types = 8;
-  // activated: Is the user activated
-  bool activated = 9;
-  // is_admin: Is the user an admin
-  bool is_admin = 10;
+    // user_name: User name
+    string user_name = 1;
+    // first_name: First name
+    optional string first_name = 2;
+    // last_name: Last name
+    optional string last_name = 3;
+    // email: Email
+    string email = 4;
+    // avatar: Avatar
+    optional string avatar = 5;
+    // organizations: List of organizations
+    repeated OrganizationReply organizations = 6;
+    // fav_kins: List of fav kins
+    repeated digitalkin.common.v1.KinReply fav_kins = 7;
+    // usage_types: Usage type
+    repeated string usage_types = 8;
+    // activated: Is the user activated
+    bool activated = 9;
+    // is_admin: Is the user an admin
+    bool is_admin = 10;
 }
 
 // CreateUserRequest
@@ -419,18 +419,18 @@ message User {
 // - first_name: First name
 // - last_name: Last name
 message CreateUserRequest {
-  // user_name: User name
-  string user_name = 1;
-  // email: Email
-  string email = 2;
-  // password: Password
-  string password = 3;
-  // invitation_code: Invitation code
-  optional string invitation_code = 4;
-  // first_name: First name
-  optional string first_name = 5;
-  // last_name: Last name
-  optional string last_name = 6;
+    // user_name: User name
+    string user_name = 1;
+    // email: Email
+    string email = 2;
+    // password: Password
+    string password = 3;
+    // invitation_code: Invitation code
+    optional string invitation_code = 4;
+    // first_name: First name
+    optional string first_name = 5;
+    // last_name: Last name
+    optional string last_name = 6;
 }
 
 // CreateUserResponse
@@ -472,10 +472,10 @@ message DeleteUserResponse {
 // - user_name: User name
 // - activated: Is the user activated
 message UpdateUserActivatedRequest {
-  // user_name: User name
-  string user_name = 1;
-  // activated: Is the user activated
-  bool activated = 2;
+    // user_name: User name
+    string user_name = 1;
+    // activated: Is the user activated
+    bool activated = 2;
 }
 
 // UpdateUserActivatedResponse
@@ -492,8 +492,8 @@ message UpdateUserActivatedResponse {
 //
 // - first_name: First name
 message UpdateUserFirstNameRequest {
-  // first_name: First name
-  string first_name = 1;
+    // first_name: First name
+    string first_name = 1;
 }
 
 // UpdateUserFirstNameResponse
@@ -510,8 +510,8 @@ message UpdateUserFirstNameResponse {
 //
 // - last_name: Last name
 message UpdateUserLastNameRequest {
-  // last_name: Last name
-  string last_name = 1;
+    // last_name: Last name
+    string last_name = 1;
 }
 
 // UpdateUserLastNameResponse
@@ -528,8 +528,8 @@ message UpdateUserLastNameResponse {
 //
 // - user_name: User name
 message UpdateUserNameRequest {
-  // user_name: User name
-  string user_name = 1;
+    // user_name: User name
+    string user_name = 1;
 }
 
 // UpdateUserNameResponse
@@ -542,8 +542,8 @@ message UpdateUserNameResponse {
 
 // UpdateUserUsageTypeRequest
 message UpdateUserUsageTypeRequest {
-  // usage_types: Usage type
-  repeated string usage_types = 1;
+    // usage_types: Usage type
+    repeated string usage_types = 1;
 }
 
 // UpdateUserUsageTypeResponse
@@ -560,8 +560,8 @@ message UpdateUserUsageTypeResponse {
 //
 // - avatar: Avatar
 message UpdateUserAvatarRequest {
-  // avatar: Avatar
-  digitalkin.common.v1.File avatar = 3;
+    // avatar: Avatar
+    digitalkin.common.v1.File avatar = 3;
 }
 
 // UpdateUserAvatarResponse
@@ -570,8 +570,8 @@ message UpdateUserAvatarRequest {
 //
 // - avatar: Avatar path
 message UpdateUserAvatarResponse {
-  // avatar: Avatar path
-  string avatar = 1;
+    // avatar: Avatar path
+    string avatar = 1;
 }
 
 // ChangePasswordRequest
@@ -597,10 +597,10 @@ message ChangePasswordResponse {
 // - temp_key: Temp key
 // - new_password: New password
 message ResetPasswordRequest {
-  // temp_key: Temp key
-  string temp_key = 1;
-  // new_password: New password
-  string new_password = 2;
+    // temp_key: Temp key
+    string temp_key = 1;
+    // new_password: New password
+    string new_password = 2;
 }
 
 // ResetPasswordResponse
@@ -619,12 +619,12 @@ message ResetPasswordResponse {
 // - old_password: Old password
 // - temp_key: Temp key
 message UpdateUserPasswordRequest {
-  // new_password: New password
-  string new_password = 1;
-  // old_password: Old password
-  string old_password = 2;
-  // temp_key: Temp key
-  string temp_key = 3;
+    // new_password: New password
+    string new_password = 1;
+    // old_password: Old password
+    string old_password = 2;
+    // temp_key: Temp key
+    string temp_key = 3;
 }
 
 // UpdateUserPasswordResponse
@@ -658,10 +658,10 @@ message ChangeEmailResponse {
 // - temp_key: Temp key
 // - email: Email
 message ResetEmailRequest {
-  // temp_key: Temp key
-  string temp_key = 1;
-  // email: Email
-  string email = 2;
+    // temp_key: Temp key
+    string temp_key = 1;
+    // email: Email
+    string email = 2;
 }
 
 // ResetEmailResponse
@@ -679,10 +679,10 @@ message ResetEmailResponse {
 // - email: Email
 // - temp_key: Temp key
 message UpdateUserEmailRequest {
-  // email: Email
-  string email = 1;
-  // temp_key: Temp key
-  string temp_key = 2;
+    // email: Email
+    string email = 1;
+    // temp_key: Temp key
+    string temp_key = 2;
 }
 
 // UpdateUserEmailResponse
@@ -699,8 +699,8 @@ message UpdateUserEmailResponse {
 //
 // - temp_key: Temp key
 message VerifyUserRequest {
-  // temp_key: Temp key
-  string temp_key = 1;
+    // temp_key: Temp key
+    string temp_key = 1;
 }
 
 // VerifyUserResponse
@@ -709,10 +709,10 @@ message VerifyUserRequest {
 //
 // Ok if the user was verified
 message VerifyUserResponse {
-  // token: Token
-  string token = 1;
-  // expire_date: Expire date
-  string expire_date = 2;
+    // token: Token
+    string token = 1;
+    // expire_date: Expire date
+    string expire_date = 2;
 }
 
 // AddUserOrganizationRequest
@@ -721,8 +721,8 @@ message VerifyUserResponse {
 //
 // - invitation_code: Invitation code
 message AddUserOrganizationRequest {
-  // invitation_code: Invitation code
-  string invitation_code = 1;
+    // invitation_code: Invitation code
+    string invitation_code = 1;
 }
 
 // RemoveUserOrganizationRequest
@@ -731,8 +731,8 @@ message AddUserOrganizationRequest {
 //
 // - organization_id: Organization id
 message RemoveUserOrganizationRequest {
-  // organization_id: Organization id
-  string organization_id = 1;
+    // organization_id: Organization id
+    string organization_id = 1;
 }
 
 // RemoveUserOrganizationResponse
@@ -749,8 +749,8 @@ message RemoveUserOrganizationResponse {
 //
 // - kin_id: Kin id
 message AddUserKinRequest {
-  // kin_id: Kin id
-  string kin_id = 1;
+    // kin_id: Kin id
+    string kin_id = 1;
 }
 
 // RemoveUserKinRequest
@@ -759,8 +759,8 @@ message AddUserKinRequest {
 //
 // - kin_id: Kin id
 message RemoveUserKinRequest {
-  // kin_id: Kin id
-  string kin_id = 1;
+    // kin_id: Kin id
+    string kin_id = 1;
 }
 
 // RemoveUserKinResponse

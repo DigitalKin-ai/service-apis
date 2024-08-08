@@ -27,10 +27,10 @@ package digitalkin.common.v1;
 // - id: Id
 // - tb: Type
 message Thing {
-  // id: Id
-  string id = 1;
-  // tb: Type
-  string tb = 2;
+    // id: Id
+    string id = 1;
+    // tb: Type
+    string tb = 2;
 }
 
 // File
@@ -41,12 +41,12 @@ message Thing {
 // - type: Type of the file
 // - content: Content of the file
 message File {
-  // name: Name of the file
-  string name = 1;
-  // type: Type of the file
-  string type = 2;
-  // content: Content of the file
-  bytes content = 3;
+    // name: Name of the file
+    string name = 1;
+    // type: Type of the file
+    string type = 2;
+    // content: Content of the file
+    bytes content = 3;
 }
 
 // UserReply
@@ -60,18 +60,18 @@ message File {
 // - avatar: The avatar of the user
 // - activated: True if the user is activated
 message UserReply {
-  // user_name: The name of the user
-  string user_name = 1;
-  // first_name: The first name of the user
-  optional string first_name = 2;
-  // last_name: The last name of the user
-  optional string last_name = 3;
-  // email: The email of the user
-  string email = 4;
-  // avatar: The avatar of the user
-  optional string avatar = 5;
-  // activated: True if the user is activated
-  bool activated = 6;
+    // user_name: The name of the user
+    string user_name = 1;
+    // first_name: The first name of the user
+    optional string first_name = 2;
+    // last_name: The last name of the user
+    optional string last_name = 3;
+    // email: The email of the user
+    string email = 4;
+    // avatar: The avatar of the user
+    optional string avatar = 5;
+    // activated: True if the user is activated
+    bool activated = 6;
 }
 
 // KinReply
@@ -83,17 +83,17 @@ message UserReply {
 // - description: The description of the kin
 // - activated: True if the kin is activated
 message KinReply {
-  // id: The id of the kin
-  string id = 1;
-  // name: The name of the kin
-  string name = 2;
-  // description: The description of the kin
-  optional string description = 3;
-  // activated: True if the kin is activated
-  bool activated = 4;
+    // id: The id of the kin
+    string id = 1;
+    // name: The name of the kin
+    string name = 2;
+    // description: The description of the kin
+    optional string description = 3;
+    // activated: True if the kin is activated
+    bool activated = 4;
 }
 
-// KinThreadReply
+// ThreadReply
 //
 // ## Fields
 //
@@ -101,12 +101,12 @@ message KinReply {
 // - thread_subject: Subject of the thread
 // - activated: Kin thread activated status
 message ThreadReply {
-  // id: Kin thread id
-  string id = 1;
-  // thread_subject: Subject of the thread
-  string thread_subject = 2;
-  // activated: Kin thread activated status
-  bool activated = 3;
+    // id: Kin thread id
+    string id = 1;
+    // thread_subject: Subject of the thread
+    string thread_subject = 2;
+    // activated: Kin thread activated status
+    bool activated = 3;
 }
 
 // WorkflowReply
@@ -119,14 +119,14 @@ message ThreadReply {
 // - duration: The duration of the workflow
 // - price: The price of the workflow
 message WorkflowReply {
-  // id: The id of the workflow
-  string id = 1;
-  // name: The name of the workflow
-  string name = 2;
-  // status: The status of the workflow
-  string status = 3;
-  // duration: The duration of the workflow
-  string duration = 4;
-  // price: The price of the workflow
-  int64 price = 5;
+    // id: The id of the workflow
+    string id = 1;
+    // name: The name of the workflow
+    string name = 2;
+    // status: The status of the workflow
+    string status = 3;
+    // duration: The duration of the workflow
+    string duration = 4;
+    // price: The price of the workflow
+    int64 price = 5;
 }

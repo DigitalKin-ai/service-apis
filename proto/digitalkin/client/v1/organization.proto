@@ -24,287 +24,294 @@ import "google/api/annotations.proto";
 
 // OrganizationService
 service OrganizationService {
-  // CreateOrganization
-  //
-  // ## Parameters
-  //
-  // - name: The name of the organization
-  // - email: The email of the organization
-  //
-  // ## Returns
-  //
-  // - Organization
-  rpc CreateOrganization(CreateOrganizationRequest) returns (Organization) {
-    option (google.api.http) = {
-      post: "/v1/organization"
-      body: "*"
-    };
-  }
-  // ReadOrganization
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  //
-  // ## Returns
-  //
-  // - Organization
-  rpc ReadOrganization(ReadOrganizationRequest) returns (stream Organization) {
-    option (google.api.http) = {
-      get: "/v1/organization/{organization_id}"
-    };
-  }
-  // DeleteOrganization
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was deleted
-  rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse) {
-    option (google.api.http) = {
-      delete: "/v1/organization/{organization_id}"
-    };
-  }
-  // UpdateActivated
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - activated: True if the organization is activated
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was updated
-  rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (UpdateOrganizationActivatedResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/activated"
-      body: "*"
-    };
-  }
-  // UpdateName
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - name: The name of the organization
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was updated
-  rpc UpdateName(UpdateOrganizationNameRequest) returns (UpdateOrganizationNameResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/name"
-      body: "*"
-    };
-  }
-  // UpdateCreditAmount
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - credit_amount: The amount of credit
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was updated
-  rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/creditamount"
-      body: "*"
-    };
-  }
-  // UpdateLogo
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - logo: The logo of the organization
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was updated
-  rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (UpdateOrganizationLogoResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/logo"
-      body: "*"
-    };
-  }
-  // RequestChangeEmail
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  //
-  // ## Returns
-  //
-  // - Ok if the mail was sent
-  rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (ChangeOrganizationEmailResponse) {
-    option (google.api.http) = {
-      post: "/v1/organization/{organization_id}/email/request"
-      body: "*"
-    };
-  }
-  // ResetEmail
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - email: The email of the organization
-  // - temp_key: The temp key of the email
-  //
-  // ## Returns
-  //
-  // - Ok if the mail was sent
-  rpc ResetEmail(ResetOrganizationEmailRequest) returns (ResetOrganizationEmailResponse) {
-    option (google.api.http) = {
-      patch: "/v1/user/email/reset"
-      body: "*"
-    };
-  }
-  // UpdateEmail
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - email: The email of the organization
-  // - temp_key: The temp key of the email
-  //
-  // ## Returns
-  //
-  // - Ok if the organization was updated
-  rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/email"
-      body: "*"
-    };
-  }
-  // AddUser
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - user_name: The name of the user
-  //
-  // ## Returns
-  //
-  // - Ok if the user was added
-  rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
-    option (google.api.http) = {
-      post: "/v1/organization/{organization_id}/user"
-      body: "*"
-    };
-  }
-  // RemoveUser
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - user_name: The name of the user
-  //
-  // ## Returns
-  //
-  // - Ok if the user was removed
-  rpc RemoveUser(RemoveOrganizationUserRequest) returns (RemoveOrganizationUserResponse) {
-    option (google.api.http) = {
-      delete: "/v1/organization/{organization_id}/user/{user_name}"
-    };
-  }
-  // AddModerator
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - user_name: The name of the user
-  //
-  // ## Returns
-  //
-  // - Ok if the user was added
-  rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
-    option (google.api.http) = {
-      post: "/v1/organization/{organization_id}/moderator"
-      body: "*"
-    };
-  }
-  // RemoveModerator
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - user_name: The name of the user
-  //
-  // ## Returns
-  //
-  // - Ok if the user was removed
-  rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (RemoveOrganizationModeratorResponse) {
-    option (google.api.http) = {
-      delete: "/v1/organization/{organization_id}/moderator/{user_name}"
-    };
-  }
-  // AddKin
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - kin_id: The id of the kin
-  //
-  // ## Returns
-  //
-  // - Ok if the kin was added
-  rpc AddKin(AddOrganizationKinRequest) returns (digitalkin.common.v1.KinReply) {
-    option (google.api.http) = {
-      post: "/v1/organization/{organization_id}/kin"
-      body: "*"
-    };
-  }
-  // RemoveKin
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - kin_id: The id of the kin
-  //
-  // ## Returns
-  //
-  // - Ok if the kin was removed
-  rpc RemoveKin(RemoveOrganizationKinRequest) returns (RemoveOrganizationKinResponse) {
-    option (google.api.http) = {
-      delete: "/v1/organization/{organization_id}/kin/{kin_id}"
-    };
-  }
-  // ChangeOwner
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  // - user_name: The name of the user
-  //
-  // ## Returns
-  //
-  // - Ok if the owner was changed
-  rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (ChangeOrganizationOwnerResponse) {
-    option (google.api.http) = {
-      patch: "/v1/organization/{organization_id}/owner"
-      body: "*"
-    };
-  }
-  // RegenerateInvitationCode
-  //
-  // ## Parameters
-  //
-  // - organization_id: The id of the organization
-  //
-  // ## Returns
-  //
-  // - Ok if the invitation code was regenerated
-  rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
-    option (google.api.http) = {
-      put: "/v1/organization/{organization_id}/invitationcode"
-      body: "*"
-    };
-  }
+    // CreateOrganization
+    //
+    // ## Parameters
+    //
+    // - name: The name of the organization
+    // - email: The email of the organization
+    //
+    // ## Returns
+    //
+    // - Organization
+    rpc CreateOrganization(CreateOrganizationRequest) returns (Organization) {
+        option (google.api.http) = {
+        post: "/v1/organization"
+        body: "*"
+      };
+    }
+    // ReadOrganization
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    //
+    // ## Returns
+    //
+    // - Organization
+    rpc ReadOrganization(ReadOrganizationRequest) returns (stream Organization) {
+        option (google.api.http) = {
+        get: "/v1/organization/{organization_id}"
+      };
+    }
+    // DeleteOrganization
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was deleted
+    rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse) {
+        option (google.api.http) = {
+        delete: "/v1/organization/{organization_id}"
+      };
+    }
+    // UpdateActivated
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - activated: True if the organization is activated
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was updated
+    rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (UpdateOrganizationActivatedResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/activated"
+        body: "*"
+      };
+    }
+    // UpdateName
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - name: The name of the organization
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was updated
+    rpc UpdateName(UpdateOrganizationNameRequest) returns (UpdateOrganizationNameResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/name"
+        body: "*"
+      };
+    }
+    // UpdateCreditAmount
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - credit_amount: The amount of credit
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was updated
+    rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (UpdateOrganizationCreditAmountResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/creditamount"
+        body: "*"
+      };
+    }
+    // UpdateLogo
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - logo: The logo of the organization
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was updated
+    rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (UpdateOrganizationLogoResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/logo"
+        body: "*"
+      };
+    }
+    // RequestChangeEmail
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    //
+    // ## Returns
+    //
+    // - Ok if the mail was sent
+    rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (ChangeOrganizationEmailResponse) {
+        option (google.api.http) = {
+        post: "/v1/organization/{organization_id}/email/request"
+        body: "*"
+      };
+    }
+    // ResetEmail
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - email: The email of the organization
+    // - temp_key: The temp key of the email
+    //
+    // ## Returns
+    //
+    // - Ok if the mail was sent
+    rpc ResetEmail(ResetOrganizationEmailRequest) returns (ResetOrganizationEmailResponse) {
+        option (google.api.http) = {
+        patch: "/v1/user/email/reset"
+        body: "*"
+      };
+    }
+    // UpdateEmail
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - email: The email of the organization
+    // - temp_key: The temp key of the email
+    //
+    // ## Returns
+    //
+    // - Ok if the organization was updated
+    rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (UpdateOrganizationEmailResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/email"
+        body: "*"
+      };
+    }
+    // AddUser
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // ## Returns
+    //
+    // - Ok if the user was added
+    rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
+        option (google.api.http) = {
+        post: "/v1/organization/{organization_id}/user"
+        body: "*"
+      };
+    }
+
+    // RemoveUser
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // ## Returns
+    //
+    // - Ok if the user was removed
+    rpc RemoveUser(RemoveOrganizationUserRequest) returns (RemoveOrganizationUserResponse) {
+        option (google.api.http) = {
+        delete: "/v1/organization/{organization_id}/user/{user_name}"
+      };
+    }
+
+    // AddModerator
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // ## Returns
+    //
+    // - Ok if the user was added
+    rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
+        option (google.api.http) = {
+        post: "/v1/organization/{organization_id}/moderator"
+        body: "*"
+      };
+    }
+
+    // RemoveModerator
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // ## Returns
+    //
+    // - Ok if the user was removed
+    rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (RemoveOrganizationModeratorResponse) {
+        option (google.api.http) = {
+        delete: "/v1/organization/{organization_id}/moderator/{user_name}"
+      };
+    }
+
+    // AddKin
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - kin_id: The id of the kin
+    //
+    // ## Returns
+    //
+    // - Ok if the kin was added
+    rpc AddKin(AddOrganizationKinRequest) returns (digitalkin.common.v1.KinReply) {
+        option (google.api.http) = {
+        post: "/v1/organization/{organization_id}/kin"
+        body: "*"
+      };
+    }
+
+    // RemoveKin
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - kin_id: The id of the kin
+    //
+    // ## Returns
+    //
+    // - Ok if the kin was removed
+    rpc RemoveKin(RemoveOrganizationKinRequest) returns (RemoveOrganizationKinResponse) {
+        option (google.api.http) = {
+        delete: "/v1/organization/{organization_id}/kin/{kin_id}"
+      };
+    }
+
+    // ChangeOwner
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // ## Returns
+    //
+    // - Ok if the owner was changed
+    rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (ChangeOrganizationOwnerResponse) {
+        option (google.api.http) = {
+        patch: "/v1/organization/{organization_id}/owner"
+        body: "*"
+      };
+    }
+
+    // RegenerateInvitationCode
+    //
+    // ## Parameters
+    //
+    // - organization_id: The id of the organization
+    //
+    // ## Returns
+    //
+    // - Ok if the invitation code was regenerated
+    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
+        option (google.api.http) = {
+        put: "/v1/organization/{organization_id}/invitationcode"
+        body: "*"
+      };
+    }
 }
 
 // Organization
@@ -323,28 +330,28 @@ service OrganizationService {
 // - credit_amount: The credit amount of the organization
 // - activated: True if the organization is activated
 message Organization {
-  // id: The id of the organization
-  string id = 1;
-  // name: The name of the organization
-  string name = 2;
-  // email: The email of the organization
-  string email = 3;
-  // logo: The logo of the organization
-  optional string logo = 4;
-  // owner: The owner of the organization
-  digitalkin.common.v1.UserReply owner = 5;
-  // invitation_code: The invitation code of the organization
-  string invitation_code = 6;
-  // moderators: The moderators of the organization
-  repeated digitalkin.common.v1.UserReply moderators = 7;
-  // users: The users of the organization
-  repeated digitalkin.common.v1.UserReply users = 8;
-  // kins: The kins of the organization
-  repeated digitalkin.common.v1.KinReply kins = 9;
-  // credit_amount: The credit amount of the organization
-  optional int64 credit_amount = 10;
-  // activated: True if the organization is activated
-  bool activated = 11;
+    // id: The id of the organization
+    string id = 1;
+    // name: The name of the organization
+    string name = 2;
+    // email: The email of the organization
+    string email = 3;
+    // logo: The logo of the organization
+    optional string logo = 4;
+    // owner: The owner of the organization
+    digitalkin.common.v1.UserReply owner = 5;
+    // invitation_code: The invitation code of the organization
+    string invitation_code = 6;
+    // moderators: The moderators of the organization
+    repeated digitalkin.common.v1.UserReply moderators = 7;
+    // users: The users of the organization
+    repeated digitalkin.common.v1.UserReply users = 8;
+    // kins: The kins of the organization
+    repeated digitalkin.common.v1.KinReply kins = 9;
+    // credit_amount: The credit amount of the organization
+    optional int64 credit_amount = 10;
+    // activated: True if the organization is activated
+    bool activated = 11;
 }
 
 // CreateOrganizationRequest
@@ -354,10 +361,10 @@ message Organization {
 // - name: The name of the organization
 // - email: The email of the organization
 message CreateOrganizationRequest {
-  // name: The name of the organization
-  string name = 1;
-  // email: The email of the organization
-  string email = 2;
+    // name: The name of the organization
+    string name = 1;
+    // email: The email of the organization
+    string email = 2;
 }
 
 // ReadOrganizationRequest
@@ -366,8 +373,8 @@ message CreateOrganizationRequest {
 //
 // - organization_id: The id of the organization
 message ReadOrganizationRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
+    // organization_id: The id of the organization
+    string organization_id = 1;
 }
 
 // DeleteOrganizationRequest
@@ -376,8 +383,8 @@ message ReadOrganizationRequest {
 //
 // - organization_id: The id of the organization
 message DeleteOrganizationRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
+    // organization_id: The id of the organization
+    string organization_id = 1;
 }
 
 // DeleteOrganizationResponse
@@ -395,10 +402,10 @@ message DeleteOrganizationResponse {
 // - organization_id: The id of the organization
 // - activated: True if the organization is activated
 message UpdateOrganizationActivatedRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // activated: True if the organization is activated
-  bool activated = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // activated: True if the organization is activated
+    bool activated = 2;
 }
 
 // UpdateOrganizationActivatedResponse
@@ -416,10 +423,10 @@ message UpdateOrganizationActivatedResponse {
 // - organization_id: The id of the organization
 // - name: The name of the organization
 message UpdateOrganizationNameRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // name: The name of the organization
-  string name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // name: The name of the organization
+    string name = 2;
 }
 
 // UpdateOrganizationNameResponse
@@ -436,8 +443,8 @@ message UpdateOrganizationNameResponse {
 //
 // - organization_id: The id of the organization
 message ChangeOrganizationEmailRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
+    // organization_id: The id of the organization
+    string organization_id = 1;
 }
 
 // ChangeOrganizationEmailResponse
@@ -456,12 +463,12 @@ message ChangeOrganizationEmailResponse {
 // - email: The email of the organization
 // - temp_key: The temp key of the email
 message ResetOrganizationEmailRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // email: The email of the organization
-  string email = 2;
-  // temp_key: The temp key of the email
-  string temp_key = 3;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
 }
 
 // ResetOrganizationEmailResponse
@@ -480,12 +487,12 @@ message ResetOrganizationEmailResponse {
 // - email: The email of the organization
 // - temp_key: The temp key of the email
 message UpdateOrganizationEmailRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // email: The email of the organization
-  string email = 2;
-  // temp_key: The temp key of the email
-  string temp_key = 3;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
 }
 
 // UpdateOrganizationEmailResponse
@@ -503,10 +510,10 @@ message UpdateOrganizationEmailResponse {
 // - organization_id: The id of the organization
 // - credit_amount: The credit amount of the organization
 message UpdateOrganizationCreditAmountRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // credit_amount: The credit amount of the organization
-  int64 credit_amount = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // credit_amount: The credit amount of the organization
+    int64 credit_amount = 2;
 }
 
 // UpdateOrganizationCreditAmountResponse
@@ -524,10 +531,10 @@ message UpdateOrganizationCreditAmountResponse {
 // - organization_id: The id of the organization
 // - logo: The logo of the organization
 message UpdateOrganizationLogoRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // logo: The logo of the organization
-  digitalkin.common.v1.File logo = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // logo: The logo of the organization
+    digitalkin.common.v1.File logo = 2;
 }
 
 // UpdateOrganizationLogoResponse
@@ -536,8 +543,8 @@ message UpdateOrganizationLogoRequest {
 //
 // - logo: The path of the logo
 message UpdateOrganizationLogoResponse {
-  // logo: The path of the logo
-  string logo = 1;
+    // logo: The path of the logo
+    string logo = 1;
 }
 
 // AddOrganizationUserRequest
@@ -547,10 +554,10 @@ message UpdateOrganizationLogoResponse {
 // - organization_id: The id of the organization
 // - user_name: The name of the user
 message AddOrganizationUserRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // user_name: The name of the user
-  string user_name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
 }
 
 // RemoveOrganizationUserRequest
@@ -560,10 +567,10 @@ message AddOrganizationUserRequest {
 // - organization_id: The id of the organization
 // - user_name: The name of the user
 message RemoveOrganizationUserRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // user_name: The name of the user
-  string user_name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
 }
 
 // RemoveOrganizationUserResponse
@@ -581,10 +588,10 @@ message RemoveOrganizationUserResponse {
 // - organization_id: The id of the organization
 // - user_name: The name of the user
 message AddOrganizationModeratorRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // user_name: The name of the user
-  string user_name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
 }
 
 // RemoveOrganizationModeratorRequest
@@ -594,10 +601,10 @@ message AddOrganizationModeratorRequest {
 // - organization_id: The id of the organization
 // - user_name: The name of the user
 message RemoveOrganizationModeratorRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // user_name: The name of the user
-  string user_name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
 }
 
 // RemoveOrganizationModeratorResponse
@@ -615,10 +622,10 @@ message RemoveOrganizationModeratorResponse {
 // - organization_id: The id of the organization
 // - kin_id: The id of the kin
 message AddOrganizationKinRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // kin_id: The id of the kin
-  string kin_id = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // kin_id: The id of the kin
+    string kin_id = 2;
 }
 
 // RemoveOrganizationKinRequest
@@ -628,10 +635,10 @@ message AddOrganizationKinRequest {
 // - organization_id: The id of the organization
 // - kin_id: The id of the kin
 message RemoveOrganizationKinRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // kin_id: The id of the kin
-  string kin_id = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // kin_id: The id of the kin
+    string kin_id = 2;
 }
 
 // RemoveOrganizationKinResponse
@@ -649,10 +656,10 @@ message RemoveOrganizationKinResponse {
 // - organization_id: The id of the organization
 // - user_name: The name of the user
 message ChangeOrganizationOwnerRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // user_name: The name of the user
-  string user_name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
 }
 
 // ChangeOrganizationOwnerResponse
@@ -670,10 +677,10 @@ message ChangeOrganizationOwnerResponse {
 // - organization_id: The id of the organization
 // - name: The name of the user
 message RegenerateOrganizationInvitationCodeRequest {
-  // organization_id: The id of the organization
-  string organization_id = 1;
-  // name: The name of the user
-  string name = 2;
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // name: The name of the user
+    string name = 2;
 }
 
 // RegenerateOrganizationInvitationCodeResponse
