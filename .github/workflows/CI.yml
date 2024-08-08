@@ -34,4 +34,4 @@ jobs:
         with:
           token: ${{ secrets.DKIN_CLOUD_TOKEN }}
           input: proto
-          format: false
+          lint: false
