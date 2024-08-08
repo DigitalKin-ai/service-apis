@@ -1,0 +1,89 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// Status
+//
+// Fields:
+//
+// - STATUS_UNKNOWN: Status of the response
+// - STATUS_PENDING: Status of the response
+// - STATUS_DONE: Status of the response
+// - STATUS_ERROR: Status of the response
+// - STATUS_WAITING: Status of the response
+enum Status {
+    // STATUS_UNKNOWN: Status of the response
+    STATUS_UNKNOWN = 0;
+    // STATUS_PENDING: Status of the response
+    STATUS_PENDING = 1;
+    // STATUS_DONE: Status of the response
+    STATUS_DONE = 2;
+    // STATUS_ERROR: Status of the response
+    STATUS_ERROR = 3;
+    // STATUS_WAITING: Status of the response
+    STATUS_WAITING = 4;
+}
+
+// Role
+//
+// Fields:
+//
+// - ROLE_UNKNOWN: Role of the user who created the response
+// - ROLE_USER: Role of the user who created the response
+// - ROLE_ASSISTANT: Role of the user who created the response
+enum Role {
+    // ROLE_UNKNOWN: Role of the user who created the response
+    ROLE_UNKNOWN = 0;
+    // ROLE_USER: Role of the user who created the response
+    ROLE_USER = 1;
+    // ROLE_ASSISTANT: Role of the user who created the response
+    ROLE_ASSISTANT = 2;
+}
+
+// Response
+//
+// Fields:
+//
+// - id: Kin response id
+// - role: Role of the user who created the response
+// - status: Status of the response
+// - content: Content of the response
+// - create_date: Time the response was created
+// - origin_id: Origin id of the response
+message Response {
+    // id: Kin response id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // role: Role of the user who created the response
+    Role role = 2 [(google.api.field_behavior) = INPUT_ONLY];
+    // status: Status of the response
+    Status status = 3 [(google.api.field_behavior) = INPUT_ONLY];
+    // content: Content of the response
+    string content = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // create_date: Time the response was created
+    google.protobuf.Timestamp create_date = 5 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+    // origin_id: Origin id of the response
+    string origin_id = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

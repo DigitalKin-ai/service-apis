@@ -100,7 +100,7 @@ message KinReply {
 // - id: Kin thread id
 // - thread_subject: Subject of the thread
 // - activated: Kin thread activated status
-message KinThreadReply {
+message ThreadReply {
   // id: Kin thread id
   string id = 1;
   // thread_subject: Subject of the thread
