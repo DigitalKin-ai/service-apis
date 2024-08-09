@@ -91,7 +91,7 @@ service ProjectService {
     // - MessageResponse
     rpc CreateMessage(MessageRequest) returns (stream MessageResponse) {
         option (google.api.http) = {
-            post: "/v1/projectt/{kin_id}/message/create"
+            post: "/v1/project/{kin_id}/message/create"
             body: "*"
         };
     }
