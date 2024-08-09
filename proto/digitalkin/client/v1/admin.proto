@@ -20,151 +20,152 @@ syntax = "proto3";
 package digitalkin.client.v1;
 
 import "digitalkin/common/v1/common.proto";
+
 import "google/api/annotations.proto";
 
 // AdminService
 service AdminService {
-  // ReadUsersAdmin
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - A stream of users
-  rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse) {
-    option (google.api.http) = {
-      get: "/v1/admin/users"
-    };
-  }
+    // ReadUsersAdmin
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - A stream of users
+    rpc ReadUsersAdmin(ReadUsersAdminRequest) returns (stream ReadUsersAdminResponse) {
+        option (google.api.http) = {
+            get: "/v1/admin/users"
+        };
+    }
 
-  // ReadOrganizationsAdmin
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - A stream of organizations
-  rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse) {
-    option (google.api.http) = {
-      get: "/v1/admin/organizations"
-    };
-  }
+    // ReadOrganizationsAdmin
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - A stream of organizations
+    rpc ReadOrganizationsAdmin(ReadOrganizationsAdminRequest) returns (stream ReadOrganizationsAdminResponse) {
+        option (google.api.http) = {
+            get: "/v1/admin/organizations"
+        };
+    }
 
-  // ReadKinsAdmin
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - A stream of kins
-  rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse) {
-    option (google.api.http) = {
-      get: "/v1/admin/kins"
-    };
-  }
+    // ReadKinsAdmin
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - A stream of kins
+    rpc ReadKinsAdmin(ReadKinsAdminRequest) returns (stream ReadKinsAdminResponse) {
+        option (google.api.http) = {
+            get: "/v1/admin/kins"
+        };
+    }
 
-  // UpdateActivation
-  //
-  // ## Parameters
-  //
-  // - id: ID of the object to update
-  // - activated: New activation status
-  //
-  // ## Returns
-  //
-  // - Ok if the object was updated
-  rpc UpdateActivation(UpdateActivationRequest) returns (UpdateActivationResponse) {
-    option (google.api.http) = {
-      post: "/v1/admin/update_activation"
-      body: "*"
-    };
-  }
+    // UpdateActivation
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to update
+    // - activated: New activation status
+    //
+    // ## Returns
+    //
+    // - Ok if the object was updated
+    rpc UpdateActivation(UpdateActivationRequest) returns (UpdateActivationResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/update_activation"
+            body: "*"
+        };
+    }
 
-  // UpdateIsAdmin
-  //
-  // ## Parameters
-  //
-  // - id: ID of the object to update
-  // - is_admin: New is_admin status
-  //
-  // ## Returns
-  //
-  // - Ok if the object was updated
-  rpc UpdateIsAdmin(UpdateIsAdminRequest) returns (UpdateIsAdminResponse) {
-    option (google.api.http) = {
-      post: "/v1/admin/update_is_admin"
-      body: "*"
-    };
-  }
+    // UpdateIsAdmin
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to update
+    // - is_admin: New is_admin status
+    //
+    // ## Returns
+    //
+    // - Ok if the object was updated
+    rpc UpdateIsAdmin(UpdateIsAdminRequest) returns (UpdateIsAdminResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/update_is_admin"
+            body: "*"
+        };
+    }
 
-  // SendResetEmail
-  //
-  // ## Parameters
-  //
-  // - id: ID of the object to send the email
-  //
-  // ## Returns
-  //
-  // - Ok if the email was sent
-  rpc SendResetEmail(SendResetEmailRequest) returns (SendResetEmailResponse) {
-    option (google.api.http) = {
-      post: "/v1/admin/send_reset_email"
-      body: "*"
-    };
-  }
+    // SendResetEmail
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to send the email
+    //
+    // ## Returns
+    //
+    // - Ok if the email was sent
+    rpc SendResetEmail(SendResetEmailRequest) returns (SendResetEmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/send_reset_email"
+            body: "*"
+        };
+    }
 
-  // SendResetPassword
-  //
-  // ## Parameters
-  //
-  // - id: ID of the object to reset the password
-  //
-  // ## Returns
-  //
-  // - Ok if the password was reset
-  rpc SendResetPassword(SendResetPasswordRequest) returns (SendResetPasswordResponse) {
-    option (google.api.http) = {
-      post: "/v1/admin/send_reset_password"
-      body: "*"
-    };
-  }
+    // SendResetPassword
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to reset the password
+    //
+    // ## Returns
+    //
+    // - Ok if the password was reset
+    rpc SendResetPassword(SendResetPasswordRequest) returns (SendResetPasswordResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/send_reset_password"
+            body: "*"
+        };
+    }
 
-  // RegenerateInvitationCode
-  //
-  // ## Parameters
-  //
-  // - id: ID of the object to regenerate the invitation code
-  //
-  // ## Returns
-  //
-  // - Ok if the invitation code was regenerated
-  rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
-    option (google.api.http) = {
-      post: "/v1/admin/regenerate_invitation_code"
-      body: "*"
-    };
-  }
+    // RegenerateInvitationCode
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to regenerate the invitation code
+    //
+    // ## Returns
+    //
+    // - Ok if the invitation code was regenerated
+    rpc RegenerateInvitationCode(RegenerateInvitationCodeRequest) returns (RegenerateInvitationCodeResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/regenerate_invitation_code"
+            body: "*"
+        };
+    }
 
-  // GetExperimentalKins
-  //
-  // ## Parameters
-  //
-  // - Nothing
-  //
-  // ## Returns
-  //
-  // - Ok if the experimental kins were retrieved
-  rpc GetExperimentalKins(GetExperimentalKinsRequest) returns (GetExperimentalKinsResponse) {
-    option (google.api.http) = {
-      get: "/v1/admin/experimental_kins"
-    };
-  }
+    // GetExperimentalKins
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - Ok if the experimental kins were retrieved
+    rpc GetExperimentalKins(GetExperimentalKinsRequest) returns (GetExperimentalKinsResponse) {
+        option (google.api.http) = {
+            get: "/v1/admin/experimental_kins"
+        };
+    }
 }
 
 // UserAdminReply
@@ -179,22 +180,22 @@ service AdminService {
 // - nb_kins: Number of kins
 // - nb_organizations: Number of organizations
 message UserAdminReply {
-  // id: User ID
-  string id = 1;
-  // name: User name
-  string name = 2;
-  // email: User email
-  string email = 3;
-  // activated: Is the user activated
-  bool activated = 4;
-  // is_admin: Is the user an admin
-  bool is_admin = 5;
-  // logo: User logo
-  optional string logo = 6;
-  // nb_kins: Number of kins
-  optional int64 nb_kins = 7;
-  // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 8;
+    // id: User ID
+    string id = 1;
+    // name: User name
+    string name = 2;
+    // email: User email
+    string email = 3;
+    // activated: Is the user activated
+    bool activated = 4;
+    // is_admin: Is the user an admin
+    bool is_admin = 5;
+    // logo: User logo
+    optional string logo = 6;
+    // nb_kins: Number of kins
+    optional int64 nb_kins = 7;
+    // nb_organizations: Number of organizations
+    optional int64 nb_organizations = 8;
 }
 
 // OrganizationAdminReply
@@ -209,20 +210,20 @@ message UserAdminReply {
 // - nb_members: Number of members
 // - nb_kins: Number of kins
 message OrganizationAdminReply {
-  // id: Organization ID
-  string id = 1;
-  // name: Organization name
-  string name = 2;
-  // email: Organization email
-  string email = 3;
-  // activated: Is the organization activated
-  bool activated = 4;
-  // logo: Organization logo
-  optional string logo = 5;
-  // nb_members: Number of members
-  optional int64 nb_members = 6;
-  // nb_kins: Number of kins
-  optional int64 nb_kins = 7;
+    // id: Organization ID
+    string id = 1;
+    // name: Organization name
+    string name = 2;
+    // email: Organization email
+    string email = 3;
+    // activated: Is the organization activated
+    bool activated = 4;
+    // logo: Organization logo
+    optional string logo = 5;
+    // nb_members: Number of members
+    optional int64 nb_members = 6;
+    // nb_kins: Number of kins
+    optional int64 nb_kins = 7;
 }
 
 // KinAdminReply
@@ -237,20 +238,20 @@ message OrganizationAdminReply {
 // - nb_organizations: Number of organizations
 // - nb_threads: Number of threads
 message KinAdminReply {
-  // id: Kin ID
-  string id = 1;
-  // name: Kin name
-  string name = 2;
-  // activated: Is the kin activated
-  bool activated = 3;
-  // logo: Kin logo
-  optional string logo = 4;
-  // nb_members: Number of members
-  optional int64 nb_members = 5;
-  // nb_organizations: Number of organizations
-  optional int64 nb_organizations = 6;
-  // nb_threads: Number of threads
-  optional int64 nb_threads = 7;
+    // id: Kin ID
+    string id = 1;
+    // name: Kin name
+    string name = 2;
+    // activated: Is the kin activated
+    bool activated = 3;
+    // logo: Kin logo
+    optional string logo = 4;
+    // nb_members: Number of members
+    optional int64 nb_members = 5;
+    // nb_organizations: Number of organizations
+    optional int64 nb_organizations = 6;
+    // nb_threads: Number of threads
+    optional int64 nb_threads = 7;
 }
 
 // ReadUsersAdminRequest
@@ -267,8 +268,8 @@ message ReadUsersAdminRequest {
 //
 // - A stream of users
 message ReadUsersAdminResponse {
-  // users: A stream of users
-  repeated UserAdminReply users = 1;
+    // users: A stream of users
+    repeated UserAdminReply users = 1;
 }
 
 // ReadOrganizationsAdminRequest
@@ -285,8 +286,8 @@ message ReadOrganizationsAdminRequest {
 //
 // - A stream of organizations
 message ReadOrganizationsAdminResponse {
-  // organizations: A stream of organizations
-  repeated OrganizationAdminReply organizations = 1;
+    // organizations: A stream of organizations
+    repeated OrganizationAdminReply organizations = 1;
 }
 
 // ReadKinsAdminRequest
@@ -303,8 +304,8 @@ message ReadKinsAdminRequest {
 //
 // - A stream of kins
 message ReadKinsAdminResponse {
-  // kins: A stream of kins
-  repeated KinAdminReply kins = 1;
+    // kins: A stream of kins
+    repeated KinAdminReply kins = 1;
 }
 
 // UpdateActivationRequest
@@ -314,10 +315,10 @@ message ReadKinsAdminResponse {
 // - id: ID of the object to update
 // - activated: New activation status
 message UpdateActivationRequest {
-  // id: ID of the object to update
-  string id = 1;
-  // activated: New activation status
-  bool activated = 2;
+    // id: ID of the object to update
+    string id = 1;
+    // activated: New activation status
+    bool activated = 2;
 }
 
 // UpdateActivationResponse
@@ -335,10 +336,10 @@ message UpdateActivationResponse {
 // - id: ID of the object to update
 // - is_admin: New is_admin status
 message UpdateIsAdminRequest {
-  // id: ID of the object to update
-  string id = 1;
-  // is_admin: New is_admin status
-  bool is_admin = 2;
+    // id: ID of the object to update
+    string id = 1;
+    // is_admin: New is_admin status
+    bool is_admin = 2;
 }
 
 // UpdateIsAdminResponse
@@ -357,12 +358,12 @@ message UpdateIsAdminResponse {
 // - email: Email to send the reset email to
 // - name: Name of the object to send the email to
 message SendResetEmailRequest {
-  // id: ID of the object to send the email
-  string id = 1;
-  // email: Email to send the reset email to
-  string email = 2;
-  // name: Name of the object to send the email to
-  string name = 3;
+    // id: ID of the object to send the email
+    string id = 1;
+    // email: Email to send the reset email to
+    string email = 2;
+    // name: Name of the object to send the email to
+    string name = 3;
 }
 
 // SendResetEmailResponse
@@ -381,12 +382,12 @@ message SendResetEmailResponse {
 // - email: Email to send the reset email to
 // - name: Name of the object to send the email to
 message SendResetPasswordRequest {
-  // id: ID of the object to reset the password
-  string id = 1;
-  // email: Email to send the reset email to
-  string email = 2;
-  // name: Name of the object to send the email to
-  string name = 3;
+    // id: ID of the object to reset the password
+    string id = 1;
+    // email: Email to send the reset email to
+    string email = 2;
+    // name: Name of the object to send the email to
+    string name = 3;
 }
 
 // SendResetPasswordResponse
@@ -404,10 +405,10 @@ message SendResetPasswordResponse {
 // - id: ID of the object to regenerate the invitation code
 // - name: Name of the object to regenerate the invitation code
 message RegenerateInvitationCodeRequest {
-  // id: ID of the object to regenerate the invitation code
-  string id = 1;
-  // name: Name of the object to regenerate the invitation code
-  string name = 2;
+    // id: ID of the object to regenerate the invitation code
+    string id = 1;
+    // name: Name of the object to regenerate the invitation code
+    string name = 2;
 }
 
 // RegenerateInvitationCodeResponse

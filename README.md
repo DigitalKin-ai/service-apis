@@ -7,7 +7,7 @@
 Ensure [buf](https://buf.build/docs/installation) and [protoc](https://grpc.io/docs/protoc-installation/) are installed on your system.
 
 ```sh
-buf mod update ./proto
+buf dep update ./proto
 ```
 
 #### Rust (tonic):
@@ -28,6 +28,10 @@ cargo install protoc-gen-tonic
 buf generate proto --template proto/buf.gen.rust.yaml
 ```
 
+---
+
+Outputs will be in out/ directory.
+
 #### Typescript in Browser:
 
 ##### Dependencies:
@@ -46,7 +50,23 @@ buf generate proto --template proto/buf.gen.ts.yaml
 
 ---
 
-Outputs will be in out/ directory.
+Outputs will be in services/ directory.
+
+### Proto linter
+
+#### Dependencies:
+
+Install protolint with npx.
+
+ ```sh
+ npx protolint
+```
+
+#### Lint:
+
+ ```sh
+protolint lint proto
+```
 
 ### Developement Hints
 

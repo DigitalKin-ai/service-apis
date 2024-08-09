@@ -1,0 +1,89 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "google/api/field_behavior.proto";
+
+// DataEdge
+//
+// Fields:
+//
+// - color: Edge color
+// - running: Edge running
+message DataEdge {
+    // color: Edge color
+    string color = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // running: Edge running
+    bool running = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Edge
+//
+// Fields:
+//
+// - id: Edge id
+// - source: Edge source
+// - source_handle: Edge source handle
+// - target: Edge target
+// - target_handle: Edge target handle
+// - type: Edge type
+// - data: Edge data
+message Edge {
+    // id: Edge id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // source: Edge source
+    string source = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // source_handle: Edge source handle
+    optional string source_handle = 3;
+    // target: Edge target
+    string target = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // target_handle: Edge target handle
+    optional string target_handle = 5;
+    // type: Edge type
+    optional string type = 6;
+    // data: Edge data
+    DataEdge data = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// AddEdgeWorkflowRequest
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - edge: Edge
+message AddEdgeWorkflowRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // edge: Edge
+    Edge edge = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// DeleteEdgeWorkflowRequest
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - edge_id: Edge id
+message DeleteEdgeWorkflowRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // edge_id: Edge id
+    string edge_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
