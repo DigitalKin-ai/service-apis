@@ -18,6 +18,7 @@ package digitalkin.store.v1;
 
 import "digitalkin/store/v1/block.proto";
 import "digitalkin/store/v1/card.proto";
+import "digitalkin/common/v1/common.proto";
 import "digitalkin/store/v1/details.proto";
 import "digitalkin/store/v1/review.proto";
 import "digitalkin/store/v1/tag.proto";
@@ -138,7 +139,7 @@ message UpdateKinImageRequest {
     // kin_id: Kin id
     string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
     // image: Kin image
-    string image = 2 [(google.api.field_behavior) = REQUIRED];
+    digitalkin.common.v1.File image = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateKinShortDescriptionRequest
