@@ -19,6 +19,8 @@ syntax = "proto3";
 
 package digitalkin.common.v1;
 
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 
 // Thing
 //
@@ -126,7 +128,10 @@ message WorkflowReply {
     // status: The status of the workflow
     string status = 3;
     // duration: The duration of the workflow
-    string duration = 4;
+    google.protobuf.Timestamp duration = 4 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
     // price: The price of the workflow
     int64 price = 5;
 }

@@ -56,7 +56,7 @@ message Activity {
     // duration: Duration
     optional google.protobuf.Timestamp duration = 8;
     // price: Price
-    optional int64 price = 9;
+    optional float price = 9;
 }
 
 // ReadActivitiesRequest

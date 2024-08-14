@@ -82,7 +82,7 @@ service ProjectService {
     //
     // Parameters:
     //
-    // - kin_thread_id: Kin thread id
+    // - thread_id: Kin thread id
     // - message: Message
     // - prompt: Prompt
     //
@@ -116,7 +116,7 @@ service ProjectService {
     //
     // Parameters:
     //
-    // - thread_id: Kin thread id
+    // - thread_id: thread id
     //
     // Returns:
     //
@@ -131,7 +131,7 @@ service ProjectService {
     //
     // Parameters:
     //
-    // - thread_id: Kin thread id
+    // - thread_id: thread id
     //
     // Returns:
     //

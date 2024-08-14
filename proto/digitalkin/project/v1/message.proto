@@ -34,7 +34,7 @@ import "google/api/field_behavior.proto";
 // - prompt: Prompt
 message MessageRequest {
     // kin_thread_id: Kin thread id
-    string kin_thread_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
     // organization_id: Organization id
     string organization_id = 2 [(google.api.field_behavior) = REQUIRED];
     // message: Message
