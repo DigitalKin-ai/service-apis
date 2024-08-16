@@ -1,0 +1,80 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// Activity
+//
+// ## Fields
+//
+// - id: Kin thread activity id
+// - kin_id: Kin id
+// - status: Status
+// - subject: Subject
+// - workflow_name: Workflow name
+// - kin_name: Kin name
+// - date: Date
+// - duration: Duration
+// - price: Price
+message Activity {
+    // id: Kin thread activity id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // kin_id: Kin id
+    string kin_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // status: Status
+    optional string status = 3;
+    // subject: Subject
+    string subject = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // workflow_name: Workflow name
+    optional string workflow_name = 5;
+    // kin_name: Kin name
+    optional string kin_name = 6;
+    // date: Date
+    google.protobuf.Timestamp date = 7 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+    // duration: Duration
+    optional google.protobuf.Timestamp duration = 8;
+    // price: Price
+    optional float price = 9;
+}
+
+// ReadActivitiesRequest
+//
+// Fields:
+//
+// - kin_id: Kin id
+message ReadActivitiesRequest {
+    // kin_id: Kin id
+    optional string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Activities
+//
+// Fields:
+//
+// - activities: Kin activity
+message Activities {
+    // activities: Kin activities
+    repeated Activity activities = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
