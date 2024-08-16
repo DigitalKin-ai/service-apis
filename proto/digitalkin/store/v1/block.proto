@@ -116,10 +116,10 @@ message AddKinBlockRequest {
 // Fields:
 //
 // - kin_id: Kin ID
-// - block_id: Block ID
+// - position: Position of the block in the list
 message DeleteKinBlockRequest {
     // kin_id: Kin id
     string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // block_id: Block id
-    string block_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // position: Position of the block in the list
+    string position = 2 [(google.api.field_behavior) = REQUIRED];
 }

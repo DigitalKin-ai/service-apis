@@ -179,7 +179,7 @@ service StoreService {
     // Parameters:
     //
     // - kin_id: Kin id
-    // - block_id: Kin block id
+    // - position: Position of the block in the list
     //
     // Returns:
     //
