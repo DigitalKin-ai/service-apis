@@ -16,6 +16,8 @@ syntax = "proto3";
 
 package digitalkin.store.v1;
 
+import "digitalkin/common/v1/common.proto";
+
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -57,6 +59,8 @@ message Documentation {
 // - version: Project version
 // - languages: Project languages
 // - framework: Project framework
+// - owners: Project owners
+// - creators: Project creators
 // - license: Project licence
 // - documentation: Project documentation
 message Details {
@@ -73,10 +77,14 @@ message Details {
     repeated string languages = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // framework: Project framework
     optional string framework = 5;
+    // owners: Project owners
+    repeated digitalkin.common.v1.UserReply owners = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // creators: Project creators
+    repeated digitalkin.common.v1.UserReply creators = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
     // license: Project license
-    optional License license = 6;
+    optional License license = 8;
     // documentation: Project documentation
-    optional Documentation documentation = 7;
+    optional Documentation documentation = 9;
 }
 
 // UpdateKinLanguagesRequest
