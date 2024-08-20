@@ -1,13 +1,12 @@
 syntax = "proto2";
-
 package validate;
+
+option go_package = "github.com/envoyproxy/protoc-gen-validate/validate";
+option java_package = "io.envoyproxy.pgv.validate";
 
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
-
-option go_package = "github.com/envoyproxy/protoc-gen-validate/validate";
-option java_package = "io.envoyproxy.pgv.validate";
 
 // Validation rules applied at the message level
 extend google.protobuf.MessageOptions {
@@ -91,11 +90,11 @@ message FloatRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated float ins = 6;
+    repeated float in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated float not_ins = 7;
+    repeated float not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -127,11 +126,11 @@ message DoubleRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated double ins = 6;
+    repeated double in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated double not_ins = 7;
+    repeated double not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -163,11 +162,11 @@ message Int32Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated int32 ins = 6;
+    repeated int32 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated int32 not_ins = 7;
+    repeated int32 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -199,11 +198,11 @@ message Int64Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated int64 ins = 6;
+    repeated int64 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated int64 not_ins = 7;
+    repeated int64 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -235,11 +234,11 @@ message UInt32Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated uint32 ins = 6;
+    repeated uint32 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated uint32 not_ins = 7;
+    repeated uint32 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -271,11 +270,11 @@ message UInt64Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated uint64 ins = 6;
+    repeated uint64 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated uint64 not_ins = 7;
+    repeated uint64 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -307,11 +306,11 @@ message SInt32Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated sint32 ins = 6;
+    repeated sint32 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated sint32 not_ins = 7;
+    repeated sint32 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -343,11 +342,11 @@ message SInt64Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated sint64 ins = 6;
+    repeated sint64 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated sint64 not_ins = 7;
+    repeated sint64 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -379,11 +378,11 @@ message Fixed32Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated fixed32 ins = 6;
+    repeated fixed32 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated fixed32 not_ins = 7;
+    repeated fixed32 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -415,11 +414,11 @@ message Fixed64Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated fixed64 ins = 6;
+    repeated fixed64 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated fixed64 not_ins = 7;
+    repeated fixed64 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -451,11 +450,11 @@ message SFixed32Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated sfixed32 ins = 6;
+    repeated sfixed32 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated sfixed32 not_ins = 7;
+    repeated sfixed32 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -487,11 +486,11 @@ message SFixed64Rules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated sfixed64 ins = 6;
+    repeated sfixed64 in = 6;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated sfixed64 not_ins = 7;
+    repeated sfixed64 not_in = 7;
 
     // IgnoreEmpty specifies that the validation rules of this field should be
     // evaluated only if the field is not empty
@@ -558,11 +557,11 @@ message StringRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated string ins     = 10;
+    repeated string in     = 10;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated string not_ins = 11;
+    repeated string not_in = 11;
 
     // WellKnown rules provide advanced constraints against common string
     // patterns
@@ -608,27 +607,27 @@ message StringRules {
         KnownRegex well_known_regex = 24;
     }
 
-    // This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable
-    // strict header validation.
-    // By default, this is true, and HTTP header validations are RFC-compliant.
-    // Setting to false will enable a looser validations that only disallows
-    // \r\n\0 characters, which can be used to bypass header matching rules.
-    optional bool strict = 25 [default = true];
+  // This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable
+  // strict header validation.
+  // By default, this is true, and HTTP header validations are RFC-compliant.
+  // Setting to false will enable a looser validations that only disallows
+  // \r\n\0 characters, which can be used to bypass header matching rules.
+  optional bool strict = 25 [default = true];
 
-    // IgnoreEmpty specifies that the validation rules of this field should be
-    // evaluated only if the field is not empty
-    optional bool ignore_empty = 26;
+  // IgnoreEmpty specifies that the validation rules of this field should be
+  // evaluated only if the field is not empty
+  optional bool ignore_empty = 26;
 }
 
 // WellKnownRegex contain some well-known patterns.
 enum KnownRegex {
-    KNOWN_REGEX_UNKNOWN_UNSPECIFIED = 0;
+  UNKNOWN = 0;
 
-    // HTTP header name as defined by RFC 7230.
-    KNOWN_REGEX_HTTP_HEADER_NAME = 1;
+  // HTTP header name as defined by RFC 7230.
+  HTTP_HEADER_NAME = 1;
 
-    // HTTP header value as defined by RFC 7230.
-    KNOWN_REGEX_HTTP_HEADER_VALUE = 2;
+  // HTTP header value as defined by RFC 7230.
+  HTTP_HEADER_VALUE = 2;
 }
 
 // BytesRules describe the constraints applied to `bytes` values
@@ -666,11 +665,11 @@ message BytesRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated bytes ins     = 8;
+    repeated bytes in     = 8;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated bytes not_ins = 9;
+    repeated bytes not_in = 9;
 
     // WellKnown rules provide advanced constraints against common byte
     // patterns
@@ -704,11 +703,11 @@ message EnumRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated int32 ins           = 3;
+    repeated int32 in           = 3;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated int32 not_ins       = 4;
+    repeated int32 not_in       = 4;
 }
 
 // MessageRules describe the constraints applied to embedded message values.
@@ -782,11 +781,11 @@ message AnyRules {
 
     // In specifies that this field's `type_url` must be equal to one of the
     // specified values.
-    repeated string ins     = 2;
+    repeated string in     = 2;
 
     // NotIn specifies that this field's `type_url` must not be equal to any of
     // the specified values.
-    repeated string not_ins = 3;
+    repeated string not_in = 3;
 }
 
 // DurationRules describe the constraints applied exclusively to the
@@ -816,11 +815,11 @@ message DurationRules {
 
     // In specifies that this field must be equal to one of the specified
     // values
-    repeated google.protobuf.Duration ins = 7;
+    repeated google.protobuf.Duration in = 7;
 
     // NotIn specifies that this field cannot be equal to one of the specified
     // values
-    repeated google.protobuf.Duration not_ins = 8;
+    repeated google.protobuf.Duration not_in = 8;
 }
 
 // TimestampRules describe the constraints applied exclusively to the

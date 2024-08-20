@@ -49,14 +49,14 @@ message GetModuleStatusRequest {
     string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
 }
 
-// ModuleStatusResponse
+// GetModuleStatusResponse
 //
 // Returns:
 //
 // - success: Flag to indicate if the status request was successful
 // - status: Status of the Module
 // - job_id: Database ID of the job inside the Module that was queried
-message ModuleStatusResponse {
+message GetModuleStatusResponse {
     // success: Flag to indicate if the status request was successful
     bool success = 1;
     // status: Status of the Module

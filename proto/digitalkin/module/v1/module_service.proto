@@ -32,14 +32,14 @@ service ModuleService {
     // StartModule
     rpc StartModule (stream StartModuleRequest) returns (stream StartModuleResponse);
     // StopModule
-    rpc StopModule (StopModuleRequest) returns (ModuleResponse);
+    rpc StopModule (StopModuleRequest) returns (StopModuleResponse);
     // GetModuleStatus
-    rpc GetModuleStatus (GetModuleStatusRequest) returns (ModuleStatusResponse);
+    rpc GetModuleStatus (GetModuleStatusRequest) returns (GetModuleStatusResponse);
     // GetModuleInput
-    rpc GetModuleInput (GetModuleInputRequest) returns (ModuleInputResponse);
+    rpc GetModuleInput (GetModuleInputRequest) returns (GetModuleInputResponse);
     // GetModuleOutput
-    rpc GetModuleOutput (GetModuleOutputRequest) returns (ModuleOutputResponse);
+    rpc GetModuleOutput (GetModuleOutputRequest) returns (GetModuleOutputResponse);
     // GetModuleSetup
-    rpc GetModuleSetup (GetModuleSetupRequest) returns (ModuleSetupResponse);
+    rpc GetModuleSetup (GetModuleSetupRequest) returns (GetModuleSetupResponse);
 }
   
