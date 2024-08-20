@@ -1,0 +1,66 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+syntax = "proto3";
+
+package digitalkin.module.v1;
+
+import "validate/validate.proto";
+
+// ModuleStatus
+enum ModuleStatus {
+    // MODULE_STATUS_UNKNOWN is the default value
+    MODULE_STATUS_UNKNOWN = 0;
+    // MODULE_STATUS_STARTING is the status when the module is starting
+    MODULE_STATUS_STARTING = 1;
+    // MODULE_STATUS_PROCESSING is the status when the module is processing
+    MODULE_STATUS_PROCESSING = 2;
+    // MODULE_STATUS_CANCELED is the status when the module is canceled
+    MODULE_STATUS_CANCELED = 3;
+    // MODULE_STATUS_FAILED is the status when the module is failed
+    MODULE_STATUS_FAILED = 4;
+    // MODULE_STATUS_EXPIRED is the status when the module is expired
+    MODULE_STATUS_EXPIRED = 5;
+    // MODULE_STATUS_SUCCESS is the status when the module is successful
+    MODULE_STATUS_SUCCESS = 6;
+    // MODULE_STATUS_STOPPED is the status when the module is stopped
+    MODULE_STATUS_STOPPED = 7;
+}
+
+// GetModuleStatusRequest
+//
+// Fields:
+//
+// - job_id: Database ID of the Job Module to get status
+message GetModuleStatusRequest {
+    // job_id: Database ID of the Job Module to get status
+    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+}
+
+// ModuleStatusResponse
+//
+// Returns:
+//
+// - success: Flag to indicate if the status request was successful
+// - status: Status of the Module
+// - job_id: Database ID of the job inside the Module that was queried
+message ModuleStatusResponse {
+    // success: Flag to indicate if the status request was successful
+    bool success = 1;
+    // status: Status of the Module
+    ModuleStatus status = 2 [(validate.rules).enum = { defined_only: true }];
+    // job_id: Database ID of the job inside the Module that was queried
+    string job_id = 3  [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+}

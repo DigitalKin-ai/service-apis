@@ -19,9 +19,6 @@ package digitalkin.module_registry.v1;
 import "digitalkin/module_registry/v1/action.proto";
 import "digitalkin/module_registry/v1/registration.proto";
 
-import "validate/validate.proto";
-
-
 // ModuleRegistryService
 // It manages the registration, discovery, and status tracking of modules within a multi-agent system (SMA).
 // In the context of SMA, this service allows autonomous agents to register their modules, making their capabilities 
