@@ -16,6 +16,7 @@ lint:
     # The specific directories to exclude.
     exclude:
       - proto/google
+      - proto/validate
 
   # Linter rules.
   # Run `protolint list` to see all available rules.
