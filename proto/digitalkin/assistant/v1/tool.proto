@@ -103,6 +103,16 @@ message Tool {
     Model model = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
+// ListToolsRequest
+//
+// Fields:
+//
+// - model: The model of the tool.
+message ListToolsRequest {
+    // model: The model of the tool.
+    Model model = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
 // ListToolsResponse
 //
 // Returns:
@@ -145,13 +155,13 @@ message UpdateToolRequest {
     // id: The unique identifier of the tool.
     string id = 1 [(google.api.field_behavior) = REQUIRED];
     // name: The name of the tool.
-    string name = 2 [(google.api.field_behavior) = OPTIONAL];
+    optional string name = 2 [(google.api.field_behavior) = OPTIONAL];
     // description: The description of the tool.
-    string description = 3 [(google.api.field_behavior) = OPTIONAL];
+    optional string description = 3 [(google.api.field_behavior) = OPTIONAL];
     // parameters: The parameters of the tool.
-    Parameters parameters = 4 [(google.api.field_behavior) = OPTIONAL];
+    optional Parameters parameters = 4 [(google.api.field_behavior) = OPTIONAL];
     // model: The model of the tool.
-    Model model = 5 [(google.api.field_behavior) = OPTIONAL];
+    optional Model model = 5 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // DeleteToolRequest

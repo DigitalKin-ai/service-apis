@@ -82,7 +82,7 @@ message CreateAssistantRequest {
     // temperature: The temperature of the assistant.
     float temperature = 3 [(google.api.field_behavior) = REQUIRED];
     // tools: The tools of the assistant.
-    repeated Tool tools = 4 [(google.api.field_behavior) = OPTIONAL];
+    repeated Tool tools = 4 [(google.api.field_behavior) = REQUIRED];
     // max_tokens: The maximum number of tokens the assistant can generate.
     int32 max_tokens = 5 [(google.api.field_behavior) = REQUIRED];
 }
@@ -101,15 +101,15 @@ message UpdateAssistantRequest {
     // assistant_id: The unique identifier of the assistant.
     string assistant_id = 1 [(google.api.field_behavior) = REQUIRED];
     // system: The model of the assistant.
-    string system = 2 [(google.api.field_behavior) = OPTIONAL];
+    optional string system = 2 [(google.api.field_behavior) = OPTIONAL];
     // model: The model of the assistant.
-    Model model = 3 [(google.api.field_behavior) = OPTIONAL];
+    optional Model model = 3 [(google.api.field_behavior) = OPTIONAL];
     // temperature: The temperature of the assistant.
-    float temperature = 4 [(google.api.field_behavior) = OPTIONAL];
+    optional float temperature = 4 [(google.api.field_behavior) = OPTIONAL];
     // tools: The tools of the assistant.
     repeated Tool tools = 5 [(google.api.field_behavior) = OPTIONAL];
     // max_tokens: The maximum number of tokens the assistant can generate.
-    int32 max_tokens = 6 [(google.api.field_behavior) = OPTIONAL];
+    optional int32 max_tokens = 6 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // DeleteAssistantRequest

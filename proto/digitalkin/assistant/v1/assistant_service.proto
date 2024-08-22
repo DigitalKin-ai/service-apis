@@ -62,7 +62,7 @@ service AssistantService {
     }
 
     // ListTools
-    rpc ListTools(ListToolsResponse) returns (ListToolsResponse) {
+    rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {
         option (google.api.http) = {
         get: "/v1/tools/list/{assistant.model=projects/*/assistant/*}"
         };
