@@ -31,7 +31,7 @@ import "google/api/field_behavior.proto";
 // - organization_id: Organization id
 // - message: Message
 // - files: Files
-// - prompt: Prompt
+// - assistant_id: Assistant id
 message MessageRequest {
     // thread_id: thread id
     string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
@@ -41,8 +41,8 @@ message MessageRequest {
     string message = 3 [(google.api.field_behavior) = REQUIRED];
     // files: Files
     repeated digitalkin.common.v1.File files = 4 [(google.api.field_behavior) = REQUIRED];
-    // prompt: Prompt
-    string prompt = 5 [(google.api.field_behavior) = REQUIRED];
+    // assistant_id: Assistant id
+    string assistant_id = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 // MessageResponse
