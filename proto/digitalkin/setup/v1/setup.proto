@@ -68,7 +68,7 @@ message GetSetupRequest {
     string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-// GetSettingsResponse
+// GetSetupResponse
 //
 // Returns:
 //

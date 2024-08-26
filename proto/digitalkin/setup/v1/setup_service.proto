@@ -24,8 +24,8 @@ import "google/protobuf/empty.proto";
 
 // SetupService
 service SetupService {
-    // GetSettings
-    rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
+    // GetSetup
+    rpc GetSetup(GetSetupResponse) returns (GetSetupRequest) {
         option (google.api.http) = {
         get: "/v1/setting/list/{thread=projects/*/thread/*}"
         };
