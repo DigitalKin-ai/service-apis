@@ -83,14 +83,14 @@ message Property {
 //
 // - type: The type of the input schema.
 // - properties: The properties of the input schema.
-// - required: The required properties of the input schema.
+// - requireds: The required properties of the input schema.
 message Parameters {
     // type: The type of the input schema.
     string type = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // properties: The properties of the input schema.
     map<string, Property> properties = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // required: The required properties of the input schema.
-    repeated string required = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // requireds: The required properties of the input schema.
+    repeated string requireds = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // Tool
