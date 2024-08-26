@@ -14,9 +14,9 @@
 
 syntax = "proto3";
 
-package digitalkin.assistant.v1;
+package digitalkin.setup.v1;
 
-import "digitalkin/assistant/v1/tool.proto";
+import "digitalkin/setup/v1/tool.proto";
 
 import "google/api/field_behavior.proto";
 
