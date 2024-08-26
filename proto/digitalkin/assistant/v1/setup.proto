@@ -1,0 +1,58 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.assistant.v1;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// Data
+//
+// Fields:
+//
+// - module_id: The module ID of the data.
+// - node_id: The node ID of the data.
+// - content: The content of the data.
+message Data {
+    // module_id: The module ID of the data.
+    string module_id = 1;
+    // node_id: The node ID of the data.
+    string node_id = 2;
+    // content: The content of the data.
+    object content = 3;
+}
+
+// Setup
+//
+// Fields:
+//
+// - name: The name of the setup.
+// - kin_id: The Kin ID of the setup.
+// - data: The data of the setup.
+// - creation_date: The creation date of the setup.
+message Setup {
+    // name: The name of the setup.
+    string name = 1;
+    // kin_id: The Kin ID of the setup.
+    string kin_id = 2;
+    // data: The data of the setup.
+    optional Data data = 3;
+    // creation_date: The creation date of the setup.
+    google.protobuf.Timestamp creation_date = 4 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+}
