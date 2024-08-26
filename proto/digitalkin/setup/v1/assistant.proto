@@ -45,28 +45,6 @@ message Assistant {
     int32 max_tokens = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// GetSettingsRequest
-//
-// Fields:
-//
-// - thread_id: The unique identifier of the thread.
-message GetSettingsRequest {
-    // thread_id: The unique identifier of the assistant.
-    string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
-}
-
-// GetSettingsResponse
-//
-// Returns:
-//
-// * Temporary: This is a temporary field that will be removed in the future.
-// * In the future, the assistants field will be removed and replaced with the settings field.
-// - settings: The settings of the workflows.
-message GetSettingsResponse {
-    // settings: The list of assistants.
-    repeated Assistant settings = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-}
-
 // ListAssistantsRequest
 //
 // Fields:

@@ -45,9 +45,9 @@ message Data {
 // - creation_date: The creation date of the setup.
 message Setup {
     // name: The name of the setup.
-    string name = 1;
+    string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // kin_id: The Kin ID of the setup.
-    string kin_id = 2;
+    string kin_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // data: The data of the setup.
     optional Data data = 3;
     // creation_date: The creation date of the setup.
@@ -55,4 +55,24 @@ message Setup {
         (google.api.field_behavior) = IMMUTABLE,
         (google.api.field_behavior) = OUTPUT_ONLY
     ];
+}
+
+// GetSettingsRequest
+//
+// Fields:
+//
+// - thread_id: The unique identifier of the thread.
+message GetSettingsRequest {
+    // thread_id: The unique identifier of the assistant.
+    string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// GetSettingsResponse
+//
+// Returns:
+//
+// - settings: The settings of the workflows.
+message GetSettingsResponse {
+    // settings: The list of assistants.
+    repeated Setup settings = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

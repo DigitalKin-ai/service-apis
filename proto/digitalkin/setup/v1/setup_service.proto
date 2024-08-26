@@ -22,12 +22,12 @@ import "digitalkin/assistant/v1/tool.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
-// AssistantService
-service AssistantService {
+// SetupService
+service SetupService {
     // GetSettings
     rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
         option (google.api.http) = {
-        get: "/v1/settings/list/{workflows=projects/*/workflow/*}"
+        get: "/v1/setting/list/{thread=projects/*/thread/*}"
         };
     }
 
