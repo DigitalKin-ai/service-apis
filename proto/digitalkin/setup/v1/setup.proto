@@ -58,13 +58,13 @@ message Setup {
     ];
 }
 
-// GetSettingsRequest
+// GetSetupRequest
 //
 // Fields:
 //
 // - thread_id: The unique identifier of the thread.
-message GetSettingsRequest {
-    // thread_id: The unique identifier of the assistant.
+message GetSetupRequest {
+    // thread_id: The unique identifier of the thread.
     string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
@@ -72,8 +72,8 @@ message GetSettingsRequest {
 //
 // Returns:
 //
-// - settings: The settings of the workflows.
-message GetSettingsResponse {
-    // settings: The list of assistants.
-    repeated Setup settings = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+// - setup: The setup of the workflow.
+message GetSetupResponse {
+    // setup: The setup of the workflow.
+    Setup setup = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
