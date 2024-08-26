@@ -45,12 +45,15 @@ message Thread {
 // Fields:
 //
 // - kin_id: Kin id
-// - workflow_id: Kin workflow id
+// - workflow_id: Workflow id
+// - setup_id: Setup id
 message CreateThreadRequest {
     // kin_id: Kin id
     string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // workflow_id: Kin workflow id
+    // workflow_id: Workflow id
     string workflow_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // setup_id: Setup id
+    string setup_id = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 // ReadThreadRequest
