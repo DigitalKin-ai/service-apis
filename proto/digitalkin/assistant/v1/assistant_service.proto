@@ -25,16 +25,16 @@ import "google/protobuf/empty.proto";
 // AssistantService
 service AssistantService {
     // GetAssistant
-    rpc GetAssistant(GetAssistantRequest) returns (Assistant) {
+    rpc GetAssistants(GetAssistantsRequest) returns (GetAssistantsResponse) {
         option (google.api.http) = {
-        get: "/v1/assistant/{assistant.id=projects/*/assistant/*}/read"
+        get: "/v1/assistant/{assistant.id=projects/*/assistant/*}/read/{workflows=projects/*/workflow/*}"
         };
     }
 
     // ListAssistants
-    rpc ListAssistants(google.protobuf.Empty) returns (ListAssistantsResponse) {
+    rpc ListAssistants(ListAssistantsRequest) returns (ListAssistantsResponse) {
         option (google.api.http) = {
-        get: "/v1/assistant/list"
+        get: "/v1/assistant/list/{organization=projects/*/organization/*}"
         };
     }
 
