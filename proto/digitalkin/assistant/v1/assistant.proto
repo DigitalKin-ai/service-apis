@@ -49,14 +49,10 @@ message Assistant {
 //
 // Fields:
 //
-// * Temporary: This is a temporary field that will be removed in the future.
-// - kin_id: The unique identifier of the assistant.
-//
-// * In the future, the kin_id field will be removed and replaced with the workflow field.
-// - workflow_id: The unique identifier of the workflow.
+// - thread_id: The unique identifier of the thread.
 message GetSettingsRequest {
-    // kin_id: The unique identifier of the assistant.
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // thread_id: The unique identifier of the assistant.
+    string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // GetSettingsResponse
