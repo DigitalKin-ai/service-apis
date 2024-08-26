@@ -16,8 +16,9 @@ syntax = "proto3";
 
 package digitalkin.setup.v1;
 
-import "digitalkin/assistant/v1/assistant.proto";
-import "digitalkin/assistant/v1/tool.proto";
+import "digitalkin/setup/v1/assistant.proto";
+import "digitalkin/setup/v1/setup.proto";
+import "digitalkin/setup/v1/tool.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
