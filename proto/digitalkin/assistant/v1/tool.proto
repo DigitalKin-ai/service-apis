@@ -35,17 +35,29 @@ import "google/api/field_behavior.proto";
 // - MODEL_GPT_4_O: GPT 4o model.
 // - MODEL_GPT_4_O_MINI: GPT 4o Mini model.
 enum Model {
+    // MODEL_UNKNOWN: Unknown model.
     MODEL_UNKNOWN = 0;
+    // MODEL_CLAUDE_3_5_SONNET: Claude 3.5 Sonnet model.
     MODEL_CLAUDE_3_5_SONNET = 1;
+    // MODEL_CLAUDE_3_HAIKU: Claude 3 Haiku model.
     MODEL_CLAUDE_3_HAIKU = 2;
+    // MODEL_CLAUDE_3_OPUS: Claude 3 Opus model.
     MODEL_CLAUDE_3_OPUS = 3;
+    // MODEL_CLAUDE_3_SONNET: Claude 3 Sonnet model.
     MODEL_CLAUDE_3_SONNET = 4;
+    // MODEL_GEMINI_1_5_FLASH: Gemini 1.5 Flash model.
     MODEL_GEMINI_1_5_FLASH = 5;
+    // MODEL_GEMINI_1_5_PRO: Gemini 1.5 Pro model.
     MODEL_GEMINI_1_5_PRO = 6;
+    // MODEL_GPT_3_5_TURBO: GPT 3.5 Turbo model.
     MODEL_GPT_3_5_TURBO = 7;
+    // MODEL_GPT_4: GPT 4 model.
     MODEL_GPT_4 = 8;
+    // MODEL_GPT_4_TURBO: GPT 4 Turbo model.
     MODEL_GPT_4_TURBO = 9;
+    // MODEL_GPT_4_O: GPT 4o model.
     MODEL_GPT_4_O = 10;
+    // MODEL_GPT_4_O_MINI: GPT 4o Mini model.
     MODEL_GPT_4_O_MINI = 11;
 }
 
