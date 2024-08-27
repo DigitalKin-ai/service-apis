@@ -69,22 +69,25 @@ message ListAssistantsResponse {
 //
 // Fields:
 //
+// - organization_id: The unique identifier of the organization.
 // - system: The model of the assistant.
 // - model: The model of the assistant.
 // - temperature: The temperature of the assistant.
 // - tools: The tools of the assistant.
 // - max_tokens: The maximum number of tokens the assistant can generate.
 message CreateAssistantRequest {
+    // organization_id: The unique identifier of the organization.
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
     // system: The model of the assistant.
-    string system = 1 [(google.api.field_behavior) = REQUIRED];
+    string system = 2 [(google.api.field_behavior) = REQUIRED];
     // model: The model of the assistant.
-    Model model = 2 [(google.api.field_behavior) = REQUIRED];
+    Model model = 3 [(google.api.field_behavior) = REQUIRED];
     // temperature: The temperature of the assistant.
-    float temperature = 3 [(google.api.field_behavior) = REQUIRED];
+    float temperature = 4 [(google.api.field_behavior) = REQUIRED];
     // tools: The tools of the assistant.
-    repeated Tool tools = 4 [(google.api.field_behavior) = REQUIRED];
+    repeated Tool tools = 5 [(google.api.field_behavior) = REQUIRED];
     // max_tokens: The maximum number of tokens the assistant can generate.
-    int32 max_tokens = 5 [(google.api.field_behavior) = REQUIRED];
+    int32 max_tokens = 6 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateAssistantRequest
