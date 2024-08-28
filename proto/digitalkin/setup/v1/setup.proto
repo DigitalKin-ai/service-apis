@@ -36,9 +36,9 @@ message Data {
     // node_id: The node ID of the data.
     string node_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // content: The content of the data.
-    oneof content = 3 {
+    oneof content {
         // assistant: The assistant content of the data.
-        Assistant assistant = 4;
+        Assistant assistant = 3;
     }
 }
 
