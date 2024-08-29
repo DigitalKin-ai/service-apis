@@ -20,7 +20,6 @@ import "digitalkin/setup/v1/assistant.proto";
 
 import "google/api/field_behavior.proto";
 import "google/protobuf/any.proto";
-import "google/protobuf/timestamp.proto";
 
 // Data
 //
@@ -58,7 +57,7 @@ message Setup {
     // data: The data of the setup.
     optional Data data = 3;
     // creation_date: The creation date of the setup.
-    google.protobuf.Timestamp creation_date = 4 [
+    int32 creation_date = 4 [
         (google.api.field_behavior) = IMMUTABLE,
         (google.api.field_behavior) = OUTPUT_ONLY
     ];
