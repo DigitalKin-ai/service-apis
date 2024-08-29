@@ -83,22 +83,22 @@ message GetSetupsResponse {
     repeated Setup setups = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// GetSetupRequest
+// ReadSetupRequest
 //
 // Fields:
 //
 // - thread_id: The unique identifier of the thread.
-message GetSetupRequest {
+message ReadSetupRequest {
     // thread_id: The unique identifier of the thread.
     string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-// GetSetupResponse
+// ReadSetupResponse
 //
 // Returns:
 //
 // - setup: The setup of the workflow.
-message GetSetupResponse {
+message ReadSetupResponse {
     // setup: The setup of the workflow.
     Setup setup = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

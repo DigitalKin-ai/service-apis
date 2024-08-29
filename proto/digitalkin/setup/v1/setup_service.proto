@@ -32,8 +32,8 @@ service SetupService {
         };
     }
 
-    // GetSetup
-    rpc GetSetup(GetSetupRequest) returns (GetSetupResponse) {
+    // ReadSetup
+    rpc ReadSetup(ReadSetupRequest) returns (ReadSetupResponse) {
         option (google.api.http) = {
         get: "/v1/setups/{thread=projects/*/thread/*}/read"
         };
