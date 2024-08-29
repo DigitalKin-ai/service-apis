@@ -47,15 +47,15 @@ message Data {
 //
 // - name: The name of the setup.
 // - kin_id: The Kin ID of the setup.
-// - data: The data of the setup.
+// - datas: The data of the setup.
 // - creation_date: The creation date of the setup.
 message Setup {
     // name: The name of the setup.
     string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // kin_id: The Kin ID of the setup.
     string kin_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // data: The data of the setup.
-    repeated Data data = 3;
+    // datas: The data of the setup.
+    repeated Data datas = 3;
     // creation_date: The creation date of the setup.
     int32 creation_date = 4 [
         (google.api.field_behavior) = IMMUTABLE,
