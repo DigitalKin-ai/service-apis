@@ -25,10 +25,10 @@ import "google/protobuf/empty.proto";
 
 // SetupService
 service SetupService {
-    // GetSetup
-    rpc GetSetup(GetSetupRequest) returns (GetSetupResponse) {
+    // GetSetups
+    rpc GetSetups(GetSetupsRequest) returns (GetSetupsResponse) {
         option (google.api.http) = {
-        get: "/v1/setting/list/{thread=projects/*/thread/*}"
+        get: "/v1/setups/list/{thread=projects/*/thread/*}"
         };
     }
 
