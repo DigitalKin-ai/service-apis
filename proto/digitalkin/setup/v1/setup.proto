@@ -68,10 +68,10 @@ message Setup {
 //
 // Fields:
 //
-// - kin_id: The unique identifier of the kin.
+// - workflow_id: The unique identifier of the workflow.
 message GetSetupsRequest {
-    // kin_id: The unique identifier of the kin.
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: The unique identifier of the workflow.
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // GetSetupsResponse
