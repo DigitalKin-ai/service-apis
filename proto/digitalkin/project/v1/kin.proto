@@ -28,7 +28,7 @@ import "google/api/field_behavior.proto";
 // - name: Kin name
 // - origin_address: Kin origin address
 // - threads: Kin threads
-// - workflows: Kin workflows
+// - workflow: Kin workflow
 message Kin {
     // id: Kin id
     string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
@@ -38,8 +38,8 @@ message Kin {
     string origin_address = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // threads: Kin threads
     repeated digitalkin.common.v1.ThreadReply threads = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // workflows: Kin workflows
-    repeated digitalkin.common.v1.WorkflowReply workflows = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // workflow: Kin workflow
+    digitalkin.common.v1.WorkflowReply workflow = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // ReadKinRequest
