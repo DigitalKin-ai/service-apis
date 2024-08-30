@@ -32,6 +32,22 @@ service SetupService {
         };
     }
 
+    // GetSetup
+    // This route is used to get a setup by its ID.
+    // ? is it a dupplicated route with ReadSetup?
+    rpc GetSetup(GetSetupRequest) returns (GetSetupResponse) {
+        option (google.api.http) = {
+        get: "/v1/setups/{setup_id}"
+        };
+    }
+
+    // GetNodeSetup
+    rpc GetNodeSetup(GetNodeSetupRequest) returns (GetNodeSetupResponse) {
+        option (google.api.http) = {
+        get: "/v1/setups/{setup_id}/nodes/{node_id}"
+        };
+    }
+
     // ReadSetup
     rpc ReadSetup(ReadSetupRequest) returns (ReadSetupResponse) {
         option (google.api.http) = {

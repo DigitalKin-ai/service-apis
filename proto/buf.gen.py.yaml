@@ -6,9 +6,9 @@ managed:
   optimize_for: CODE_SIZE
 
 plugins:
-  - plugin: buf.build/protocolbuffers/python:v21.7
+  - plugin: buf.build/protocolbuffers/python:v28.0
     out: .
-    opt:
-      - pyi_out=true
-  - plugin: buf.build/grpc/python:v1.62.0
+  - plugin: buf.build/protocolbuffers/pyi:v28.0
+    out: .
+  - plugin: buf.build/grpc/python:v1.66.1
     out: .

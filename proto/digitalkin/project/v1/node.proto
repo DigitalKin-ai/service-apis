@@ -40,11 +40,14 @@ message Position {
 //
 // - label: Target label
 // - type: Target type
+// - optional: Defines if target is optional
 message Target {
     // label: Target label
     string label = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // type: Target type
     string type = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // optional: Defines if target is optional
+    bool optional = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // Source

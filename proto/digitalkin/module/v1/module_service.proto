@@ -35,6 +35,8 @@ service ModuleService {
     rpc StopModule (StopModuleRequest) returns (StopModuleResponse);
     // GetModuleStatus
     rpc GetModuleStatus (GetModuleStatusRequest) returns (GetModuleStatusResponse);
+    // GetModuleJobs
+    rpc GetModuleJobs (GetModuleJobsRequest) returns (GetModuleJobsResponse);
     // GetModuleInput
     rpc GetModuleInput (GetModuleInputRequest) returns (GetModuleInputResponse);
     // GetModuleOutput
