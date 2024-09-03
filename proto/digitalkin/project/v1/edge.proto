@@ -66,11 +66,11 @@ message Edge {
 //
 // Fields:
 //
-// - kin_id: Kin id
+// - workflow_id: Workflow id
 // - edge: Edge
 message AddEdgeWorkflowRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
     // edge: Edge
     Edge edge = 2 [(google.api.field_behavior) = REQUIRED];
 }
@@ -79,11 +79,11 @@ message AddEdgeWorkflowRequest {
 //
 // Fields:
 //
-// - kin_id: Kin id
+// - workflow_id: Workflow id
 // - edge_id: Edge id
 message DeleteEdgeWorkflowRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
     // edge_id: Edge id
     string edge_id = 2 [(google.api.field_behavior) = REQUIRED];
 }

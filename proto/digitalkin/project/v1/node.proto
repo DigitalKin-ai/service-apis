@@ -136,11 +136,11 @@ message ReadDataNodesListResponse {
 //
 // Fields:
 //
-// - kin_id: Kin id
+// - workflow_id: Workflow id
 // - node: Node
 message AddNodeWorkflowRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
     // node: Node
     Node node = 2 [(google.api.field_behavior) = REQUIRED];
 }
@@ -149,12 +149,12 @@ message AddNodeWorkflowRequest {
 //
 // Fields:
 //
-// - kin_id: Kin id
+// - workflow_id: Workflow id
 // - node_id: Node id
 // - position: Position
 message UpdateNodePositionWorkflowRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
     // node_id: Node id
     string node_id = 2 [(google.api.field_behavior) = REQUIRED];
     // position: Position
@@ -165,11 +165,11 @@ message UpdateNodePositionWorkflowRequest {
 //
 // Fields:
 //
-// - kin_id: Kin id
+// - workflow_id: Workflow id
 // - node_id: Node id
 message DeleteNodeWorkflowRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
     // node_id: Node id
     string node_id = 2 [(google.api.field_behavior) = REQUIRED];
 }
