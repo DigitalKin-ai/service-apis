@@ -105,3 +105,13 @@ message ReadSetupResponse {
     // setup: The setup of the workflow.
     Setup setup = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
+
+// UpdateSetupRequest
+//
+// Fields:
+//
+// - setup: The setup of the workflow.
+message UpdateSetupRequest {
+    // setup: The setup of the workflow.
+    Setup setup = 1 [(google.api.field_behavior) = REQUIRED];
+}

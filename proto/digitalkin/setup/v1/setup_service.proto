@@ -39,6 +39,14 @@ service SetupService {
         };
     }
 
+    // UpdateSetup
+    rpc UpdateSetup(UpdateSetupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+        patch: "/v1/setups/{setup.id=projects/*/setup/*}/update"
+        body: "*"
+        };
+    }
+
     // ListAssistants
     rpc ListAssistants(ListAssistantsRequest) returns (ListAssistantsResponse) {
         option (google.api.http) = {
@@ -46,33 +54,10 @@ service SetupService {
         };
     }
 
-    // CreateAssistant
-    rpc CreateAssistant(CreateAssistantRequest) returns (Assistant) {
-        option (google.api.http) = {
-        post: "/v1/assistant/create"
-        body: "*"
-        };
-    }
-
-    // UpdateAssistant
-    rpc UpdateAssistant(UpdateAssistantRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-        patch: "/v1/assistant/{assistant.id=projects/*/assistant/*}/update"
-        body: "*"
-        };
-    }
-
-    // DeleteAssistant
-    rpc DeleteAssistant(DeleteAssistantRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-        delete: "/v1/assistant/{assistant.id=projects/*/assistant/*}/delete"
-        };
-    }
-
     // ListTools
-    rpc ListTools(ListToolsRequest) returns (ListToolsResponse) {
+    rpc ListTools(google.protobuf.Empty) returns (ListToolsResponse) {
         option (google.api.http) = {
-        get: "/v1/tools/list/{assistant.model=projects/*/assistant/*}"
+        get: "/v1/tools/list"
         };
     }
 

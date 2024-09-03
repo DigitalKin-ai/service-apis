@@ -20,6 +20,49 @@ import "digitalkin/setup/v1/tool.proto";
 
 import "google/api/field_behavior.proto";
 
+// Model
+//
+// Fields:
+//
+// - MODEL_UNKNOWN: Unknown model.
+// - MODEL_CLAUDE_3_5_SONNET: Claude 3.5 Sonnet model.
+// - MODEL_CLAUDE_3_HAIKU: Claude 3 Haiku model.
+// - MODEL_CLAUDE_3_OPUS: Claude 3 Opus model.
+// - MODEL_CLAUDE_3_SONNET: Claude 3 Sonnet model.
+// - MODEL_GEMINI_1_5_FLASH: Gemini 1.5 Flash model.
+// - MODEL_GEMINI_1_5_PRO: Gemini 1.5 Pro model.
+// - MODEL_GPT_3_5_TURBO: GPT 3.5 Turbo model.
+// - MODEL_GPT_4: GPT 4 model.
+// - MODEL_GPT_4_TURBO: GPT 4 Turbo model.
+// - MODEL_GPT_4_O: GPT 4o model.
+// - MODEL_GPT_4_O_MINI: GPT 4o Mini model.
+enum Model {
+    // MODEL_UNKNOWN: Unknown model.
+    MODEL_UNKNOWN = 0;
+    // MODEL_CLAUDE_3_5_SONNET: Claude 3.5 Sonnet model.
+    MODEL_CLAUDE_3_5_SONNET = 1;
+    // MODEL_CLAUDE_3_HAIKU: Claude 3 Haiku model.
+    MODEL_CLAUDE_3_HAIKU = 2;
+    // MODEL_CLAUDE_3_OPUS: Claude 3 Opus model.
+    MODEL_CLAUDE_3_OPUS = 3;
+    // MODEL_CLAUDE_3_SONNET: Claude 3 Sonnet model.
+    MODEL_CLAUDE_3_SONNET = 4;
+    // MODEL_GEMINI_1_5_FLASH: Gemini 1.5 Flash model.
+    MODEL_GEMINI_1_5_FLASH = 5;
+    // MODEL_GEMINI_1_5_PRO: Gemini 1.5 Pro model.
+    MODEL_GEMINI_1_5_PRO = 6;
+    // MODEL_GPT_3_5_TURBO: GPT 3.5 Turbo model.
+    MODEL_GPT_3_5_TURBO = 7;
+    // MODEL_GPT_4: GPT 4 model.
+    MODEL_GPT_4 = 8;
+    // MODEL_GPT_4_TURBO: GPT 4 Turbo model.
+    MODEL_GPT_4_TURBO = 9;
+    // MODEL_GPT_4_O: GPT 4o model.
+    MODEL_GPT_4_O = 10;
+    // MODEL_GPT_4_O_MINI: GPT 4o Mini model.
+    MODEL_GPT_4_O_MINI = 11;
+}
+
 // Assistant
 //
 // Fields:
@@ -63,64 +106,4 @@ message ListAssistantsRequest {
 message ListAssistantsResponse {
     // assistants: The list of assistants.
     repeated Assistant assistants = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-}
-
-// CreateAssistantRequest
-//
-// Fields:
-//
-// - organization_id: The unique identifier of the organization.
-// - system: The model of the assistant.
-// - model: The model of the assistant.
-// - temperature: The temperature of the assistant.
-// - tools: The tools of the assistant.
-// - max_tokens: The maximum number of tokens the assistant can generate.
-message CreateAssistantRequest {
-    // organization_id: The unique identifier of the organization.
-    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // system: The model of the assistant.
-    string system = 2 [(google.api.field_behavior) = REQUIRED];
-    // model: The model of the assistant.
-    Model model = 3 [(google.api.field_behavior) = REQUIRED];
-    // temperature: The temperature of the assistant.
-    float temperature = 4 [(google.api.field_behavior) = REQUIRED];
-    // tools: The tools of the assistant.
-    repeated Tool tools = 5 [(google.api.field_behavior) = REQUIRED];
-    // max_tokens: The maximum number of tokens the assistant can generate.
-    int32 max_tokens = 6 [(google.api.field_behavior) = REQUIRED];
-}
-
-// UpdateAssistantRequest
-//
-// Fields:
-//
-// - assistant_id: The unique identifier of the assistant.
-// - system: The model of the assistant.
-// - model: The model of the assistant.
-// - temperature: The temperature of the assistant.
-// - tools: The tools of the assistant.
-// - max_tokens: The maximum number of tokens the assistant can generate.
-message UpdateAssistantRequest {
-    // assistant_id: The unique identifier of the assistant.
-    string assistant_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // system: The model of the assistant.
-    optional string system = 2 [(google.api.field_behavior) = OPTIONAL];
-    // model: The model of the assistant.
-    optional Model model = 3 [(google.api.field_behavior) = OPTIONAL];
-    // temperature: The temperature of the assistant.
-    optional float temperature = 4 [(google.api.field_behavior) = OPTIONAL];
-    // tools: The tools of the assistant.
-    repeated Tool tools = 5 [(google.api.field_behavior) = OPTIONAL];
-    // max_tokens: The maximum number of tokens the assistant can generate.
-    optional int32 max_tokens = 6 [(google.api.field_behavior) = OPTIONAL];
-}
-
-// DeleteAssistantRequest
-//
-// Fields:
-//
-// - assistant_id: The unique identifier of the assistant.
-message DeleteAssistantRequest {
-    // assistant_id: The unique identifier of the assistant.
-    string assistant_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
