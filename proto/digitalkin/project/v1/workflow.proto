@@ -28,13 +28,16 @@ import "google/api/field_behavior.proto";
 //
 // Fields:
 //
+// - id: The id of the workflow
 // - edges: List of edges
 // - nodes: List of nodes
 message Workflow {
+    // id: The id of the workflow
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // edges: List of edges
-    repeated Edge edges = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    repeated Edge edges = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // nodes: List of nodes
-    repeated Node nodes = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    repeated Node nodes = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // CreateWorkflowRequest
