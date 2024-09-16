@@ -14,9 +14,7 @@
 
 syntax = "proto3";
 
-package digitalkin.setup.v1;
-
-import "digitalkin/setup/v1/assistant.proto";
+package digitalkin.setup.v2;
 
 import "google/api/field_behavior.proto";
 import "google/protobuf/any.proto";
@@ -28,20 +26,16 @@ import "google/protobuf/struct.proto";
 //
 // - module_id: The module ID of the data.
 // - node_id: The node ID of the data.
-// * Temporary field, waiting for the final data structure.
-// - content: The content of the data.
+// - content: The content of the data, we cannot know what will be inside the content
+//     that's why we used Struct, to let it free but respecting a struct format.
 message Data {
     // module_id: The module ID of the data.
     string module_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // node_id: The node ID of the data.
     string node_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // content: The content of the data.
-    oneof content {
-        // assistant: The assistant content of the data.
-        Assistant assistant = 3;
-    }
+    google.protobuf.Struct content = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
-
 
 // Setup
 //
@@ -68,34 +62,16 @@ message Setup {
     ];
 }
 
-// GetSetupsRequest
-//
-// Fields:
-//
-// - kin_id: The unique identifier of the Kin.
-message GetSetupsRequest {
-    // kin_id: The unique identifier of the Kin.
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-}
-
-// GetSetupsResponse
-//
-// Returns:
-//
-// - setups: The setup of the workflow.
-message GetSetupsResponse {
-    // setups: The setup of the workflow.
-    repeated Setup setups = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-}
-
 // ReadSetupRequest
 //
+// This request is used to get a setup by its ID.
+//
 // Fields:
 //
-// - thread_id: The unique identifier of the thread.
+// - setup_id: The unique identifier of the setup.
 message ReadSetupRequest {
-    // thread_id: The unique identifier of the thread.
-    string thread_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // ReadSetupResponse
@@ -108,12 +84,28 @@ message ReadSetupResponse {
     Setup setup = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// UpdateSetupRequest
+
+// GetNodeSetupRequest
+// This request is used to get a node setup thanks a specific setup and node ids.
 //
 // Fields:
 //
-// - setup: The setup of the workflow.
-message UpdateSetupRequest {
-    // setup: The setup of the workflow.
-    Setup setup = 1 [(google.api.field_behavior) = REQUIRED];
+// - setup_id: The unique identifier of the setup.
+// - node_id: The unique identifier of the setup.
+message GetNodeSetupRequest {
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // node_id: The unique identifier of the node.
+    string node_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// GetNodeSetupResponse
+// This response is used to return a specific node setup from a specific setup.
+//
+// Returns:
+//
+// - data: The node setup.
+message GetNodeSetupResponse {
+    // data: The node setup.
+    Data data = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
