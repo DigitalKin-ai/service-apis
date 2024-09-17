@@ -17,6 +17,7 @@ syntax = "proto3";
 package digitalkin.module_registry.v1;
 
 import "digitalkin/module_registry/v1/action.proto";
+import "digitalkin/module_registry/v1/monitoring.proto";
 import "digitalkin/module_registry/v1/registration.proto";
 
 // ModuleRegistryService
@@ -34,4 +35,6 @@ service ModuleRegistryService {
     rpc DiscoverModule(DiscoverRequest) returns (DiscoverResponse) {}
     // UpdateModuleStatus
     rpc UpdateModuleStatus(UpdateStatusRequest) returns (UpdateStatusResponse) {}
+    // GetAllModules
+    rpc GetAllModules(GetAllModulesRequest) returns (GetAllModulesResponse) {}
 }

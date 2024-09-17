@@ -39,6 +39,17 @@ enum ModuleStatus {
     MODULE_STATUS_STOPPED = 7;
 }
 
+// JobInfo
+//
+// Represents information about a single job
+message JobInfo {
+    // job_id: Database ID of the job inside the Module
+    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    
+    // job_status: Status of the individual job
+    ModuleStatus job_status = 2 [(validate.rules).enum = { defined_only: true }];
+}
+
 // GetModuleStatusRequest
 //
 // Fields:
@@ -63,4 +74,24 @@ message GetModuleStatusResponse {
     ModuleStatus status = 2 [(validate.rules).enum = { defined_only: true }];
     // job_id: Database ID of the job inside the Module that was queried
     string job_id = 3  [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+}
+// GetModuleJobsRequest
+//
+// Fields:
+//
+// - job_id: Database ID of the Job Module to get status
+message GetModuleJobsRequest {
+}
+
+// GetModuleJobsResponse
+//
+// Returns:
+//
+// - success: Flag to indicate if the status request was successful
+// - jobs: List of jobs with their respective IDs and statuses
+message GetModuleJobsResponse {
+    // success: Flag to indicate if the status request was successful
+    bool success = 1;
+    // jobs: List of jobs with their respective IDs and statuses
+    repeated JobInfo jobs = 3;
 }

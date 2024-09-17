@@ -73,8 +73,8 @@ message StartModuleRequest {
 //
 // - module_id: Database ID of the Module to stop
 message StopModuleRequest {
-    // module_id: Database ID of the Module to stop
-    string module_id = 1 [(validate.rules).string = { min_len: 1, prefix: "modules:" }];
+    // job_id: Database ID of the job to stop
+    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
     //? maybe add a the job id to stop and also the setup id, but it's not clear yet
 }
 
@@ -180,6 +180,6 @@ message StopModuleResponse {
     bool success = 1;
     // message: Message with the result of the operation
     string message = 2 [(validate.rules).string = { min_len: 1 }];
-    // module_id: Database ID of the Module that was started/stopped
-    optional string module_id = 3 [(validate.rules).string = { prefix: "modules:" }]; // Database ID of the Module that was started/stopped
+    // job_id: Database ID of the Module that was started/stopped
+    optional string job_id = 3 [(validate.rules).string = { prefix: "jobs:" }];
 }
