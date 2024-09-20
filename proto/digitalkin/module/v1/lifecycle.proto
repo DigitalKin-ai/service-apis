@@ -17,22 +17,24 @@ syntax = "proto3";
 
 package digitalkin.module.v1;
 
+import "buf/validate/validate.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
-import "validate/validate.proto";
 
 // RequestType
 enum RequestType {
     // REQUEST_TYPE_UNKNOWN is the default value
     REQUEST_TYPE_UNKNOWN = 0;
-    // REQUEST_TYPE_SEND is send a new message in the room
-    REQUEST_TYPE_SEND = 1;
-    // REQUEST_TYPE_EXIT is Leave the room
-    REQUEST_TYPE_EXIT = 2;
-    // REQUEST_TYPE_VALIDATE is Launch the validation of requests in the room
-    REQUEST_TYPE_VALIDATE = 3;
-    // REQUEST_TYPE_DESTROY is Destroy the room
-    REQUEST_TYPE_DESTROY = 4;
+    // REQUEST_TYPE_CONNECTION is equal to: Connect to a room
+    REQUEST_TYPE_CONNECTION = 1;
+    // REQUEST_TYPE_SEND is equal to: Send a new message in the room
+    REQUEST_TYPE_SEND = 2;
+    // REQUEST_TYPE_EXIT is equal to: Leave the room
+    REQUEST_TYPE_EXIT = 3;
+    // REQUEST_TYPE_VALIDATE is equal to: Launch the validation of requests in the room
+    REQUEST_TYPE_VALIDATE = 4;
+    // REQUEST_TYPE_DESTROY is equal to: Destroy the room
+    REQUEST_TYPE_DESTROY = 5;
 }
 
 // StartResponseType
@@ -59,32 +61,54 @@ enum ModuleRole {
     MODULE_ROLE_MEMBRE = 2;
 }
 
-// StartModuleRequestStartModuleRequest
+// ConnectionRequest
+//
+// Fields:
+// - room_id: The room id to send the request
+// - module_id: Id of the sender module
+// - module_role: role of the sender module in the room (only owner can validate a request and so start the module)
+message ConnectionRequest {
+    // room_id: The room id to send the request
+    string room_id = 1 [(buf.validate.field).required = false, (google.api.field_behavior) = OPTIONAL];
+    // module_id: Id of the sender module
+    string module_id = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
+    // module_role: role of the sender module in the room (only owner can validate a request and so start the module)
+    ModuleRole module_role = 3 [(buf.validate.field).enum.defined_only = true, (buf.validate.field).required = true];
+}
+
+// InputDataRequest
+//
+// Fields:
+// - input: Structured input data for the module
+// - setup_id: Database ID of the setupused to start the module
+// - module_ids: List of Modules IDs to start
+message InputDataRequest {
+    // input: Structured input data for the module
+    google.protobuf.Struct input = 1 [(buf.validate.field).required = true];
+    // setup_id: Database ID of the setupused to start the module
+    string setup_id = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "setups:", (buf.validate.field).required = true];
+    // module_ids: List of Modules IDs to start
+    repeated string module_ids = 3 [(buf.validate.field).repeated.min_items = 0, (buf.validate.field).repeated.items = { string: { min_len: 1, prefix: "modules:" } }, (google.api.field_behavior) = OPTIONAL];
+}
+
+// StartModuleRequest
 //
 // Fields:
 //
 // - input: Structured input data for the module
-// - setup_id: Database ID of the setupused to start the module
-// - module_ids: List of Modules IDs to start
-// - request_type: type of the request send to the Module
-// - room_id: The room id to send the request
-// - module_id: Id of the sender module
-// - module_role: role of the sender module in the room (only owner can validate a request and so start the module)
+// - content: Response content
+// - connection_request: Request to connect to the room
+// - input_request: Request to add input data in the room
 message StartModuleRequest {
-    // input: Structured input data for the module
-    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }];
-    // setup_id: Database ID of the setupused to start the module
-    string setup_id = 2 [(validate.rules).string = { min_len: 1, prefix: "setups:" }, (google.api.field_behavior) = REQUIRED];
-    // module_ids: List of Modules IDs to start
-    repeated string module_ids = 3 [(validate.rules).repeated = { min_items: 0, items: { string: { min_len: 1, prefix: "modules:" } } }, (google.api.field_behavior) = OPTIONAL];
     // request_type: type of the request send to the Module
-    RequestType request_type = 4 [(validate.rules).enum = { defined_only: true }, (google.api.field_behavior) = REQUIRED];
-    // room_id: The room id to send the request
-    string room_id = 5 [(validate.rules).string = {ignore_empty: true }, (google.api.field_behavior) = OPTIONAL];
-    // module_id: Id of the sender module
-    string module_id = 6 [(validate.rules).string = { min_len: 1, prefix: "modules:" }, (google.api.field_behavior) = REQUIRED];
-    // module_role: role of the sender module in the room (only owner can validate a request and so start the module)
-    ModuleRole module_role = 7 [(validate.rules).enum = { defined_only: true }, (google.api.field_behavior) = REQUIRED];
+    RequestType request_type = 1 [(buf.validate.field).enum.defined_only = true, (buf.validate.field).required = true];
+    // content: Response content
+    oneof content {
+        // connection_request: Request to connect to the room
+        ConnectionRequest connection_request = 2;
+        // input_request: Request to add input data in the room
+        InputDataRequest input_request = 3;
+    }
 }
 
 // StopModuleRequest
@@ -94,7 +118,7 @@ message StartModuleRequest {
 // - module_id: Database ID of the Module to stop
 message StopModuleRequest {
     // job_id: Database ID of the job to stop
-    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    string job_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "jobs:", (buf.validate.field).required = true];
     //? maybe add a the job id to stop and also the setup id, but it's not clear yet
 }
 
@@ -107,9 +131,9 @@ message StopModuleRequest {
 // - room_id: ID of the Room that was connected
 message ConnectionResponse {
     // message: Message with the result of the operation
-    string message = 2 [(validate.rules).string = { min_len: 1 }];
+    string message = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // room_id: ID of the Room that was connected
-    optional string room_id = 3 [(validate.rules).string = { min_len: 1 }];
+    optional string room_id = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
 }
 
 // InputDataResponse
@@ -121,9 +145,9 @@ message ConnectionResponse {
 // - input: Structured input data for the module
 message InputDataResponse {
     // message: Message with the result of the operation
-    string message = 2 [(validate.rules).string = { min_len: 1 }];
+    string message = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // input: Structured input data for the module
-    google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct input = 1 [(buf.validate.field).required = true];
 }
 
 // OutputDataResponse
@@ -136,11 +160,11 @@ message InputDataResponse {
 // - job_id: Database ID of the job  inside the Module that was queried
 message OutputDataResponse {
     // message: Message with the result of the operation
-    string message = 2 [(validate.rules).string = { min_len: 1 }];
+    string message = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // output: Structured output data a job
-    google.protobuf.Struct output = 1 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct output = 1 [(buf.validate.field).required = true];
     // job_id: Database ID of the job  inside the Module that was queried
-    string job_id = 3 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    string job_id = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "jobs:", (buf.validate.field).required = true];
 }
 
 // ErrorResponse
@@ -152,9 +176,9 @@ message OutputDataResponse {
 // - details: Message with the result of the operation
 message ErrorResponse {
     // message: Message with the result of the operation
-    string message = 2 [(validate.rules).string = { min_len: 1 }];
+    string message = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // details: Message with the result of the operation
-    string details = 3 [(validate.rules).string = {  }];
+    string details = 3 [(buf.validate.field).string.max_len = 2048];
 }
 
 // StartModuleResponse
@@ -172,7 +196,7 @@ message StartModuleResponse {
     // success: Flag to indicate if the started/stopped request was successful
     bool success = 1;
     // response_type: Type of the response
-    StartResponseType response_type = 2 [(validate.rules).enum = { defined_only: true }];
+    StartResponseType response_type = 2 [(buf.validate.field).enum.defined_only = true];
     // content: Response content
     oneof content {
         // connection: Response with the connection to the room
@@ -185,7 +209,7 @@ message StartModuleResponse {
         ErrorResponse error = 6;
     }
     // module_id: Database ID of the Module that was started/stopped
-    optional string module_id = 7 [(validate.rules).string = { prefix: "modules:" }];
+    optional string module_id = 7 [(buf.validate.field).string.prefix = "modules:", (google.api.field_behavior) = OPTIONAL];
 }
 
 // StopModuleResponse
@@ -199,7 +223,7 @@ message StopModuleResponse {
     // success: Flag to indicate if the started/stopped request was successful
     bool success = 1;
     // message: Message with the result of the operation
-    string message = 2 [(validate.rules).string = { min_len: 1 }];
+    string message = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // job_id: Database ID of the Module that was started/stopped
-    optional string job_id = 3 [(validate.rules).string = { prefix: "jobs:" }];
+    optional string job_id = 3 [(buf.validate.field).string.prefix = "jobs:", (google.api.field_behavior) = OPTIONAL];
 }
