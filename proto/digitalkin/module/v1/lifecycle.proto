@@ -17,6 +17,7 @@ syntax = "proto3";
 
 package digitalkin.module.v1;
 
+import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 import "validate/validate.proto";
 
@@ -48,6 +49,16 @@ enum StartResponseType {
     START_RESPONSE_TYPE_ERROR = 4;
 }
 
+// ModuleRole
+enum ModuleRole {
+    // MODULE_ROLE_UNKNOWN is the default value
+    MODULE_ROLE_UNKNOWN = 0;
+    // MODULE_ROLE_OWNER is owner of the room
+    MODULE_ROLE_OWNER = 1;
+    // MODULE_ROLE_MEMBRE is juste member of the room
+    MODULE_ROLE_MEMBRE = 2;
+}
+
 // StartModuleRequestStartModuleRequest
 //
 // Fields:
@@ -56,15 +67,24 @@ enum StartResponseType {
 // - setup_id: Database ID of the setupused to start the module
 // - module_ids: List of Modules IDs to start
 // - request_type: type of the request send to the Module
+// - room_id: The room id to send the request
+// - module_id: Id of the sender module
+// - module_role: role of the sender module in the room (only owner can validate a request and so start the module)
 message StartModuleRequest {
     // input: Structured input data for the module
     google.protobuf.Struct input = 1 [(validate.rules).any = { required: true }];
     // setup_id: Database ID of the setupused to start the module
-    string setup_id = 2 [(validate.rules).string = { min_len: 1, prefix: "setups:" }];
+    string setup_id = 2 [(validate.rules).string = { min_len: 1, prefix: "setups:" }, (google.api.field_behavior) = REQUIRED];
     // module_ids: List of Modules IDs to start
-    repeated string module_ids = 3 [(validate.rules).repeated = { min_items: 0, items: { string: { min_len: 1, prefix: "modules:" } } }];
+    repeated string module_ids = 3 [(validate.rules).repeated = { min_items: 0, items: { string: { min_len: 1, prefix: "modules:" } } }, (google.api.field_behavior) = OPTIONAL];
     // request_type: type of the request send to the Module
-    RequestType request_type = 4 [(validate.rules).enum = { defined_only: true }];
+    RequestType request_type = 4 [(validate.rules).enum = { defined_only: true }, (google.api.field_behavior) = REQUIRED];
+    // room_id: The room id to send the request
+    string room_id = 5 [(validate.rules).string = {ignore_empty: true }, (google.api.field_behavior) = OPTIONAL];
+    // module_id: Id of the sender module
+    string module_id = 6 [(validate.rules).string = { min_len: 1, prefix: "modules:" }, (google.api.field_behavior) = REQUIRED];
+    // module_role: role of the sender module in the room (only owner can validate a request and so start the module)
+    ModuleRole module_role = 7 [(validate.rules).enum = { defined_only: true }, (google.api.field_behavior) = REQUIRED];
 }
 
 // StopModuleRequest
@@ -152,7 +172,7 @@ message StartModuleResponse {
     // success: Flag to indicate if the started/stopped request was successful
     bool success = 1;
     // response_type: Type of the response
-    StartResponseType response_type = 2 [(validate.rules).enum = { defined_only: true }]; // Type of the response
+    StartResponseType response_type = 2 [(validate.rules).enum = { defined_only: true }];
     // content: Response content
     oneof content {
         // connection: Response with the connection to the room
@@ -165,7 +185,7 @@ message StartModuleResponse {
         ErrorResponse error = 6;
     }
     // module_id: Database ID of the Module that was started/stopped
-    optional string module_id = 7 [(validate.rules).string = { prefix: "modules:" }]; // Database ID of the Module that was started/stopped
+    optional string module_id = 7 [(validate.rules).string = { prefix: "modules:" }];
 }
 
 // StopModuleResponse
