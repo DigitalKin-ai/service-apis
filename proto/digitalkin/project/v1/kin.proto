@@ -1,0 +1,66 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "digitalkin/common/v1/common.proto";
+
+import "google/api/field_behavior.proto";
+
+// Kin
+//
+// Fields:
+//
+// - id: Kin id
+// - name: Kin name
+// - origin_address: Kin origin address
+// - threads: Kin threads
+// - workflow: Kin workflow
+message Kin {
+    // id: Kin id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // name: Kin name
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // origin_address: Kin origin address
+    string origin_address = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // threads: Kin threads
+    repeated digitalkin.common.v1.ThreadReply threads = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // workflow: Kin workflow
+    digitalkin.common.v1.WorkflowReply workflow = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ReadKinRequest
+//
+// Fields:
+//
+// - kin_id: Kin id
+message ReadKinRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinOriginAddressRequest
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - origin_address: Kin origin address
+message UpdateKinOriginAddressRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // origin_address: Kin origin address
+    string origin_address = 2 [(google.api.field_behavior) = REQUIRED];
+}

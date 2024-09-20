@@ -1,0 +1,14 @@
+# buf.gen.py.yaml
+
+version: v1
+managed:
+  enabled: true
+  optimize_for: CODE_SIZE
+
+plugins:
+  - plugin: buf.build/protocolbuffers/python:v28.0
+    out: .
+  - plugin: buf.build/protocolbuffers/pyi:v28.0
+    out: .
+  - plugin: buf.build/grpc/python:v1.66.1
+    out: .

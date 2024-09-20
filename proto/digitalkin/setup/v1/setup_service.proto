@@ -1,0 +1,86 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.setup.v1;
+
+import "digitalkin/setup/v1/assistant.proto";
+import "digitalkin/setup/v1/setup.proto";
+import "digitalkin/setup/v1/tool.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// SetupService
+service SetupService {
+    // GetSetups
+    rpc GetSetups(GetSetupsRequest) returns (GetSetupsResponse) {
+        option (google.api.http) = {
+        get: "/v1/setups/list/{kin=projects/*/kin/*}"
+        };
+    }
+
+    // ReadSetup
+    rpc ReadSetup(ReadSetupRequest) returns (ReadSetupResponse) {
+        option (google.api.http) = {
+        get: "/v1/setups/{thread=projects/*/thread/*}/read"
+        };
+    }
+
+    // UpdateSetup
+    rpc UpdateSetup(UpdateSetupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+        patch: "/v1/setups/{setup.id=projects/*/setup/*}/update"
+        body: "*"
+        };
+    }
+
+    // ListAssistants
+    rpc ListAssistants(ListAssistantsRequest) returns (ListAssistantsResponse) {
+        option (google.api.http) = {
+        get: "/v1/assistant/list/{organization=projects/*/organization/*}"
+        };
+    }
+
+    // ListTools
+    rpc ListTools(google.protobuf.Empty) returns (ListToolsResponse) {
+        option (google.api.http) = {
+        get: "/v1/tools/list"
+        };
+    }
+
+    // CreateTool
+    rpc CreateTool(CreateToolRequest) returns (Tool) {
+        option (google.api.http) = {
+        post: "/v1/tools/create"
+        body: "*"
+        };
+    }
+
+    // UpdateTool
+    rpc UpdateTool(UpdateToolRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+        patch: "/v1/tools/{tool.id=projects/*/tool/*}/update"
+        body: "*"
+        };
+    }
+
+    // DeleteTool
+    rpc DeleteTool(DeleteToolRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+        delete: "/v1/tools/{tool.id=projects/*/tool/*}/delete"
+        };
+    }
+}

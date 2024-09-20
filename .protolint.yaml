@@ -1,5 +1,7 @@
 ---
 # Lint directives.
+# List of available options:
+# https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
 lint:
   # Linter files to ignore.
   ignores:
@@ -14,6 +16,7 @@ lint:
     # The specific directories to exclude.
     exclude:
       - proto/google
+      - proto/validate
 
   # Linter rules.
   # Run `protolint list` to see all available rules.
@@ -63,12 +66,12 @@ lint:
       # Enforces a maximum line length
       max_chars: 100
       # Specifies the character count for tab characters
-      tab_chars: 2
+      tab_chars: 4
 
     # INDENT rule option.
     indent:
       # Available styles are 4(4-spaces), 2(2-spaces) or tab.
-      style: 2
+      style: 4
       # Available newlines are "\n", "\r", or "\r\n".
       newline: "\n"
 

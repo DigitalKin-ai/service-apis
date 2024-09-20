@@ -1,0 +1,125 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.setup.v1;
+
+import "google/api/field_behavior.proto";
+
+// Property
+//
+// Fields:
+//
+// - type: The type of the property.
+// - description: The description of the property.
+// - enum_values: The enum values of the property.
+message Property {
+    // type: The type of the property.
+    string type = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // description: The description of the property.
+    string description = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // enum_values: The enum values of the property.
+    repeated string enum_values = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Parameters
+//
+// Fields:
+//
+// - type: The type of the input schema.
+// - properties: The properties of the input schema.
+// - requireds: The required properties of the input schema.
+message Parameters {
+    // type: The type of the input schema.
+    string type = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // properties: The properties of the input schema.
+    map<string, Property> properties = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // requireds: The required properties of the input schema.
+    repeated string requireds = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Tool
+//
+// Fields:
+//
+// - id: The unique identifier of the tool.
+// - name: The name of the tool.
+// - description: The description of the tool.
+// - parameters: The parameters of the tool.
+message Tool {
+    // id: The unique identifier of the tool.
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // name: The name of the tool.
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // description: The description of the tool.
+    string description = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // parameters: The parameters of the tool.
+    Parameters parameters = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ListToolsResponse
+//
+// Returns:
+//
+// - tools: The tools.
+message ListToolsResponse {
+    // tools: The tools.
+    repeated Tool tools = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// CreateToolRequest
+//
+// Fields:
+//
+// - name: The name of the tool.
+// - description: The description of the tool.
+// - parameters: The parameters of the tool.
+message CreateToolRequest {
+    // name: The name of the tool.
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+    // description: The description of the tool.
+    string description = 2 [(google.api.field_behavior) = REQUIRED];
+    // parameters: The parameters of the tool.
+    Parameters parameters = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateToolRequest
+//
+// Fields:
+//
+// - id: The unique identifier of the tool.
+// - name: The name of the tool.
+// - description: The description of the tool.
+// - parameters: The parameters of the tool.
+message UpdateToolRequest {
+    // id: The unique identifier of the tool.
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+    // name: The name of the tool.
+    optional string name = 2 [(google.api.field_behavior) = OPTIONAL];
+    // description: The description of the tool.
+    optional string description = 3 [(google.api.field_behavior) = OPTIONAL];
+    // parameters: The parameters of the tool.
+    optional Parameters parameters = 4 [(google.api.field_behavior) = OPTIONAL];
+}
+
+// DeleteToolRequest
+//
+// Fields:
+//
+// - id: The unique identifier of the tool.
+message DeleteToolRequest {
+    // id: The unique identifier of the tool.
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+}

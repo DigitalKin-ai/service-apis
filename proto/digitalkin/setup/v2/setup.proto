@@ -1,0 +1,111 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.setup.v2;
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
+
+// Data
+//
+// Fields:
+//
+// - module_id: The module ID of the data.
+// - node_id: The node ID of the data.
+// - content: The content of the data, we cannot know what will be inside the content
+//     that's why we used Struct, to let it free but respecting a struct format.
+message Data {
+    // module_id: The module ID of the data.
+    string module_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // node_id: The node ID of the data.
+    string node_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // content: The content of the data.
+    google.protobuf.Struct content = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Setup
+//
+// Fields:
+//
+// - id: The unique identifier of the setup.
+// - name: The name of the setup.
+// - kin_id: The Kin ID of the setup.
+// - data: The data of the setup.
+// - creation_date: The creation date of the setup.
+message Setup {
+    // id: The unique identifier of the setup.
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // name: The name of the setup.
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // kin_id: The Kin ID of the setup.
+    string kin_id = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // data: The data of the setup.
+    repeated Data data = 4;
+    // creation_date: The creation date of the setup.
+    int32 creation_date = 5 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+}
+
+// ReadSetupRequest
+//
+// This request is used to get a setup by its ID.
+//
+// Fields:
+//
+// - setup_id: The unique identifier of the setup.
+message ReadSetupRequest {
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// ReadSetupResponse
+//
+// Returns:
+//
+// - setup: The setup of the workflow.
+message ReadSetupResponse {
+    // setup: The setup of the workflow.
+    Setup setup = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+
+// GetNodeSetupRequest
+// This request is used to get a node setup thanks a specific setup and node ids.
+//
+// Fields:
+//
+// - setup_id: The unique identifier of the setup.
+// - node_id: The unique identifier of the setup.
+message GetNodeSetupRequest {
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // node_id: The unique identifier of the node.
+    string node_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// GetNodeSetupResponse
+// This response is used to return a specific node setup from a specific setup.
+//
+// Returns:
+//
+// - data: The node setup.
+message GetNodeSetupResponse {
+    // data: The node setup.
+    Data data = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

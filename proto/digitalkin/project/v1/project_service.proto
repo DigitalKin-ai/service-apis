@@ -1,0 +1,275 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "digitalkin/common/v1/common.proto";
+import "digitalkin/project/v1/activity.proto";
+import "digitalkin/project/v1/edge.proto";
+import "digitalkin/project/v1/kin.proto";
+import "digitalkin/project/v1/message.proto";
+import "digitalkin/project/v1/node.proto";
+import "digitalkin/project/v1/response.proto";
+import "digitalkin/project/v1/thread.proto";
+import "digitalkin/project/v1/workflow.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// ProjectService
+service ProjectService {
+    // ReadKin
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    //
+    // Returns:
+    //
+    // - Kin
+    rpc ReadKin(ReadKinRequest) returns (stream Kin) {
+        option (google.api.http) = {
+            get: "/v1/project/{kin_id}/read"
+        };
+    }
+
+    // ReadActivities
+    //
+    // Parameters:
+    //
+    // - optional kin_id: Kin id
+    //
+    // Returns:
+    //
+    // - Activities
+    rpc ReadActivities(ReadActivitiesRequest) returns (stream Activities) {
+        option (google.api.http) = {
+            get: "/v1/project/{kin_id}/activities"
+        };
+    }
+
+    // UpdateOriginAddress
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - origin_address: Kin origin address
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateOriginAddress(UpdateKinOriginAddressRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/project/{kin_id}/origin"
+            body: "*"
+        };
+    }
+
+    // CreateMessage
+    //
+    // Parameters:
+    //
+    // - thread_id: Kin thread id
+    // - message: Message
+    // - prompt: Prompt
+    //
+    // Returns:
+    //
+    // - MessageResponse
+    rpc CreateMessage(MessageRequest) returns (stream MessageResponse) {
+        option (google.api.http) = {
+            post: "/v1/project/{kin_id}/message/create"
+            body: "*"
+        };
+    }
+
+    // CreateThread
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    //
+    // Returns:
+    //
+    // - ThreadResponse
+    rpc CreateThread(CreateThreadRequest) returns (digitalkin.common.v1.ThreadReply) {
+        option (google.api.http) = {
+            post: "/v1/project/{kin_id}/thread/create"
+            body: "*"
+        };
+    }
+
+    // ReadThread
+    //
+    // Parameters:
+    //
+    // - thread_id: thread id
+    //
+    // Returns:
+    //
+    // - Thread
+    rpc ReadThread(ReadThreadRequest) returns (stream Thread) {
+        option (google.api.http) = {
+            get: "/v1/project/{kin_id}/thread/{thread_id}/read"
+        };
+    }
+
+    // DeleteThread
+    //
+    // Parameters:
+    //
+    // - thread_id: thread id
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc DeleteThread(DeleteThreadRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/project/{kin_id}/thread/{thread_id}/delete"
+        };
+    }
+
+    // CreateWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - optional workflow: Workflow to duplicate
+    //
+    // Returns:
+    //
+    // - WorkflowReply
+    rpc CreateWorkflow(CreateWorkflowRequest) returns (digitalkin.common.v1.WorkflowReply) {
+        option (google.api.http) = {
+            post: "/v1/project/{kin_id}/workflow/create"
+            body: "*"
+        };
+    }
+
+    // ReadWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    //
+    // Returns:
+    //
+    // - Workflow
+    rpc ReadWorkflow(ReadWorkflowRequest) returns (stream Workflow) {
+        option (google.api.http) = {
+            get: "/v1/project/{kin_id}/workflow/{workflow_id}/read"
+        };
+    }
+
+    // ReadDataNodesList
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - ReadDataNodesListResponse
+    rpc ReadDataNodesList(google.protobuf.Empty) returns (ReadDataNodesListResponse) {
+        option (google.api.http) = {
+            get: "/v1/project/nodes"
+        };
+    }
+
+    // AddNodeWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - node: Node
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc AddNodeWorkflow(AddNodeWorkflowRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/project/{kin_id}/workflow/{workflow_id}/node/add"
+            body: "*"
+        };
+    }
+
+    // UpdateNodePositionWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - node_id: Node id
+    // - position: Position
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateNodePositionWorkflow(UpdateNodePositionWorkflowRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/v1/project/{kin_id}/workflow/{workflow_id}/node/{node_id}/position"
+            body: "*"
+        };
+    }
+
+    // DeleteNodeWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - node_id: Node id
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc DeleteNodeWorkflow(DeleteNodeWorkflowRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/project/{kin_id}/workflow/{workflow_id}/node/{node_id}/delete"
+        };
+    }
+
+    // AddEdgeWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - edge: Edge
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc AddEdgeWorkflow(AddEdgeWorkflowRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/project/{kin_id}/workflow/{workflow_id}/edge/add"
+            body: "*"
+        };
+    }
+
+    // DeleteEdgeWorkflow
+    //
+    // Parameters:
+    //
+    // - kin_id: Kin id
+    // - edge_id: Edge id
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc DeleteEdgeWorkflow(DeleteEdgeWorkflowRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/project/{kin_id}/workflow/{workflow_id}/edge/{edge_id}/delete"
+        };
+    }
+}

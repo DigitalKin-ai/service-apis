@@ -1,0 +1,178 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.project.v1;
+
+import "google/api/field_behavior.proto";
+
+// Position
+//
+// Fields:
+//
+// - x: X position
+// - y: Y position
+message Position {
+    // x: X position
+    float x = 1;
+    // y: Y position
+    float y = 2;
+}
+
+// Target
+//
+// Fields:
+//
+// - label: Target label
+// - type: Target type
+// - optional: Defines if target is optional
+message Target {
+    // label: Target label
+    string label = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // type: Target type
+    string type = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // optional: Defines if target is optional
+    bool optional = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Source
+//
+// Fields:
+//
+// - label: Source label
+// - type: Source type
+message Source {
+    // label: Source label
+    string label = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // type: Source type
+    string type = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// DataNode
+//
+// Fields:
+//
+// - id: Node id
+// - name: Node name
+message DataNode {
+    // id: Node id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // name: Node name
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // type: Node type
+    string type = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // color: Node color
+    string color = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // targets: List of targets
+    repeated Target targets = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // sources: List of sources
+    repeated Source sources = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Measured
+//
+// Fields:
+//
+// - width: Measured width
+// - height: Measured height
+message Measured {
+    // width: Measured width
+    int64 width = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // height: Measured height
+    int64 height = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Node
+//
+// Fields:
+//
+// - id: Node id
+// - type: Node type
+// - position: Node position
+// - data: Node data
+// - measured: Node measured
+// - selected: Node selected
+// - dragging: Node dragging
+message Node {
+    // id: Node id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // type: Node type
+    string type = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // position: Node position
+    Position position = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // data: Node data
+    DataNode data = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // measured: Node measured
+    optional Measured measured = 7;
+    // selected: Node selected
+    bool selected = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // dragging: Node dragging
+    bool dragging = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ReadDataNodesListResponse
+//
+// Returns:
+//
+// - data_nodes: List of nodes
+message ReadDataNodesListResponse {
+    // data_nodes: List of nodes
+    repeated DataNode data_nodes = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// AddNodeWorkflowRequest
+//
+// Fields:
+//
+// - workflow_id: Workflow id
+// - node: Node
+message AddNodeWorkflowRequest {
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // node: Node
+    Node node = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateNodePositionWorkflowRequest
+//
+// Fields:
+//
+// - workflow_id: Workflow id
+// - node_id: Node id
+// - position: Position
+message UpdateNodePositionWorkflowRequest {
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // node_id: Node id
+    string node_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // position: Position
+    Position position = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+// DeleteNodeWorkflowRequest
+//
+// Fields:
+//
+// - workflow_id: Workflow id
+// - node_id: Node id
+message DeleteNodeWorkflowRequest {
+    // workflow_id: Workflow id
+    string workflow_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // node_id: Node id
+    string node_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
