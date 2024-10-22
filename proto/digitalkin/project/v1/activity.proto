@@ -29,9 +29,9 @@ import "google/protobuf/timestamp.proto";
 // - id: Kin thread activity id
 // - kin_id: Kin id
 // - status: Status
-// - subject: Subject
-// - workflow_name: Workflow name
 // - kin_name: Kin name
+// - workflow_name: Workflow name
+// - subject: Subject
 // - date: Date
 // - duration: Duration
 // - price: Price
@@ -42,12 +42,12 @@ message Activity {
     string kin_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // status: Status
     optional string status = 3;
-    // subject: Subject
-    string subject = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // kin_name: Kin name
+    optional string kin_name = 4;
     // workflow_name: Workflow name
     optional string workflow_name = 5;
-    // kin_name: Kin name
-    optional string kin_name = 6;
+    // subject: Subject
+    string subject = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
     // date: Date
     google.protobuf.Timestamp date = 7 [
         (google.api.field_behavior) = IMMUTABLE,
