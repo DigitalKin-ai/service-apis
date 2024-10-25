@@ -10,5 +10,8 @@ run.sh
 # Ignore all package-lock.json files
 yarn.lock
 
+# Ignore all yarn.lock files
+yarn.lock
+
 # Ignore all node_modules directories
 node_modules
