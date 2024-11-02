@@ -1,0 +1,139 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.payment.v1;
+
+import "digitalkin/payment/v1/metadata.proto";
+import "digitalkin/payment/v1/price.proto";
+
+import "google/api/field_behavior.proto";
+
+// SubscriptionItem
+//
+// ## Fields
+//
+// - id: Id
+// - metadata: Metadata
+// - price: Price
+message SubscriptionItem {
+    // id: Id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // metadata: Metadata
+    optional MetadataList metadata = 2;
+    // price: Price
+    optional Price price = 3;
+}
+
+// SubscriptionStatus
+//
+// ## Enum
+//
+// - ACTIVE: Active
+// - CANCELED: Canceled
+// - INCOMPLETE: Incomplete
+// - INCOMPLETE_EXPIRED: Incomplete expired
+// - PAUSED: Paused
+// - PAST_DUE: Past due
+// - TRIALING: Trialing
+// - UNPAID: Unpaid
+enum SubscriptionStatus {
+    // ACTIVE: Active
+    ACTIVE = 0;
+    // CANCELED: Canceled
+    CANCELED = 1;
+    // INCOMPLETE: Incomplete
+    INCOMPLETE = 2;
+    // INCOMPLETE_EXPIRED: Incomplete expired
+    INCOMPLETE_EXPIRED = 3;
+    // PAUSED: Paused
+    PAUSED = 4;
+    // PAST_DUE: Past due
+    PAST_DUE = 5;
+    // TRIALING: Trialing
+    TRIALING = 6;
+    // UNPAID: Unpaid
+    UNPAID = 7;
+}
+
+// Subscription
+//
+// ## Fields
+//
+// - id: Id
+// - items: List of items
+// - start_date: Start date
+// - status: Status
+message Subscription {
+    // id: Id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // items: List of items
+    repeated SubscriptionItem items = 2;
+    // start_date: Start date
+    int64 start_date = 3 [(google.api.field_behavior) = INPUT_ONLY];
+    // status: Status
+    SubscriptionStatus status = 4 [(google.api.field_behavior) = INPUT_ONLY];
+}
+
+// ReadSubscriptionsRequest
+//
+// ## Fields
+//
+// - organization_id: Organization id
+message ReadSubscriptionsRequest {
+    // organization_id: Organization id
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// ReadSubscriptionsResponse
+//
+// ## Fields
+//
+// - subscriptions: List of subscriptions
+message ReadSubscriptionsResponse {
+    // subscriptions: List of subscriptions
+    repeated Subscription subscriptions = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+
+// CancelSubscriptionRequest
+//
+// ## Fields
+//
+// - organization_id: Organization id
+// - subscription_id: Subscription id
+message CancelSubscriptionRequest {
+    // organization_id: Organization id
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // subscription_id: Subscription id
+    string subscription_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+
+// ChangeSubscriptionRequest
+//
+// ## Fields
+//
+// - organization_id: Organization id
+// - subscription_id: Subscription id
+// - new_price_id: New price id
+message ChangeSubscriptionRequest {
+    // organization_id: Organization id
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // subscription_id: Subscription id
+    string subscription_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // new_price_id: New price id
+    string new_price_id = 3 [(google.api.field_behavior) = REQUIRED];
+}
