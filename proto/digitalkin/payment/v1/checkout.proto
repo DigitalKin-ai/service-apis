@@ -51,11 +51,11 @@ message CreateCheckoutSessionResponse {
 //
 // ## Fields
 //
-// - Payload: Webhook payload
-// - Signature: Webhook signature
+// - payload: Webhook payload
+// - signature: Webhook signature
 message WebhookRequest {
-    // Payload: Webhook payload
+    // payload: Webhook payload
     string payload = 1 [(google.api.field_behavior) = REQUIRED];
-    // Signature: Webhook signature
+    // signature: Webhook signature
     string signature = 2 [(google.api.field_behavior) = REQUIRED];
 }
