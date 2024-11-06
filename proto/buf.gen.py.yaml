@@ -1,5 +1,3 @@
-# buf.gen.py.yaml
-
 version: v1
 managed:
   enabled: true
