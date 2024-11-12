@@ -17,7 +17,7 @@ syntax = "proto3";
 
 package digitalkin.module.v1;
 
-import "validate/validate.proto";
+import "buf/validate/validate.proto";
 
 // ModuleStatus
 enum ModuleStatus {
@@ -44,10 +44,10 @@ enum ModuleStatus {
 // Represents information about a single job
 message JobInfo {
     // job_id: Database ID of the job inside the Module
-    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    string job_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "jobs:", (buf.validate.field).required = true];
     
     // job_status: Status of the individual job
-    ModuleStatus job_status = 2 [(validate.rules).enum = { defined_only: true }];
+    ModuleStatus job_status = 2 [(buf.validate.field).enum.defined_only = true, (buf.validate.field).required = true];
 }
 
 // GetModuleStatusRequest
@@ -57,7 +57,7 @@ message JobInfo {
 // - job_id: Database ID of the Job Module to get status
 message GetModuleStatusRequest {
     // job_id: Database ID of the Job Module to get status
-    string job_id = 1 [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    string job_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "jobs:", (buf.validate.field).required = true];
 }
 
 // GetModuleStatusResponse
@@ -71,9 +71,9 @@ message GetModuleStatusResponse {
     // success: Flag to indicate if the status request was successful
     bool success = 1;
     // status: Status of the Module
-    ModuleStatus status = 2 [(validate.rules).enum = { defined_only: true }];
+    ModuleStatus status = 2 [(buf.validate.field).enum.defined_only = true, (buf.validate.field).required = true];
     // job_id: Database ID of the job inside the Module that was queried
-    string job_id = 3  [(validate.rules).string = { min_len: 1, prefix: "jobs:" }];
+    string job_id = 3  [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "jobs:", (buf.validate.field).required = true];
 }
 // GetModuleJobsRequest
 //

@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package digitalkin.module_registry.v1;
 
-import "validate/validate.proto";
+import "buf/validate/validate.proto";
 
 // RegisterRequest
 //
@@ -28,13 +28,13 @@ import "validate/validate.proto";
 // - port: Port used to communicate with the module
 message RegisterRequest {
     // module_id: Id of the module
-    string module_id = 1 [(validate.rules).string = { min_len: 1 }];
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // module_type: Type of the module (trigger, tool, kin, view)
-    string module_type = 2 [(validate.rules).string = { in: ["trigger", "tool", "kin", "view"] }];
+    string module_type = 2 [(buf.validate.field).string.in = "trigger", (buf.validate.field).string.in = "tool", (buf.validate.field).string.in = "kin", (buf.validate.field).string.in = "view", (buf.validate.field).required = true];
     // address: Address used to communicate with the module
-    string address = 3 [(validate.rules).string = { min_len: 1 }];
+    string address = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // port: Port used to communicate with the module
-    int32 port = 4 [(validate.rules).int32 = { gte: 1, lte: 65535}];
+    int32 port = 4 [(buf.validate.field).int32 = { gte: 1, lte: 65535}];
 }
 
 // RegisterResponse
@@ -54,7 +54,7 @@ message RegisterResponse {
 // - module_id: Id of the module
 message DeregisterRequest {
     // module_id: Id of the module
-    string module_id = 1;
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
 }
 
 // DeregisterResponse

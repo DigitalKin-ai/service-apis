@@ -1,0 +1,61 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.payment.v1;
+
+import "google/api/field_behavior.proto";
+
+// CreateCheckoutSessionRequest
+//
+// ## Fields
+//
+// - organization_id: Organization id
+// - price_id: Price id
+// - success_url: Success url
+// - cancel_url: Cancel url
+message CreateCheckoutSessionRequest {
+    // organization_id: Organization id
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // price_id: Price id
+    string price_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // success_url: Success url
+    string success_url = 3 [(google.api.field_behavior) = REQUIRED];
+    // cancel_url: Cancel url
+    string cancel_url = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+// CreateCheckoutSessionResponse
+//
+// ## Returns
+//
+// - url: Checkout url
+message CreateCheckoutSessionResponse {
+    // url: Checkout url
+    string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// WebhookRequest
+//
+// ## Fields
+//
+// - payload: Webhook payload
+// - signature: Webhook signature
+message WebhookRequest {
+    // payload: Webhook payload
+    string payload = 1 [(google.api.field_behavior) = REQUIRED];
+    // signature: Webhook signature
+    string signature = 2 [(google.api.field_behavior) = REQUIRED];
+}

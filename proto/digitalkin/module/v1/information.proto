@@ -17,8 +17,8 @@ syntax = "proto3";
 
 package digitalkin.module.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/struct.proto";
-import "validate/validate.proto";
 
 // GetModuleInputRequest
 //
@@ -28,7 +28,7 @@ import "validate/validate.proto";
 // - llm_format: Define if the input schema should be in LLM format or raw pydantic format
 message GetModuleInputRequest {
     // module_id: Database ID of the Module to get input schema
-    string module_id = 1 [(validate.rules).string = { min_len: 1, prefix: "modules:" }];
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
     // llm_format: Define if the input schema should be in LLM format or raw pydantic format
     bool llm_format = 2;
 }
@@ -41,7 +41,7 @@ message GetModuleInputRequest {
 // - llm_format: Define if the output schema should be in LLM format or raw pydantic format
 message GetModuleOutputRequest {
     // module_id: Database ID of the Module to get output schema
-    string module_id = 1 [(validate.rules).string = { min_len: 1, prefix: "modules:" }];
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
     // llm_format: Define if the output schema should be in LLM format or raw pydantic format
     bool llm_format = 2;
 }
@@ -54,7 +54,7 @@ message GetModuleOutputRequest {
 // - llm_format: Define if the output schema should be in LLM format or raw pydantic format
 message GetModuleSetupRequest {
     // module_id: Database ID of the Module to get output schema
-    string module_id = 1 [(validate.rules).string = { min_len: 1, prefix: "modules:" }];
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
     // llm_format: Define if the output schema should be in LLM format or raw pydantic format
     bool llm_format = 2;
 }
@@ -69,7 +69,7 @@ message GetModuleInputResponse {
     // success: Flag to indicate if the input schema request was successful
     bool success = 1;
     // input_schema: Input schema of the Module
-    google.protobuf.Struct input_schema = 2 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct input_schema = 2 [(buf.validate.field).required = true];
 }
 
 // GetModuleOutputResponse
@@ -82,7 +82,7 @@ message GetModuleOutputResponse {
     // success: Flag to indicate if the output schema request was successful
     bool success = 1;
     // output_schema: Output schema of the Module
-    google.protobuf.Struct output_schema = 2 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct output_schema = 2 [(buf.validate.field).required = true];
 }
 
 // GetModuleSetupResponse
@@ -95,5 +95,5 @@ message GetModuleSetupResponse {
     // success: Flag to indicate if the setup schema request was successful
     bool success = 1;
     // setup_schema: Setup schema of the Module
-    google.protobuf.Struct setup_schema = 2 [(validate.rules).any = { required: true }];
+    google.protobuf.Struct setup_schema = 2 [(buf.validate.field).required = true];
 }

@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package digitalkin.module_registry.v1;
 
-import "validate/validate.proto";
+import "buf/validate/validate.proto";
 
 
 
@@ -25,10 +25,10 @@ import "validate/validate.proto";
 // Represents information about a single module
 message ModuleInfo {
     // module_id: Database ID of the job inside the Module
-    string module_id = 1 [(validate.rules).string = { min_len: 1, prefix: "modules:" }];
+    string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
     
     // module_status: Status of the individual module, true if the module is available
-    bool module_status = 2 [(validate.rules).bool = {}];
+    bool module_status = 2;
 }
 
 // GetAllModulesRequest
