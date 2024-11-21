@@ -1,0 +1,317 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.client.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// ClientService
+service ClientService {
+    // CreateUser
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    // - user_email: User email
+    // - user_password: <PASSWORD>
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/client/create"
+            body: "*"
+        };
+    }
+
+    // ReadUser
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - User
+    rpc ReadUser(ReadUserRequest) returns (stream User) {
+        option (google.api.http) = {
+            get: "/v1/user/read"
+        };
+    }
+
+    // DeleteUser
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/user/delete"
+        };
+    }
+
+    // UpdateActivated
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    // - user_activated: User activated
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateActivated(UpdateUserActivatedRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/activated"
+            body: "*"
+        };
+    }
+    // UpdateFirstName
+    //
+    // ## Parameters
+    //
+    // - first_name: First name
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/first_name"
+            body: "*"
+        };
+    }
+    // UpdateLastName
+    //
+    // ## Parameters
+    //
+    // - last_name: Last name
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateLastName(UpdateUserLastNameRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/last_name"
+            body: "*"
+        };
+    }
+
+    // UpdateUserName
+    //
+    // ## Parameters
+    //
+    // - user_name: User name
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateUserName(UpdateUserNameRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/user_name"
+            body: "*"
+        };
+    }
+
+    // UpdateUserUsageType
+    //
+    // ## Parameters
+    //
+    // - usage_types: Usage type
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/usage_types"
+            body: "*"
+        };
+    }
+
+    // UpdateAvatar
+    //
+    // ## Parameters
+    //
+    // - avatar: Avatar
+    //
+    // ## Returns
+    //
+    // - avatar: Avatar path
+    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/avatar"
+            body: "*"
+        };
+    }
+
+    // RequestChangePassword
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc RequestChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/user/password/request"
+            body: "*"
+        };
+    }
+
+    // ResetPassword
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    // - new_password: New password
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/password/reset"
+            body: "*"
+        };
+    }
+
+    // UpdatePassword
+    //
+    // ## Parameters
+    //
+    // - new_password: New password
+    // - old_password: Old password
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdatePassword(UpdateUserPasswordRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/password"
+            body: "*"
+        };
+    }
+
+    // RequestChangeEmail
+    //
+    // ## Parameters
+    //
+    // - Nothing
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc RequestChangeEmail(ChangeEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/user/email/request"
+            body: "*"
+        };
+    }
+
+    // ResetEmail
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    // - email: Email
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc ResetEmail(ResetEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/email/reset"
+            body: "*"
+        };
+    }
+
+    // UpdateEmail
+    //
+    // ## Parameters
+    //
+    // - email: Email
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc UpdateEmail(UpdateUserEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/user/email"
+            body: "*"
+        };
+    }
+
+    // VerifyUser
+    //
+    // ## Parameters
+    //
+    // - temp_key: Temp key
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
+        option (google.api.http) = {
+            patch: "/v1/user/verify"
+            body: "*"
+        };
+    }
+
+    // AddOrganization
+    //
+    // ## Parameters
+    //
+    // - invitation_code: Invitation code
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc AddOrganization(AddUserOrganizationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/user/organization/{organization_id}/add"
+            body: "*"
+        };
+    }
+
+    // RemoveOrganization
+    //
+    // ## Parameters
+    //
+    // - organization_id: Organization id
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/user/organization/{organization_id}/delete"
+        };
+    }
+}
