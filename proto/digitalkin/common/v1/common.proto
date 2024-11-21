@@ -76,22 +76,22 @@ message UserReply {
     bool activated = 6;
 }
 
-// KinReply
+// VersionReply
 //
 // ## Fields
 //
-// - id: The id of the kin
-// - name: The name of the kin
-// - description: The description of the kin
-// - activated: True if the kin is activated
-message KinReply {
-    // id: The id of the kin
+// - id: The id of the version
+// - name: The name of the version
+// - description: The description of the version
+// - activated: True if the version is activated
+message VersionReply {
+    // id: The id of the version
     string id = 1;
-    // name: The name of the kin
+    // name: The name of the version
     string name = 2;
-    // description: The description of the kin
+    // description: The description of the version
     optional string description = 3;
-    // activated: True if the kin is activated
+    // activated: True if the version is activated
     bool activated = 4;
 }
 
