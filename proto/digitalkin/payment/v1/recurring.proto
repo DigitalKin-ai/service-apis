@@ -1,0 +1,60 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.payment.v1;
+
+import "google/api/field_behavior.proto";
+
+// RecurringAggregateUsage
+//
+// ## Enum
+//
+// - SUM: Sum
+// - LAST_DURING_PERIOD: Last during period
+// - LAST_EVER: Last ever
+// - MAX: Max
+enum RecurringAggregateUsage {
+    // SUM: Sum
+    SUM = 0;
+    // LAST_DURING_PERIOD: Last during period
+    LAST_DURING_PERIOD = 1;
+    // LAST_EVER: Last ever
+    LAST_EVER = 2;
+    // MAX: Max
+    MAX = 3;
+}
+
+// Recurring
+//
+// ## Fields
+//
+// - aggregate_usage: Aggregate usage
+// - interval: Interval
+// - interval_count: Interval count
+// - trial_period_days: Trial period days
+// - usage_type: Usage type
+message Recurring {
+    // aggregate_usage: Aggregate usage
+    optional RecurringAggregateUsage aggregate_usage = 1;
+    // interval: Interval
+    string interval = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // interval_count: Interval count
+    uint64 interval_count = 3 [(google.api.field_behavior) = INPUT_ONLY];
+    // trial_period_days: Trial period days
+    optional uint32 trial_period_days = 4;
+    // usage_type: Usage type
+    string usage_type = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

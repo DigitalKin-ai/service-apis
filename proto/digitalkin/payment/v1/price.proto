@@ -1,0 +1,90 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.payment.v1;
+
+import "digitalkin/payment/v1/currency.proto";
+import "digitalkin/payment/v1/product.proto";
+import "digitalkin/payment/v1/recurring.proto";
+
+import "google/api/field_behavior.proto";
+
+// PriceTaxBehavior
+//
+// ## Enum
+//
+// - INCLUSIVE: Inclusive
+// - EXCLUSIVE: Exclusive
+// - UNSPECIFIED: Unspecified
+enum PriceTaxBehavior {
+    // INCLUSIVE: Inclusive
+    INCLUSIVE = 0;
+    // EXCLUSIVE: Exclusive
+    EXCLUSIVE = 1;
+    // UNSPECIFIED: Unspecified
+    UNSPECIFIED = 2;
+}
+
+// PriceType
+//
+// ## Enum
+//
+// - ONE_TIME: One time
+// - RECURRING: Recurring
+enum PriceType {
+    // ONE_TIME: One time
+    ONE_TIME = 0;
+    // RECURRING: Recurring
+    RECURRING = 1;
+}
+
+// Price
+//
+// ## Fields
+//
+// - id: Id
+// - currency: Currency
+// - product: Product
+// - recurring: Recurring
+// - tax_behavior: Tax behavior
+// - type: Type
+// - unit_amount: Unit amount
+message Price {
+    // id: Id
+    string id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // currency: Currency
+    Currency currency = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // product: Product
+    Product product = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // recurring: Recurring
+    Recurring recurring = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // tax_behavior: Tax behavior
+    PriceTaxBehavior tax_behavior = 5 [(google.api.field_behavior) = INPUT_ONLY];
+    // type: Type
+    PriceType type = 6 [(google.api.field_behavior) = INPUT_ONLY];
+    // unit_amount: Unit amount
+    optional int64 unit_amount = 7;
+}
+
+// ReadPricesResponse
+//
+// ## Fields
+//
+// - prices: List of prices
+message ReadPricesResponse {
+    // prices: List of prices
+    repeated Price prices = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
