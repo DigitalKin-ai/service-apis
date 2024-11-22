@@ -1,0 +1,117 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.storage.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/struct.proto";
+
+// Module
+//
+// Fields:
+//
+// - module_id: Id of the module if exists else if empty will create new entry
+// - module_type: Type of the module (trigger, tool, kin, view)
+// - address: Address used to communicate with the module
+// - port: Port used to communicate with the module
+// - input_schema: Input schema of the module
+// - output_schema: Output schema of the module
+// - setup_schema: Setup schema of the module
+// - secret_schema: Secret schema of the module
+message Module {
+    // module_id: Id of the module if exists else if empty will create new entry
+    string module_id = 1 [(buf.validate.field).cel = {
+        id: "optional_id_with_prefix",
+        message: "If present, module_id must start with 'modules:', otherwise it can be empty and it will create new entry",
+        expression: "this == '' || !has(this) || this.startsWith('modules:')"
+      }];
+    // module_type: Type of the module (trigger, tool, kin, view)
+    string module_type = 2 [(buf.validate.field).string.in = "trigger", (buf.validate.field).string.in = "tool", (buf.validate.field).string.in = "kin", (buf.validate.field).string.in = "view", (buf.validate.field).required = true];
+    // address: Address used to communicate with the module
+    string address = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
+    // port: Port used to communicate with the module
+    int32 port = 4 [(buf.validate.field).int32 = { gte: 1, lte: 65535}];
+    // input_schema: Input schema of the module
+    google.protobuf.Struct input_schema = 5 [(buf.validate.field).required = true];
+    // output_schema: Output schema of the module
+    google.protobuf.Struct output_schema = 6 [(buf.validate.field).required = true];
+    // setup_schema: Setup schema of the module
+    google.protobuf.Struct setup_schema = 7 [(buf.validate.field).required = true];
+    // secret_schema: Secret schema of the module
+    google.protobuf.Struct secret_schema = 8 [(buf.validate.field).required = true];
+}
+
+// RegisterRequest
+//
+// Fields:
+//
+// - module: The module to register
+message RegisterRequest {
+    // module: The module to register
+    Module module = 1 [(buf.validate.field).required = true];
+}
+
+// RegisterResponse
+//
+// Returns:
+//
+// - success: True if the registration was successful
+message RegisterResponse {
+    // success: True if the registration was successful
+    bool success = 1 [(buf.validate.field).required = true];
+    // message: The message of the registration
+    string message = 2 [(buf.validate.field).required = false];
+    // module: The module that was registered
+    Module module = 3 [(buf.validate.field).required = false];
+
+}
+
+// DeregisterRequest
+//
+// Fields:
+//
+// - module_id: Id of the module
+message DeregisterRequest {
+    // module_id: Id of the module
+    string module_id = 1 [(buf.validate.field).string.prefix = "modules:", (buf.validate.field).required = true];
+}
+
+// DeregisterResponse
+//
+// Returns:
+//
+// - success: True if the registration was successful
+message DeregisterResponse {
+    // success: True if the registration was successful
+    bool success = 1 [(buf.validate.field).required = true];
+}
+
+// GetAllModulesRequest
+message GetAllModulesRequest {
+}
+
+// GetAllModulesResponse
+//
+// Returns:
+//
+// - success: Flag to indicate if the status request was successful
+// - modules: List of modules with their respective IDs and statuses
+message GetAllModulesResponse {
+    // success: Flag to indicate if the status request was successful
+    bool success = 1 [(buf.validate.field).required = true];
+    // modules: List of modules with their respective IDs and statuses
+    repeated Module modules = 2  [(buf.validate.field).required = true];
+}

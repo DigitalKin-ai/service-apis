@@ -6,6 +6,7 @@ run.sh
 
 # Ignore Buffer files
 **/buf.lock
+**/buf.tmp.yaml
 
 # Ignore all package-lock.json files
 yarn.lock
