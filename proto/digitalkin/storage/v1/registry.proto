@@ -24,9 +24,11 @@ import "google/protobuf/struct.proto";
 // Fields:
 //
 // - module_id: Id of the module if exists else if empty will create new entry
+// - name: Name of the module
 // - module_type: Type of the module (trigger, tool, kin, view)
 // - address: Address used to communicate with the module
 // - port: Port used to communicate with the module
+// - owner: Owner of the module
 // - input_schema: Input schema of the module
 // - output_schema: Output schema of the module
 // - setup_schema: Setup schema of the module
@@ -38,20 +40,28 @@ message Module {
         message: "If present, module_id must start with 'modules:', otherwise it can be empty and it will create new entry",
         expression: "this == '' || !has(this) || this.startsWith('modules:')"
       }];
+    // name: Name of the module
+    string name = 2 [(buf.validate.field).string.min_len = 4, (buf.validate.field).required = true];
     // module_type: Type of the module (trigger, tool, kin, view)
-    string module_type = 2 [(buf.validate.field).string.in = "trigger", (buf.validate.field).string.in = "tool", (buf.validate.field).string.in = "kin", (buf.validate.field).string.in = "view", (buf.validate.field).required = true];
+    string module_type = 3 [(buf.validate.field).string.in = "trigger", (buf.validate.field).string.in = "tool", (buf.validate.field).string.in = "kin", (buf.validate.field).string.in = "view", (buf.validate.field).required = true];
     // address: Address used to communicate with the module
-    string address = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
+    string address = 4 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // port: Port used to communicate with the module
-    int32 port = 4 [(buf.validate.field).int32 = { gte: 1, lte: 65535}];
+    int32 port = 5 [(buf.validate.field).int32 = { gte: 1, lte: 65535}];
+    // owner: Owner of the module
+    string owner = 6  [(buf.validate.field).cel = {
+        id: "optional_owner_with_prefix",
+        message: "If present, owner must start with 'organizations:'",
+        expression: "this == '' || !has(this) || this.startsWith('organizations:')"
+      }];
     // input_schema: Input schema of the module
-    google.protobuf.Struct input_schema = 5 [(buf.validate.field).required = true];
+    google.protobuf.Struct input_schema = 7 [(buf.validate.field).required = true];
     // output_schema: Output schema of the module
-    google.protobuf.Struct output_schema = 6 [(buf.validate.field).required = true];
+    google.protobuf.Struct output_schema = 8 [(buf.validate.field).required = true];
     // setup_schema: Setup schema of the module
-    google.protobuf.Struct setup_schema = 7 [(buf.validate.field).required = true];
+    google.protobuf.Struct setup_schema = 9 [(buf.validate.field).required = true];
     // secret_schema: Secret schema of the module
-    google.protobuf.Struct secret_schema = 8 [(buf.validate.field).required = true];
+    google.protobuf.Struct secret_schema = 10 [(buf.validate.field).required = true];
 }
 
 // RegisterRequest
