@@ -146,46 +146,31 @@ message ReadAllStoreDataSheetsRequest {
     repeated digitalkin.store.v1.DataSheetReply data_sheets = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
-// ReadStoreDataSheet
+// ReadStoreDataSheetRequest
 //
-// Request to read store data sheet
+// Request to read store data sheet data
 //
 // Fields:
 //
 // - datasheet_id: DataSheet id
-message ReadStoreDataSheet {
+message ReadStoreDataSheetRequest {
     // datasheet_id: DataSheet id
     string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-// UpdateKinNameRequest
+// UpdateStoreDataSheetNameRequest
 //
-// Update Kin name request
+// Update store data sheet name request
 //
 // Fields:
 //
-// - kin_id: Kin id
-// - name: Kin name
-message UpdateKinNameRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // name: Kin name
+// - datasheet_id: DataSheet id
+// - name: DataSheet name
+message UpdateStoreDataSheetNameRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // name: DataSheet name
     string name = 2 [(google.api.field_behavior) = REQUIRED];
-}
-
-// UpdateKinImageRequest
-//
-// Update Kin image request
-//
-// Fields:
-//
-// - kin_id: Kin id
-// - image: Kin image
-message UpdateKinImageRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // image: Kin image
-    digitalkin.common.v1.File image = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateKinShortDescriptionRequest
@@ -194,23 +179,83 @@ message UpdateKinImageRequest {
 //
 // Fields:
 //
-// - kin_id: Kin id
-// - short_description: Kin short description
-message UpdateKinShortDescriptionRequest {
-    // kin_id: Kin id
-    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // short_description: Kin short description
-    string short_description = 2 [(google.api.field_behavior) = REQUIRED];
+// - datasheet_id: DataSheet id
+// - description: DataSheet short description
+message UpdateStoreDataSheetDescriptionRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // description: DataSheet short description
+    string description = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-// UpdateKinImageResponse
+// UpdateStoreDataSheetImageRequest
 //
-// Update Kin image response
+// Update store data sheet image request
 //
 // Fields:
 //
-// - url: Kin image url
-message UpdateKinImageResponse {
-    // url: Kin image url
+// - datasheet_id: DataSheet id
+// - image: DataSheet image
+message UpdateStoreDataSheetImageRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // image: DataSheet image
+    digitalkin.common.v1.File image = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateStoreDataSheetImageResponse
+//
+// Update store data sheet image response
+//
+// Fields:
+//
+// - url: DataSheet image url
+message UpdateStoreDataSheetImageResponse {
+    // url: DataSheet image url
     string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// UpdateStoreDataSheetLanguagesRequest
+//
+// Update store data sheet languages request
+//
+// Fields:
+//
+// - datasheet_id: DataSheet id
+// - languages: DataSheet languages
+message UpdateStoreDataSheetLanguagesRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // languages: DataSheet languages
+    repeated string languages = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateStoreDataSheetFrameworkRequest
+//
+// Update store data sheet framework request
+//
+// Fields:
+//
+// - datasheet_id: DataSheet id
+// - framework: DataSheet framework
+message UpdateStoreDataSheetFrameworkRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // framework: DataSheet framework
+    string framework = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateStoreDataSheetDocumentationRequest
+//
+// Update store data sheet documentation request
+//
+// Fields:
+//
+// - datasheet_id: DataSheet id
+// - doc_link: DataSheet documentation link
+message UpdateStoreDataSheetDocumentationRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // doc_link: DataSheet documentation link
+    string doc_link = 2 [(google.api.field_behavior) = REQUIRED];
 }

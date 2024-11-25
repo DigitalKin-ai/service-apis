@@ -84,184 +84,134 @@ service StoreService {
     // - StoreResume
     rpc ReadStoreDataSheet(ReadStoreDataSheetRequest) returns (DataSheet) {
         option (google.api.http) = {
-            get: "/v1/store/{datasheet_id}/read"
+            get: "/v1/store/datasheet/{datasheet_id}/read"
         };
     }
 
-    // UpdateName
+    // UpdateStoreDataSheetName
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - name: Kin name
+    // - datasheet_id: DataSheet id
+    // - name: DataSheet name
     //
     // Returns:
     //
-    // - Ok if the Kin name was updated
-    rpc UpdateName(UpdateKinNameRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetName(UpdateStoreDataSheetNameRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/name"
+            patch: "/v1/store/datasheet/{datasheet_id}/name/update"
             body: "*"
         };
     }
 
-    // UpdateShortDescription
+    // UpdateStoreDataSheetDescription
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - short_description: Kin short description
+    // - datasheet_id: DataSheet id
+    // - description: DataSheet short description
     //
     // Returns:
     //
-    // - Ok if the Kin short description was updated
-    rpc UpdateShortDescription(UpdateKinShortDescriptionRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetDescription(UpdateStoreDataSheetDescriptionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/short_description"
+            patch: "/v1/store/datasheet/{datasheet_id}/description/update"
             body: "*"
         };
     }
 
-    // UpdateImage
+    // UpdateStoreDataSheetImage
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - image: Kin image
+    // - datasheet_id: DataSheet id
+    // - image: DataSheet image
     //
     // Returns:
     //
-    // - Ok if the Kin image was updated
-    rpc UpdateImage(UpdateKinImageRequest) returns (UpdateKinImageResponse) {
+    // - Image path
+    rpc UpdateStoreDataSheetImage(UpdateStoreDataSheetImageRequest) returns (UpdateStoreDataSheetImageResponse) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/image"
+            patch: "/v1/store/datasheet/{datasheet_id}/image/update"
             body: "*"
         };
     }
 
-    // UpdateBlock
+    // UpdateStoreDataSheetLanguages
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - block: Kin block
+    // - datasheet_id: DataSheet id
+    // - languages: DataSheet languages
     //
     // Returns:
     //
-    // - Ok if the Kin block description was updated
-    rpc UpdateBlock(UpdateKinBlockRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetLanguages(UpdateStoreDataSheetLanguagesRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/block"
+            patch: "/v1/store/datasheet/{datasheet_id}/languages/update"
             body: "*"
         };
     }
 
-    // AddBlock
+    // UpdateStoreDataSheetFramework
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - block: Kin block
+    // - datasheet_id: DataSheet id
+    // - framework: DataSheet framework
     //
     // Returns:
     //
-    // - Ok if the Kin block description was added
-    rpc AddBlock(AddKinBlockRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetFramework(UpdateStoreDataSheetFrameworkRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/v1/store/{kin_id}/block"
+            patch: "/v1/store/datasheet/{datasheet_id}/framework/update"
             body: "*"
         };
     }
 
-    // DeleteBlock
+    // UpdateStoreDataSheetLicense
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - position: Position of the block in the list
+    // - datasheet_id: DataSheet id
+    // - license: DataSheet license
     //
     // Returns:
     //
-    // - Ok if the Kin block description was deleted
-    rpc DeleteBlock(DeleteKinBlockRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetLicense(UpdateStoreDataSheetLicenseRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/v1/store/{kin_id}/block/{block_id}"
-        };
-    }
-
-    // UpdateLanguages
-    //
-    // Parameters:
-    //
-    // - kin_id: Kin id
-    // - languages: Kin languages
-    //
-    // Returns:
-    //
-    // - Ok if the Kin languages were updated
-    rpc UpdateLanguages(UpdateKinLanguagesRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/languages"
+            patch: "/v1/store/datasheet/{datasheet_id}/license/update"
             body: "*"
         };
     }
 
-    // UpdateFramework
+    // UpdateStoreDataSheetDocumentation
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - framework: Kin framework
+    // - datasheet_id: DataSheet id
+    // - doc_link: DataSheet documentation link
     //
     // Returns:
     //
-    // - Ok if the Kin framework was updated
-    rpc UpdateFramework(UpdateKinFrameworkRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetDocumentation(UpdateStoreDataSheetDocumentationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/framework"
+            patch: "/v1/store/datasheet/{datasheet_id}/documentation/update"
             body: "*"
         };
     }
 
-    // UpdateLicense
+    // CreateStoreDataSheetReview
     //
     // Parameters:
     //
-    // - kin_id: Kin id
-    // - license: Kin license
-    //
-    // Returns:
-    //
-    // - Ok if the Kin license was updated
-    rpc UpdateLicense(UpdateKinLicenseRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/license"
-            body: "*"
-        };
-    }
-
-    // UpdateDocumentation
-    //
-    // Parameters:
-    //
-    // - kin_id: Kin id
-    // - documentation: Kin documentation
-    //
-    // Returns:
-    //
-    // - Ok if the Kin documentation was updated
-    rpc UpdateDocumentation(UpdateKinDocumentationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/documentation"
-            body: "*"
-        };
-    }
-
-    // CreateReview
-    //
-    // Parameters:
-    //
-    // - kin_id: Kin id
+    // - datasheet_id: DataSheet id
     // - user_name: User name
     // - user_avatar: User avatar
     // - review: Review
@@ -270,29 +220,76 @@ service StoreService {
     // Returns:
     //
     // - Review
-    rpc CreateReview(CreateKinReviewRequest) returns (Review) {
+    rpc CreateStoreDataSheetReview(CreateStoreDataSheetReviewRequest) returns (Review) {
         option (google.api.http) = {
-            post: "/v1/store/{kin_id}/review"
+            post: "/v1/store/datasheet/{datasheet_id}/review/create"
             body: "*"
         };
     }
 
-    // UpdateReview
+    // UpdateStoreDataSheetReview
     //
     // Parameters:
     //
-    // - id: Review id
-    // - kin_id: Kin id
+    // - review_id: Review id
+    // - datasheet_id: DataSheet id
     // - review: Review
     // - review_comment: Review comment
     //
     // Returns:
     //
-    // - Ok if the review was updated
-    rpc UpdateReview(UpdateKinReviewRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc UpdateStoreDataSheetReview(UpdateStoreDataSheetReviewRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/review/{review_id}",
+            patch: "/v1/store/datasheet/{datasheet_id}/review/{review_id}/update"
             body: "*"
+        };
+    }
+
+    // ReadStoreDataSheetTags
+    //
+    // Parameters:
+    //
+    // - Nothing
+    //
+    // Returns:
+    //
+    // - Tag list
+    rpc ReadStoreDataSheetTags(google.protobuf.Empty) returns (ReadStoreDataSheetTagsResponse) {
+        option (google.api.http) = {
+            get: "/v1/store/datasheet/tags/read_all"
+        };
+    }
+
+    // AddStoreDataSheetTag
+    //
+    // Parameters:
+    //
+    // - datasheet_id: DataSheet id
+    // - tag_id: Tag id
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc AddStoreDataSheetTag(AddStoreDataSheetTagRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/store/datasheet/{datasheet_id}/tag/{tag_id}/add"
+        };
+    }
+
+    // RemoveStoreDataSheetTag
+    //
+    // Parameters:
+    //
+    // - datasheet_id: DataSheet id
+    // - tag_id: Tag id
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RemoveStoreDataSheetTag(RemoveStoreDataSheetTagRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/store/datasheet/{datasheet_id}/tag/{tag_id}/remove"
         };
     }
 }

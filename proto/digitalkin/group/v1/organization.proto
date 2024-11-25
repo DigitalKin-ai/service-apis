@@ -17,7 +17,7 @@
 
 syntax = "proto3";
 
-package digitalkin.client.v1;
+package digitalkin.group.v1;
 
 import "digitalkin/common/v1/common.proto";
 
