@@ -16,49 +16,48 @@ syntax = "proto3";
 
 package digitalkin.store.v1;
 
-import "digitalkin/store/v1/block.proto";
-import "digitalkin/store/v1/details.proto";
+import "digitalkin/common/v1/common.proto";
 import "digitalkin/store/v1/review.proto";
-import "digitalkin/store/v1/store.proto";
+import "digitalkin/store/v1/datasheet.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 // StoreService
 service StoreService {
-    // CreateKinResume
+    // CreateStoreDataSheet
     //
     // Parameters:
     //
-    // - name: Kin name
-    // - short_description: Kin short description
+    // - name: DataSheet name
+    // - description: DataSheet  description
     //
     // Returns:
     //
-    // - Kin
-    rpc CreateKinResume(CreateKinResumeRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc CreateStoreDataSheet(CreateStoreDataSheetRequest) returns (DataSheet) {
         option (google.api.http) = {
-            post: "/v1/store/create"
+            post: "/v1/store/datasheet/create"
             body: "*"
         };
     }
 
-    // DisableKinResume
+    // DeleteStoreDataSheet
     //
     // Parameters:
     //
-    // - kin_id: Kin id
+    // - datasheet_id: DataSheet id
     //
     // Returns:
     //
-    // - Ok if the Kin was disabled
-    rpc DisableKinResume(DisableKinResumeRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc DeleteStoreDataSheet(DeleteStoreDataSheetRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            patch: "/v1/store/{kin_id}/disable"
+            patch: "/v1/store/datasheet/{datasheet_id}/delete"
         };
     }
 
-    // ReadAllKins
+    // ReadAllStoreDataSheets
     //
     // Parameters:
     //
@@ -67,25 +66,25 @@ service StoreService {
     //
     // Returns:
     //
-    // - ListStore
-    rpc ReadAllKins(ReadAllKinsRequest) returns (ReadAllKinsResponse) {
+    // - List of DataSheets
+    rpc ReadAllStoreDataSheets(ReadAllStoreDataSheetsRequest) returns (ReadAllStoreDataSheetsResponse) {
         option (google.api.http) = {
-            get: "/v1/store/read"
+            get: "/v1/store/datasheet/read_all"
         };
     }
 
-    // ReadKinResume
+    // ReadStoreDataSheet
     //
     // Parameters:
     //
-    // - kin_id: Kin id
+    // - datasheet_id: DataSheet id
     //
     // Returns:
     //
     // - StoreResume
-    rpc ReadKinResume(ReadKinResumeRequest) returns (StoreResume) {
+    rpc ReadStoreDataSheet(ReadStoreDataSheetRequest) returns (DataSheet) {
         option (google.api.http) = {
-            get: "/v1/store/{kin_id}/read"
+            get: "/v1/store/{datasheet_id}/read"
         };
     }
 

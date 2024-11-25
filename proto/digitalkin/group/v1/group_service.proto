@@ -42,6 +42,7 @@ service GroupService {
             body: "*"
         };
     }
+
     // ReadOrganization
     //
     //Parameters:
@@ -56,6 +57,7 @@ service GroupService {
             get: "/v1/organization/{organization_id}/read"
         };
     }
+
     // DeleteOrganization
     //
     //Parameters:
@@ -70,6 +72,7 @@ service GroupService {
             delete: "/v1/organization/{organization_id}/delete"
         };
     }
+
     // UpdateActivated
     //
     //Parameters:
@@ -82,10 +85,11 @@ service GroupService {
     // - Nothing
     rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/activated"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/activated/update"
+            body: "*"
+        };
     }
+
     // UpdateName
     //
     //Parameters:
@@ -95,13 +99,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the organization was updated
+    // - Nothing
     rpc UpdateName(UpdateOrganizationNameRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/name"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/name/update"
+            body: "*"
+        };
     }
+
     // UpdateCreditAmount
     //
     //Parameters:
@@ -111,13 +116,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the organization was updated
+    // - Nothing
     rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/creditamount"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/creditamount/update"
+            body: "*"
+        };
     }
+
     // UpdateLogo
     //
     //Parameters:
@@ -127,13 +133,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the organization was updated
-    rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (google.protobuf.Empty) {
+    // - Image path
+    rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (UpdateOrganizationLogoResponse) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/logo"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/logo/update"
+            body: "*"
+        };
     }
+
     // RequestChangeEmail
     //
     //Parameters:
@@ -142,13 +149,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the mail was sent
+    // - Nothing
     rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        post: "/v1/organization/{organization_id}/email/request"
-        body: "*"
-      };
+            post: "/v1/organization/{organization_id}/email/request"
+            body: "*"
+        };
     }
+
     // ResetEmail
     //
     //Parameters:
@@ -159,13 +167,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the mail was sent
+    // - Nothing
     rpc ResetEmail(ResetOrganizationEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        patch: "/v1/user/email/reset"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/email/reset"
+            body: "*"
+        };
     }
+
     // UpdateEmail
     //
     //Parameters:
@@ -176,13 +185,14 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the organization was updated
+    // - Nothing
     rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/email"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/email/update"
+            body: "*"
+        };
     }
+
     // AddUser
     //
     //Parameters:
@@ -192,12 +202,12 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the user was added
+    // - User
     rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
         option (google.api.http) = {
-        post: "/v1/organization/{organization_id}/user"
-        body: "*"
-      };
+            post: "/v1/organization/{organization_id}/user/{user_name}/add"
+            body: "*"
+        };
     }
 
     // RemoveUser
@@ -209,11 +219,11 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the user was removed
+    // - Nothing
     rpc RemoveUser(RemoveOrganizationUserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        delete: "/v1/organization/{organization_id}/user/{user_name}"
-      };
+            delete: "/v1/organization/{organization_id}/user/{user_name}/remove"
+        };
     }
 
     // AddModerator
@@ -225,12 +235,12 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the user was added
+    // - User
     rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
         option (google.api.http) = {
-        post: "/v1/organization/{organization_id}/moderator"
-        body: "*"
-      };
+            post: "/v1/organization/{organization_id}/moderator/{user_name}/add"
+            body: "*"
+        };
     }
 
     // RemoveModerator
@@ -242,44 +252,44 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the user was removed
+    // - Nothing
     rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        delete: "/v1/organization/{organization_id}/moderator/{user_name}"
-      };
+            delete: "/v1/organization/{organization_id}/moderator/{user_name}/remove"
+        };
     }
 
-    // AddKin
+    // AddSetup
     //
     //Parameters:
     //
     // - organization_id: The id of the organization
-    // - kin_id: The id of the kin
+    // - setup_id: The id of the setup
     //
     // Returns:
     //
-    // - Ok if the kin was added
-    rpc AddKin(AddOrganizationKinRequest) returns (digitalkin.common.v1.KinReply) {
+    // - Setup
+    rpc AddSetup(AddOrganizationSetupRequest) returns (digitalkin.common.v1.SetupReply) {
         option (google.api.http) = {
-        post: "/v1/organization/{organization_id}/kin"
-        body: "*"
-      };
+            post: "/v1/organization/{organization_id}/setup/{setup_id}/add"
+            body: "*"
+        };
     }
 
-    // RemoveKin
+    // RemoveSetup
     //
     //Parameters:
     //
     // - organization_id: The id of the organization
-    // - kin_id: The id of the kin
+    // - kin_id: The id of the setup
     //
     // Returns:
     //
-    // - Ok if the kin was removed
-    rpc RemoveKin(RemoveOrganizationKinRequest) returns (google.protobuf.Empty) {
+    // - Nothing
+    rpc RemoveSetup(RemoveOrganizationSetupRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        delete: "/v1/organization/{organization_id}/kin/{kin_id}"
-      };
+            delete: "/v1/organization/{organization_id}/setup/{setup_id}/remove"
+        };
     }
 
     // ChangeOwner
@@ -291,12 +301,12 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the owner was changed
-    rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (ChangeOrganizationOwnerResponse) {
+    // - User
+    rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (digitalkin.common.v1.UserReply) {
         option (google.api.http) = {
-        patch: "/v1/organization/{organization_id}/owner"
-        body: "*"
-      };
+            patch: "/v1/organization/{organization_id}/owner/{user_name}/change"
+            body: "*"
+        };
     }
 
     // RegenerateInvitationCode
@@ -307,11 +317,11 @@ service GroupService {
     //
     // Returns:
     //
-    // - Ok if the invitation code was regenerated
-    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (RegenerateOrganizationInvitationCodeResponse) {
+    // - Nothing
+    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-        put: "/v1/organization/{organization_id}/invitationcode"
-        body: "*"
-      };
+            put: "/v1/organization/{organization_id}/invitationcode/regenerate"
+            body: "*"
+        };
     }
 }

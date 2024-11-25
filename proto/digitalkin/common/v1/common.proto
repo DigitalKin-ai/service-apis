@@ -22,38 +22,25 @@ package digitalkin.common.v1;
 import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 
-// Thing
-//
-// ## Fields
-//
-// - id: Id
-// - tb: Type
-message Thing {
-    // id: Id
-    string id = 1;
-    // tb: Type
-    string tb = 2;
-}
-
 // File
 //
-// ## Fields
+// Fields:
 //
 // - name: Name of the file
 // - type: Type of the file
 // - content: Content of the file
 message File {
     // name: Name of the file
-    string name = 1;
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
     // type: Type of the file
-    string type = 2;
+    string type = 2 [(google.api.field_behavior) = REQUIRED];
     // content: Content of the file
-    bytes content = 3;
+    bytes content = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UserReply
 //
-// ## Fields
+// Fields:
 //
 // - user_name: The name of the user
 // - first_name: The first name of the user
@@ -63,57 +50,66 @@ message File {
 // - activated: True if the user is activated
 message UserReply {
     // user_name: The name of the user
-    string user_name = 1;
+    string user_name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // first_name: The first name of the user
-    optional string first_name = 2;
+    optional string first_name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // last_name: The last name of the user
-    optional string last_name = 3;
+    optional string last_name = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // email: The email of the user
-    string email = 4;
+    string email = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // avatar: The avatar of the user
-    optional string avatar = 5;
+    optional string avatar = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
     // activated: True if the user is activated
-    bool activated = 6;
+    bool activated = 6 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
-// VersionReply
+// SetupReply
 //
-// ## Fields
+// Fields:
 //
-// - id: The id of the version
-// - name: The name of the version
-// - description: The description of the version
-// - activated: True if the version is activated
-message VersionReply {
-    // id: The id of the version
-    string id = 1;
-    // name: The name of the version
-    string name = 2;
-    // description: The description of the version
-    optional string description = 3;
-    // activated: True if the version is activated
-    bool activated = 4;
+// - id: The id of the setup
+// - name: The name of the setup
+// - description: The description of the setup
+// - activated: True if the setup is activated
+message SetupReply {
+    // id: The id of the setup
+    string id = 1 [(google.api.field_behavior) = INPUT_ONLY];
+    // name: The name of the setup
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // description: The description of the setup
+    optional string description = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // activated: True if the setup is activated
+    bool activated = 4 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
-// ThreadReply
+// DataSheetReply
 //
-// ## Fields
+// Fields:
 //
-// - id: Kin thread id
-// - thread_subject: Subject of the thread
-// - activated: Kin thread activated status
-message ThreadReply {
-    // id: Kin thread id
-    string id = 1;
-    // thread_subject: Subject of the thread
-    string thread_subject = 2;
-    // activated: Kin thread activated status
-    bool activated = 3;
+// - id: The id of the data sheet
+// - name: The name of the data sheet
+// - image: The image of the data sheet
+// - description: The description of the data sheet
+// - user_fav: The user that have favorited the data sheet
+// - activated: True if the data sheet is activated
+message DataSheetReply {
+    // id: The id of the data sheet
+    string id = 1 [(google.api.field_behavior) = INPUT_ONLY];
+    // name: The name of the data sheet
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // image: The image of the data sheet
+    string image = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // description: The description of the data sheet
+    string description = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // user_fav: The user that have favorited the data sheet
+    bool user_fav = 5 [(google.api.field_behavior) = INPUT_ONLY];
+    // activated: True if the data sheet is activated
+    bool activated = 6 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
 // WorkflowReply
 //
-// ## Fields
+// Fields:
 //
 // - id: The id of the workflow
 // - name: The name of the workflow
@@ -122,16 +118,16 @@ message ThreadReply {
 // - price: The price of the workflow
 message WorkflowReply {
     // id: The id of the workflow
-    string id = 1;
+    string id = 1 [(google.api.field_behavior) = INPUT_ONLY];
     // name: The name of the workflow
-    string name = 2;
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // status: The status of the workflow
-    string status = 3;
+    string status = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // duration: The duration of the workflow
     google.protobuf.Timestamp duration = 4 [
         (google.api.field_behavior) = IMMUTABLE,
         (google.api.field_behavior) = OUTPUT_ONLY
     ];
     // price: The price of the workflow
-    int64 price = 5;
+    int64 price = 5 [(google.api.field_behavior) = INPUT_ONLY];
 }

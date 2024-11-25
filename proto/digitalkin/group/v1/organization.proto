@@ -54,7 +54,7 @@ message Organization {
     // users: The users of the organization
     repeated digitalkin.common.v1.UserReply users = 8;
     // setups: The setups of the organization
-    repeated digitalkin.common.v1.VersionReply setups = 9;
+    repeated digitalkin.common.v1.SetupReply setups = 9;
     // credit_amount: The credit amount of the organization
     optional int64 credit_amount = 10;
     // activated: True if the organization is activated
@@ -94,14 +94,6 @@ message DeleteOrganizationRequest {
     string organization_id = 1;
 }
 
-// DeleteOrganizationResponse
-//
-// ## Returns
-//
-// - Ok if the organization was deleted
-message DeleteOrganizationResponse {
-}
-
 // UpdateOrganizationActivatedRequest
 //
 // ## Fields
@@ -113,14 +105,6 @@ message UpdateOrganizationActivatedRequest {
     string organization_id = 1;
     // activated: True if the organization is activated
     bool activated = 2;
-}
-
-// UpdateOrganizationActivatedResponse
-//
-// ## Returns
-//
-// - Ok if the organization was updated
-message UpdateOrganizationActivatedResponse {
 }
 
 // UpdateOrganizationNameRequest
@@ -136,80 +120,6 @@ message UpdateOrganizationNameRequest {
     string name = 2;
 }
 
-// UpdateOrganizationNameResponse
-//
-// ## Returns
-//
-// - Ok if the organization was updated
-message UpdateOrganizationNameResponse {
-}
-
-// ChangeOrganizationEmailRequest
-//
-// ## Fields
-//
-// - organization_id: The id of the organization
-message ChangeOrganizationEmailRequest {
-    // organization_id: The id of the organization
-    string organization_id = 1;
-}
-
-// ChangeOrganizationEmailResponse
-//
-// ## Returns
-//
-// - Ok if the mail was sent
-message ChangeOrganizationEmailResponse {
-}
-
-// ResetOrganizationEmailRequest
-//
-// ## Fields
-//
-// - organization_id: The id of the organization
-// - email: The email of the organization
-// - temp_key: The temp key of the email
-message ResetOrganizationEmailRequest {
-    // organization_id: The id of the organization
-    string organization_id = 1;
-    // email: The email of the organization
-    string email = 2;
-    // temp_key: The temp key of the email
-    string temp_key = 3;
-}
-
-// ResetOrganizationEmailResponse
-//
-// ## Returns
-//
-// - Ok if the mail was sent
-message ResetOrganizationEmailResponse {
-}
-
-// UpdateOrganizationEmailRequest
-//
-// ## Fields
-//
-// - organization_id: The id of the organization
-// - email: The email of the organization
-// - temp_key: The temp key of the email
-message UpdateOrganizationEmailRequest {
-    // organization_id: The id of the organization
-    string organization_id = 1;
-    // email: The email of the organization
-    string email = 2;
-    // temp_key: The temp key of the email
-    string temp_key = 3;
-}
-
-// UpdateOrganizationEmailResponse
-//
-// ## Returns
-//
-// - Ok if the organization was updated
-message UpdateOrganizationEmailResponse {
-}
-
 // UpdateOrganizationCreditAmountRequest
 //
 // ## Fields
@@ -221,14 +131,6 @@ message UpdateOrganizationCreditAmountRequest {
     string organization_id = 1;
     // credit_amount: The credit amount of the organization
     int64 credit_amount = 2;
-}
-
-// UpdateOrganizationCreditAmountResponse
-//
-// ## Returns
-//
-// - Ok if the organization was updated
-message UpdateOrganizationCreditAmountResponse {
 }
 
 // UpdateOrganizationLogoRequest
@@ -252,6 +154,48 @@ message UpdateOrganizationLogoRequest {
 message UpdateOrganizationLogoResponse {
     // logo: The path of the logo
     string logo = 1;
+}
+
+// ChangeOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+message ChangeOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+}
+
+// ResetOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - email: The email of the organization
+// - temp_key: The temp key of the email
+message ResetOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
+}
+
+// UpdateOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - email: The email of the organization
+// - temp_key: The temp key of the email
+message UpdateOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
 }
 
 // AddOrganizationUserRequest
@@ -280,14 +224,6 @@ message RemoveOrganizationUserRequest {
     string user_name = 2;
 }
 
-// RemoveOrganizationUserResponse
-//
-// ## Returns
-//
-// - Ok if the user was removed
-message RemoveOrganizationUserResponse {
-}
-
 // AddOrganizationModeratorRequest
 //
 // ## Fields
@@ -314,46 +250,30 @@ message RemoveOrganizationModeratorRequest {
     string user_name = 2;
 }
 
-// RemoveOrganizationModeratorResponse
-//
-// ## Returns
-//
-// - Ok if the user was removed
-message RemoveOrganizationModeratorResponse {
-}
-
-// AddOrganizationKinRequest
+// AddOrganizationSetupRequest
 //
 // ## Fields
 //
 // - organization_id: The id of the organization
-// - kin_id: The id of the kin
-message AddOrganizationKinRequest {
+// - setup_id: The id of the setup
+message AddOrganizationSetupRequest {
     // organization_id: The id of the organization
     string organization_id = 1;
-    // kin_id: The id of the kin
-    string kin_id = 2;
+    // setup_id: The id of the setup
+    string setup_id = 2;
 }
 
-// RemoveOrganizationKinRequest
+// RemoveOrganizationSetupRequest
 //
 // ## Fields
 //
 // - organization_id: The id of the organization
-// - kin_id: The id of the kin
-message RemoveOrganizationKinRequest {
+// - setup_id: The id of the setup
+message RemoveOrganizationSetupRequest {
     // organization_id: The id of the organization
     string organization_id = 1;
-    // kin_id: The id of the kin
-    string kin_id = 2;
-}
-
-// RemoveOrganizationKinResponse
-//
-// ## Returns
-//
-// - Ok if the kin was removed
-message RemoveOrganizationKinResponse {
+    // setup_id: The id of the setup
+    string setup_id = 2;
 }
 
 // ChangeOrganizationOwnerRequest
@@ -369,14 +289,6 @@ message ChangeOrganizationOwnerRequest {
     string user_name = 2;
 }
 
-// ChangeOrganizationOwnerResponse
-//
-// ## Returns
-//
-// - Ok if the owner was changed
-message ChangeOrganizationOwnerResponse {
-}
-
 // RegenerateOrganizationInvitationCodeRequest
 //
 // ## Fields
@@ -388,12 +300,4 @@ message RegenerateOrganizationInvitationCodeRequest {
     string organization_id = 1;
     // name: The name of the user
     string name = 2;
-}
-
-// RegenerateOrganizationInvitationCodeResponse
-//
-// ## Returns
-//
-// - Ok if the invitation code was re-generated
-message RegenerateOrganizationInvitationCodeResponse {
 }
