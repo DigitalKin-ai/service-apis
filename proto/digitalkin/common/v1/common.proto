@@ -81,7 +81,7 @@ message OrganizationReply {
     // setups: List of setups
     repeated SetupReply setups = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // credit_amount: Credit amount
-    int64 credit_amount = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    optional int64 credit_amount = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // is_owner: Is the user the owner
     bool is_owner = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
     // activated: Is the organization activated
