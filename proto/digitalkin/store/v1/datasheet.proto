@@ -35,7 +35,7 @@ import "google/protobuf/timestamp.proto";
 // - setup: The setup of the data sheet
 // - owners (repeated): The owners of the data sheet
 // - creators (repeated): The creators of the data sheet
-// - users_fav (repeated): The users that have favorited the data sheet
+// - users_favs (repeated): The users that have favorited the data sheet
 // - reviews (repeated): The reviews of the data sheet
 // - tags (repeated): The tags of the data sheet
 // - licence: The licence of the data sheet
@@ -63,8 +63,8 @@ message DataSheet {
     repeated digitalkin.store.v1.UserReply owners = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
     // creators (repeated): The creators of the data sheet
     repeated digitalkin.store.v1.UserReply creators = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // users_fav (repeated): The users that have favorited the data sheet
-    repeated string users_fav = 9 [(google.api.field_behavior) = INPUT_ONLY];
+    // users_favs (repeated): The users that have favorited the data sheet
+    repeated string users_favs = 9 [(google.api.field_behavior) = INPUT_ONLY];
     // reviews (repeated): The reviews of the data sheet
     repeated Review reviews = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
     // tags (repeated): The tags of the data sheet
@@ -114,7 +114,7 @@ message CreateStoreDataSheetRequest {
 // Fields:
 //
 // - datasheet_id: DataSheet id
-message DisableKinResumeRequest {
+message DeleteStoreDataSheetRequest {
     // datasheet_id: DataSheet id
     string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
@@ -173,9 +173,9 @@ message UpdateStoreDataSheetNameRequest {
     string name = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-// UpdateKinShortDescriptionRequest
+// UpdateStoreDataSheetDescriptionRequest
 //
-// Update Kin short description request
+// Update store data sheet description request
 //
 // Fields:
 //

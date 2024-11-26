@@ -19,8 +19,8 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
-import "digitalkin/client/v1/user.proto";
 import "digitalkin/client/v1/ticketing.proto";
+import "digitalkin/client/v1/user.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
