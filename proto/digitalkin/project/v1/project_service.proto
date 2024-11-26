@@ -96,21 +96,21 @@ service ProjectService {
         };
     }
 
-    // CreateThread
-    //
-    // Parameters:
-    //
-    // - kin_id: Kin id
-    //
-    // Returns:
-    //
-    // - ThreadResponse
-    rpc CreateThread(CreateThreadRequest) returns (digitalkin.common.v1.ThreadReply) {
-        option (google.api.http) = {
-            post: "/v1/project/{kin_id}/thread/create"
-            body: "*"
-        };
-    }
+    // // CreateThread
+    // //
+    // // Parameters:
+    // //
+    // // - kin_id: Kin id
+    // //
+    // // Returns:
+    // //
+    // // - ThreadResponse
+    // rpc CreateThread(CreateThreadRequest) returns (digitalkin.common.v1.ThreadReply) {
+    //     option (google.api.http) = {
+    //         post: "/v1/project/{kin_id}/thread/create"
+    //         body: "*"
+    //     };
+    // }
 
     // ReadThread
     //
