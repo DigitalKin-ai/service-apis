@@ -19,6 +19,7 @@ package digitalkin.store.v1;
 import "digitalkin/common/v1/common.proto";
 import "digitalkin/store/v1/datasheet.proto";
 import "digitalkin/store/v1/review.proto";
+import "digitalkin/store/v1/tag.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";

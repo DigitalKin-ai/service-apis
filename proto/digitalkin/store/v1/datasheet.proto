@@ -245,6 +245,21 @@ message UpdateStoreDataSheetFrameworkRequest {
     string framework = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
+// UpdateStoreDataSheetLicenseRequest
+//
+// Update store data sheet license request
+//
+// Fields:
+//
+// - datasheet_id: DataSheet id
+// - license: DataSheet license
+message UpdateStoreDataSheetLicenseRequest {
+    // datasheet_id: DataSheet id
+    string datasheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // license: DataSheet license
+    string license = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
 // UpdateStoreDataSheetDocumentationRequest
 //
 // Update store data sheet documentation request
