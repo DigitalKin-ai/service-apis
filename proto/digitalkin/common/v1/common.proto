@@ -63,6 +63,31 @@ message UserReply {
     bool activated = 6 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
+// OrganizationReply
+//
+// Fields:
+//
+// - id: Organization ID
+// - name: Organization name
+// - setups: List of setups
+// - credit_amount: Credit amount
+// - is_owner: Is the user the owner
+// - activated: Is the organization activated
+message OrganizationReply {
+    // id: Organization ID
+    string id = 1 [(google.api.field_behavior) = INPUT_ONLY];
+    // name: Organization name
+    string name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // setups: List of setups
+    repeated SetupReply setups = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // credit_amount: Credit amount
+    int64 credit_amount = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // is_owner: Is the user the owner
+    bool is_owner = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // activated: Is the organization activated
+    bool activated = 6 [(google.api.field_behavior) = INPUT_ONLY];
+}
+
 // SetupReply
 //
 // Fields:

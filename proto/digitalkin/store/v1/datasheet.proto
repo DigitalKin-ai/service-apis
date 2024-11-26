@@ -134,14 +134,14 @@ message ReadAllStoreDataSheetsRequest {
     optional int32 limit = 2;
 }
 
-// ReadAllStoreDataSheetsRequest
+// ReadAllStoreDataSheetsResponse
 //
 // Response to read all store data sheets
 //
 // returns:
 //
 // - data_sheets: List of data sheets
-message ReadAllStoreDataSheetsRequest {
+message ReadAllStoreDataSheetsResponse {
     // data_sheets: List of data sheets
     repeated digitalkin.store.v1.DataSheetReply data_sheets = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
