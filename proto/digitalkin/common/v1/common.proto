@@ -52,9 +52,9 @@ message UserReply {
     // user_name: The name of the user
     string user_name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // first_name: The first name of the user
-    optional string first_name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    string first_name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // last_name: The last name of the user
-    optional string last_name = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    string last_name = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // email: The email of the user
     string email = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // avatar: The avatar of the user
