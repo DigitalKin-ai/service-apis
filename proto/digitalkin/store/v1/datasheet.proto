@@ -60,9 +60,9 @@ message DataSheet {
     // setup: The setup of the data sheet
     string setup = 6 [(google.api.field_behavior) = INPUT_ONLY];
     // owners (repeated): The owners of the data sheet
-    repeated digitalkin.store.v1.UserReply owners = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+    repeated digitalkin.common.v1.UserReply owners = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
     // creators (repeated): The creators of the data sheet
-    repeated digitalkin.store.v1.UserReply creators = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
+    repeated digitalkin.common.v1.UserReply creators = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
     // users_favs (repeated): The users that have favorited the data sheet
     repeated string users_favs = 9 [(google.api.field_behavior) = INPUT_ONLY];
     // reviews (repeated): The reviews of the data sheet
@@ -143,7 +143,7 @@ message ReadAllStoreDataSheetsRequest {
 // - data_sheets: List of data sheets
 message ReadAllStoreDataSheetsResponse {
     // data_sheets: List of data sheets
-    repeated digitalkin.store.v1.DataSheetReply data_sheets = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    repeated digitalkin.common.v1.DataSheetReply data_sheets = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // ReadStoreDataSheetRequest
