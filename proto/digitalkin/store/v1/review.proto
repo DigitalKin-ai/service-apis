@@ -47,18 +47,18 @@ message Review {
     ];
 }
 
-// CreateStoreDataSheetReviewRequest
+// CreateKinReviewRequest
 //
 // Create a new review
 //
 // Fields:
 //
-// - datasheet_id: DataSheet id
+// - kin_id: Kin id
 // - user_name: User name
 // - user_avatar: User avatar
 // - review: Review
 // - review_comment: Review comment
-message CreateStoreDataSheetReviewRequest {
+message CreateKinReviewRequest {
     // kin_id: Kin id
     string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
     // user_name: User name
@@ -71,21 +71,21 @@ message CreateStoreDataSheetReviewRequest {
     optional string review_comment = 5;
 }
 
-// UpdateStoreDataSheetReviewRequest
+// UpdateKinReviewRequest
 //
 // Update a review
 //
 // Fields:
 //
-// - review_id: Review id
-// - datasheet_id: DataSheet id
+// - id: Review id
+// - kin_id: Kin id
 // - review: Review
 // - review_comment: Review comment
-message UpdateStoreDataSheetReviewRequest {
-    // review_id: Review id
-    string review_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // datasheet_id: DataSheet id
-    string datasheet_id = 2 [(google.api.field_behavior) = REQUIRED];
+message UpdateKinReviewRequest {
+    // id: Review id
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+    // kin_id: Kin id
+    string kin_id = 2 [(google.api.field_behavior) = REQUIRED];
     // review: Review
     int64 review = 3 [(google.api.field_behavior) = REQUIRED];
     // review_comment: Review comment
