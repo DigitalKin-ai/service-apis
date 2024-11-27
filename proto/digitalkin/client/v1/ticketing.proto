@@ -19,7 +19,27 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
-import "google/api/field_behavior.proto";
+import "google/api/annotations.proto";
+
+// TicketingService
+service TicketingService {
+    // CreateTicket
+    //
+    // ## Parameters
+    //
+    // - ticket_title Ticket title
+    // - ticket_body: Ticket body
+    //
+    // ## Returns
+    //
+    // - Nothing
+    rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
+        option (google.api.http) = {
+      post: "/v1/ticket"
+      body: "*"
+    };
+    }
+}
 
 // CreateTicketRequest
 //
@@ -33,9 +53,9 @@ import "google/api/field_behavior.proto";
 // - additional_information: Additional information
 message CreateTicketRequest {
     // ticket_title: Ticket title
-    string ticket_title = 1 [(google.api.field_behavior) = REQUIRED];
+    string ticket_title = 1;
     // description: Ticket description
-    string description = 2 [(google.api.field_behavior) = REQUIRED];
+    string description = 2;
     // steps_to_reproduce: Steps to reproduce
     optional string steps_to_reproduce = 3;
     // expected_behavior: Expected behavior
@@ -44,4 +64,12 @@ message CreateTicketRequest {
     optional string actual_behavior = 5;
     // additional_information: Additional information
     optional string additional_information = 6;
+}
+
+// CreateTicketResponse
+//
+// ## Returns
+//
+// - Ok if the ticket was created
+message CreateTicketResponse {
 }
