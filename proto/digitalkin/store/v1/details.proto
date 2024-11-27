@@ -1,0 +1,149 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "digitalkin/common/v1/common.proto";
+
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// License
+//
+// License section in project resume.
+//
+// Fields:
+//
+// - name: License name
+// - url: License url
+message License {
+    // name: License name
+    string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // url: License url
+    string url = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Documentation
+//
+// Documentation section in project resume.
+//
+// Fields:
+//
+// - url: Documentation url
+message Documentation {
+    // url: Documentation url
+    string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// Details
+//
+// Details section in project resume.
+//
+// Fields:
+//
+// - creation_date: Project creation date
+// - last_update: Project last update
+// - version: Project version
+// - languages: Project languages
+// - framework: Project framework
+// - owners: Project owners
+// - creators: Project creators
+// - license: Project licence
+// - documentation: Project documentation
+message Details {
+    // creation_date: Project creation date
+    google.protobuf.Timestamp creation_date = 1 [
+        (google.api.field_behavior) = IMMUTABLE,
+        (google.api.field_behavior) = OUTPUT_ONLY
+    ];
+    // last_update: Project last update
+    google.protobuf.Timestamp last_update = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // version: Project version
+    float version = 3 [(google.api.field_behavior) = INPUT_ONLY];
+    // languages: Project languages
+    repeated string languages = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // framework: Project framework
+    optional string framework = 5;
+    // owners: Project owners
+    repeated digitalkin.common.v1.UserReply owners = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // creators: Project creators
+    repeated digitalkin.common.v1.UserReply creators = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // license: Project license
+    optional License license = 8;
+    // documentation: Project documentation
+    optional Documentation documentation = 9;
+}
+
+// UpdateKinLanguagesRequest
+//
+// Request message for `UpdateKinLanguages` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - languages: Kin languages
+message UpdateKinLanguagesRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // languages: Kin languages
+    repeated string languages = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinFrameworkRequest
+//
+// Request message for `UpdateKinFramework` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - framework: Kin framework
+message UpdateKinFrameworkRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // framework: Kin framework
+    string framework = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinLicenseRequest
+//
+// Request message for `UpdateKinLicense` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - license: Kin license
+message UpdateKinLicenseRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // license: Kin license
+    License license = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+
+// UpdateKinDocumentationRequest
+//
+// Request message for `UpdateKinDocumentation` method.
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - documentation: Kin documentation
+message UpdateKinDocumentationRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // documentation: Kin documentation
+    Documentation documentation = 2 [(google.api.field_behavior) = REQUIRED];
+}

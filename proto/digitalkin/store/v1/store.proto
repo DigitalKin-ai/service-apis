@@ -1,0 +1,170 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "digitalkin/common/v1/common.proto";
+import "digitalkin/store/v1/block.proto";
+import "digitalkin/store/v1/card.proto";
+import "digitalkin/store/v1/details.proto";
+import "digitalkin/store/v1/review.proto";
+import "digitalkin/store/v1/tag.proto";
+
+import "google/api/field_behavior.proto";
+
+// StoreResume
+//
+// Resume of a Kin
+//
+// Fields:
+//
+// - card: Kin card
+// - description: Kin description
+// - list_blocks: Kin list blocks
+// - reviews: Kin reviews
+message StoreResume {
+    // card: Kin card
+    Card card = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // list_blocks: Kin list blocks
+    ListBlock list_blocks = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // details: Kin details
+    Details details = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // reviews: Kin reviews
+    repeated Review reviews = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// CreateKinResumeRequest
+//
+// Create Kin resume request
+//
+// Fields:
+//
+// - name: Kin name
+// - short_description: Kin description
+message CreateKinResumeRequest {
+    // name: Kin name
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+    // short_description: Kin description
+    optional string short_description = 2;
+}
+
+// DisableKinResumeRequest
+//
+// Disable Kin resume request
+//
+// Fields:
+//
+// - kin_id: Kin id
+message DisableKinResumeRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// ReadAllKinsRequest
+//
+// Request to read all Kins
+//
+// Fields:
+//
+// - page: Page number
+// - limit: Limit of items per page
+message ReadAllKinsRequest {
+    // page: Page number
+    optional int32 page = 1;
+    // limit: Limit of items per page
+    optional int32 limit = 2;
+}
+
+// ReadAllKinsResponse
+//
+// Response to read all Kins
+//
+// returns:
+//
+// - kins: List of Kins
+message ReadAllKinsResponse {
+    // kins: List of Kins
+    repeated Card kins = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// ReadKinResumeRequest
+//
+// Request to read a Kin resume
+//
+// Fields:
+//
+// - kin_id: Kin id
+message ReadKinResumeRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinNameRequest
+//
+// Update Kin name request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - name: Kin name
+message UpdateKinNameRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // name: Kin name
+    string name = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinImageRequest
+//
+// Update Kin image request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - image: Kin image
+message UpdateKinImageRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // image: Kin image
+    digitalkin.common.v1.File image = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinShortDescriptionRequest
+//
+// Update Kin short description request
+//
+// Fields:
+//
+// - kin_id: Kin id
+// - short_description: Kin short description
+message UpdateKinShortDescriptionRequest {
+    // kin_id: Kin id
+    string kin_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // short_description: Kin short description
+    string short_description = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// UpdateKinImageResponse
+//
+// Update Kin image response
+//
+// Fields:
+//
+// - url: Kin image url
+message UpdateKinImageResponse {
+    // url: Kin image url
+    string url = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

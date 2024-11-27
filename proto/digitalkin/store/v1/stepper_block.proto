@@ -1,0 +1,73 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.store.v1;
+
+import "google/api/field_behavior.proto";
+
+// Step
+//
+// A step entity that contains a title, content, and an image.
+//
+// Fields:
+//
+// - title: The title of the step.
+// - contents: The content of the step.
+// - image: The image of the step.
+message Step {
+    // title: The title of the step.
+    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // contents: The content of the step.
+    repeated string contents = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // image: The image of the step.
+    string image = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// StepperBlock
+//
+// A stepper block entity that contains a title and a list of steps.
+//
+// Fields:
+//
+// - title: The title of the step block.
+// - subtitle: The subtitle of the step block.
+// - steps: The list of steps.
+message StepperBlock {
+    // title: The title of the step block.
+    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // subtitle: The subtitle of the step block.
+    optional string subtitle = 2;
+    // steps: The list of steps.
+    repeated Step steps = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+// UpdateStepperBlockRequest
+//
+// Request message for the UpdateStepperBlock method.
+//
+// Fields:
+//
+// - title: The title of the step block.
+// - subtitle: The subtitle of the step block.
+// - steps: The list of steps.
+message UpdateStepperBlockRequest {
+    // title: The title of the step block.
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    // subtitle: The subtitle of the step block.
+    optional string subtitle = 2;
+    // steps: The list of steps.
+    repeated Step steps = 3 [(google.api.field_behavior) = REQUIRED];
+}
