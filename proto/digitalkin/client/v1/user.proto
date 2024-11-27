@@ -19,361 +19,13 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
-import "google/api/annotations.proto";
-
-import "digitalkin/client/v1/organization.proto";
 import "digitalkin/common/v1/common.proto";
 
-// UserService
-service UserService {
-    // CreateUser
-    //
-    // ## Parameters
-    //
-    // - user_name: User name
-    // - user_email: User email
-    // - user_password: <PASSWORD>
-    //
-    // ## Returns
-    //
-    // Ok if the user was created
-    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
-        option (google.api.http) = {
-      post: "/v1/user"
-      body: "*"
-    };
-    }
-    // ReadUser
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // - User
-    rpc ReadUser(ReadUserRequest) returns (stream User) {
-        option (google.api.http) = {
-      get: "/v1/user/"
-    };
-    }
-    // DeleteUser
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // Ok if the user was deleted
-    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
-        option (google.api.http) = {
-      delete: "/v1/user"
-    };
-    }
-    // UpdateActivated
-    //
-    // ## Parameters
-    //
-    // - user_name: User name
-    // - user_activated: User activated
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateActivated(UpdateUserActivatedRequest) returns (UpdateUserActivatedResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/activated"
-      body: "*"
-    };
-    }
-    // UpdateFirstName
-    //
-    // ## Parameters
-    //
-    // - first_name: First name
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateFirstName(UpdateUserFirstNameRequest) returns (UpdateUserFirstNameResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/first_name"
-      body: "*"
-    };
-    }
-    // UpdateLastName
-    //
-    // ## Parameters
-    //
-    // - last_name: Last name
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateLastName(UpdateUserLastNameRequest) returns (UpdateUserLastNameResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/last_name"
-      body: "*"
-    };
-    }
-
-    // UpdateUserName
-    //
-    // ## Parameters
-    //
-    // - user_name: User name
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateUserName(UpdateUserNameRequest) returns (UpdateUserNameResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/user_name"
-      body: "*"
-    };
-    }
-
-    // UpdateUserUsageType
-    //
-    // ## Parameters
-    //
-    // - usage_types: Usage type
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateUserUsageType(UpdateUserUsageTypeRequest) returns (UpdateUserUsageTypeResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/usage_types"
-      body: "*"
-    };
-    }
-
-    // UpdateAvatar
-    //
-    // ## Parameters
-    //
-    // - avatar: Avatar
-    //
-    // ## Returns
-    //
-    // - avatar: Avatar path
-    rpc UpdateAvatar(UpdateUserAvatarRequest) returns (UpdateUserAvatarResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/avatar"
-      body: "*"
-    };
-    }
-
-    // RequestChangePassword
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // Ok if the mail was sent
-    rpc RequestChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
-        option (google.api.http) = {
-      post: "/v1/user/password/request"
-      body: "*"
-    };
-    }
-
-    // ResetPassword
-    //
-    // ## Parameters
-    //
-    // - temp_key: Temp key
-    // - new_password: New password
-    //
-    // ## Returns
-    //
-    // Ok if the mail was sent
-    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/password/reset"
-      body: "*"
-    };
-    }
-
-    // UpdatePassword
-    //
-    // ## Parameters
-    //
-    // - new_password: New password
-    // - old_password: Old password
-    // - temp_key: Temp key
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdatePassword(UpdateUserPasswordRequest) returns (UpdateUserPasswordResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/password"
-      body: "*"
-    };
-    }
-
-    // RequestChangeEmail
-    //
-    // ## Parameters
-    //
-    // - Nothing
-    //
-    // ## Returns
-    //
-    // Ok if the mail was sent
-    rpc RequestChangeEmail(ChangeEmailRequest) returns (ChangeEmailResponse) {
-        option (google.api.http) = {
-      post: "/v1/user/email/request"
-      body: "*"
-    };
-    }
-
-    // ResetEmail
-    //
-    // ## Parameters
-    //
-    // - temp_key: Temp key
-    // - email: Email
-    //
-    // ## Returns
-    //
-    // Ok if the mail was sent
-    rpc ResetEmail(ResetEmailRequest) returns (ResetEmailResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/email/reset"
-      body: "*"
-    };
-    }
-
-    // UpdateEmail
-    //
-    // ## Parameters
-    //
-    // - email: Email
-    // - temp_key: Temp key
-    //
-    // ## Returns
-    //
-    // Ok if the user was updated
-    rpc UpdateEmail(UpdateUserEmailRequest) returns (UpdateUserEmailResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/email"
-      body: "*"
-    };
-    }
-
-    // VerifyUser
-    //
-    // ## Parameters
-    //
-    // - temp_key: Temp key
-    //
-    // ## Returns
-    //
-    // Ok if the user was verified
-    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
-        option (google.api.http) = {
-      patch: "/v1/user/verify"
-      body: "*"
-    };
-    }
-
-    // AddOrganization
-    //
-    // ## Parameters
-    //
-    // - invitation_code: Invitation code
-    //
-    // ## Returns
-    //
-    // Ok if the organization was added
-    rpc AddOrganization(AddUserOrganizationRequest) returns (OrganizationReply) {
-        option (google.api.http) = {
-      post: "/v1/user/organization"
-      body: "*"
-    };
-    }
-
-    // RemoveOrganization
-    //
-    // ## Parameters
-    //
-    // - organization_id: Organization id
-    //
-    // ## Returns
-    //
-    // Ok if the organization was removed
-    rpc RemoveOrganization(RemoveUserOrganizationRequest) returns (RemoveUserOrganizationResponse) {
-        option (google.api.http) = {
-      delete: "/v1/user/organization/{organization_id}"
-    };
-    }
-
-    // AddFavKin
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    //
-    // ## Returns
-    //
-    // Ok if the kin was added
-    rpc AddFavKin(AddUserKinRequest) returns (digitalkin.common.v1.KinReply) {
-        option (google.api.http) = {
-      post: "/v1/user/kin"
-      body: "*"
-    };
-    }
-
-    // RemoveFavKin
-    //
-    // ## Parameters
-    //
-    // - kin_id: Kin id
-    //
-    // ## Returns
-    //
-    // Ok if the kin was removed
-    rpc RemoveFavKin(RemoveUserKinRequest) returns (RemoveUserKinResponse) {
-        option (google.api.http) = {
-      delete: "/v1/user/kin/{kin_id}"
-    };
-    }
-}
-
-// OrganizationReply
-//
-// ## Fields
-//
-// - id: Organization ID
-// - name: Organization name
-// - kins: List of kins
-// - credit_amount: Credit amount
-// - is_owner: Is the user the owner
-// - activated: Is the organization activated
-message OrganizationReply {
-    // id: Organization ID
-    string id = 1;
-    // name: Organization name
-    string name = 2;
-    // kins: List of kins
-    repeated string kins = 3;
-    // credit_amount: Credit amount
-    optional int64 credit_amount = 4;
-    // is_owner: Is the user the owner
-    bool is_owner = 5;
-    // activated: Is the organization activated
-    bool activated = 6;
-}
+import "google/api/field_behavior.proto";
 
 // User
 //
-// ## Fields
+// Fields:
 //
 // - user_name: User name
 // - first_name: First name
@@ -381,31 +33,28 @@ message OrganizationReply {
 // - email: Email
 // - avatar: Avatar
 // - organizations: List of organizations
-// - fav_kins: List of fav kins
 // - usage_types: Usage type
 // - activated: Is the user activated
 // - is_admin: Is the user an admin
 message User {
     // user_name: User name
-    string user_name = 1;
+    string user_name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
     // first_name: First name
-    optional string first_name = 2;
+    string first_name = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // last_name: Last name
-    optional string last_name = 3;
+    string last_name = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
     // email: Email
-    string email = 4;
+    string email = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
     // avatar: Avatar
     optional string avatar = 5;
     // organizations: List of organizations
-    repeated OrganizationReply organizations = 6;
-    // fav_kins: List of fav kins
-    repeated digitalkin.common.v1.KinReply fav_kins = 7;
+    repeated digitalkin.common.v1.OrganizationReply organizations = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
     // usage_types: Usage type
-    repeated string usage_types = 8;
+    repeated string usage_types = 7 [(google.api.field_behavior) = INPUT_ONLY];
     // activated: Is the user activated
-    bool activated = 9;
+    bool activated = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
     // is_admin: Is the user an admin
-    bool is_admin = 10;
+    bool is_admin = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // CreateUserRequest
@@ -420,49 +69,17 @@ message User {
 // - last_name: Last name
 message CreateUserRequest {
     // user_name: User name
-    string user_name = 1;
+    string user_name = 1 [(google.api.field_behavior) = REQUIRED];
     // email: Email
-    string email = 2;
+    string email = 2 [(google.api.field_behavior) = REQUIRED];
     // password: Password
-    string password = 3;
+    string password = 3 [(google.api.field_behavior) = REQUIRED];
     // invitation_code: Invitation code
     optional string invitation_code = 4;
     // first_name: First name
-    optional string first_name = 5;
+    string first_name = 5 [(google.api.field_behavior) = REQUIRED];
     // last_name: Last name
-    optional string last_name = 6;
-}
-
-// CreateUserResponse
-//
-// ## Returns
-//
-// Ok if the user was created
-message CreateUserResponse {
-}
-
-// ReadUserRequest
-//
-// ## Fields
-//
-// - Nothing
-message ReadUserRequest {
-}
-
-// DeleteUserRequest
-//
-// ## Fields
-//
-// - Nothing
-message DeleteUserRequest {
-}
-
-// DeleteUserResponse
-//
-// ## Returns
-//
-// Ok if the user was deleted
-message DeleteUserResponse {
+    string last_name = 6 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserActivatedRequest
@@ -473,17 +90,9 @@ message DeleteUserResponse {
 // - activated: Is the user activated
 message UpdateUserActivatedRequest {
     // user_name: User name
-    string user_name = 1;
+    string user_name = 1 [(google.api.field_behavior) = REQUIRED];
     // activated: Is the user activated
-    bool activated = 2;
-}
-
-// UpdateUserActivatedResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserActivatedResponse {
+    bool activated = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserFirstNameRequest
@@ -493,15 +102,7 @@ message UpdateUserActivatedResponse {
 // - first_name: First name
 message UpdateUserFirstNameRequest {
     // first_name: First name
-    string first_name = 1;
-}
-
-// UpdateUserFirstNameResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserFirstNameResponse {
+    string first_name = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserLastNameRequest
@@ -511,15 +112,7 @@ message UpdateUserFirstNameResponse {
 // - last_name: Last name
 message UpdateUserLastNameRequest {
     // last_name: Last name
-    string last_name = 1;
-}
-
-// UpdateUserLastNameResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserLastNameResponse {
+    string last_name = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserNameRequest
@@ -529,29 +122,40 @@ message UpdateUserLastNameResponse {
 // - user_name: User name
 message UpdateUserNameRequest {
     // user_name: User name
-    string user_name = 1;
+    string user_name = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-// UpdateUserNameResponse
+// VerifyUserRequest
+//
+// ## Fields
+//
+// - temp_key: Temp key
+message VerifyUserRequest {
+    // temp_key: Temp key
+    string temp_key = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// VerifyUserResponse
 //
 // ## Returns
 //
-// Ok if the user was updated
-message UpdateUserNameResponse {
+// - token: Token
+// - expire_date: Expire date
+message VerifyUserResponse {
+    // token: Token
+    string token = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // expire_date: Expire date
+    string expire_date = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // UpdateUserUsageTypeRequest
+//
+// ## Fields
+//
+// - usage_types: Usage type
 message UpdateUserUsageTypeRequest {
     // usage_types: Usage type
-    repeated string usage_types = 1;
-}
-
-// UpdateUserUsageTypeResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserUsageTypeResponse {
+    repeated string usage_types = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserAvatarRequest
@@ -561,7 +165,7 @@ message UpdateUserUsageTypeResponse {
 // - avatar: Avatar
 message UpdateUserAvatarRequest {
     // avatar: Avatar
-    digitalkin.common.v1.File avatar = 3;
+    digitalkin.common.v1.File avatar = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserAvatarResponse
@@ -571,23 +175,7 @@ message UpdateUserAvatarRequest {
 // - avatar: Avatar path
 message UpdateUserAvatarResponse {
     // avatar: Avatar path
-    string avatar = 1;
-}
-
-// ChangePasswordRequest
-//
-// ## Fields
-//
-// - Nothing
-message ChangePasswordRequest {
-}
-
-// ChangePasswordResponse
-//
-// ## Returns
-//
-// Ok if the mail was sent
-message ChangePasswordResponse {
+    string avatar = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // ResetPasswordRequest
@@ -598,17 +186,9 @@ message ChangePasswordResponse {
 // - new_password: New password
 message ResetPasswordRequest {
     // temp_key: Temp key
-    string temp_key = 1;
+    string temp_key = 1 [(google.api.field_behavior) = REQUIRED];
     // new_password: New password
-    string new_password = 2;
-}
-
-// ResetPasswordResponse
-//
-// ## Returns
-//
-// Ok if the mail was sent
-message ResetPasswordResponse {
+    string new_password = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserPasswordRequest
@@ -620,35 +200,11 @@ message ResetPasswordResponse {
 // - temp_key: Temp key
 message UpdateUserPasswordRequest {
     // new_password: New password
-    string new_password = 1;
+    string new_password = 1 [(google.api.field_behavior) = REQUIRED];
     // old_password: Old password
-    string old_password = 2;
+    string old_password = 2 [(google.api.field_behavior) = REQUIRED];
     // temp_key: Temp key
-    string temp_key = 3;
-}
-
-// UpdateUserPasswordResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserPasswordResponse {
-}
-
-// ChangeEmailRequest
-//
-// ## Fields
-//
-// - Nothing
-message ChangeEmailRequest {
-}
-
-// ChangeEmailResponse
-//
-// ## Returns
-//
-// Ok if the mail was sent
-message ChangeEmailResponse {
+    string temp_key = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 // ResetEmailRequest
@@ -659,17 +215,9 @@ message ChangeEmailResponse {
 // - email: Email
 message ResetEmailRequest {
     // temp_key: Temp key
-    string temp_key = 1;
+    string temp_key = 1 [(google.api.field_behavior) = REQUIRED];
     // email: Email
-    string email = 2;
-}
-
-// ResetEmailResponse
-//
-// ## Returns
-//
-// Ok if the mail was sent
-message ResetEmailResponse {
+    string email = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // UpdateUserEmailRequest
@@ -680,39 +228,9 @@ message ResetEmailResponse {
 // - temp_key: Temp key
 message UpdateUserEmailRequest {
     // email: Email
-    string email = 1;
+    string email = 1 [(google.api.field_behavior) = REQUIRED];
     // temp_key: Temp key
-    string temp_key = 2;
-}
-
-// UpdateUserEmailResponse
-//
-// ## Returns
-//
-// Ok if the user was updated
-message UpdateUserEmailResponse {
-}
-
-// VerifyUserRequest
-//
-// ## Fields
-//
-// - temp_key: Temp key
-message VerifyUserRequest {
-    // temp_key: Temp key
-    string temp_key = 1;
-}
-
-// VerifyUserResponse
-//
-// ## Returns
-//
-// Ok if the user was verified
-message VerifyUserResponse {
-    // token: Token
-    string token = 1;
-    // expire_date: Expire date
-    string expire_date = 2;
+    string temp_key = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // AddUserOrganizationRequest
@@ -722,7 +240,7 @@ message VerifyUserResponse {
 // - invitation_code: Invitation code
 message AddUserOrganizationRequest {
     // invitation_code: Invitation code
-    string invitation_code = 1;
+    string invitation_code = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // RemoveUserOrganizationRequest
@@ -732,41 +250,5 @@ message AddUserOrganizationRequest {
 // - organization_id: Organization id
 message RemoveUserOrganizationRequest {
     // organization_id: Organization id
-    string organization_id = 1;
-}
-
-// RemoveUserOrganizationResponse
-//
-// ## Returns
-//
-// Ok if the organization was removed
-message RemoveUserOrganizationResponse {
-}
-
-// AddUserKinRequest
-//
-// ## Fields
-//
-// - kin_id: Kin id
-message AddUserKinRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-}
-
-// RemoveUserKinRequest
-//
-// ## Fields
-//
-// - kin_id: Kin id
-message RemoveUserKinRequest {
-    // kin_id: Kin id
-    string kin_id = 1;
-}
-
-// RemoveUserKinResponse
-//
-// ## Returns
-//
-// Ok if the kin was removed
-message RemoveUserKinResponse {
+    string organization_id = 1 [(google.api.field_behavior) = REQUIRED];
 }

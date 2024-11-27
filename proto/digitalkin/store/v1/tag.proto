@@ -61,15 +61,39 @@ message Tag {
     TagType type = 3 [(google.api.field_behavior) = INPUT_ONLY];
 }
 
-// TagBlock
+// ReadStoreDataSheetTagsResponse
+//
+// Returns :
+//
+// - tags: List of tags
+message ReadStoreDataSheetTagsResponse {
+    // tags: List of tags
+    repeated Tag tags = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+
+// AddStoreDataSheetTagRequest
 //
 // Fields :
 //
-// - title: Title of the tag block
-// - tags: List of tags
-message TagBlock {
-    // title: Title of the tag block
-    string title = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // tags: List of tags
-    repeated Tag tags = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+// - data_sheet_id: Data sheet id
+// - tag_id: Tag id
+message AddStoreDataSheetTagRequest {
+    // data_sheet_id: Data sheet id
+    string data_sheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // tag_id: Tag id
+    string tag_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// RemoveStoreDataSheetTagRequest
+//
+// Fields :
+//
+// - data_sheet_id: Data sheet id
+// - tag_id: Tag id
+message RemoveStoreDataSheetTagRequest {
+    // data_sheet_id: Data sheet id
+    string data_sheet_id = 1 [(google.api.field_behavior) = REQUIRED];
+    // tag_id: Tag id
+    string tag_id = 2 [(google.api.field_behavior) = REQUIRED];
 }
