@@ -25,14 +25,14 @@ import "google/protobuf/struct.proto";
 // Fields:
 //
 // - module_id: The module ID of the data.
-// - instance_id: The instance ID of the data.
+// - node_id: The node ID of the data.
 // - content: The content of the data, we cannot know what will be inside the content
 //     that's why we used Struct, to let it free but respecting a struct format.
 message Data {
     // module_id: The module ID of the data.
     string module_id = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
-    // instance_id: The instance ID of the data.
-    string instance_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // node_id: The node ID of the data.
+    string node_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
     // content: The content of the data.
     google.protobuf.Struct content = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
@@ -85,27 +85,27 @@ message ReadSetupResponse {
 }
 
 
-// GetInstanceSetupRequest
-// This request is used to get an instance setup thanks a specific setup and instance ids.
+// GetNodeSetupRequest
+// This request is used to get a node setup thanks a specific setup and node ids.
 //
 // Fields:
 //
 // - setup_id: The unique identifier of the setup.
-// - instance_id: The unique identifier of the setup.
-message GetInstanceSetupRequest {
+// - node_id: The unique identifier of the setup.
+message GetNodeSetupRequest {
     // setup_id: The unique identifier of the setup.
     string setup_id = 1 [(google.api.field_behavior) = REQUIRED];
-    // instance_id: The unique identifier of the instance.
-    string instance_id = 2 [(google.api.field_behavior) = REQUIRED];
+    // node_id: The unique identifier of the node.
+    string node_id = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-// GetInstanceSetupResponse
-// This response is used to return a specific instance setup from a specific setup.
+// GetNodeSetupResponse
+// This response is used to return a specific node setup from a specific setup.
 //
 // Returns:
 //
-// - data: The instance setup.
-message GetInstanceSetupResponse {
-    // data: The instance setup.
+// - data: The node setup.
+message GetNodeSetupResponse {
+    // data: The node setup.
     Data data = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
 }

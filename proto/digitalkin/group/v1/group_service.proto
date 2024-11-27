@@ -1,0 +1,328 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.group.v1;
+
+import "digitalkin/common/v1/common.proto";
+import "digitalkin/group/v1/organization.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// GroupService
+service GroupService {
+    // CreateOrganization
+    //
+    //Parameters:
+    //
+    // - name: The name of the organization
+    // - email: The email of the organization
+    //
+    // Returns:
+    //
+    // - Organization
+    rpc CreateOrganization(CreateOrganizationRequest) returns (Organization) {
+        option (google.api.http) = {
+            post: "/v1/organization/create"
+            body: "*"
+        };
+    }
+
+    // ReadOrganization
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    //
+    // Returns:
+    //
+    // - Organization
+    rpc ReadOrganization(ReadOrganizationRequest) returns (stream Organization) {
+        option (google.api.http) = {
+            get: "/v1/organization/{organization_id}/read"
+        };
+    }
+
+    // DeleteOrganization
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc DeleteOrganization(DeleteOrganizationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/organization/{organization_id}/delete"
+        };
+    }
+
+    // UpdateActivated
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - activated: True if the organization is activated
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateActivated(UpdateOrganizationActivatedRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/activated/update"
+            body: "*"
+        };
+    }
+
+    // UpdateName
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - name: The name of the organization
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateName(UpdateOrganizationNameRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/name/update"
+            body: "*"
+        };
+    }
+
+    // UpdateCreditAmount
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - credit_amount: The amount of credit
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateCreditAmount(UpdateOrganizationCreditAmountRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/creditamount/update"
+            body: "*"
+        };
+    }
+
+    // UpdateLogo
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - logo: The logo of the organization
+    //
+    // Returns:
+    //
+    // - Image path
+    rpc UpdateLogo(UpdateOrganizationLogoRequest) returns (UpdateOrganizationLogoResponse) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/logo/update"
+            body: "*"
+        };
+    }
+
+    // RequestChangeEmail
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RequestChangeEmail(ChangeOrganizationEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/organization/{organization_id}/email/request"
+            body: "*"
+        };
+    }
+
+    // ResetEmail
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - email: The email of the organization
+    // - temp_key: The temp key of the email
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc ResetEmail(ResetOrganizationEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/email/reset"
+            body: "*"
+        };
+    }
+
+    // UpdateEmail
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - email: The email of the organization
+    // - temp_key: The temp key of the email
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc UpdateEmail(UpdateOrganizationEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/email/update"
+            body: "*"
+        };
+    }
+
+    // AddUser
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // Returns:
+    //
+    // - User
+    rpc AddUser(AddOrganizationUserRequest) returns (digitalkin.common.v1.UserReply) {
+        option (google.api.http) = {
+            post: "/v1/organization/{organization_id}/user/{user_name}/add"
+            body: "*"
+        };
+    }
+
+    // RemoveUser
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RemoveUser(RemoveOrganizationUserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/organization/{organization_id}/user/{user_name}/remove"
+        };
+    }
+
+    // AddModerator
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // Returns:
+    //
+    // - User
+    rpc AddModerator(AddOrganizationModeratorRequest) returns (digitalkin.common.v1.UserReply) {
+        option (google.api.http) = {
+            post: "/v1/organization/{organization_id}/moderator/{user_name}/add"
+            body: "*"
+        };
+    }
+
+    // RemoveModerator
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RemoveModerator(RemoveOrganizationModeratorRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/organization/{organization_id}/moderator/{user_name}/remove"
+        };
+    }
+
+    // AddSetup
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - setup_id: The id of the setup
+    //
+    // Returns:
+    //
+    // - Setup
+    rpc AddSetup(AddOrganizationSetupRequest) returns (digitalkin.common.v1.SetupReply) {
+        option (google.api.http) = {
+            post: "/v1/organization/{organization_id}/setup/{setup_id}/add"
+            body: "*"
+        };
+    }
+
+    // RemoveSetup
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - kin_id: The id of the setup
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RemoveSetup(RemoveOrganizationSetupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/v1/organization/{organization_id}/setup/{setup_id}/remove"
+        };
+    }
+
+    // ChangeOwner
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    // - user_name: The name of the user
+    //
+    // Returns:
+    //
+    // - User
+    rpc ChangeOwner(ChangeOrganizationOwnerRequest) returns (digitalkin.common.v1.UserReply) {
+        option (google.api.http) = {
+            patch: "/v1/organization/{organization_id}/owner/{user_name}/change"
+            body: "*"
+        };
+    }
+
+    // RegenerateInvitationCode
+    //
+    //Parameters:
+    //
+    // - organization_id: The id of the organization
+    //
+    // Returns:
+    //
+    // - Nothing
+    rpc RegenerateInvitationCode(RegenerateOrganizationInvitationCodeRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/v1/organization/{organization_id}/invitationcode/regenerate"
+            body: "*"
+        };
+    }
+}
