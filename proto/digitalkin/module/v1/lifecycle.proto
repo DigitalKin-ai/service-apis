@@ -81,14 +81,17 @@ message ConnectionRequest {
 // Fields:
 // - input: Structured input data for the module
 // - setup_id: Database ID of the setupused to start the module
+// - instance_id: ID of the instance of a module inside a setup used to retrieve a specific module setup
 // - module_ids: List of Modules IDs to start
 message InputDataRequest {
     // input: Structured input data for the module
     google.protobuf.Struct input = 1 [(buf.validate.field).required = true];
-    // setup_id: Database ID of the setupused to start the module
+    // setup_id: Database ID of the setup used to start the module
     string setup_id = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "setups:", (buf.validate.field).required = true];
+    // instance_id: ID of the instance of a module inside a setup used to retrieve a specific module setup
+    string instance_id = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // module_ids: List of Modules IDs to start
-    repeated string module_ids = 3 [(buf.validate.field).repeated.min_items = 0, (buf.validate.field).repeated.items = { string: { min_len: 1, prefix: "modules:" } }, (google.api.field_behavior) = OPTIONAL];
+    repeated string module_ids = 4 [(buf.validate.field).repeated.min_items = 0, (buf.validate.field).repeated.items = { string: { min_len: 1, prefix: "modules:" } }, (google.api.field_behavior) = OPTIONAL];
 }
 
 // StartModuleRequest

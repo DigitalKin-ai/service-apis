@@ -24,10 +24,10 @@ import "google/protobuf/empty.proto";
 // SetupService
 service SetupService {
 
-    // GetNodeSetup
-    rpc GetNodeSetup(GetNodeSetupRequest) returns (GetNodeSetupResponse) {
+    // GetInstanceSetup
+    rpc GetInstanceSetup(GetInstanceSetupRequest) returns (GetInstanceSetupResponse) {
         option (google.api.http) = {
-        get: "/v2/setups/{setup_id}/nodes/{node_id}"
+        get: "/v2/setups/{setup_id}/instances/{instance_id}"
         };
     }
 
