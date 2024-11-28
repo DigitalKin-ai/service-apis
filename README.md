@@ -1,4 +1,4 @@
-# Service APIs for DigitalKin
+# Service APIs Proto
 
 ## Usage
 

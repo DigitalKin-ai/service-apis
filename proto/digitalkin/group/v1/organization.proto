@@ -1,0 +1,303 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// List of available options:
+// https://github.com/yoheimuta/protolint/blob/master/_example/config/.protolint.yaml
+
+syntax = "proto3";
+
+package digitalkin.group.v1;
+
+import "digitalkin/common/v1/common.proto";
+
+// Organization
+//
+// ## Fields
+//
+// - id: The id of the organization
+// - name: The name of the organization
+// - email: The email of the organization
+// - logo: The logo of the organization
+// - owner: The owner of the organization
+// - invitation_code: The invitation code of the organization
+// - moderators: The moderators of the organization
+// - users: The users of the organization
+// - setups: The setups of the organization
+// - credit_amount: The credit amount of the organization
+// - activated: True if the organization is activated
+message Organization {
+    // id: The id of the organization
+    string id = 1;
+    // name: The name of the organization
+    string name = 2;
+    // email: The email of the organization
+    string email = 3;
+    // logo: The logo of the organization
+    optional string logo = 4;
+    // owner: The owner of the organization
+    digitalkin.common.v1.UserReply owner = 5;
+    // invitation_code: The invitation code of the organization
+    string invitation_code = 6;
+    // moderators: The moderators of the organization
+    repeated digitalkin.common.v1.UserReply moderators = 7;
+    // users: The users of the organization
+    repeated digitalkin.common.v1.UserReply users = 8;
+    // setups: The setups of the organization
+    repeated digitalkin.common.v1.SetupReply setups = 9;
+    // credit_amount: The credit amount of the organization
+    optional int64 credit_amount = 10;
+    // activated: True if the organization is activated
+    bool activated = 11;
+}
+
+// CreateOrganizationRequest
+//
+// ## Fields
+//
+// - name: The name of the organization
+// - email: The email of the organization
+message CreateOrganizationRequest {
+    // name: The name of the organization
+    string name = 1;
+    // email: The email of the organization
+    string email = 2;
+}
+
+// ReadOrganizationRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+message ReadOrganizationRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+}
+
+// DeleteOrganizationRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+message DeleteOrganizationRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+}
+
+// UpdateOrganizationActivatedRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - activated: True if the organization is activated
+message UpdateOrganizationActivatedRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // activated: True if the organization is activated
+    bool activated = 2;
+}
+
+// UpdateOrganizationNameRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - name: The name of the organization
+message UpdateOrganizationNameRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // name: The name of the organization
+    string name = 2;
+}
+
+// UpdateOrganizationCreditAmountRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - credit_amount: The credit amount of the organization
+message UpdateOrganizationCreditAmountRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // credit_amount: The credit amount of the organization
+    int64 credit_amount = 2;
+}
+
+// UpdateOrganizationLogoRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - logo: The logo of the organization
+message UpdateOrganizationLogoRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // logo: The logo of the organization
+    digitalkin.common.v1.File logo = 2;
+}
+
+// UpdateOrganizationLogoResponse
+//
+// ## Returns
+//
+// - logo: The path of the logo
+message UpdateOrganizationLogoResponse {
+    // logo: The path of the logo
+    string logo = 1;
+}
+
+// ChangeOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+message ChangeOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+}
+
+// ResetOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - email: The email of the organization
+// - temp_key: The temp key of the email
+message ResetOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
+}
+
+// UpdateOrganizationEmailRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - email: The email of the organization
+// - temp_key: The temp key of the email
+message UpdateOrganizationEmailRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // email: The email of the organization
+    string email = 2;
+    // temp_key: The temp key of the email
+    string temp_key = 3;
+}
+
+// AddOrganizationUserRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - user_name: The name of the user
+message AddOrganizationUserRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
+}
+
+// RemoveOrganizationUserRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - user_name: The name of the user
+message RemoveOrganizationUserRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
+}
+
+// AddOrganizationModeratorRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - user_name: The name of the user
+message AddOrganizationModeratorRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
+}
+
+// RemoveOrganizationModeratorRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - user_name: The name of the user
+message RemoveOrganizationModeratorRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
+}
+
+// AddOrganizationSetupRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - setup_id: The id of the setup
+message AddOrganizationSetupRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // setup_id: The id of the setup
+    string setup_id = 2;
+}
+
+// RemoveOrganizationSetupRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - setup_id: The id of the setup
+message RemoveOrganizationSetupRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // setup_id: The id of the setup
+    string setup_id = 2;
+}
+
+// ChangeOrganizationOwnerRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - user_name: The name of the user
+message ChangeOrganizationOwnerRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // user_name: The name of the user
+    string user_name = 2;
+}
+
+// RegenerateOrganizationInvitationCodeRequest
+//
+// ## Fields
+//
+// - organization_id: The id of the organization
+// - name: The name of the user
+message RegenerateOrganizationInvitationCodeRequest {
+    // organization_id: The id of the organization
+    string organization_id = 1;
+    // name: The name of the user
+    string name = 2;
+}
