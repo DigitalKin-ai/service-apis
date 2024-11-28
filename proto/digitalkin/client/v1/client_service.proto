@@ -19,6 +19,7 @@ syntax = "proto3";
 
 package digitalkin.client.v1;
 
+import "digitalkin/common/v1/common.proto";
 import "digitalkin/client/v1/ticketing.proto";
 import "digitalkin/client/v1/user.proto";
 
@@ -297,7 +298,7 @@ service ClientService {
     // Returns:
     //
     // - Nothing
-    rpc AddOrganization(AddUserOrganizationRequest) returns (google.protobuf.Empty) {
+    rpc AddOrganization(AddUserOrganizationRequest) returns (digitalkin.common.v1.OrganizationReply) {
         option (google.api.http) = {
             post: "/v1/user/organization/{organization_id}/add"
             body: "*"
