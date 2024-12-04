@@ -328,7 +328,7 @@ service OrganizationService {
 // - users: The users of the organization
 // - kins: The kins of the organization
 // - credit_amount: The credit amount of the organization
-// - activated: True if the organization is activated
+// - hasActiveSubscription: True if the organization has an active subscription
 message Organization {
     // id: The id of the organization
     string id = 1;
@@ -350,8 +350,8 @@ message Organization {
     repeated digitalkin.common.v1.KinReply kins = 9;
     // credit_amount: The credit amount of the organization
     optional int64 credit_amount = 10;
-    // activated: True if the organization is activated
-    bool activated = 11;
+    // hasActiveSubscription: True if the organization has an active subscription
+    bool hasActiveSubscription = 11;
 }
 
 // CreateOrganizationRequest
