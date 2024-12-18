@@ -1,0 +1,111 @@
+// Copyright 2024 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.storage.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/struct.proto";
+
+// ModuleData
+//
+// Fields:
+// - content: The content of the module data
+// - usage: The usage of the module data
+// - module_id: The module id link to the module data
+// - data_type : The data type of the module data
+message ModuleData {
+    // id: optional id of the module data
+    optional string id = 1 [(buf.validate.field).cel = {
+        id: "optional_id_with_prefix",
+        message: "If present, id must start with 'module_data:', otherwise it can be empty",
+        expression: "this == '' || !has(this) || this.startsWith('module_data:')"
+      }];
+    // content: The content of the module data
+    google.protobuf.Struct content = 2 [(buf.validate.field).required = true];
+    // usage: The usage of the module data
+    google.protobuf.Struct usage = 3 [(buf.validate.field).required = true];
+    // module_id: The module id link to the module data
+    string module_id = 4 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "modules:"];
+    // data_type : The data type of the module data
+    string data_type = 5 [
+        (buf.validate.field).required = true,
+        (buf.validate.field).string.in = "logs",
+        (buf.validate.field).string.in = "outputs",
+        (buf.validate.field).string.in = "views",
+        (buf.validate.field).string.in = "caches"
+    ];
+}
+
+// StoreRequest
+//
+// Fields:
+// - mission_id: The mission id link to the module data
+// - items: The module data items
+message StoreRequest {
+    // mission_id: The mission id link to the module data
+    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
+    // items: The module data items
+    repeated ModuleData items = 2 [(buf.validate.field).repeated.items.required = true];
+}
+
+// StoreResponse
+//
+// Fields:
+// - success: The success of the store request
+// - message: The message of the store request
+// - module_data_ids: The module data ids of the store request
+message StoreResponse {
+    // success: The success of the store request
+    bool success = 1 [(buf.validate.field).required = true];
+    // message: The message of the store request
+    string message = 2 [(buf.validate.field).required = false];
+    // module_data_ids: The module data ids of the store request
+    repeated string module_data_ids = 3 [(buf.validate.field).repeated.items = { string: { min_len: 1, prefix: "module_data:" } }];
+}
+
+
+// RetrieveRequest
+//
+// Fields:
+// - mission_id: The mission id link to the module data
+// - data_type: The module data type
+message RetrieveRequest {
+    // mission_id: The mission id link to the module data
+    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
+    // data_type: The module data type
+    string data_type = 2 [
+        (buf.validate.field).required = true,
+        (buf.validate.field).string.in = "logs",
+        (buf.validate.field).string.in = "outputs",
+        (buf.validate.field).string.in = "views",
+        (buf.validate.field).string.in = "caches"
+    ];
+}
+
+// RetrieveResponse
+//
+// Fields:
+// - success: The success of the retrieve request
+// - message: The message of the retrieve request
+// - items: The module data items
+message RetrieveResponse {
+    // success: The success of the retrieve request
+    bool success = 1 [(buf.validate.field).required = true];
+    // message: The message of the retrieve request
+    string message = 2 [(buf.validate.field).required = false];
+    // items: The module data items
+    repeated ModuleData items = 3 [(buf.validate.field).repeated.items.required = true];
+}
