@@ -17,6 +17,7 @@ syntax = "proto3";
 package digitalkin.payment.v1;
 
 import "digitalkin/payment/v1/currency.proto";
+import "digitalkin/payment/v1/metadata.proto";
 import "digitalkin/payment/v1/product.proto";
 import "digitalkin/payment/v1/recurring.proto";
 
@@ -77,6 +78,8 @@ message Price {
     PriceType type = 6 [(google.api.field_behavior) = INPUT_ONLY];
     // unit_amount: Unit amount
     optional int64 unit_amount = 7;
+    // metadata: Metadata
+    optional MetadataList metadata = 8;
 }
 
 // ReadPricesResponse
