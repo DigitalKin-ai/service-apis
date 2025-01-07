@@ -552,12 +552,12 @@ message UpdateOrganizationLogoResponse {
 // ## Fields
 //
 // - organization_id: The id of the organization
-// - user_name: The name of the user
+// - email: The email of the user
 message AddOrganizationUserRequest {
     // organization_id: The id of the organization
     string organization_id = 1;
-    // user_name: The name of the user
-    string user_name = 2;
+    // email: The email of the user
+    string email = 2;
 }
 
 // RemoveOrganizationUserRequest
