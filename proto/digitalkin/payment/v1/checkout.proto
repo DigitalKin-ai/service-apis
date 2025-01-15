@@ -37,7 +37,7 @@ message CreateCheckoutSessionRequest {
     // cancel_url: Cancel url
     string cancel_url = 4 [(google.api.field_behavior) = REQUIRED];
     // admin_request: Admin request
-    bool admin_request = 5 [(google.api.field_behavior) = OPTIONAL];
+    bool admin_request = 5 [(google.api.field_behavior) = REQUIRED];
 
 }
 
