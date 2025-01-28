@@ -356,6 +356,7 @@ service UserService {
 // - credit_amount: Credit amount
 // - is_owner: Is the user the owner
 // - activated: Is the organization activated
+// - logo: Logo
 message OrganizationReply {
     // id: Organization ID
     string id = 1;
@@ -369,6 +370,8 @@ message OrganizationReply {
     bool is_owner = 5;
     // activated: Is the organization activated
     bool activated = 6;
+    // logo: Logo
+    optional string logo = 7;
 }
 
 // User
