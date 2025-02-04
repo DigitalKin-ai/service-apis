@@ -87,6 +87,22 @@ service AdminService {
         };
     }
 
+    // Delete
+    //
+    // ## Parameters
+    //
+    // - id: ID of the object to delete
+    //
+    // ## Returns
+    //
+    // - Ok if the object was deleted
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {
+        option (google.api.http) = {
+            post: "/v1/admin/delete"
+            body: "*"
+        };
+    }
+
     // UpdateIsAdmin
     //
     // ## Parameters
@@ -340,6 +356,24 @@ message UpdateIsAdminRequest {
     string id = 1;
     // is_admin: New is_admin status
     bool is_admin = 2;
+}
+
+// DeleteRequest
+//
+// ## Fields
+//
+// - id: ID of the object to delete
+message DeleteRequest {
+    // id: ID of the object to delete
+    string id = 1;
+}
+
+// DeleteResponse
+//
+// ## Returns
+//
+// - Ok if the object was deleted
+message DeleteResponse {
 }
 
 // UpdateIsAdminResponse
