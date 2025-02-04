@@ -581,8 +581,10 @@ message UpdateUserAvatarResponse {
 //
 // ## Fields
 //
-// - Nothing
+// - email: Email
 message ChangePasswordRequest {
+    // email: Email
+    string email = 1;
 }
 
 // ChangePasswordResponse
