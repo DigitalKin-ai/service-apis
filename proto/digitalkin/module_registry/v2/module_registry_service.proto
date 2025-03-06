@@ -14,11 +14,11 @@
 
 syntax = "proto3";
 
-package digitalkin.module_registry.v1;
+package digitalkin.module_registry.v2;
 
-import "digitalkin/module_registry/v1/action.proto";
-import "digitalkin/module_registry/v1/discover.proto";
-import "digitalkin/module_registry/v1/status.proto";
+import "digitalkin/module_registry/v2/action.proto";
+import "digitalkin/module_registry/v2/discover.proto";
+import "digitalkin/module_registry/v2/status.proto";
 
 import "google/protobuf/empty.proto";
 

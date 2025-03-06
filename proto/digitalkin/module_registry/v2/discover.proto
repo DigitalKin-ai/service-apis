@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-package digitalkin.module_registry.v1;
+package digitalkin.module_registry.v2;
 
 import "buf/validate/validate.proto";
 
