@@ -1,4 +1,4 @@
-// Copyright 2024 DigitalKin Inc.
+// Copyright 2025 DigitalKin Inc.
 //
 // Licensed under the GNU General Public License, Version 3.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,10 @@ syntax = "proto3";
 
 package digitalkin.module_registry.v2;
 
-import "digitalkin/module_registry/v2/action.proto";
 import "digitalkin/module_registry/v2/discover.proto";
+import "digitalkin/module_registry/v2/registration.proto";
 import "digitalkin/module_registry/v2/status.proto";
 
-import "google/protobuf/empty.proto";
 
 // ModuleRegistryService
 // It manages the registration, discovery, and status tracking of modules within a multi-agent system (MAS).
@@ -29,25 +28,22 @@ import "google/protobuf/empty.proto";
 // with available modules in real-time. Additionally, it ensures that the status of each module is kept up to date,
 // supporting the overall adaptability and coordination of the multi-agent environment.
 service ModuleRegistryService {
-    // registration.proto
-    // RegisterModule
+    // RegisterModule 
     rpc RegisterModule(RegisterRequest) returns (RegisterResponse) {}
-    // DeregisterModule
+    // DeregisterModule 
     rpc DeregisterModule(DeregisterRequest) returns (DeregisterResponse) {}
     
-    // action.proto
-    // DiscoverModule
+    // DiscoverInfoModule 
     rpc DiscoverInfoModule(DiscoverInfoRequest) returns (DiscoverInfoResponse) {}
-    // DiscoverModule
+    // DiscoverSearchModule 
     rpc DiscoverSearchModule(DiscoverSearchRequest) returns (DiscoverSearchResponse) {}
 
-    // status.proto
-    // GetModuleStatus
+    // GetModuleStatus 
     rpc GetModuleStatus(ModuleStatusRequest) returns (ModuleStatusResponse) {}
-    // ListModuleStatus
+    // ListModuleStatus 
     rpc ListModuleStatus(ListModulesStatusRequest) returns (ListModuleStatusResponse) {}
-    // GetAllModuleStatus
+    // GetAllModuleStatus 
     rpc GetAllModuleStatus(GetAllModulesStatusRequest) returns (stream ModuleStatusResponse) {}
-    // UpdateModuleStatus
+    // UpdateModuleStatus 
     rpc UpdateModuleStatus(UpdateStatusRequest) returns (UpdateStatusResponse) {}
 }

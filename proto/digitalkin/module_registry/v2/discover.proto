@@ -16,34 +16,36 @@ syntax = "proto3";
 
 package digitalkin.module_registry.v2;
 
+import "digitalkin/module_registry/v2/metadata.proto";
+
 import "buf/validate/validate.proto";
 
 
-// Tag
-message Tag {
-    // tag: Describe a Module function.
-    string tag = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
-}
-
-// DiscoverRequest
+// DiscoverSearchRequest
 message DiscoverSearchRequest {
+    // module_type: Type of the module to search for (trigger, tool, kin, view).
+    optional string module_type = 1 [(buf.validate.field).string.in = "trigger", (buf.validate.field).string.in = "tool", (buf.validate.field).string.in = "kin", (buf.validate.field).string.in = "view", (buf.validate.field).required = true];
+    // name: Module's name to search
+    optional string name = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
     // tags: List of tags to filter modules with.
-    repeated Tag tags = 1;
+    repeated Tag tags = 3;
+    // description: Module's description to search.
+    optional string description = 4 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
 }
 
-// DiscoverRequest
+// DiscoverSearchResponse
 message DiscoverSearchResponse {
     // modules: List of matching modules.
     repeated DiscoverInfoResponse modules = 1;
 }
 
-// DiscoverRequest
+// DiscoverInfoRequest
 message DiscoverInfoRequest {
     // module_id: Id of the module.
     string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
 }
   
-// DiscoverResponse
+// DiscoverInfoResponse
 message DiscoverInfoResponse {
     // module_id: Id of the module.
     string module_id = 1 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
@@ -55,5 +57,7 @@ message DiscoverInfoResponse {
     int32 port = 4 [(buf.validate.field).int64 = { gte: 1, lte: 65535}, (buf.validate.field).required = true];
     // version: Current module version. 
     string version = 5 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
+    // metadata: user defined module name, description and tags
+    optional Metadata metadata = 6;
 }
   

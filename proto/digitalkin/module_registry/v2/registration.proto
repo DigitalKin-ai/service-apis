@@ -1,4 +1,4 @@
-// Copyright 2024 DigitalKin Inc.
+// Copyright 2025 DigitalKin Inc.
 //
 // Licensed under the GNU General Public License, Version 3.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@ syntax = "proto3";
 
 package digitalkin.module_registry.v2;
 
+import "digitalkin/module_registry/v2/metadata.proto";
+
 import "buf/validate/validate.proto";
 
 
@@ -31,6 +33,8 @@ message RegisterRequest {
     int32 port = 4 [(buf.validate.field).int32 = { gte: 1, lte: 65535}];
     // version: Current module version. 
     string version = 5 [(buf.validate.field).string.min_len = 1, (buf.validate.field).required = true];
+    // metadata: user defined module name, description and tags
+    optional Metadata metadata = 6;
 }
 
 // RegisterResponse
