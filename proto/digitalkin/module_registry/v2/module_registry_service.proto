@@ -41,7 +41,7 @@ service ModuleRegistryService {
     // GetModuleStatus 
     rpc GetModuleStatus(ModuleStatusRequest) returns (ModuleStatusResponse) {}
     // ListModuleStatus 
-    rpc ListModuleStatus(ListModulesStatusRequest) returns (ListModuleStatusResponse) {}
+    rpc ListModuleStatus(ListModulesStatusRequest) returns (ListModulesStatusResponse) {}
     // GetAllModuleStatus 
     rpc GetAllModuleStatus(GetAllModulesStatusRequest) returns (stream ModuleStatusResponse) {}
     // UpdateModuleStatus 
