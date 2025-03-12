@@ -1,0 +1,37 @@
+// Copyright 2025 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.storage.v2;
+
+import "digitalkin/storage/v2/data.proto";
+
+// StorageService: Service to store data
+service StorageService {
+    // StoreData: Store data
+    rpc StoreData (StoreDataRequest) returns (StoreDataResponse);
+    
+    // GetDataByMission: Get data by mission
+    rpc GetDataByMission (GetDataByMissionRequest) returns (GetDataByMissionResponse);
+    
+    // GetDataByName: Get data by mission and name
+    rpc GetDataByName (GetDataByNameRequest) returns (GetDataByNameResponse);
+    
+    // GetDataByType: Get data by mission and type
+    rpc GetDataByType (GetDataByTypeRequest) returns (GetDataByTypeResponse);
+    
+    // DeleteData: Delete data
+    rpc DeleteData (DeleteDataRequest) returns (DeleteDataResponse);
+}
