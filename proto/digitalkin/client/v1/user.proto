@@ -356,6 +356,8 @@ service UserService {
 // - credit_amount: Credit amount
 // - is_owner: Is the user the owner
 // - activated: Is the organization activated
+// - logo: Logo
+// - has_active_subscription: Has active subscription
 message OrganizationReply {
     // id: Organization ID
     string id = 1;
@@ -369,6 +371,10 @@ message OrganizationReply {
     bool is_owner = 5;
     // activated: Is the organization activated
     bool activated = 6;
+    // logo: Logo
+    optional string logo = 7;
+    // has_active_subscription: Has active subscription
+    bool has_active_subscription = 8;
 }
 
 // User
@@ -578,8 +584,10 @@ message UpdateUserAvatarResponse {
 //
 // ## Fields
 //
-// - Nothing
+// - email: Email
 message ChangePasswordRequest {
+    // email: Email
+    string email = 1;
 }
 
 // ChangePasswordResponse
