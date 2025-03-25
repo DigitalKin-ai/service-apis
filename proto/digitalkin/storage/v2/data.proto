@@ -80,7 +80,7 @@ message GetDataByNameRequest {
     // mission_id: Mission ID linked to the data
     string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
     // name: Name of the data (unique by mission_id)
-    DataType name = 2 [(buf.validate.field).required = true];
+    string name = 2 [(buf.validate.field).required = true];
 }
 
 // GetDataByNameResponse: Response to get data by mission and name
