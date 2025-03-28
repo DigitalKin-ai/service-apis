@@ -1,4 +1,4 @@
-// Copyright 2024 DigitalKin Inc.
+// Copyright 2025 DigitalKin Inc.
 //
 // Licensed under the GNU General Public License, Version 3.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,25 +18,27 @@ package digitalkin.setup.v2;
 
 import "digitalkin/setup/v2/setup.proto";
 
-import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 
 // SetupService
+// Provides operations for setups and setup versions.
 service SetupService {
+    // CreateSetup creates a new setup.
+    rpc CreateSetup(CreateSetupRequest) returns (CreateSetupResponse);
+    // GetSetup retrieves a setup by its unique identifier.
+    rpc GetSetup(GetSetupRequest) returns (GetSetupResponse);
+    // UpdateSetup updates an existing setup.
+    rpc UpdateSetup(UpdateSetupRequest) returns (UpdateSetupResponse);
+    // DeleteSetup deletes a setup.
+    rpc DeleteSetup(DeleteSetupRequest) returns (DeleteSetupResponse);
 
-    // GetInstanceSetup
-    rpc GetInstanceSetup(GetInstanceSetupRequest) returns (GetInstanceSetupResponse) {
-        option (google.api.http) = {
-        get: "/v2/setups/{setup_id}/instances/{instance_id}"
-        };
-    }
-
-    // ReadSetup
-    // This route is used to get a setup by its ID.
-    rpc ReadSetup(ReadSetupRequest) returns (ReadSetupResponse) {
-        option (google.api.http) = {
-        get: "/v2/setups/{setup_id}/read"
-        };
-    }
-
+    // CreateSetupVersion creates a new setup version.
+    rpc CreateSetupVersion(CreateSetupVersionRequest) returns (CreateSetupVersionResponse);
+    // GetSetupVersion retrieves a setup version by its unique identifier.
+    rpc GetSetupVersion(GetSetupVersionRequest) returns (GetSetupVersionResponse);
+    // SearchSetupVersions searches for setup versions based on provided filters.
+    rpc SearchSetupVersions(SearchSetupVersionsRequest) returns (SearchSetupVersionsResponse);
+    // UpdateSetupVersion updates an existing setup version.
+    rpc UpdateSetupVersion(UpdateSetupVersionRequest) returns (UpdateSetupVersionResponse);
+    // DeleteSetupVersion deletes a setup version.
+    rpc DeleteSetupVersion(DeleteSetupVersionRequest) returns (DeleteSetupVersionResponse);
 }
