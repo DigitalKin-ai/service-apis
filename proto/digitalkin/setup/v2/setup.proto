@@ -35,7 +35,7 @@ message SetupVersion {
     string version = 2 [(buf.validate.field).required = true];
     // content: Key-value pairs for configuration content.
     google.protobuf.Struct content = 3 [(buf.validate.field).required = true];
-    // creation_date: setu version creation date
+    // creation_date: setup version creation date
     google.protobuf.Timestamp creation_date = 4 [
         (google.api.field_behavior) = IMMUTABLE,
         (google.api.field_behavior) = OUTPUT_ONLY
@@ -105,7 +105,7 @@ message GetSetupRequest {
     // setup_id: The unique identifier of the setup.
     string setup_id = 1 [(buf.validate.field).required = true];
     // version: The unique identifier of the active setup version.
-    optional string version = 3;
+    optional string version = 2;
 }
 
 // GetSetupResponse
@@ -125,12 +125,14 @@ message GetSetupResponse {
 // - owner: (Optional) The new owner.
 // - current_setup_version: (Optional) The new active setup version identifier.
 message UpdateSetupRequest {
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(buf.validate.field).required = true];
     // name: The unique identifier of the setup to update.
-    string name = 1 [(buf.validate.field).required = true];
+    string name = 2 [(buf.validate.field).required = true];
     // owner: The owner of the setup.
-    string owner = 2;
+    string owner = 3;
     // current_setup_version: The unique identifier of the active setup version.
-    SetupVersion current_setup_version = 3;
+    SetupVersion current_setup_version = 4;
 }
 
 // UpdateSetupResponse
@@ -144,10 +146,10 @@ message UpdateSetupResponse {
 // This request is used to delete a setup by its unique identifier.
 //
 // Fields:
-// - name: The unique identifier of the setup to delete.
+// - setup_id: The unique identifier of the setup to delete.
 message DeleteSetupRequest {
-    // name: The unique identifier of the setup.
-    string name = 1 [(buf.validate.field).required = true];
+    // setup_id: The unique identifier of the setup.
+    string setup_id = 1 [(buf.validate.field).required = true];
 }
 
 // DeleteSetupResponse
@@ -188,6 +190,8 @@ message CreateSetupVersionResponse {
 message GetSetupVersionRequest {
     // name: The unique identifier of the setup version.
     string name = 1 [(buf.validate.field).required = true];
+    // version: The version label (e.g., "v1", "v2").
+    string version = 2 [(buf.validate.field).required = true];
 }
 
 // GetSetupVersionResponse
@@ -206,8 +210,8 @@ message GetSetupVersionResponse {
 message SearchSetupVersionsRequest {
     // name: The unique identifier of the parent setup.
     string name = 1;
-    // version: The version label.
-    string version = 2;
+    // version: The version label to filter wirh.
+    optional string version = 2;
 }
 
 // SearchSetupVersionsResponse
@@ -222,16 +226,15 @@ message SearchSetupVersionsResponse {
 //
 // Fields:
 // - name: The unique identifier of the setup version to update.
-// - name: (Optional) The new parent setup identifier.
 // - version: (Optional) The new version label.
 // - content: (Optional) The new configuration content.
 message UpdateSetupVersionRequest {
     // name: The unique identifier of the setup version to update.
     string name = 1 [(buf.validate.field).required = true];
     // version: The version label.
-    string version = 3;
+    string version = 2 [(buf.validate.field).required = true];
     // content: Key-value pairs for configuration content.
-    google.protobuf.Struct content = 4;
+    google.protobuf.Struct content = 3 [(buf.validate.field).required = true];
 }
 
 // UpdateSetupVersionResponse
