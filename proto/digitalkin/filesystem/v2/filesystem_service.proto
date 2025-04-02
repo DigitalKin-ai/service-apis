@@ -18,8 +18,8 @@ package digitalkin.filesystem.v2;
 
 import "digitalkin/filesystem/v2/filesystem.proto";
 
-// FileSystemService: Service to store objects
-service FileSystemService {
+// FilesystemService: Service to store objects
+service FilesystemService {
     // UploadFile: Upload a file to the system
     rpc UploadFile (UploadFileRequest) returns (UploadFileResponse);
     
