@@ -38,8 +38,8 @@ message File {
     string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     // name: Name of the file (unique by context_id)
     string name = 2 [(buf.validate.field).required = true];
-    // type: Type of the file
-    FileType type = 3 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
     // url: URL to access the file
     string url = 4 [(buf.validate.field).required = true];
 }
@@ -50,8 +50,8 @@ message UploadFileRequest {
     string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     // name: Name of the file (unique by context_id)
     string name = 2 [(buf.validate.field).required = true];
-    // type: Type of the file
-    FileType type = 3 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
     // content: Content of the file
     bytes content = 4 [(buf.validate.field).required = true];
 }
