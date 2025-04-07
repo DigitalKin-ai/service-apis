@@ -44,6 +44,16 @@ message File {
     string url = 4 [(buf.validate.field).required = true];
 }
 
+// FileResult: Message to represent the result of a file operation
+message FileResult {
+    oneof result {
+        // file: Successfully retrieved file
+        File file = 1;
+        // error: Error message if file not found
+        string error = 2;
+    }
+}
+
 // UploadFileRequest: Request to upload a file
 message UploadFileRequest {
     // kin_context: Context ID linked to the file
@@ -58,10 +68,8 @@ message UploadFileRequest {
 
 // UploadFileResponse: Response to uploaded file
 message UploadFileResponse {
-    // success: Success of the operation
-    bool success = 1 [(buf.validate.field).required = true];
     // file: Uploaded file
-    File file = 2 [(buf.validate.field).required = true];
+    File file = 1 [(buf.validate.field).required = true];
 }
 
 // GetFilesByKinContextRequest: Request to get files by context
@@ -87,7 +95,7 @@ message GetFileByNameRequest {
 // GetFileByNameResponse: Response to get files by name
 message GetFileByNameResponse {
     // file: Retrieved file
-    File file = 2 [(buf.validate.field).required = true];
+    File file = 1 [(buf.validate.field).required = true];
 }
 
 // GetFilesByNamesRequest: Request to get files by names
@@ -101,7 +109,7 @@ message GetFilesByNamesRequest {
 // GetFilesByNamesResponse: Response to get files by names
 message GetFilesByNamesResponse {
     // files: Retrieved files
-    repeated File files = 2 [(buf.validate.field).required = true];
+    map<string, FileResult> files = 1 [(buf.validate.field).required = true];
 }
 
 // DeleteFileRequest: Request to delete a file
@@ -109,11 +117,27 @@ message DeleteFileRequest {
     // kin_context: Context ID linked to the file
     string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     // name: Name of the file (unique by kin_context)
-    string name = 2;
+    string name = 2 [(buf.validate.field).required = true];
 }
 
 // DeleteFileResponse: Response to delete a file
+// Success is indicated by gRPC OK status code, errors by appropriate error codes
 message DeleteFileResponse {
-    // success: Success of the operation
-    bool success = 1 [(buf.validate.field).required = true];
+}
+
+// UpdateFileRequest: Request to update a file
+message UpdateFileRequest {
+    // kin_context: Context ID linked to the file
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by kin_context)
+    string name = 2 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
+    // content: Content of the file
+    bytes content = 4 [(buf.validate.field).required = true];
+}
+// UpdateFileResponse: Response to update a file
+message UpdateFileResponse {
+    // file: Updated file
+    File file = 1 [(buf.validate.field).required = true];
 }

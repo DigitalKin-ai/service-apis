@@ -26,12 +26,15 @@ service FilesystemService {
     // GetFilesByKinContext: Get files by kin_context
     rpc GetFilesByKinContext (GetFilesByKinContextRequest) returns (GetFilesByKinContextResponse);
     
-    // GetFileByName: Get file by name and context
+    // GetFileByName: Get file by name and kin_context
     rpc GetFileByName (GetFileByNameRequest) returns (GetFileByNameResponse);
     
-    // GetFilesByNames: Get file by name and context
+    // GetFilesByNames: Get file by name and kin_context
     rpc GetFilesByNames (GetFilesByNamesRequest) returns (GetFilesByNamesResponse);
     
-    // DeleteFile: Delete a file by name and context
+    // DeleteFile: Delete a file by name and kin_context
     rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse);
+
+    // UpdateFile: Update a file by name and kin_context
+    rpc UpdateFile (UpdateFileRequest) returns (UpdateFileResponse);
 }
