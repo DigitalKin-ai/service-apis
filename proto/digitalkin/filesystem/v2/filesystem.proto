@@ -1,0 +1,143 @@
+// Copyright 2025 DigitalKin Inc.
+//
+// Licensed under the GNU General Public License, Version 3.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.gnu.org/licenses/gpl-3.0.html
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package digitalkin.filesystem.v2;
+
+import "buf/validate/validate.proto";
+
+// FileType: Enum to file type
+enum FileType {
+    // DOCUMENT: Document file
+    DOCUMENT = 0;
+    // IMAGE: Image file
+    IMAGE = 1;
+    // VIDEO: Video file
+    VIDEO = 2;
+    // AUDIO: Audio file
+    AUDIO = 3;
+    // OTHER: Other file
+    OTHER = 4;
+}
+
+// File: Message to represent stored files
+message File {
+    // kin_context: Context ID linked to the file
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by context_id)
+    string name = 2 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
+    // url: URL to access the file
+    string url = 4 [(buf.validate.field).required = true];
+}
+
+// FileResult: Message to represent the result of a file operation
+message FileResult {
+    oneof result {
+        // file: Successfully retrieved file
+        File file = 1;
+        // error: Error message if file not found
+        string error = 2;
+    }
+}
+
+// UploadFileRequest: Request to upload a file
+message UploadFileRequest {
+    // kin_context: Context ID linked to the file
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by context_id)
+    string name = 2 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
+    // content: Content of the file
+    bytes content = 4 [(buf.validate.field).required = true];
+}
+
+// UploadFileResponse: Response to uploaded file
+message UploadFileResponse {
+    // file: Uploaded file
+    File file = 1 [(buf.validate.field).required = true];
+}
+
+// GetFilesByKinContextRequest: Request to get files by context
+message GetFilesByKinContextRequest {
+    // kin_context: Context ID linked to the files
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+}
+
+// GetFilesByKinContextResponse: Response to get files by context
+message GetFilesByKinContextResponse {
+    // files: Retrieved files
+    repeated File files = 1;
+}
+
+// GetFileByNameRequest: Request to get files by name
+message GetFileByNameRequest {
+    // kin_context: Context ID linked to the files
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by kin_context)
+    string name = 2 [(buf.validate.field).required = true];
+}
+
+// GetFileByNameResponse: Response to get files by name
+message GetFileByNameResponse {
+    // file: Retrieved file
+    File file = 1 [(buf.validate.field).required = true];
+}
+
+// GetFilesByNamesRequest: Request to get files by names
+message GetFilesByNamesRequest {
+    // kin_context: Context ID linked to the files
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // names: Names of the files
+    repeated string names = 2 [(buf.validate.field).required = true];
+}
+
+// GetFilesByNamesResponse: Response to get files by names
+message GetFilesByNamesResponse {
+    // files: Retrieved files
+    map<string, FileResult> files = 1 [(buf.validate.field).required = true];
+}
+
+// DeleteFileRequest: Request to delete a file
+message DeleteFileRequest {
+    // kin_context: Context ID linked to the file
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by kin_context)
+    string name = 2 [(buf.validate.field).required = true];
+}
+
+// DeleteFileResponse: Response to delete a file
+// Success is indicated by gRPC OK status code, errors by appropriate error codes
+message DeleteFileResponse {
+}
+
+// UpdateFileRequest: Request to update a file
+message UpdateFileRequest {
+    // kin_context: Context ID linked to the file
+    string kin_context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
+    // name: Name of the file (unique by kin_context)
+    string name = 2 [(buf.validate.field).required = true];
+    // file_type: Type of the file
+    FileType file_type = 3 [(buf.validate.field).required = true];
+    // content: Content of the file
+    bytes content = 4 [(buf.validate.field).required = true];
+}
+// UpdateFileResponse: Response to update a file
+message UpdateFileResponse {
+    // file: Updated file
+    File file = 1 [(buf.validate.field).required = true];
+}

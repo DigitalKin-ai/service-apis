@@ -20,18 +20,15 @@ import "digitalkin/storage/v2/data.proto";
 
 // StorageService: Service to store data
 service StorageService {
-    // StoreData: Store data
-    rpc StoreData (StoreDataRequest) returns (StoreDataResponse);
-    
-    // GetDataByMission: Get data by mission
-    rpc GetDataByMission (GetDataByMissionRequest) returns (GetDataByMissionResponse);
-    
-    // GetDataByName: Get data by mission and name
-    rpc GetDataByName (GetDataByNameRequest) returns (GetDataByNameResponse);
-    
-    // GetDataByType: Get data by mission and type
-    rpc GetDataByType (GetDataByTypeRequest) returns (GetDataByTypeResponse);
-    
-    // DeleteData: Delete data
-    rpc DeleteData (DeleteDataRequest) returns (DeleteDataResponse);
+    // StoreRecord: Store a new data 
+    rpc StoreRecord (StoreRecordRequest) returns (StoreRecordResponse);
+
+    // ReadRecord: Get data by mission and name
+    rpc ReadRecord (ReadRecordRequest) returns (ReadRecordResponse);
+
+    // ModifyRecord: Update data record
+    rpc ModifyRecord (ModifyRecordRequest) returns (ModifyRecordResponse);
+
+    // RemoveRecord: Delete data
+    rpc RemoveRecord (RemoveRecordRequest) returns (RemoveRecordResponse);
 }

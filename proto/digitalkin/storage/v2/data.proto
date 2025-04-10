@@ -26,97 +26,93 @@ enum DataType {
     OUTPUT = 0;
     // VIEW: Data to be displayed
     VIEW = 1;
-    // you can add more types here
+    // LOGS: Logs data
+    LOGS = 2;
+    // OTHER: Other data
+    OTHER = 3;
 }
 
-// StorageData: Message to represent stored data
-message StorageData {
+// StorageRecord: Message to represent stored data
+message StorageRecord {
     // data: JSON Object to store
     google.protobuf.Struct data = 1 [(buf.validate.field).required = true];
     // mission_id: Mission ID linked to the data
     string mission_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
     // name: Name of the data (unique by mission_id)
     string name = 3 [(buf.validate.field).required = true];
-    // timestamp: Timestamp of the data
-    google.protobuf.Timestamp timestamp = 4 [(buf.validate.field).required = true];
-    // type: Type of the data
-    DataType type = 5 [(buf.validate.field).required = true];
+    // creation_date: Creation date of the data
+    google.protobuf.Timestamp creation_date = 4 [(buf.validate.field).required = true];
+    // update_date: Update date of the data
+    google.protobuf.Timestamp update_date = 5 [(buf.validate.field).required = true];
+    // data_type: Type of the data
+    DataType data_type = 6 [(buf.validate.field).required = true];
 }
 
-// StoreDataRequest: Request to store data
-message StoreDataRequest {
+// StoreRecordRequest: Request to store record
+message StoreRecordRequest {
     // data: Data to store or to retrieve
     google.protobuf.Struct data = 1 [(buf.validate.field).required = true];
     // mission_id: Mission ID linked to the data
     string mission_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
     // name: Name of the data (unique by mission_id)
     string name = 3 [(buf.validate.field).required = true];
-    // type: Type of the data
-    DataType type = 4 [(buf.validate.field).required = true];
+    // data_type: Type of the data
+    DataType data_type = 4 [(buf.validate.field).required = true];
 }
 
-// StoreDataResponse: Response to stored data
-message StoreDataResponse {
+// StoreRecordResponse: Response to stored record
+message StoreRecordResponse {
     // success: Success of the operation
     bool success = 1 [(buf.validate.field).required = true];
     // stored_data: Stored data
-    StorageData stored_data = 2 [(buf.validate.field).required = true];
+    StorageRecord stored_data = 2 [(buf.validate.field).required = true];
 }
 
-// GetDataByMissionRequest: Request to get data by mission
-message GetDataByMissionRequest {
-    // mission_id: Mission ID linked to the data
-    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-}
-
-// GetDataByMissionResponse: Response to get data by mission
-message GetDataByMissionResponse {
-    // data_items: Data items
-    repeated StorageData data_items = 1;
-}
-
-// GetDataByNameRequest: Request to get data by mission and name
-message GetDataByNameRequest {
-    // mission_id: Mission ID linked to the data
-    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-    // name: Name of the data (unique by mission_id)
-    DataType name = 2 [(buf.validate.field).required = true];
-}
-
-// GetDataByNameResponse: Response to get data by mission and name
-message GetDataByNameResponse {
-    // success: Success of the operation
-    bool success = 1 [(buf.validate.field).required = true];
-    // stored_data: Stored data
-    StorageData stored_data = 2 [(buf.validate.field).required = true];
-}
-
-// GetDataByTypeRequest: Request to get data by type
-message GetDataByTypeRequest {
-    // mission_id: Mission ID linked to the data
-    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-    // type: Type of the data
-    DataType type = 2 [(buf.validate.field).required = true];
-}
-
-// GetDataByTypeResponse: Response to get data by type
-message GetDataByTypeResponse {
-    // success: Success of the operation
-    bool success = 1 [(buf.validate.field).required = true];
-    // stored_data: Stored data
-    StorageData stored_data = 2 [(buf.validate.field).required = true];
-}
-
-// DeleteDataRequest: Request to delete data
-message DeleteDataRequest {
+// ReadRecordRequest: Request to read a record
+message ReadRecordRequest {
     // mission_id: Mission ID linked to the data
     string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
     // name: Name of the data (unique by mission_id)
     string name = 2 [(buf.validate.field).required = true];
 }
 
-// DeleteDataResponse: Response to delete data
-message DeleteDataResponse {
+// ReadRecordResponse: Response after read a record
+message ReadRecordResponse {
+    // success: Success of the operation
+    bool success = 1 [(buf.validate.field).required = true];
+    // stored_data: Stored data
+    StorageRecord stored_data = 2 [(buf.validate.field).required = true];
+}
+
+
+// ModifyRecordRequest: Request to modify record
+message ModifyRecordRequest {
+    // data: Data to store or to retrieve
+    google.protobuf.Struct data = 1 [(buf.validate.field).required = true];
+    // mission_id: Mission ID linked to the data
+    string mission_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
+    // name: Name of the data (unique by mission_id)
+    string name = 3 [(buf.validate.field).required = true];
+}
+
+// ModifyRecordResponse: Response to record modification
+message ModifyRecordResponse {
+    // success: Success of the operation
+    bool success = 1 [(buf.validate.field).required = true];
+    // stored_data: Stored data
+    StorageRecord stored_data = 2 [(buf.validate.field).required = true];
+}
+
+// RemoveRecordRequest: Request to remove a record
+message RemoveRecordRequest {
+    // mission_id: Mission ID linked to the data
+    string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
+    // name: Name of the data (unique by mission_id)
+    string name = 2 [(buf.validate.field).required = true];
+}
+
+// RemoveRecordResponse: Response to removed record
+message RemoveRecordResponse {
     // success: Success of the operation
     bool success = 1 [(buf.validate.field).required = true];
 }
