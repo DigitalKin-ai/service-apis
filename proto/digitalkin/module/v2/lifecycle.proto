@@ -29,11 +29,14 @@ import "google/protobuf/struct.proto";
 //
 // - input: Structured input data for the module
 // - setup_id: Database ID of the setupused to start the module
+// - mission_id: Database ID of the Module to start
 message StartModuleRequest {
     // input: Structured input data for the module
     google.protobuf.Struct input = 1 [(buf.validate.field).required = true];
     // setup_id: Database ID of the setup used to start the module
     string setup_id = 2 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "setups:", (buf.validate.field).required = true];
+    // mission_id: Database ID of the Module to start
+    string mission_id = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "missions:", (buf.validate.field).required = true];
 }
 
 // StopModuleRequest
