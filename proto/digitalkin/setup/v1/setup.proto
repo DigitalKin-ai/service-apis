@@ -19,7 +19,6 @@ package digitalkin.setup.v1;
 import "digitalkin/setup/v1/assistant.proto";
 
 import "google/api/field_behavior.proto";
-import "google/protobuf/any.proto";
 
 // Data
 //

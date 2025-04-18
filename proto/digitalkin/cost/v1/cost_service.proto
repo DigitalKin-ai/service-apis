@@ -23,12 +23,12 @@ service CostService {
     // AddCost: Add a cost
     rpc AddCost (AddCostRequest) returns (AddCostResponse);
 
-    // GetCostsByMission: Get a cost by Mission ID
+    // GetCostsByMission: Get costs by Mission ID
     rpc GetCostsByMission (GetCostsByMissionRequest) returns (GetCostsByMissionResponse);
 
-    // GetCostsByName: Get costs by name
-    rpc GetCostsByName (GetCostsByNameRequest) returns (GetCostsByNameResponse);
+    // GetCostsByNames: Get costs by names
+    rpc GetCostsByNames (GetCostsByNamesRequest) returns (GetCostsByNamesResponse);
 
-    // GetCostsByType: Get costs by type
-    rpc GetCostsByType (GetCostsByTypeRequest) returns (GetCostsByTypeResponse);
+    // GetCostsByType: Get costs by cost type
+    rpc GetCostsByType (GetCostsByCostTypeRequest) returns (GetCostsByCostTypeResponse);
 }
