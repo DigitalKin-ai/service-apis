@@ -26,9 +26,15 @@ service StorageService {
     // ReadRecord: Get data by mission and name
     rpc ReadRecord (ReadRecordRequest) returns (ReadRecordResponse);
 
-    // ModifyRecord: Update data record
-    rpc ModifyRecord (ModifyRecordRequest) returns (ModifyRecordResponse);
+    // UpdateRecord: Update data record
+    rpc UpdateRecord (UpdateRecordRequest) returns (UpdateRecordResponse);
 
     // RemoveRecord: Delete data
     rpc RemoveRecord (RemoveRecordRequest) returns (RemoveRecordResponse);
+
+    // ListRecords: List all records in a given collection
+    rpc ListRecords(ListRecordsRequest) returns (ListRecordsResponse);
+
+    // RemoveCollection: Delete all records in a given collection
+    rpc RemoveCollection(RemoveCollectionRequest) returns (RemoveCollectionResponse);
 }
