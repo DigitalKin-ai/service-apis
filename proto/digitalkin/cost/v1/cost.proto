@@ -40,7 +40,7 @@ message Cost {
     double cost = 1 [(buf.validate.field).required = true];
     // mission_id: Mission ID linked to the cost
     string mission_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-    // name: Name of the cost (unique by mission_id)
+    // name: Name of the cost
     string name = 3 [(buf.validate.field).required = true];
     // cost_type: Type of the cost
     CostType cost_type = 4 [(buf.validate.field).required = true];
@@ -60,7 +60,7 @@ message AddCostRequest {
     double cost = 1 [(buf.validate.field).required = true];
     // mission_id: Mission ID linked to the cost
     string mission_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-    // name: Name of the cost (unique by mission_id)
+    // name: Name of the cost
     string name = 3 [(buf.validate.field).required = true];
     // cost_type: Type of the cost
     CostType cost_type = 4 [(buf.validate.field).required = true];
@@ -98,7 +98,7 @@ message GetCostsRequest {
 
 // GetCostsResponse: Response to get multiple costs
 message GetCostsResponse {
-    // costs: List of costs
+    // costs: List of cost
     repeated Cost costs = 1 [(buf.validate.field).required = true];
 }
 
@@ -106,12 +106,12 @@ message GetCostsResponse {
 message GetCostRequest {
     // mission_id: Mission ID linked to the cost
     string mission_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.prefix = "missions:"];
-    // name: Name of the cost (unique by mission_id)
+    // name: Name of the cost
     string name = 2 [(buf.validate.field).required = true];
 }
 
 // GetCostResponse: Response to get cost by name
 message GetCostResponse {
-    // cost: Cost object
-    Cost cost = 1 [(buf.validate.field).required = true];
+    // costs: List of cost
+    repeated Cost costs = 1 [(buf.validate.field).required = true];
 }
