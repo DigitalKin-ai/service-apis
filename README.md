@@ -2,7 +2,7 @@
 
 ## Usage
 
-### Generate clients with [buf](https://buf.build/):
+### Generate clients with [buf](https://buf.build/)
 
 Ensure [buf](https://buf.build/docs/installation) and [protoc](https://grpc.io/docs/protoc-installation/) are installed on your system.
 
@@ -10,9 +10,9 @@ Ensure [buf](https://buf.build/docs/installation) and [protoc](https://grpc.io/d
 buf dep update ./proto
 ```
 
-#### Rust (tonic):
+#### Rust (tonic)
 
-##### Dependencies:
+##### Dependencies
 
 Install "protoc-gen-\*" with cargo.
 
@@ -22,7 +22,7 @@ cargo install protoc-gen-prost-crate
 cargo install protoc-gen-tonic
 ```
 
-##### Generate:
+##### Generate
 
 ```sh
 buf generate proto --template proto/buf.gen.rust.yaml
@@ -32,9 +32,9 @@ buf generate proto --template proto/buf.gen.rust.yaml
 
 Outputs will be in out/ directory.
 
-#### Typescript in Browser:
+#### Typescript in Browser
 
-##### Dependencies:
+##### Dependencies
 
 Install "protoc-gen-\*" with npm.
 
@@ -42,7 +42,7 @@ Install "protoc-gen-\*" with npm.
 npm install -g ts-proto
 ```
 
-##### Generate:
+##### Generate
 
 ```sh
 buf generate proto --template proto/buf.gen.ts.yaml
@@ -54,7 +54,7 @@ Outputs will be in services/ directory.
 
 ### Proto linter
 
-#### Dependencies:
+#### Dependencies
 
 Install protolint with npx.
 
@@ -62,7 +62,7 @@ Install protolint with npx.
  npx protolint
 ```
 
-#### Lint:
+#### Lint
 
  ```sh
 protolint lint proto
@@ -79,8 +79,11 @@ When using "vscode-proto3" extention in VS Code, add the following to the '.vsco
   }
 }
 ```
+
 ## Optionals
+
 how to select only specific proto, use `--path` args
+
 ```sh
  buf generate proto --template service-apis/proto/buf.gen.py.yaml -o gen --path service-apis/proto/digitalkin/kin --path service-apis/proto/google
 ```
