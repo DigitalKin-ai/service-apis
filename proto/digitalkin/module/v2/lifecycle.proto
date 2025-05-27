@@ -17,10 +17,41 @@ syntax = "proto3";
 
 package digitalkin.module.v2;
 
+import "digitalkin/setup/v2/setup.proto";
+
 import "buf/validate/validate.proto";
 import "google/api/field_behavior.proto";
 import "google/protobuf/struct.proto";
 
+
+// ConfigSetupModuleRequest
+// This request is used to configure an existing setup version.
+//
+// Fields:
+// - setup_version: The setup version to configure.
+// - content: The new content to compute and/or configure.
+// - mission_id: Database ID of the Module to start
+message ConfigSetupModuleRequest {
+    // setup_version: The setup version to configure.
+    digitalkin.setup.v2.SetupVersion setup_version = 1 [(buf.validate.field).required = true];
+    // content: The new content to compute and/or configure.
+    google.protobuf.Struct content = 2 [(buf.validate.field).required = true];
+    // mission_id: Database ID of the Module to start
+    string mission_id = 3 [(buf.validate.field).string.min_len = 1, (buf.validate.field).string.prefix = "missions:", (buf.validate.field).required = true];
+}
+
+// ConfigSetupModuleResponse
+// Returns the configured setup version.
+//
+// Fields:
+// - success: description flag of the operation.
+// - setup_version: The updated setup version entity.
+message ConfigSetupModuleResponse {
+    // success: description flag of the operation.
+    bool success = 1;
+    // setup_version: The updated setup version entity.
+    digitalkin.setup.v2.SetupVersion setup_version = 2;
+}
 
 // StartModuleRequest
 // TODO: do we have to add secret_id ?

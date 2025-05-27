@@ -45,5 +45,9 @@ service ModuleService {
     rpc GetModuleSetup (GetModuleSetupRequest) returns (GetModuleSetupResponse);
     // GetModuleSecret
     rpc GetModuleSecret (GetModuleSecretRequest) returns (GetModuleSecretResponse);
+    // GetConfigSetupModule
+    rpc GetConfigSetupModule (GetConfigSetupModuleRequest) returns (GetConfigSetupModuleResponse);
+    // ConfigSetupModule
+    rpc ConfigSetupModule(ConfigSetupModuleRequest) returns (ConfigSetupModuleResponse);
 }
   

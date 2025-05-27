@@ -41,7 +41,6 @@ service SetupService {
     rpc UpdateSetupVersion(UpdateSetupVersionRequest) returns (UpdateSetupVersionResponse);
     // DeleteSetupVersion deletes a setup version.
     rpc DeleteSetupVersion(DeleteSetupVersionRequest) returns (DeleteSetupVersionResponse);
-
     // ListSetups retrieves a paginated list of setups, filtered by organisation or owner.
     rpc ListSetups(ListSetupsRequest) returns (ListSetupsResponse);
 }
