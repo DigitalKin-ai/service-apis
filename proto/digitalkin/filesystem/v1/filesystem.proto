@@ -93,6 +93,9 @@ message File {
     
     // status: Current status of the file
     FileStatus status = 12 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
+
+    // content: The content of the file
+    bytes content = 13;
 }
 
 // FileFilter: Filter criteria for querying files
@@ -169,9 +172,12 @@ message UploadFileData {
     
     // metadata: Additional metadata for the file
     google.protobuf.Struct metadata = 6;
+
+    // status: Status of the file
+    FileStatus status = 7 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
     
     // replace_if_exists: Whether to replace existing file with same name
-    bool replace_if_exists = 7;
+    bool replace_if_exists = 8;
 }
 
 // UploadFilesRequest: Request to upload multiple files
@@ -190,30 +196,6 @@ message UploadFilesResponse {
     
     // total_failed: Number of failed uploads
     int32 total_failed = 3;
-}
-
-// ListFilesRequest: Request to list files with filtering and pagination
-message ListFilesRequest {
-    // filter: Filter criteria for the files
-    FileFilter filter = 1 [(buf.validate.field).required = true];
-    
-    // list_size: Number of files to return per page
-    int32 list_size = 2 [(buf.validate.field).int32.gte = 1, (buf.validate.field).int32.lte = 1000];
-    
-    // offset: Offset of the first file in the list
-    int32 offset = 3 [(buf.validate.field).int32.gte = 0];
-    
-    // order: Field to order results by
-    string order = 4;
-}
-
-// ListFilesResponse: Response for listing files
-message ListFilesResponse {
-    // files: List of files matching the criteria
-    repeated File files = 1 ;
-    
-    // total_count: Total number of files matching the filter (optional)
-    int32 total_count = 2 [(buf.validate.field).int32.gte = 0];
 }
 
 // GetFileRequest: Request to get a specific file
@@ -235,7 +217,7 @@ message GetFileRequest {
 // GetFileResponse: Response containing file information
 message GetFileResponse {
     // file: The requested file
-    File file = 1;
+    File file = 1 [(buf.validate.field).required = true];
     
     // content: File content (only if requested)
     bytes content = 2;
@@ -260,9 +242,12 @@ message UpdateFileRequest {
     
     // content: New file content (optional)
     bytes content = 6;
+
+    // status: New status of the file
+    FileStatus status = 7 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
     
     // metadata: New metadata (optional, will merge with existing)
-    google.protobuf.Struct metadata = 7;
+    google.protobuf.Struct metadata = 8;
 }
 
 // UpdateFileResponse: Response for file update
@@ -307,7 +292,7 @@ message GetFilesRequest {
 // GetFilesResponse: Response containing multiple files
 message GetFilesResponse {
     // files: List of files matching the criteria
-    repeated File files = 1;
+    repeated File files = 1 [(buf.validate.field).required = true, (buf.validate.field).repeated.min_items = 1];
     
     // total_count: Total number of files matching the criteria
     int32 total_count = 2;

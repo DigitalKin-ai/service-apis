@@ -32,16 +32,6 @@ service FilesystemService {
     //
     rpc UploadFiles(UploadFilesRequest) returns (UploadFilesResponse);
 
-    // ListFiles: Retrieve files with filtering, sorting, and pagination
-    //
-    // This method provides flexible file querying capabilities with support for:
-    // - Multiple filter criteria (name, type, dates, size, etc.)
-    // - Pagination for large result sets
-    // - Sorting by various fields
-    // - Scoped access by kin_context
-    //
-    rpc ListFiles(ListFilesRequest) returns (ListFilesResponse);
-
     // GetFile: Retrieve a specific file by ID or name
     //
     // This method fetches detailed information about a single file,
