@@ -246,8 +246,8 @@ message UpdateFileRequest {
     // context: Context ID for the file
     string context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     
-    // name: Current name of the file
-    string name = 2 [(buf.validate.field).required = true, (buf.validate.field).string.min_len = 1];
+    // id: Current id of the file
+    string id = 2 [(buf.validate.field).required = true];
     
     // new_name: New name for the file (optional)
     string new_name = 3;
