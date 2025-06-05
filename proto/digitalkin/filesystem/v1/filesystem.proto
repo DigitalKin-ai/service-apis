@@ -58,8 +58,8 @@ enum FileStatus {
 
 // File: Message to represent stored files with comprehensive metadata
 message File {
-    // id: Unique identifier for the file (UUID)
-    string id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.uuid = true];
+    // file_id: Unique identifier for the file (UUID)
+    string file_id = 1 [(buf.validate.field).required = true, (buf.validate.field).string.uuid = true];
     
     // context: Context ID linked to the file
     string context = 2 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
@@ -79,23 +79,17 @@ message File {
     // checksum: SHA-256 checksum of the file content
     string checksum = 7 [(buf.validate.field).required = true];
     
-    // created: Timestamp when the file was created
-    google.protobuf.Timestamp created = 8 [(buf.validate.field).required = true];
-    
-    // updated: Timestamp when the file was last updated
-    google.protobuf.Timestamp updated = 9 [(buf.validate.field).required = true];
-    
     // metadata: Flexible metadata for additional file properties
-    google.protobuf.Struct metadata = 10;
+    google.protobuf.Struct metadata = 8;
     
     // storage_url: Internal URL for accessing the file content
-    string storage_url = 11 [(buf.validate.field).required = true];
+    string storage_url = 9 [(buf.validate.field).required = true];
     
     // status: Current status of the file
-    FileStatus status = 12 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
+    FileStatus status = 10 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
 
     // content: The content of the file
-    bytes content = 13;
+    bytes content = 11;
 }
 
 // FileFilter: Filter criteria for querying files
@@ -103,8 +97,8 @@ message FileFilter {
     // names: Filter by file names (exact matches)
     repeated string names = 1;
     
-    // ids: Filter by file IDs
-    repeated string ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
+    // file_ids: Filter by file IDs
+    repeated string file_ids = 2 [(buf.validate.field).repeated.items.string.uuid = true];
     
     // file_types: Filter by file types
     repeated FileType file_types = 3 [(buf.validate.field).repeated.items.enum.not_in = 0];
@@ -203,15 +197,11 @@ message GetFileRequest {
     // context: Context ID for the file
     string context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     
-    oneof identifier {
-        // id: File ID
-        string id = 2 [(buf.validate.field).string.uuid = true];
-        // name: File name
-        string name = 3 [(buf.validate.field).string.min_len = 1];
-    }
+    // file_id: File ID
+    string file_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.uuid = true];
     
     // include_content: Whether to include file content in response
-    bool include_content = 4;
+    bool include_content = 3;
 }
 
 // GetFileResponse: Response containing file information
@@ -228,8 +218,8 @@ message UpdateFileRequest {
     // context: Context ID for the file
     string context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     
-    // id: Current id of the file
-    string id = 2 [(buf.validate.field).required = true];
+    // file_id: Current id of the file
+    string file_id = 2 [(buf.validate.field).required = true, (buf.validate.field).string.uuid = true];
     
     // new_name: New name for the file (optional)
     string new_name = 3;
@@ -256,25 +246,13 @@ message UpdateFileResponse {
     FileResult result = 1;
 }
 
-// FileIdentifier: Common filter for identifying files
-message FileIdentifier {
-    // ids: Get files by their IDs
-    repeated string ids = 1 [(buf.validate.field).repeated.items.string.uuid = true];
-    
-    // names: Get files by their names
-    repeated string names = 2;
-    
-    // prefix: Get files by path prefix (e.g., "folder1/")
-    string prefix = 3 [(buf.validate.field).string.pattern = "^[^/]*/?[^/]*$"];
-}
-
 // GetFilesRequest: Request to get multiple files by various criteria
 message GetFilesRequest {
     // context: Context ID for the files
     string context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     
-    // filter: How to identify the files
-    FileIdentifier filter = 2 [(buf.validate.field).required = true];
+    // filters: How to identify the files
+    FileFilter filters = 2 [(buf.validate.field).required = true];
 
     // list_size: Number of files to return per page
     int32 list_size = 3 [(buf.validate.field).int32.gte = 1, (buf.validate.field).int32.lte = 1000];
@@ -303,8 +281,8 @@ message DeleteFilesRequest {
     // context: Context ID for the files
     string context = 1 [(buf.validate.field).required = true, (buf.validate.field).string.pattern = "^(missions:|setups:).*$"];
     
-    // filter: How to identify the files
-    FileIdentifier filter = 2 [(buf.validate.field).required = true];
+    // filters: How to identify the files
+    FileFilter filters = 2 [(buf.validate.field).required = true];
     
     // force: Whether to force delete even if file is in use
     bool force = 3;
