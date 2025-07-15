@@ -296,3 +296,35 @@ message DeleteSetupVersionResponse {
     // success: description flag of the operation.
     bool success = 1;
 }
+
+// ListSetupsRequest
+// This request is used to retrieve a paginated list of setups, filtered by organisation or owner.
+//
+// Fields:
+// - organisation_id: (Optional) Filter by the organisation identifier.
+// - owner_id: (Optional) Filter by the owner identifier (e.g., from Clerk).
+// - list_size: (Optional) Maximum number of setups to return.
+// - offset: (Optional) Start index for pagination.
+message ListSetupsRequest {
+    // organisation_id: The unique identifier of the organisation.
+    optional string organisation_id = 1 [(buf.validate.field).string.min_len = 1];
+    // owner_id: The owner_id of the setup.
+    optional string owner_id = 2 [(buf.validate.field).string.min_len = 1];
+    // list_size: Maximum number of setups to return.
+    optional int32 list_size = 3 [(buf.validate.field).int32.gte = 1];
+    // offset: Start index for pagination.
+    optional int32 offset = 4 [(buf.validate.field).int32.gte = 0];
+}
+
+// ListSetupsResponse
+// Returns a paginated list of setups matching the request criteria.
+//
+// Fields:
+// - list_size: Number of setups returned.
+// - setups: List of setups with their details and optional status.
+message ListSetupsResponse {
+    // list_size: Number of setups returned.
+    int32 list_size = 1 [(buf.validate.field).int32.gte = 0];
+    // setups: List of setups with their details.
+    repeated Setup setups = 2;
+}
