@@ -82,14 +82,17 @@ message File {
     // metadata: Flexible metadata for additional file properties
     google.protobuf.Struct metadata = 8;
     
-    // storage_url: Internal URL for accessing the file content
-    string storage_url = 9 [(buf.validate.field).required = true];
+    // storage_uri: Internal URI for accessing the file content
+    string storage_uri = 9 [(buf.validate.field).required = true];
+    
+    // file_url: External URL for accessing the file content
+    string file_url = 10 [(buf.validate.field).required = true];
     
     // status: Current status of the file
-    FileStatus status = 10 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
+    FileStatus status = 11 [(buf.validate.field).required = true, (buf.validate.field).enum.not_in = 0];
 
     // content: The content of the file
-    bytes content = 11;
+    bytes content = 12;
 }
 
 // FileFilter: Filter criteria for querying files
